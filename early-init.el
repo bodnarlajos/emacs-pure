@@ -1,6 +1,7 @@
 (defconst my/start-time (current-time))
 
 (defvar file-name-handler-alist-old file-name-handler-alist)
+(defconst is-lbodnar (string-equal system-name "lbodnar"))
 
 (setq file-name-handler-alist nil
       message-log-max 16384
@@ -32,12 +33,26 @@
  '(highlight-indent-guides-method 'bitmap)
  '(package-load-list '((company t) (smex t) (rg t) (undo-tree t)))
  '(package-selected-packages
-	 '(flycheck tide flymake-jslint flymake-less web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
+   '(company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
 (setq package-quickstart t)
+
+(setq frame-inhibit-implied-resize t)
+(if is-lbodnar
+    (progn
+      (add-to-list 'default-frame-alist '(font . "Fira Code-12"))
+      (set-face-attribute 'default nil :family "Fira Code" :height 110))
+  (progn
+    (add-to-list 'default-frame-alist '(font . "Fira Code-12"))
+    (set-face-attribute 'default nil :family "Fira Code" :height 100)))
+
+;;   (set-frame-font "" t)
+;; (set-frame-font "Fira Code-9" t))
+
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;-------------------- Some tricks--------------------------
 (provide 'early-init)

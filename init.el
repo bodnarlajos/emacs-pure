@@ -12,14 +12,10 @@
 
 (defvar bootstrap-version nil)
 
-(defconst is-lbodnar (string-equal system-name "lbodnar"))
 (defvar my/project-dir '("/home/lbodnar/Projects"))
 
 (cua-mode t)
 (blink-cursor-mode 0)
-(if is-lbodnar
-    (set-frame-font "Fira Code-12" t)
-  (set-frame-font "Fira Code-9" t))
 
 (load-theme 'wombat)
 (setq completion-ignore-case t

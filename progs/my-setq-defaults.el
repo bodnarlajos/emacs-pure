@@ -27,6 +27,7 @@
  completions-format 'vertical
  isearch-allow-scroll t
  isearch-allow-prefix t
+ linum-format "%3s"
  mark-ring-max 32)
 
 (if is-lbodnar

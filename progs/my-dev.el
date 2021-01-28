@@ -6,7 +6,8 @@
 (require 'js2-mode)
 (require 'web-mode)
 (require 'tide)
-(require 'my-eglot)
+(require 'my-haskell)
+(require 'company-quickhelp)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables
@@ -22,6 +23,7 @@
 	(display-line-numbers-mode)
 	(highlight-indent-guides-mode t)
 	(diff-hl-mode t)
+	(company-quickhelp-mode)
 	(smartparens-mode))
 
 (setq compilation-auto-jump-to-first-error nil)
@@ -30,11 +32,10 @@
 (setq compilation-scroll-output 'next-error)
 ;; Don't stop on info or warnings.
 (setq compilation-skip-threshold 2)
-(setq eldoc-echo-area-use-multiline-p nil)
+(setq eldoc-echo-area-use-multiline-p 4)
 (setq eldoc-echo-area-prefer-doc-buffer t)
 (setq flycheck-display-errors-function nil)
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
-(add-hook 'haskell-mode-hook 'eglot-ensure)
 (setq company-minimum-prefix-length 1)
 (add-to-list 'auto-mode-alist '("\\.julius\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.hamlet\\'" . web-mode))
@@ -44,7 +45,10 @@
 																	(tide-setup)
 																	(flycheck-mode +1)
 																	(setq flycheck-check-syntax-automatically '(save mode-enabled))
-																	(eldoc-mode +1)))
-(add-hook 'js2-mode-hook 'flymake-jslint-load)
+																	(eldoc-mode +1)
+																	(lsp-ui-mode)))
+(add-hook 'flycheck-mode-hook (lambda ()
+																(local-set-key (kbd "C-n") 'flycheck-next-error)
+																(local-set-key (kbd "C-p") 'flycheck-previous-error)))
 
 (provide 'my-dev)
