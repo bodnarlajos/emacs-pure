@@ -20,5 +20,6 @@
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-b") 'switch-to-buffer)
+(define-key ido-common-completion-map (kbd "C-l") 'my/menu-smex)
 
 (provide 'my-keys)
