@@ -8,6 +8,7 @@
 (require 'tide)
 (require 'my-haskell)
 (require 'company-quickhelp)
+(require 'treemacs)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

@@ -1,3 +1,9 @@
+(defun my/git-only ()
+	"Open the magit and remove other windows"
+	(interactive)
+	(magit-status)
+	(delete-other-windows))
+
 (defun my/menu-base ()
 	"Base menu"				
 	(interactive)			
@@ -12,18 +18,20 @@
 				(openNotes "Notes ...")
 				(vcdir "Version control")
 				(development "Start development!")
-				(projectFindFile "Project find file"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
+				(projectFindFile "Project find file")
+				(first ""))
+		(let ((ido-list (list first recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
 			(let ((res (ido-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res projectFindFile) (call-interactively 'project-find-file))
+				 ((string-equal res first) (call-interactively 'smex))
 				 ((string-equal res recentfFiles) (call-interactively 'ido-recentf-open))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res runCommand) (call-interactively 'smex))
-				 ((string-equal res magit) (call-interactively 'magit-status))
+				 ((string-equal res magit) (call-interactively 'my/git-only))
 				 ((string-equal res vcdir) (call-interactively 'vc-dir))
 				 ((string-equal res development) (progn
 																					 (require 'my-dev)

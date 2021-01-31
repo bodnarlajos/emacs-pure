@@ -54,3 +54,5 @@
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
+
+(define-key ido-common-completion-map (kbd "C-l") 'exit-minibuffer)
