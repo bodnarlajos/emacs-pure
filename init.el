@@ -50,6 +50,8 @@
 (require 'my-layout)
 (require 'company)
 (global-company-mode t)
+(require 'helm)
+(helm-mode 1)
 
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)

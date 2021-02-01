@@ -42,7 +42,7 @@
 		display-buffer-in-side-window
 		(side . left) (slot . -1) (window-width . fit-window-to-buffer) (preserve-size . (nil . t))
 		,my/window-no-delete)
-	 ("\\*\\(?:eshell\\|hydra\\|ansi-term\\|terminal\\|Flycheck error messages\\|helm flycheck\\|Flycheck errors\\|Minibuf-0\\|rg\\|Minibuf-1\\|magit-revision\\|hydra\\)\\*"
+	 ("\\*\\(?:eshell\\|hydra\\|ansi-term\\|terminal\\|Flycheck error messages\\|Flycheck errors\\|Minibuf-0\\|rg\\|Minibuf-1\\|magit-revision\\|hydra\\)\\*"
 		display-buffer-in-side-window
 		(side . bottom) (window-height . 0.3) (slot . 1) (preserve-size . (nil . t))
 		,my/window-no-delete)
