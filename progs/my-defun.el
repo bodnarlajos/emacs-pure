@@ -7,8 +7,9 @@
 (defun my/menu-smex ()
   "T."
   (interactive)
+  (setq ido-selected "Run Command")
   (setq ido-text "Run Command")
-  (exit-minibuffer))
+  (ido-exit-minibuffer))
 
 (defun my/menu-base ()
   "Base menu"				
