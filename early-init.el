@@ -31,14 +31,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(highlight-indent-guides-method 'bitmap)
-;; '(package-load-list '((company t) (smex t) (rg t) (undo-tree t)))
+ '(package-load-list '((markdown-mode t) (helm-core t) (transient t) (company t) (helm t) (rg t) (undo-tree t)))
  '(package-selected-packages
-   '(treemacs company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
+   '(helm treemacs company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
-(setq package-quickstart t)
+;; (setq package-quickstart t)
+(setq package-enable-at-startup nil)
 
 (setq frame-inhibit-implied-resize t)
 (if is-lbodnar

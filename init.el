@@ -17,7 +17,7 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 
-(load-theme 'wombat)
+(load-theme 'adwaita)
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
@@ -43,15 +43,17 @@
 
 (require 'undo-tree)
 (global-undo-tree-mode)
-(require 'smex)
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-(require 'my-layout)
+;;(require 'my-layout)
 (require 'company)
 (global-company-mode t)
 (require 'helm)
 (helm-mode 1)
+(dumb-jump-mode 1)
+
+(setq dumb-jump-selector 'helm)
 
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
