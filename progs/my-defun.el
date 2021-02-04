@@ -53,7 +53,7 @@
 (defun my/open-notes ()
   "Open file from the notes directory"
   (interactive)			
-  (if (find-file (concat "~/Documents/notes/" (ido-completing-read "Find a note: " (directory-files "~/Documents/notes"))))
+  (if (find-file (concat "~/Documents/notes/" (ido-completing-read "Find a note: " (delete "." (delete ".." (directory-files "~/Documents/notes"))))))
       (message "Opening note...")
     (message "Aborting")))
 
