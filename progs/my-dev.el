@@ -9,6 +9,7 @@
 (require 'my-haskell)
 (require 'company-quickhelp)
 (require 'treemacs)
+(require 'company-quickhelp)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables
@@ -24,7 +25,7 @@
 	(display-line-numbers-mode)
 	(highlight-indent-guides-mode t)
 	(diff-hl-mode t)
-	(company-quickhelp-mode)
+	(company-quickhelp-local-mode)
 	(smartparens-mode))
 
 (setq compilation-auto-jump-to-first-error nil)
