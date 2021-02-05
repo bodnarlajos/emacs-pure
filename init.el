@@ -36,6 +36,8 @@
 (define-key (cdr ido-minor-mode-map-entry) [remap write-file] nil)
 (setq max-mini-window-height 0.5)
 
+(fido-mode 1)
+
 (let ((my-load-file
 	 (expand-file-name (concat user-emacs-directory "progs"))))
     (add-to-list 'load-path my-load-file))

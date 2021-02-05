@@ -16,7 +16,7 @@
              (garbage-collect)
              (message "Load time %.06f"
                       (float-time (time-since my/start-time)))) t)
-
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (tool-bar-mode   -1)
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
@@ -31,7 +31,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(highlight-indent-guides-method 'bitmap)
-;; '(package-load-list '((company t) (smex t) (rg t) (undo-tree t)))
  '(package-selected-packages
    '(treemacs company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
 
