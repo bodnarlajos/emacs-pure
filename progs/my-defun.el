@@ -1,6 +1,9 @@
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
+	(custom-set-variables
+	 '(package-load-list '((magit t))))
+	(package-initialize)
   (call-interactively 'magit-status)
   (delete-other-windows))
 

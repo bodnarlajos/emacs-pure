@@ -50,10 +50,11 @@
 (require 'company)
 (global-company-mode t)
 (require 'helm)
-(helm-mode 1)
-(dumb-jump-mode 1)
+;; (helm-mode 1)
+;; (dumb-jump-mode 1)
+(show-paren-mode 1)
 
-(setq dumb-jump-selector 'helm)
+;; (setq dumb-jump-selector 'helm)
 
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
