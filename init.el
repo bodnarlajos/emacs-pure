@@ -53,6 +53,8 @@
 (require 'company)
 (global-company-mode t)
 
+(add-to-list 'exec-path "~/.local/bin")
+
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
