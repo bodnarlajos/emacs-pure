@@ -48,11 +48,9 @@
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-;;(require 'my-layout)
+(require 'my-helm)
 (require 'company)
 (global-company-mode t)
-(require 'helm)
-(helm-mode 1)
 (dumb-jump-mode 1)
 (show-paren-mode 1)
 
