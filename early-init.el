@@ -16,7 +16,7 @@
              (garbage-collect)
              (message "Load time %.06f"
                       (float-time (time-since my/start-time)))) t)
-
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (tool-bar-mode   -1)
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
@@ -31,9 +31,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(highlight-indent-guides-method 'bitmap)
-;; '(package-load-list '((async t) (popup t) (dumb-jump t) (markdown-mode t) (helm-core t) (transient t) (company t) (helm t) (rg t) (undo-tree t)))
  '(package-selected-packages
-   '(helm treemacs company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
+   '(yaml-mode helm-ag helm treemacs company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg hydra highlight-indent-guides haskell-mode eglot dumb-jump diff-hl company)))
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
@@ -55,6 +54,18 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(defun my/default-font ()
+	"Set the default font"
+	(interactive)
+	(if is-lbodnar
+			(progn
+				(add-to-list 'default-frame-alist '(font . "Fira Code-12"))
+				(set-face-attribute 'default nil :family "Fira Code" :height 110))
+		(progn
+			(add-to-list 'default-frame-alist '(font . "Fira Code-12"))
+			(set-face-attribute 'default nil :family "Fira Code" :height 100))))
+(my/default-font)
 ;;-------------------- Some tricks--------------------------
+
 (provide 'early-init)
 ;;; early-init.el ends here 

@@ -14,13 +14,17 @@
 (global-set-key (kbd "C-c m") 'execute-extended-command)
 (global-set-key (kbd "C-c t") 'treemacs)
 (global-set-key (kbd "C-c i") 'indent-buffer)
+(global-set-key (kbd "C-c j") 'helm-all-mark-rings)
 (global-set-key (kbd "C-o") 'helm-find-files)
 (global-set-key (kbd "M-<return>") 'ffap)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-l") 'my/menu-base)
-(global-set-key (kbd "C-b") 'helm-mini)
+(global-set-key (kbd "C-b") 'helm-buffers-list)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-<return>") 'ffap))
+
+(with-eval-after-load 'helm-rg
+	(define-key helm-rg-map (kbd "M-e") 'wgrep-change-to-wgrep-mode))
 
 (provide 'my-keys)

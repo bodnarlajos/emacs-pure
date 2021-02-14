@@ -56,8 +56,8 @@
 (defun my/open-notes ()
   "Open file from the notes directory"
   (interactive)
-	(let ((res (helm--completing-read-default "Find a note: " (delete "." (delete ".." (directory-files "~/Documents/notes"))))))
-		(find-file (concat "~/Documents/notes/" res))))
+	(let ((res (helm--completing-read-default "Find a note: " (delete "." (delete ".." (directory-files my/notes-dir))))))
+		(find-file (concat my/notes-dir "/" res))))
 
 (defun my/long-line ()
   "Open long lines plugins"
@@ -227,4 +227,16 @@ Position the cursor at its beginning, according to the current mode."
 				(my/view-file filepath)
       (message "It's not a file: %s" filepath))))
 
+(defun my/dark-theme ()
+	"Activate the dark theme"
+	(interactive)
+	(custom-set-faces
+	 '(helm-buffer-directory ((t (:extend t :foreground "OliveDrab3"))))
+	 '(helm-ff-directory ((t (:extend t :foreground "yellow green"))))
+	 '(helm-ff-executable ((t (:extend t :foreground "orange red"))))
+	 '(helm-non-file-buffer ((t (:extend t :foreground "burlywood3"))))
+	 '(helm-selection ((t (:extend t :background "chocolate4"))))
+	 '(helm-source-header ((t (:extend t :background "#22083397778B" :foreground "white" :weight bold :height 0.6 :family "Fira Code")))))
+	(load-theme 'wombat)
+	(my/default-font))
 (provide 'my-defun)	
