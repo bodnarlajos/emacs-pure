@@ -15,11 +15,12 @@
 (global-set-key (kbd "C-c t") 'treemacs)
 (global-set-key (kbd "C-c i") 'indent-buffer)
 (global-set-key (kbd "C-c j") 'helm-all-mark-rings)
-(global-set-key (kbd "C-o") 'helm-find-files)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "M-<return>") 'ffap)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-b") 'helm-buffers-list)
+(global-set-key (kbd "<f5>") 'compile)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "M-<return>") 'ffap))
