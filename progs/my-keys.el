@@ -2,6 +2,8 @@
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-unset-key (kbd "C-c d"))
 (global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c n") 'move-line-down)
+(global-set-key (kbd "C-c p") 'move-line-up)
 (global-set-key (kbd "C-f") 'isearch-forward)
 (define-key isearch-mode-map "\C-f" 'isearch-repeat-forward)
 (global-set-key (kbd "C-c l") 'recenter)
