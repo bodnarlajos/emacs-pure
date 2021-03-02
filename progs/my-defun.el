@@ -27,7 +27,7 @@
 	(development "Start development!")
 	(projectFindFile "Project find file"))
     (let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
-      (let ((res (ido-completing-read "Action: " ido-list)))
+      (let ((res (selectrum-completing-read "Action: " ido-list)))
 	(cond				
 	 ((string-equal res replaceString) (call-interactively 'query-replace))
 	 ((string-equal res projectFindFile) (call-interactively 'project-find-file))
@@ -46,14 +46,14 @@
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to find a recent file."
   (interactive)			
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+  (if (find-file (selectrum-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
 
 (defun my/open-notes ()
   "Open file from the notes directory"
   (interactive)			
-  (if (find-file (concat "~/Documents/notes/" (ido-completing-read "Find a note: " (delete "." (delete ".." (directory-files "~/Documents/notes"))))))
+  (if (find-file (concat "~/Documents/notes/" (selectrum-completing-read "Find a note: " (delete "." (delete ".." (directory-files "~/Documents/notes"))))))
       (message "Opening note...")
     (message "Aborting")))
 
