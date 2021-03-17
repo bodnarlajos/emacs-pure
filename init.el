@@ -17,7 +17,11 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 
-(load-theme 'wombat)
+(custom-set-variables
+ '(custom-safe-themes
+	 '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "b73a23e836b3122637563ad37ae8c7533121c2ac2c8f7c87b381dd7322714cd0" "0dd2666921bd4c651c7f8a724b3416e95228a13fca1aa27dc0022f4e023bf197" default)))
+(load-theme 'spacemacs-dark)
+
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
@@ -40,10 +44,16 @@
 
 (require 'selectrum)
 (selectrum-mode +1)
+;; to make sorting and filtering more intelligent
+(selectrum-prescient-mode +1)
+
+;; to save your command history on disk, so the sorting gets more
+;; intelligent over time
+(prescient-persist-mode +1)
 
 (let ((my-load-file
-	 (expand-file-name (concat user-emacs-directory "progs"))))
-    (add-to-list 'load-path my-load-file))
+			 (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
 (require 'my-defun)
 
 (require 'undo-tree)
@@ -61,7 +71,4 @@
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
-
-(require 'zoom)
-(custom-set-variables
- '(zoom-mode t))
+(put 'list-timers 'disabled nil)

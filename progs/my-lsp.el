@@ -13,6 +13,7 @@
   (setq lsp-ui-doc-use-childframe t)
   (setq lsp-ui-doc-header nil)
   (setq lsp-ui-doc-include-signature nil)
+	(setq lsp-ui-doc-border 'black)
 	(setq lsp-headerline-breadcrumb-enable nil)
   (setq lsp-ui-imenu-enable t)
   (setq lsp-ui-sideline-enable t)
@@ -22,7 +23,6 @@
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-diagnostic-max-lines 5)
   (setq lsp-ui-doc-enable t)
-  (setq lsp-ui-doc-show-with-cursor nil)
   (custom-set-faces
    '(lsp-ui-sideline-global ((t (:inverse-video t :height 0.6)))))
   (setq lsp-ui-doc-position 'top)
@@ -31,8 +31,18 @@
 						(lambda (frame _w)
 							(set-face-attribute 'default frame 
 																	:font "Fira Code" 
-																	:height 120)))
-  (setq lsp-ui-doc-alignment 'frame))
+																	:height 110)))
+  (setq lsp-ui-doc-alignment 'frame)
+	(custom-set-variables
+	 '(highlight-indent-guides-method 'bitmap)
+	 '(lsp-ui-peek-enable nil)
+	 '(lsp-ui-doc-border "black")
+	 '(lsp-ui-doc-show-with-cursor nil)
+	 '(lsp-ui-doc-show-with-mouse t)
+	 '(lsp-headerline-breadcrumb-enable nil)
+	 '(lsp-ui-sideline-ignore-duplicate t)
+	 '(lsp-ui-sideline-update-mode 'line)))
+
 (setq lsp-prefer-capf nil)
 (setq lsp-file-watch-threshold 3000)
 (setq lsp-file-watch-ignored '("static" "\.git" "\.stack-work" "\.vscode" "bin"))
@@ -41,9 +51,20 @@
 	(setq lsp-ui-imenu--custom-mode-line-format nil))
 
 (defun my/toggle-lsp-ui-doc ()
-  (interactive)
-  (if lsp-ui-doc--bounds
-			(lsp-ui-doc-hide)
-    (lsp-ui-doc-show)))
+	(interactive)
+	(when lsp-ui-doc--bounds
+		(my/toogle-lsp-ui-doc-kill-timer))
+	(lsp-ui-doc-hide)
+	(lsp-ui-doc-show)
+	(setq my/lspTimerId (run-at-time 10 nil 'lsp-ui-doc-hide)))
+
+(defvar my/lspTimerId nil "The lsp timer's identifier")
+
+(defun my/toogle-lsp-ui-doc-kill-timer ()
+	"T."
+	(interactive)
+	(when my/lspTimerId
+		(message "cancel-timer: %s" my/lspTimerId)
+		(cancel-timer my/lspTimerId)))
 
 (provide 'my-lsp)

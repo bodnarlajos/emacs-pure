@@ -7,9 +7,9 @@
 (require 'web-mode)
 (require 'tide)
 (require 'my-haskell)
+(require 'my-lsp)
 (require 'company-quickhelp)
 (require 'treemacs)
-(require 'company-quickhelp)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

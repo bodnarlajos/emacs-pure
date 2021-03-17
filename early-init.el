@@ -40,16 +40,18 @@
 (setq package-quickstart t)
 
 (setq frame-inhibit-implied-resize t)
-(if is-lbodnar
-    (progn
-      (add-to-list 'default-frame-alist '(font . "Fira Code-12"))
-      (set-face-attribute 'default nil :family "Fira Code" :height 110))
-  (progn
-    (add-to-list 'default-frame-alist '(font . "Fira Code-12"))
-    (set-face-attribute 'default nil :family "Fira Code" :height 100)))
 
-;;   (set-frame-font "" t)
-;; (set-frame-font "Fira Code-9" t))
+(defun my/set-font ()
+	"Set the default font"
+	(if is-lbodnar
+			(progn
+				(add-to-list 'default-frame-alist '(font . "Fira Code-13"))
+				(set-face-attribute 'default nil :family "Fira Code" :foundry "CTDB" :height 128))
+		(progn
+			(add-to-list 'default-frame-alist '(font . "Fira Code-13"))
+			(set-face-attribute 'default nil :family "Fira Code" :foundry "CTDB" :height 128))))
+
+(my/set-font)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
