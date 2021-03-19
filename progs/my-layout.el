@@ -1,4 +1,4 @@
-(require 'zoom)
+(straight-use-package 'zoom)
 (custom-set-variables
  '(zoom-mode t)
  '(zoom-size '(0.8 . 0.8))

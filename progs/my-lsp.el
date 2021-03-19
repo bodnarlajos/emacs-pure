@@ -1,5 +1,5 @@
-(require 'lsp-mode)
-(require 'lsp-ui)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
 
 (with-eval-after-load 'lsp-ui
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
@@ -19,6 +19,7 @@
   (setq lsp-ui-sideline-enable t)
   (setq lsp-ui-sideline-show-diagnostics t)
   (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-enable-snippet nil)
   (setq lsp-ui-sideline-show-symbol nil)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-diagnostic-max-lines 5)

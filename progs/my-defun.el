@@ -28,6 +28,7 @@ Version 2017-11-01"
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
+	(straight-use-package 'magit)
   (call-interactively 'magit-status)
   (delete-other-windows))
 

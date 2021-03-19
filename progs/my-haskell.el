@@ -1,5 +1,5 @@
-(require 'haskell-mode)
-(require 'lsp-haskell)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'lsp-haskell)
 
 (with-eval-after-load 'haskell-mode
   (add-hook 'haskell-mode-hook (lambda ()

@@ -21,7 +21,6 @@
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
-(define-key ido-common-completion-map (kbd "C-l") 'my/menu-smex)
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
