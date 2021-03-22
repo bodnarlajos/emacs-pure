@@ -10,10 +10,6 @@
 (setq frame-title-format '("%b"))
 (setq file-name-handler-alist nil)
 
-(defvar bootstrap-version nil)
-
-(defvar my/project-dir '("/home/lbodnar/Projects"))
-
 (cua-mode t)
 (blink-cursor-mode 0)
 
@@ -42,6 +38,7 @@
 			 (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
 (require 'my-defun)
+(require 'my-const)
 
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
@@ -52,8 +49,10 @@
 (require 'my-setq-defaults)
 (require 'my-layout)
 (straight-use-package 'company)
-(straight-use-package 'rg)
 (global-company-mode t)
+(straight-use-package 'ctrlf)
+(ctrlf-mode +1)
+(straight-use-package 'elscreen)
 
 (add-to-list 'exec-path "~/.local/bin")
 
@@ -68,6 +67,7 @@
 (defun my/init-haskell ()
 	"Init haskell function"
 	(require 'my-haskell)
+	;; (setq auto-mode-alist '(delete my/init-haskell-type 'auto-mode-alist))
 	(haskell-mode))
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))

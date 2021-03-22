@@ -24,7 +24,6 @@
 (flymake-mode    -1)
 
 (setq package-enable-at-startup nil)
-(setq package-load-path '("~/.emacs.d/progs"))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

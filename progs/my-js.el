@@ -4,17 +4,11 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (tide-hl-identifier-mode +1))
 
 (straight-use-package 'tide)
 (straight-use-package 'js2-mode)
 ;;(straight-use-package 'ng2-mode)
-
-(my/load-my "dev")
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 ;; configure javascript-tide checker to run after your default javascript checker
@@ -35,4 +29,4 @@
 ;; (add-hook 'typescript-mode-hook 'ng2-mode)
 ;; (add-hook 'typescript-mode-hook #'lsp)
 
-(my/installed "js")
+(provide 'my-js)

@@ -1,15 +1,15 @@
 (message "dev init")
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
-;; (straight-use-package 'company-capf)
 (straight-use-package 'smartparens)
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
-(straight-use-package 'tide)
-(require 'my-haskell)
-(require 'my-lsp)
+(straight-use-package 'css-mode)
 (straight-use-package 'company-quickhelp)
 (straight-use-package 'treemacs)
+
+(require 'my-lsp)
+(require 'my-js)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

@@ -5,6 +5,7 @@
 (global-set-key (kbd "C-c n") 'move-line-down)
 (global-set-key (kbd "C-c p") 'move-line-up)
 (global-set-key (kbd "C-f") 'isearch-forward)
+(global-set-key (kbd "M-f") 'ctrlf-forward-regexp)
 (define-key isearch-mode-map "\C-f" 'isearch-repeat-forward)
 (global-set-key (kbd "C-c l") 'recenter)
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
