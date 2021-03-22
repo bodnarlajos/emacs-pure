@@ -21,5 +21,6 @@
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-b") 'switch-to-buffer)
 (define-key ido-common-completion-map (kbd "C-l") 'my/menu-smex)
+(define-key ido-common-completion-map (kbd "<tab>") 'ido-next-match)
 
 (provide 'my-keys)
