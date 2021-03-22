@@ -1,4 +1,4 @@
-(my/init-all-packages)
+(message "dev init")
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 ;; (straight-use-package 'company-capf)
@@ -52,5 +52,12 @@
 (add-hook 'flycheck-mode-hook (lambda ()
 																(local-set-key (kbd "C-n") 'flycheck-next-error)
 																(local-set-key (kbd "C-p") 'flycheck-previous-error)))
+
+(when my/dev-hook
+	(run-hooks 'my/dev-hook))
+
+(setq my/dev-env t)
+
+(message "dev end")
 
 (provide 'my-dev)

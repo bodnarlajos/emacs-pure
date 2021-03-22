@@ -1,3 +1,5 @@
+(require 'cl-lib)
+
 (defun my/xah-select-line ()
   "Select current line. If region is active, extend selection downward by line.
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
@@ -33,16 +35,16 @@ Version 2017-11-01"
   (delete-other-windows))
 
 (defun my/menu-smex ()
-  "T."
-  (interactive)
-  (setq ido-selected "Run Command")
-  (setq ido-text "Run Command")
-  (ido-exit-minibuffer))
+	"T."
+	(interactive)
+	(setq ido-selected "Run Command")
+	(setq ido-text "Run Command")
+	(ido-exit-minibuffer))
 
 (defun my/menu-base ()
-  "Base menu"				
-  (interactive)			
-  (let ((replaceString "Replace string")
+	"Base menu"				
+	(interactive)			
+	(let ((replaceString "Replace string")
 				(recentfFiles "Recent files")
 				(rg "Rg search")
 				(jumpTo "Jump to ->")
@@ -54,8 +56,8 @@ Version 2017-11-01"
 				(vcdir "Version control")
 				(development "Start development!")
 				(projectFindFile "Project find file"))
-    (let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
-      (let ((res (selectrum-completing-read "Action: " ido-list)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
+			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res projectFindFile) (call-interactively (progn
@@ -119,28 +121,6 @@ Version 2017-11-01"
 	(interactive)
 	(load-theme 'spacemacs-light)
 	(my/set-font))
-
-(defun my/init-packages ()
-	"T."							
-	(interactive)			
-	(custom-set-variables
-	 ;; custom-set-variables was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(package-load-list '(all)))
-	(package-refresh-contents))
-
-(defun my/init-all-packages ()
-	"T."							
-	(interactive)			
-	(custom-set-variables
-	 ;; custom-set-variables was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(package-load-list '(all)))
-	(package-initialize))
 
 (defun my/load (filename)
 	"T."							

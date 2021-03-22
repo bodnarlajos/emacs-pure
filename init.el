@@ -61,3 +61,18 @@
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
+
+(defvar my/dev-hook '())
+(defvar my/dev-env nil)
+
+(defun my/init-haskell ()
+	"Init haskell function"
+	(require 'my-haskell)
+	(haskell-mode))
+
+(defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
+(add-to-list 'auto-mode-alist my/init-haskell-type)
+
+(straight-use-package 'js2-mode)
+(straight-use-package 'web-mode)
+(straight-use-package 'css-mode)
