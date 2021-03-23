@@ -1,3 +1,32 @@
+(require 'cl-lib)
+
+(defun my/xah-select-line ()
+  "Select current line. If region is active, extend selection downward by line.
+URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
+Version 2017-11-01"
+  (interactive)
+  (if (region-active-p)
+      (progn
+        (forward-line 1)
+        (end-of-line))
+    (progn
+      (end-of-line)
+      (set-mark (line-beginning-position)))))
+
+(defun my/comment-uncomment-line ()
+  (interactive)
+  (let ((start (line-beginning-position))
+        (end (line-end-position)))
+    (when (or (not transient-mark-mode) (region-active-p))
+      (setq start (save-excursion
+                    (goto-char (region-beginning))
+                    (beginning-of-line)
+                    (point))
+            end (save-excursion
+                  (goto-char (region-end))
+                  (end-of-line)
+                  (point))))
+
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)

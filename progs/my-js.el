@@ -35,4 +35,4 @@
 ;; (add-hook 'typescript-mode-hook 'ng2-mode)
 ;; (add-hook 'typescript-mode-hook #'lsp)
 
-(my/installed "js")
+(provide 'my-js)

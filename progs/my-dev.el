@@ -11,6 +11,9 @@
 (require 'treemacs)
 (require 'company-quickhelp)
 
+(require 'my-lsp)
+(require 'my-js)
+
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables
 	 '(highlight-indent-guides-method 'bitmap)))
@@ -52,5 +55,12 @@
 (add-hook 'flycheck-mode-hook (lambda ()
 																(local-set-key (kbd "C-n") 'flycheck-next-error)
 																(local-set-key (kbd "C-p") 'flycheck-previous-error)))
+
+(when my/dev-hook
+	(run-hooks 'my/dev-hook))
+
+(setq my/dev-env t)
+
+(message "dev end")
 
 (provide 'my-dev)
