@@ -17,7 +17,7 @@
 
 (custom-set-variables
  '(custom-safe-themes
-	 '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "b73a23e836b3122637563ad37ae8c7533121c2ac2c8f7c87b381dd7322714cd0" "0dd2666921bd4c651c7f8a724b3416e95228a13fca1aa27dc0022f4e023bf197" default)))
+	 '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
 (load-theme 'spacemacs-dark)
 
 (setq completion-ignore-case t
@@ -26,6 +26,7 @@
 
 (straight-use-package 'selectrum)
 (straight-use-package 'selectrum-prescient)
+(straight-use-package 'consult)
 (selectrum-mode +1)
 ;; to make sorting and filtering more intelligent
 (selectrum-prescient-mode +1)

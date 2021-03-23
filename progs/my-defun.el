@@ -77,7 +77,9 @@ Version 2017-11-01"
 	"T."
 	(interactive)
 	(require 'my-dev)
-	(revert-buffer t t t))
+	(message "start-dev-env end")
+	(revert-buffer nil t nil)
+	(message "start-dev-end revert-buffer end"))
 
 (defun ido-recentf-open ()
 	"Use `ido-completing-read' to find a recent file."
