@@ -36,6 +36,6 @@
 
 (message "haskell end")
 
-(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+;; (setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
 
 (provide 'my-haskell)

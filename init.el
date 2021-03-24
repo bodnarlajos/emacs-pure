@@ -11,8 +11,9 @@
 (setq file-name-handler-alist nil)
 
 (defvar bootstrap-version nil)
-
 (defvar my/project-dir '("/home/lbodnar/Projects"))
+(defvar my/dev-env nil)
+(defvar my/dev-hook '())
 
 (cua-mode t)
 (blink-cursor-mode 0)
