@@ -3,16 +3,14 @@
 (require 'highlight-indent-guides)
 (require 'company-capf)
 (require 'smartparens)
-(require 'js2-mode)
-(require 'web-mode)
 (require 'tide)
-(require 'my-haskell)
 (require 'company-quickhelp)
 (require 'treemacs)
 (require 'company-quickhelp)
 
 (require 'my-lsp)
 (require 'my-js)
+(require 'my-haskell)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

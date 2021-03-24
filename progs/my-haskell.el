@@ -34,8 +34,8 @@
 		(my/haskell-dev-run)
 	(add-hook 'my/dev-hook 'my/haskell-dev-run))
 
-(message "haskell end")
+(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
 
-;; (setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+(message "haskell end")
 
 (provide 'my-haskell)

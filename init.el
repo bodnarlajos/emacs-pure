@@ -17,8 +17,11 @@
 
 (cua-mode t)
 (blink-cursor-mode 0)
+(custom-set-variables
+ '(custom-safe-themes
+	 '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
+(load-theme 'spacemacs-dark)
 
-(load-theme 'wombat)
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
@@ -59,3 +62,15 @@
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
+
+(defun my/init-haskell ()
+	"Init haskell function"
+	(require 'my-haskell)
+	(haskell-mode))
+
+(defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
+(add-to-list 'auto-mode-alist my/init-haskell-type)
+
+(require 'js2-mode)
+(require 'web-mode)
+(require 'css-mode)
