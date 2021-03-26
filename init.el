@@ -27,10 +27,12 @@
       read-buffer-completion-ignore-case t)
 
 ;; (setq ido-case-fold nil)
-(ido-mode 1)
-(make-local-variable 'ido-decorations)
-(setf (nth 2 ido-decorations) "\n")
-;; show any name that has the chars you typed
+(ido-mode +1)
+(ido-vertical-mode +1)
+(ido-everywhere +1)
+;; (make-local-variable 'ido-decorations)
+;; (setf (nth 2 ido-decorations) "\n")
+;; ;; show any name that has the chars you typed
 (setq ido-enable-flex-matching t)
 ;; use current pane for newly opened file
 (setq ido-default-file-method 'selected-window)
@@ -63,14 +65,23 @@
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 
-(defun my/init-haskell ()
-	"Init haskell function"
-	(require 'my-haskell)
-	(haskell-mode))
+(with-eval-after-load 'haskell-mode
+	(message "haskell mode init started"))
 
-(defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
-(add-to-list 'auto-mode-alist my/init-haskell-type)
+(with-eval-after-load 'js2-mode
+	(message "js2-mode init started"))
+(with-eval-after-load 'javascript-mode
+	(add-hook 'js-mode-hook 'js2-mode)
+	(message "js2-mode init started"))
 
-(require 'js2-mode)
-(require 'web-mode)
-(require 'css-mode)
+;; (defun my/init-haskell ()
+;; 	"Init haskell function"
+;; 	(require 'my-haskell)
+;; 	(haskell-mode))
+
+;; (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
+;; (add-to-list 'auto-mode-alist my/init-haskell-type)
+
+;; (require 'js2-mode)
+;; (require 'web-mode)
+;; (require 'css-mode)

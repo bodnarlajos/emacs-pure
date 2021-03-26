@@ -1,4 +1,4 @@
-(straight-use-package 'dumb-jump)
+(require 'dumb-jump)
 
 (with-eval-after-load 'dumb-jump
 	(setq dumb-jump-selector 'popup

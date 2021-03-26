@@ -2,7 +2,7 @@
 	"T."
 	(interactive)
 	(so-long)
-	(my/load-my "longlines")
+	(require 'longlines)
 	(longlines-mode))
 
 (add-hook 'nxml-mode-hook 'my-long-line)

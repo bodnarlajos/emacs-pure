@@ -5,8 +5,6 @@
 (require 'smartparens)
 (require 'tide)
 (require 'company-quickhelp)
-(require 'treemacs)
-(require 'company-quickhelp)
 
 (require 'my-lsp)
 (require 'my-js)

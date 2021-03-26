@@ -1,4 +1,5 @@
 (require 'haskell-mode)
+(require 'lsp-haskell)
 
 (message "haskell init")
 (with-eval-after-load 'haskell-mode
@@ -26,7 +27,6 @@
 (defun my/haskell-dev-run ()
 	"haskell mode development"
 	(interactive)
-	(straight-use-package 'lsp-haskell)
 	(setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
 	(setq lsp-haskell-process-args-hie '()))
 
@@ -34,7 +34,7 @@
 		(my/haskell-dev-run)
 	(add-hook 'my/dev-hook 'my/haskell-dev-run))
 
-(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+;; (setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
 
 (message "haskell end")
 
