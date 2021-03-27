@@ -1,5 +1,14 @@
 (require 'cl-lib)
 
+(defun my/revert-current-buffer ()
+	"Revert the current buffer without prompt"
+	(interactive)
+	(let ((currBuffPath (buffer-file-name (current-buffer))))
+		(kill-current-buffer)
+		(find-file currBuffPath)))
+		
+	
+
 (defun my/xah-select-line ()
   "Select current line. If region is active, extend selection downward by line.
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'

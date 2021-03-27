@@ -54,8 +54,9 @@
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'elscreen)
+(straight-use-package 'markdown-mode)
 
-(add-to-list 'exec-path "~/.local/bin")
+(add-to-list 'exec-path my/exec-dir)
 
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
@@ -65,15 +66,24 @@
 (defvar my/dev-hook '())
 (defvar my/dev-env nil)
 
+;; #######################
+;; Languages
+;; ######################
+;; Haskell
 (defun my/init-haskell ()
 	"Init haskell function"
 	(require 'my-haskell)
-	;; (setq auto-mode-alist '(delete my/init-haskell-type 'auto-mode-alist))
-	(haskell-mode))
+	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+	(my/revert-current-buffer))
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
 (add-to-list 'auto-mode-alist my/init-haskell-type)
+;; Web
+(defun my/init-web ()
+	"Init haskell function"
+	(require 'my-web)
+	(setq auto-mode-alist (delete my/init-web-type auto-mode-alist))
+	(my/revert-current-buffer))
 
-(straight-use-package 'js2-mode)
-(straight-use-package 'web-mode)
-(straight-use-package 'css-mode)
+(defvar my/init-web-type '("\\.\\(?:less\\|ts\\|htm\\|html\\|css\\|js\\)\\'" . my/init-web))
+(add-to-list 'auto-mode-alist my/init-web-type)

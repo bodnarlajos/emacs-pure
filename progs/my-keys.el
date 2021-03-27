@@ -1,3 +1,5 @@
+(straight-use-package 'project)
+
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "C-c C-r") 'copy-to-register)
