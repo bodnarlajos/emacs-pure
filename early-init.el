@@ -62,11 +62,11 @@
 	"Set the default font"
 	(if is-lbodnar
 			(progn
-				(add-to-list 'default-frame-alist '(font . "Fira Code-13"))
-				(set-face-attribute 'default nil :family "Fira Code" :foundry "CTDB" :height 128))
+				(add-to-list 'default-frame-alist '(font . "Hack-13"))
+				(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 128))
 		(progn
-			(add-to-list 'default-frame-alist '(font . "Fira Code-12"))
-			(set-face-attribute 'default nil :family "Fira Code" :foundry "CTDB" :height 112))))
+			(add-to-list 'default-frame-alist '(font . "Hack-12"))
+			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 112))))
 
 (my/set-font)
 
