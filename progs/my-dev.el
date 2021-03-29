@@ -4,6 +4,8 @@
 (straight-use-package 'smartparens)
 (straight-use-package 'company-quickhelp)
 (straight-use-package 'flycheck)
+(straight-use-package 'company)
+(global-company-mode t)
 ;; (straight-use-package 'treemacs)
 
 (require 'my-lsp)

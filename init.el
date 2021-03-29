@@ -49,8 +49,6 @@
 (require 'my-keys)
 (require 'my-setq-defaults)
 (require 'my-layout)
-(straight-use-package 'company)
-(global-company-mode t)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'elscreen)
@@ -68,7 +66,7 @@
 
 ;; #######################
 ;; Languages
-;; ######################
+;; #######################
 ;; Haskell
 (defun my/init-haskell ()
 	"Init haskell function"
