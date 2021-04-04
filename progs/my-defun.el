@@ -80,9 +80,7 @@ Version 2017-11-01"
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
-				 ((string-equal res projectFindFile) (call-interactively (progn
-																																	 (project-find-file)
-																																	 (my/start-dev-env))))
+				 ((string-equal res projectFindFile) (call-interactively 'project-find-file))
 				 ((string-equal res recentfFiles) (call-interactively 'ido-recentf-open))
 				 ((string-equal res projectCompile) (call-interactively 'project-compile))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
