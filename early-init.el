@@ -23,32 +23,32 @@
 (tooltip-mode    -1) ;; Tool tip in the echo
 (flymake-mode    -1)
 
-;;__________________________________________________________
-;; For using Melpa and Elpa
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(highlight-indent-guides-method 'bitmap)
- '(package-selected-packages
-   '(zoom ido-vertical magit spacemacs-theme company-quickhelp lsp-ui lsp-mode haskell-mode lsp-haskell flycheck tide web-mode js2-mode undo-tree smex smartparens rg highlight-indent-guides haskell-mode dumb-jump diff-hl company)))
+(setq package-enable-at-startup nil)
 
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq package-quickstart t)
 
 (setq frame-inhibit-implied-resize t)
 (defun my/set-font ()
-	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-12"))
-				(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 128))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-12"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 112))))
+  "Set the default font"
+  (if is-lbodnar
+      (progn
+	(add-to-list 'default-frame-alist '(font . "Hack-12"))
+	(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 128))
+    (progn
+      (add-to-list 'default-frame-alist '(font . "Hack-12"))
+      (set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 112))))
 
 (my/set-font)
 
