@@ -51,7 +51,6 @@
 (require 'my-layout)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
-(straight-use-package 'elscreen)
 (straight-use-package 'markdown-mode)
 
 (add-to-list 'exec-path my/exec-dir)

@@ -6,8 +6,8 @@
 	(let ((currBuffPath (buffer-file-name (current-buffer))))
 		(kill-current-buffer)
 		(find-file currBuffPath)))
-		
-	
+
+
 
 (defun my/xah-select-line ()
   "Select current line. If region is active, extend selection downward by line.
@@ -64,8 +64,10 @@ Version 2017-11-01"
 				(openNotes "Notes ...")
 				(vcdir "Version control")
 				(development "Start development!")
+				(elScrn "Screen new")
+				(elScrnNext "Screen next")
 				(projectFindFile "Project find file"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer rg backTo development openNotes magit replaceString jumpTo projectFindFile elScrn elScrnNext)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -75,12 +77,36 @@ Version 2017-11-01"
 				 ((string-equal res recentfFiles) (call-interactively 'ido-recentf-open))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res rg) (call-interactively 'rg))
+				 ((string-equal res elScrn) (call-interactively 'my/elscreen-new))
+				 ((string-equal res elScrnNext) (call-interactively 'my/elscreen-next))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res runCommand) (call-interactively 'execute-extended-command))
 				 ((string-equal res magit) (call-interactively 'my/git-only))
 				 ((string-equal res vcdir) (call-interactively 'vc-dir))
 				 ((string-equal res development) (call-interactively 'my/start-dev-env))
-				 ((string-equal res jumpTo) (call-interactively 'dumb-jump-go)))))))
+				 ((string-equal res jumpTo) (call-interactively 'my/dumb-jump-go))
+				 ((string-equal res backTo) (call-interactively 'xref-pop-marker-stack)))))))
+
+(defun my/dumb-jump-go ()
+	"Initialize and jump"
+	(interactive)
+	(when (not (featurep 'dumb-jump))
+		(straight-use-package 'dumb-jump))
+	(dumb-jump-go))
+
+(defun my/elscreen-new ()
+	"Initialize the elscreen and create a new empty screen"
+	(interactive)
+	(when (not (featurep 'elscreen))
+		(straight-use-package 'elscreen)
+		(elscreen-start))
+	(elscreen-create))
+
+(defun my/elscreen-next ()
+	"Jump to the next elscreen page"
+	(interactive)
+	(when (featurep 'elscreen)
+		(elscreen-next)))
 
 (defun my/start-dev-env ()
 	"T."
