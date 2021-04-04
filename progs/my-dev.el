@@ -1,14 +1,11 @@
-(message "dev init")
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
 (straight-use-package 'company-quickhelp)
-(straight-use-package 'flycheck)
 (straight-use-package 'company)
 (global-company-mode t)
-;; (straight-use-package 'treemacs)
-
-(require 'my-lsp)
+(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
+(straight-use-package 'eglot)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables
@@ -33,14 +30,10 @@
 (setq compilation-scroll-output 'next-error)
 ;; Don't stop on info or warnings.
 (setq compilation-skip-threshold 2)
-(setq eldoc-echo-area-use-multiline-p 4)
+(setq eldoc-echo-area-use-multiline-p 8)
 (setq eldoc-echo-area-prefer-doc-buffer t)
-(setq flycheck-display-errors-function nil)
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
 (setq company-minimum-prefix-length 1)
-(add-hook 'flycheck-mode-hook (lambda ()
-																(local-set-key (kbd "C-n") 'flycheck-next-error)
-																(local-set-key (kbd "C-p") 'flycheck-previous-error)))
 
 (when my/dev-hook
 	(run-hooks 'my/dev-hook))

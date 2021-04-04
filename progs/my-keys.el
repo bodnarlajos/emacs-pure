@@ -33,6 +33,7 @@
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (global-set-key (kbd "C-S-v") 'my/xah-select-line)
 (global-set-key (kbd "C-,") 'consult-global-mark)
+(global-set-key (kbd "C-c 1") 'consult-flymake)
 (define-key project-prefix-map (kbd "C-c C-c") 'project-compile)
 (add-hook 'magit-status-mode-hook (lambda ()
 																		(define-key magit-status-mode-map (kbd "<C-tab>") 'other-window)

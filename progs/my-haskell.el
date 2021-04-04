@@ -7,9 +7,7 @@
 																 (message "haskell mode hook")
 																 (when my/dev-env
 																	 (message "h2 init: haskell mode hook with dev-env")
-																	 (lsp)
-																	 (local-set-key (kbd "C-.") 'lsp-goto-type-definition)
-																	 (local-set-key (kbd "<M-up>") 'my/toggle-lsp-ui-doc)
+																	 (local-set-key (kbd "C-.") 'eglot-find-typeDefinition)
 																	 (local-set-key (kbd "C-c h") 'haskell-hoogle-lookup-from-local)
 																	 (message "h2 end"))
 																 (local-set-key (kbd "C-c C-c") 'my/haskell-compile)))
@@ -23,16 +21,12 @@
 
 (setq haskell-stylish-on-save t)
 
+;; the hook function which going to run only once
 (defun my/haskell-dev-run ()
 	"haskell mode development"
-	(interactive)
-	(straight-use-package 'lsp-haskell)
-	(setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
-	(setq lsp-haskell-process-args-hie '()))
+	(add-hook 'haskell-mode-hook 'eglot-ensure))
 
-(if my/dev-env
-		(my/haskell-dev-run)
-	(add-hook 'my/dev-hook 'my/haskell-dev-run))
+(my/add-dev-hook #'my/haskell-dev-run)
 
 (message "haskell end")
 
