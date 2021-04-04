@@ -1,5 +1,11 @@
 (require 'cl-lib)
 
+(defun my/add-dev-hook (fv)
+	"Add or run a function when dev mode is active or not"
+	(if my/dev-env
+			(funcall fv)
+		(add-hook 'my/dev-hook fv)))
+
 (defun my/revert-current-buffer ()
 	"Revert the current buffer without prompt"
 	(interactive)

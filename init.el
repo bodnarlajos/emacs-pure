@@ -86,4 +86,5 @@
 (add-to-list 'auto-mode-alist my/init-web-type)
 ;; Org
 (eval-after-load 'org-mode
-	(setq org-log-done t))
+	(setq org-support-shift-select t
+				org-log-done t))
