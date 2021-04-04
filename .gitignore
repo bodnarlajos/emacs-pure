@@ -8,3 +8,10 @@ projects
 recentf
 smex*
 transient
+straight
+session*
+.lsp*
+*.rej
+tramp
+.cache*
+var
