@@ -65,7 +65,7 @@
 (defvar my/dev-env nil)
 
 ;; #######################
-;; Languages
+;; Modules
 ;; #######################
 ;; Haskell
 (defun my/init-haskell ()
@@ -85,3 +85,6 @@
 
 (defvar my/init-web-type '("\\.\\(?:less\\|ts\\|htm\\|html\\|css\\|js\\)\\'" . my/init-web))
 (add-to-list 'auto-mode-alist my/init-web-type)
+;; Org
+(eval-after-load 'org-mode
+	(setq org-log-done t))

@@ -76,7 +76,7 @@ Version 2017-11-01"
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
-				 ((string-equal res runCommand) (call-interactively 'smex))
+				 ((string-equal res runCommand) (call-interactively 'execute-extended-command))
 				 ((string-equal res magit) (call-interactively 'my/git-only))
 				 ((string-equal res vcdir) (call-interactively 'vc-dir))
 				 ((string-equal res development) (call-interactively 'my/start-dev-env))
