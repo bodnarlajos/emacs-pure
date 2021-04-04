@@ -7,6 +7,7 @@
 (add-to-list 'auto-mode-alist '("\\.julius\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.hamlet\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.lucius\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
 (defun my/web-dev-run ()
 	"web mode development"
