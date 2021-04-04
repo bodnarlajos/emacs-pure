@@ -52,6 +52,7 @@
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
+(show-paren-mode +1)
 
 (add-to-list 'exec-path my/exec-dir)
 
