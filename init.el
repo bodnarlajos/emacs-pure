@@ -18,7 +18,6 @@
 (custom-set-variables
  '(custom-safe-themes
 	 '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
-(load-theme 'spacemacs-dark)
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -40,6 +39,8 @@
   (add-to-list 'load-path my-load-file))
 (require 'my-defun)
 (require 'my-const)
+
+(my/light-theme)
 
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
