@@ -26,5 +26,6 @@
 (add-to-list 'purpose-user-mode-purposes '(rg-mode . second-purpose))
 
 (purpose-compile-user-configuration)
+(purpose-load-window-layout "start")
 
 (provide 'my-layout2)
