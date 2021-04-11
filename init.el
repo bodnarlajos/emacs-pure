@@ -48,7 +48,7 @@
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-(require 'my-layout)
+(require 'my-layout2)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
