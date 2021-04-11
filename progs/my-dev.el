@@ -6,6 +6,7 @@
 (global-company-mode t)
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (straight-use-package 'eglot)
+(straight-use-package 'yaml-mode)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables
