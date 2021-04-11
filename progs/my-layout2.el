@@ -17,6 +17,8 @@
 (add-to-list 'purpose-user-mode-purposes '(nxml-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(zip-archive-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(archive-mode . main-purpose))
+(add-to-list 'purpose-user-mode-purposes '(magit-mode . main-purpose))
+(add-to-list 'purpose-user-mode-purposes '(magit-revision-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(undo-tree-visualizer-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(help-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(haskell-compilation-mode . second-purpose))
