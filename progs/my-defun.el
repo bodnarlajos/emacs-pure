@@ -144,7 +144,7 @@ Version 2017-11-01"
 (defun my/open-notes ()
 	"Open file from the notes directory"
 	(interactive)			
-	(if (find-file (concat "~/Documents/notes/" (selectrum-completing-read "Find a note: " (delete "." (delete ".." (directory-files "~/Documents/notes"))))))
+	(if (find-file (concat my/notes-dir (selectrum-completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-dir))))))
 			(message "Opening note...")
 		(message "Aborting")))
 

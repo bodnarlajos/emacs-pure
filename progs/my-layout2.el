@@ -16,6 +16,7 @@
 (add-to-list 'purpose-user-mode-purposes '(so-long-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(nxml-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(zip-archive-mode . main-purpose))
+(add-to-list 'purpose-user-mode-purposes '(sql-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(archive-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(magit-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(magit-revision-mode . second-purpose))
