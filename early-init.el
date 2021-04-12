@@ -49,8 +49,8 @@
 				(add-to-list 'default-frame-alist '(font . "Hack-12"))
 				(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 128))
 		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-12"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 112))))
+			(add-to-list 'default-frame-alist '(font . "Hack-11"))
+			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 100))))
 
 (my/set-font)
 
