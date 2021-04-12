@@ -18,7 +18,6 @@
 (custom-set-variables
  '(custom-safe-themes
 	 '("ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e")))
-(load-theme 'spacemacs-dark)
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -41,6 +40,8 @@
 (require 'my-defun)
 (require 'my-const)
 
+(my/light-theme)
+
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (global-undo-tree-mode)
@@ -48,7 +49,7 @@
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-(require 'my-layout)
+(require 'my-layout2)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)

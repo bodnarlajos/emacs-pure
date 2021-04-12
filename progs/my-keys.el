@@ -26,7 +26,7 @@
 (global-set-key (kbd "<M-return>") 'find-file-at-point)
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-o") 'find-file)
-(global-set-key (kbd "C-b") 'consult-buffer)
+(global-set-key (kbd "C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "<C-tab>") 'other-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
@@ -40,6 +40,7 @@
 																		(define-key magit-log-mode-map (kbd "<C-tab>") 'other-window)
 																		(define-key magit-revision-mode-map (kbd "<C-tab>") 'other-window)
 																		(define-key magit-stash-mode-map (kbd "<C-tab>") 'other-window)
+																		(define-key magit-process-mode-map (kbd "<C-tab>") 'other-window)
 																		(define-key magit-diff-mode-map (kbd "<C-tab>") 'other-window)))
 
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)

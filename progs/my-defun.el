@@ -42,12 +42,20 @@ Version 2017-11-01"
                   (end-of-line)
                   (point))))
     (comment-or-uncomment-region start end)))
+
+(defun my/load-purpose-magit-revision ()
+	"T."
+	(message "magit-purpose")
+	(purpose-load-window-layout "magit-purpose")
+	(remove-hook 'magit-revision-mode-hook 'my/load-purpose-magit-revision))
+
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
 	(straight-use-package 'magit)
   (call-interactively 'magit-status)
-  (delete-other-windows))
+	(add-hook 'magit-revision-mode-hook 'my/load-purpose-magit-revision)
+	(delete-other-windows))
 
 (defun my/menu-smex ()
 	"T."
