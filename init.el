@@ -17,7 +17,7 @@
 
 (custom-set-variables
  '(custom-safe-themes
-	 '("ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e")))
+	 '("66f32da4e185defe7127e0dc8b779af99c00b60c751b0662276acaea985e2721" "ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e")))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
