@@ -2,6 +2,7 @@
 (purpose-mode)
 
 (add-to-list 'purpose-user-mode-purposes '(haskell-mode   . main-purpose))
+(add-to-list 'purpose-user-mode-purposes '(prog-mode   . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(text-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(css-mode . main-purpose))
@@ -25,6 +26,8 @@
 (add-to-list 'purpose-user-mode-purposes '(haskell-compilation-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(compilation-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(rg-mode . second-purpose))
+(add-to-list 'purpose-user-mode-purposes '(occur-mode . second-purpose))
+(add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
 (purpose-compile-user-configuration)
 (purpose-load-window-layout "start")
