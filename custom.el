@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "b73a23e836b3122637563ad37ae8c7533121c2ac2c8f7c87b381dd7322714cd0" "0dd2666921bd4c651c7f8a724b3416e95228a13fca1aa27dc0022f4e023bf197" default))
+	 '("66f32da4e185defe7127e0dc8b779af99c00b60c751b0662276acaea985e2721" "ab2cbf30ab758c5e936b527377d543ce4927001742f79519b62c45ba9dd9f55e"))
  '(zoom-ignored-buffer-name-regexps '("\\*.*imenu.*\\*" "\\*undo-tree\\*"))
  '(zoom-ignored-buffer-names '("treemacs" "*xref*" "*undo-tree*"))
  '(zoom-size '(0.8 . 0.8)))
