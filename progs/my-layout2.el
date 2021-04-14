@@ -29,6 +29,8 @@
 (add-to-list 'purpose-user-mode-purposes '(occur-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
+(add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
+
 (purpose-compile-user-configuration)
 (purpose-load-window-layout "start")
 
