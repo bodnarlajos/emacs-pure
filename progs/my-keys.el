@@ -42,7 +42,8 @@
 																		(define-key magit-stash-mode-map (kbd "<C-tab>") 'other-window)
 																		(define-key magit-process-mode-map (kbd "<C-tab>") 'other-window)
 																		(define-key magit-diff-mode-map (kbd "<C-tab>") 'other-window)))
-
+(add-hook 'org-mode-hook (lambda ()
+													 (define-key org-mode-map (kbd "<C-tab>") 'other-window)))
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
 
 (provide 'my-keys)
