@@ -6,6 +6,10 @@
 (global-company-mode t)
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (straight-use-package 'eglot)
+(straight-use-package 'posframe)
+(require 'eldoc-posframe)
+(global-eldoc-posframe-mode +1)
+(global-eldoc-posframe-enable)
 (straight-use-package 'yaml-mode)
 
 (with-eval-after-load 'highlight-indent-guides
@@ -40,6 +44,8 @@
 	(run-hooks 'my/dev-hook))
 
 (setq my/dev-env t)
+
+(purpose-load-window-layout "development")
 
 (message "dev end")
 
