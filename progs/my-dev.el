@@ -11,6 +11,7 @@
 (global-eldoc-posframe-mode +1)
 (global-eldoc-posframe-enable)
 (straight-use-package 'yaml-mode)
+(require 'my-jump)
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

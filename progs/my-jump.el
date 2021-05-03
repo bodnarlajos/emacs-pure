@@ -8,3 +8,5 @@
 	(custom-set-variables
 	 '(dumb-jump-max-find-time 5))
 	(add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+(provide 'my-jump)

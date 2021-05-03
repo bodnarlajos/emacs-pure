@@ -13,11 +13,11 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 
-(straight-use-package 'spacemacs-theme)
+(straight-use-package 'color-theme-sanityinc-tomorrow)
 
 (custom-set-variables
  '(custom-safe-themes
-	 '("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
+	 '("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -54,6 +54,8 @@
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
 (show-paren-mode +1)
+(straight-use-package 'which-key)
+(which-key-mode)
 
 (add-to-list 'exec-path my/exec-dir)
 
@@ -73,6 +75,7 @@
 	"Init haskell function"
 	(require 'my-haskell)
 	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+	(require 'my-dev)
 	(my/revert-current-buffer))
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
@@ -90,3 +93,13 @@
 (eval-after-load 'org-mode
 	(setq org-support-shift-select t
 				org-log-done t))
+;; C#
+(defun my/init-cs ()
+	"Init csharp function"
+	(require 'my-csharp)
+	(setq auto-mode-alist (delete my/init-cs-type auto-mode-alist))
+	(require 'my-dev)
+	(my/revert-current-buffer))
+
+(defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
+(add-to-list 'auto-mode-alist my/init-cs-type)

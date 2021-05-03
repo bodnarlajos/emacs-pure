@@ -83,6 +83,7 @@ Version 2017-11-01"
 				(elScrnNext "Screen next")
 				(flymakeList "Flymake list")
 				(projectFindFile "Project find file")
+				(loadLayot "Load layout")
 				(projectCompile "Project compile"))
 		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
@@ -97,6 +98,7 @@ Version 2017-11-01"
 				 ((string-equal res elScrn) (call-interactively 'my/elscreen-new))
 				 ((string-equal res elScrnNext) (call-interactively 'my/elscreen-next))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
+				 ((string-equal res loadLayot) (call-interactively 'purpose-load-window-layout))
 				 ((string-equal res runCommand) (call-interactively 'execute-extended-command))
 				 ((string-equal res magit) (call-interactively 'my/git-only))
 				 ((string-equal res vcdir) (call-interactively 'vc-dir))
@@ -174,7 +176,7 @@ Version 2017-11-01"
 (defun my/light-theme ()
 	"T."
 	(interactive)
-	(load-theme 'spacemacs-light)
+	(load-theme 'sanityinc-tomorrow-day)
 	(my/set-font))
 
 (defun my/load (filename)
