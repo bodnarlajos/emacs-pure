@@ -65,6 +65,13 @@
 (defvar my/dev-hook '())
 (defvar my/dev-env nil)
 
+(mapcar (lambda (cdir)
+					(add-to-list 'exec-path cdir)) my/exec-dir)
+
+(setq ediff-split-window-function 'split-window-vertically)
+(setq ediff-merge-split-window-function 'split-window-vertically)
+(setq ediff-window-setup-function #'ediff-setup-windows-plan)
+
 ;; #######################
 ;; Modules
 ;; #######################
