@@ -55,8 +55,6 @@
 (straight-use-package 'markdown-mode)
 (show-paren-mode +1)
 
-(add-to-list 'exec-path my/exec-dir)
-
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
@@ -65,9 +63,11 @@
 (defvar my/dev-hook '())
 (defvar my/dev-env nil)
 
+;; add exec-path
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
 
+;; add ediff configuration
 (setq ediff-split-window-function 'split-window-vertically)
 (setq ediff-merge-split-window-function 'split-window-vertically)
 (setq ediff-window-setup-function #'ediff-setup-windows-plan)
