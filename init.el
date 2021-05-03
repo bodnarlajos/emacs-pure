@@ -54,8 +54,6 @@
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
 (show-paren-mode +1)
-(straight-use-package 'which-key)
-(which-key-mode)
 
 (add-to-list 'exec-path my/exec-dir)
 
