@@ -27,10 +27,12 @@
 (add-to-list 'purpose-user-mode-purposes '(compilation-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(rg-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(occur-mode . second-purpose))
+(add-to-list 'purpose-user-mode-purposes '(eshell-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
 (add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
 
+(setq purpose-use-default-configuration nil)
 (purpose-compile-user-configuration)
 (purpose-load-window-layout "start")
 

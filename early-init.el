@@ -24,6 +24,7 @@
 (flymake-mode    -1)
 
 (setq package-enable-at-startup nil)
+;;(setq straight-check-for-modifications nil)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -46,8 +47,7 @@
 	"Set the default font"
 	(if is-lbodnar
 			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-12"))
-				(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 128))
+				(add-to-list 'default-frame-alist '(font . "Hack-11")))
 		(progn
 			(add-to-list 'default-frame-alist '(font . "Hack-10"))
 			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
