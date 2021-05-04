@@ -13,7 +13,18 @@
 		(kill-current-buffer)
 		(find-file currBuffPath)))
 
+(defun push-mark-no-activate ()
+  "Pushes `point' to `mark-ring' and does not activate the region
+   Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
+  (interactive)
+  (push-mark (point) t nil)
+  (message "Pushed mark to ring"))
 
+(defun exchange-point-and-mark-no-activate ()
+  "Identical to \\[exchange-point-and-mark] but will not activate the region."
+  (interactive)
+  (exchange-point-and-mark)
+  (deactivate-mark nil))
 
 (defun my/xah-select-line ()
   "Select current line. If region is active, extend selection downward by line.
