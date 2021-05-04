@@ -67,11 +67,6 @@
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
 
-;; add ediff configuration
-(setq ediff-split-window-function 'split-window-vertically)
-(setq ediff-merge-split-window-function 'split-window-vertically)
-(setq ediff-window-setup-function #'ediff-setup-windows-plan)
-
 ;; #######################
 ;; Modules
 ;; #######################
@@ -79,9 +74,9 @@
 (defun my/init-haskell ()
 	"Init haskell function"
 	(require 'my-haskell)
-	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
-	(require 'my-dev)
-	(my/revert-current-buffer))
+	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist)))
+;; (require 'my-dev)
+;; (my/revert-current-buffer))
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
 (add-to-list 'auto-mode-alist my/init-haskell-type)
@@ -96,6 +91,8 @@
 (add-to-list 'auto-mode-alist my/init-web-type)
 ;; Org
 (eval-after-load 'org-mode
+	(setq org-todo-keywords
+				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED")))
 	(setq org-support-shift-select t
 				org-log-done t))
 ;; C#

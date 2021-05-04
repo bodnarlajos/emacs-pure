@@ -46,5 +46,7 @@
 (add-hook 'org-mode-hook (lambda ()
 													 (define-key org-mode-map (kbd "<C-tab>") 'other-window)))
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
+(global-set-key (kbd "C-`") 'push-mark-no-activate)
+(define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 
 (provide 'my-keys)
