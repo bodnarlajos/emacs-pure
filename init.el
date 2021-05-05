@@ -92,8 +92,8 @@
 ;; Org
 (eval-after-load 'org-mode
 	(setq org-todo-keywords
-				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED")))
-	(setq org-support-shift-select t
+				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+				org-support-shift-select t
 				org-log-done t))
 ;; C#
 (defun my/init-cs ()
