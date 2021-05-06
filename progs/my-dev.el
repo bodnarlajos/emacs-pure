@@ -17,10 +17,6 @@
 	(custom-set-variables
 	 '(highlight-indent-guides-method 'bitmap)))
 
-(with-eval-after-load 'ediff
-	(setq ediff-window-setup-function 'ediff-setup-windows-plain-merge)
-	(setq ediff-split-window-function 'split-window-horizontally))
-
 (defun my/local-prog-mode ()
 	"T."
 	(setq-local tab-width 2)
