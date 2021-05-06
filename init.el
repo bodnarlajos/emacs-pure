@@ -76,6 +76,9 @@
 	(setq ediff-merge-split-window-function 'split-window-vertically)
 	(setq ediff-window-setup-function #'ediff-setup-windows-plan))
 
+(straight-use-package 'doom-modeline)
+(doom-modeline-mode +1)
+
 ;; #######################
 ;; Modules
 ;; #######################
