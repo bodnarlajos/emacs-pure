@@ -31,6 +31,7 @@
 (add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
 (add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*Find.*" . second-purpose))
 
 (setq purpose-use-default-configuration nil)
 (purpose-compile-user-configuration)

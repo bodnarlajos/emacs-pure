@@ -69,6 +69,13 @@
 (mapcar (lambda (cdir)
 					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
 (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
+
+(with-eval-after-load 'ediff
+	;; add ediff configuration
+	(setq ediff-split-window-function 'split-window-vertically)
+	(setq ediff-merge-split-window-function 'split-window-vertically)
+	(setq ediff-window-setup-function #'ediff-setup-windows-plan))
+
 ;; #######################
 ;; Modules
 ;; #######################
