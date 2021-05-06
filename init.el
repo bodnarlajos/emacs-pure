@@ -69,6 +69,7 @@
 (mapcar (lambda (cdir)
 					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
 (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (with-eval-after-load 'ediff
 	;; add ediff configuration
