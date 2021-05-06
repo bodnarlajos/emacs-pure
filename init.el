@@ -66,7 +66,9 @@
 ;; add exec-path
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
-
+(mapcar (lambda (cdir)
+					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
+(setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
 ;; #######################
 ;; Modules
 ;; #######################
@@ -74,9 +76,9 @@
 (defun my/init-haskell ()
 	"Init haskell function"
 	(require 'my-haskell)
-	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist)))
-;; (require 'my-dev)
-;; (my/revert-current-buffer))
+	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
+	;; (require 'my-dev)
+	(my/revert-current-buffer))
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
 (add-to-list 'auto-mode-alist my/init-haskell-type)
@@ -100,7 +102,7 @@
 	"Init csharp function"
 	(require 'my-csharp)
 	(setq auto-mode-alist (delete my/init-cs-type auto-mode-alist))
-	(require 'my-dev)
+	;; (require 'my-dev)
 	(my/revert-current-buffer))
 
 (defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
