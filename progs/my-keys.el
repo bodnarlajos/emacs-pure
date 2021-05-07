@@ -78,9 +78,8 @@
 		(interactive)
 		(call-interactively 'delete-window)))
 
-;; (define-key minibuffer-local-map [mouse-wheel-down-event] (lambda ()
-;; (message "down")))
-
 (define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
+(define-key minibuffer-local-map [mouse-4] 'next-line)
+(define-key minibuffer-local-map [mouse-5] 'previous-line)
 
 (provide 'my-keys)
