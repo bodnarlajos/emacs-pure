@@ -1,5 +1,15 @@
 (require 'cl-lib)
 
+(defun my/xah-new-empty-buffer ()
+  "Create a new empty buffer."
+  (interactive)
+  (let (($buf (generate-new-buffer "untitled")))
+    (switch-to-buffer $buf)
+    (funcall initial-major-mode)
+    (setq buffer-offer-save t)
+    $buf
+    ))
+
 (defun my/add-dev-hook (fv)
 	"Add or run a function when dev mode is active or not"
 	(if my/dev-env
