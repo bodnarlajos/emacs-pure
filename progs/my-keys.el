@@ -55,4 +55,31 @@
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 
+(define-key mode-line-buffer-identification-keymap
+	[mode-line mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'consult-buffer)))
+
+(define-key mode-line-buffer-identification-keymap
+	[mode-line-buffer-identification mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'consult-buffer)))
+
+(define-key global-map
+	[mode-line mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'my/menu-base)))
+(define-key global-map
+	[mode-line mouse-3]
+	(lambda ()
+		(interactive)
+		(call-interactively 'delete-window)))
+
+(define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
+(define-key minibuffer-local-map [mouse-4] 'next-line)
+(define-key minibuffer-local-map [mouse-5] 'previous-line)
+
 (provide 'my-keys)
