@@ -96,8 +96,9 @@ Version 2017-11-01"
 				(flymakeList "Flymake list")
 				(projectFindFile "Project find file")
 				(loadLayot "Load layout")
+				(load-desktop "Load desktop")
 				(projectCompile "Project compile"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired load-desktop)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -106,6 +107,7 @@ Version 2017-11-01"
 				 ((string-equal res projectCompile) (call-interactively 'project-compile))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res rg) (call-interactively 'rg))
+				 ((string-equal res load-desktop) (call-interactively 'desktop-read))
 				 ((string-equal res rgCurrent) (call-interactively 'consult-ripgrep))
 				 ((string-equal res elScrn) (call-interactively 'my/elscreen-new))
 				 ((string-equal res elScrnNext) (call-interactively 'my/elscreen-next))

@@ -54,5 +54,36 @@
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
 (global-set-key (kbd "C-`") 'push-mark-no-activate)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
+(global-unset-key [mode-line mouse-3])
+(global-unset-key [mode-line mouse-2])
+(global-unset-key [mode-line mouse-1])
+
+(define-key mode-line-buffer-identification-keymap
+	[mode-line mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'consult-buffer)))
+
+(define-key mode-line-buffer-identification-keymap
+	[mode-line-buffer-identification mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'consult-buffer)))
+
+(define-key global-map
+	[mode-line mouse-1]
+	(lambda ()
+		(interactive)
+		(call-interactively 'my/menu-base)))
+(define-key global-map
+	[mode-line mouse-3]
+	(lambda ()
+		(interactive)
+		(call-interactively 'delete-window)))
+
+;; (define-key minibuffer-local-map [mouse-wheel-down-event] (lambda ()
+;; 																														(message "down")))
+
+(define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
 
 (provide 'my-keys)
