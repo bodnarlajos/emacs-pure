@@ -110,7 +110,12 @@
 		(call-interactively 'delete-window)))
 
 (define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
+
+;; for touchpad
 (define-key minibuffer-local-map [mouse-4] 'next-line)
 (define-key minibuffer-local-map [mouse-5] 'previous-line)
+;; for mouse
+(define-key minibuffer-local-map [wheel-down] 'next-line)
+(define-key minibuffer-local-map [wheel-up] 'previous-line)
 
 (provide 'my-keys)
