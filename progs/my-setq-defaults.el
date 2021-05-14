@@ -31,8 +31,8 @@
  mark-ring-max 32)
 
 (if is-lbodnar
-		(setq browse-url-generic-program "firefox")
-	(setq  browse-url-generic-program "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"))
+		(setq browse-url-generic-program "google-chrome")
+	(setq  browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"))
 
 ;; Better scrolling
 (setq redisplay-dont-pause t
