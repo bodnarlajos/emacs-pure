@@ -79,6 +79,15 @@
 
 (straight-use-package 'doom-modeline)
 (doom-modeline-mode +1)
+(custom-set-variables
+ '(consult-buffer-filter
+	 '("\\` "
+		 "\\`\\*Completions\\*\\'"
+		 "\\`\\*Flymake log\\*\\'"
+		 "\\`\\*Semantic SymRef\\*\\'"
+		 "\\`\\*Messages\\*\\'"
+		 "\\`\\*straight.*\\*\\'"
+		 "\\`\\*tramp/.*\\*\\'")))
 
 ;; #######################
 ;; Modules

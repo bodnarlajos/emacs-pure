@@ -1,5 +1,32 @@
 (require 'cl-lib)
 
+(defun my/copy-line (arg)
+    "Copy lines (as many as prefix argument) in the kill ring.
+      Ease of use features:
+      - Move to start of next line.
+      - Appends the copy on sequential calls.
+      - Use newline as last char even on the last line of the buffer.
+      - If region is active, copy its lines."
+    (interactive "p")
+    (let ((beg (line-beginning-position))
+          (end (line-end-position arg)))
+      (when mark-active
+        (if (> (point) (mark))
+            (setq beg (save-excursion (goto-char (mark)) (line-beginning-position)))
+          (setq end (save-excursion (goto-char (mark)) (line-end-position)))))
+      (if (eq last-command 'copy-line)
+          (kill-append (buffer-substring beg end) (< end beg))
+        (kill-ring-save beg end)))
+    (kill-append "\n" nil)
+    (beginning-of-line (or (and arg (1+ arg)) 2))
+    (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
+
+(defun my/ffap ()
+	"ffap"
+	(interactive)
+	(let ((url (ffap-url-at-point)))
+		(browse-url url)))
+
 (defun my/xah-new-empty-buffer ()
   "Create a new empty buffer."
   (interactive)
@@ -157,9 +184,7 @@ Version 2017-11-01"
 	"T."
 	(interactive)
 	(require 'my-dev)
-	(message "start-dev-env end")
-	(revert-buffer nil t nil)
-	(message "start-dev-end revert-buffer end"))
+	(my/revert-current-buffer))
 
 (defun ido-recentf-open ()
 	"Use `ido-completing-read' to find a recent file."
