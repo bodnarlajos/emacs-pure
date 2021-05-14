@@ -37,12 +37,12 @@
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
 (setq company-minimum-prefix-length 1)
 
-(when my/dev-hook
+(when (and (not my/dev-env) my/dev-hook)
 	(run-hooks 'my/dev-hook))
 
 (setq my/dev-env t)
 
-(purpose-load-window-layout "development")
+;; (purpose-load-window-layout "development")
 
 (message "dev end")
 
