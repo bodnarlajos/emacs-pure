@@ -42,7 +42,7 @@
 
 (setq my/dev-env t)
 
-(purpose-load-window-layout "development")
+;; (purpose-load-window-layout "development")
 
 (message "dev end")
 
