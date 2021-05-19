@@ -1,4 +1,14 @@
 (require 'cl-lib)
+(straight-use-package 'ace-window)
+
+(defun my/select-window ()
+	"select a window"
+	(interactive)
+	(ace-select-window))
+(defun my/swap-window ()
+	"swap a window"
+	(interactive)
+	(ace-swap-window))
 
 (defun my/copy-line (arg)
     "Copy lines (as many as prefix argument) in the kill ring.
