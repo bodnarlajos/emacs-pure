@@ -1,4 +1,14 @@
 (require 'cl-lib)
+(straight-use-package 'ace-window)
+
+(defun my/select-window ()
+	"select a window"
+	(interactive)
+	(ace-select-window))
+(defun my/swap-window ()
+	"swap a window"
+	(interactive)
+	(ace-swap-window))
 
 (defun my/copy-line (arg)
     "Copy lines (as many as prefix argument) in the kill ring.
@@ -131,11 +141,12 @@ Version 2017-11-01"
 				(elScrn "Screen new")
 				(elScrnNext "Screen next")
 				(flymakeList "Flymake list")
+				(longLines "Long lines")
 				(projectFindFile "Project find file")
 				(loadLayot "Load layout")
 				(load-desktop "Load desktop")
 				(projectCompile "Project compile"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired load-desktop)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired  load-desktop)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -143,6 +154,7 @@ Version 2017-11-01"
 				 ((string-equal res recentfFiles) (call-interactively 'ido-recentf-open))
 				 ((string-equal res projectCompile) (call-interactively 'project-compile))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
+				 ((string-equal res longLines) (call-interactively 'my/long-line))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res load-desktop) (call-interactively 'desktop-read))
 				 ((string-equal res rgCurrent) (call-interactively 'consult-ripgrep))
