@@ -32,6 +32,7 @@
 
 (add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Find.*" . second-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*Message.*" . second-purpose))
 
 (setq purpose-use-default-configuration nil)
 (purpose-compile-user-configuration)
