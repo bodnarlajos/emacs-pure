@@ -27,6 +27,7 @@
  resize-mini-windows t
  completions-format 'vertical
  isearch-allow-scroll t
+ scroll-preserve-screen-position t
  isearch-allow-prefix t
  linum-format "%3s"
  mark-ring-max 32)
