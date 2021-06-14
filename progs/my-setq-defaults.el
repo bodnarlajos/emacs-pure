@@ -14,6 +14,7 @@
  package-check-signature nil
  custom-file (concat user-emacs-directory "custom.el")
  inhibit-startup-screen t
+ initial-buffer-choice 'my/xah-new-empty-buffer
  tab-width 2
  split-height-threshold 0
  split-width-threshold nil

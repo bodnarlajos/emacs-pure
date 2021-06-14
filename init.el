@@ -127,3 +127,10 @@
 
 (defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
 (add-to-list 'auto-mode-alist my/init-cs-type)
+
+(add-hook 'so-long-mode-hook (lambda ()
+															 (require 'longlines)
+															 (longlines-mode)))
+
+(straight-use-package 'centaur-tabs)
+(centaur-tabs-mode +1)
