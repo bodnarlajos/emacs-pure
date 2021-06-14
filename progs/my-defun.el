@@ -112,7 +112,7 @@ Version 2017-11-01"
   (interactive)
 	(straight-use-package 'magit)
   (call-interactively 'magit-status)
-	(add-hook 'magit-revision-mode-hook 'my/load-purpose-magit-revision)
+	;; (add-hook 'magit-revision-mode-hook 'my/load-purpose-magit-revision)
 	(delete-other-windows))
 
 (defun my/menu-smex ()
