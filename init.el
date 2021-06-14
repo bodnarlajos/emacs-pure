@@ -73,9 +73,10 @@
 
 (with-eval-after-load 'ediff
 	;; add ediff configuration
-	(setq ediff-split-window-function 'split-window-vertically)
+	(setq ediff-split-window-function 'split-window-horizontally)
 	(setq ediff-merge-split-window-function 'split-window-vertically)
-	(setq ediff-window-setup-function #'ediff-setup-windows-plan))
+	(setq ediff-diff-options "-w")
+	(setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (straight-use-package 'doom-modeline)
 (doom-modeline-mode +1)
@@ -134,3 +135,5 @@
 
 (straight-use-package 'centaur-tabs)
 (centaur-tabs-mode +1)
+
+(my/start-dev-env)
