@@ -145,7 +145,7 @@ Version 2017-11-01"
 				(projectFindFile "Project find file")
 				(loadLayot "Load layout")
 				(projectCompile "Project compile"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -236,7 +236,7 @@ Version 2017-11-01"
 (defun my/light-theme ()
 	"T."
 	(interactive)
-	(load-theme 'sanityinc-tomorrow-day)
+	(load-theme 'spacemacs-light)
 	(my/set-font))
 
 (defun my/load (filename)
