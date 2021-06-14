@@ -13,7 +13,7 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 
-(straight-use-package 'color-theme-sanityinc-tomorrow)
+(straight-use-package 'spacemacs-theme)
 
 (custom-set-variables
  '(custom-safe-themes
