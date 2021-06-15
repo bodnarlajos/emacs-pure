@@ -1,5 +1,5 @@
 (straight-use-package 'window-purpose)
-(purpose-mode)
+(purpose-mode +1)
 
 (add-to-list 'purpose-user-mode-purposes '(haskell-mode   . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(prog-mode   . main-purpose))

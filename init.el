@@ -1,23 +1,54 @@
 ;; (require 'package)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; ;; and `package-pinned-packages`. Most users will not need or want to do this.
+;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;; (package-initialize)
 
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
+
+;;(defalias 'yes-or-no-p 'y-or-n-p)	
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(setq straight-check-for-modifications nil)
+
+(defun my/set-font ()
+	"Set the default font"
+	(if is-lbodnar
+			(progn
+				(add-to-list 'default-frame-alist '(font . "Hack-11")))
+		(progn
+			(add-to-list 'default-frame-alist '(font . "Hack-10"))
+			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
+
+(my/set-font)
+
 (setq frame-title-format '("%b"))
 (setq file-name-handler-alist nil)
 
 (cua-mode t)
 (blink-cursor-mode 0)
 
+;; (straight-use-package 'magit)
+
 (straight-use-package 'spacemacs-theme)
 
 (custom-set-variables
  '(custom-safe-themes
-	 '("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
+	 '("66f32da4e185defe7127e0dc8b779af99c00b60c751b0662276acaea985e2721" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -49,7 +80,7 @@
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-(require 'my-layout2)
+(require 'my-layout)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
@@ -74,8 +105,8 @@
 (with-eval-after-load 'ediff
 	;; add ediff configuration
 	(setq ediff-split-window-function 'split-window-vertically)
-	(setq ediff-merge-split-window-function 'split-window-vertically)
-	(setq ediff-window-setup-function #'ediff-setup-windows-plan))
+	(setq ediff-merge-split-window-function 'split-window-vertically))
+	;; (setq ediff-window-setup-function #'ediff-setup-windows-plan))
 
 (straight-use-package 'doom-modeline)
 (doom-modeline-mode +1)
@@ -134,3 +165,4 @@
 
 (straight-use-package 'centaur-tabs)
 (centaur-tabs-mode +1)
+

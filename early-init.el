@@ -16,7 +16,7 @@
              (garbage-collect)
              (message "Load time %.06f"
                       (float-time (time-since my/start-time)))) t)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (tool-bar-mode   -1)
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
@@ -24,37 +24,8 @@
 (flymake-mode    -1)
 
 (setq package-enable-at-startup nil)
-;;(setq straight-check-for-modifications nil)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'selectrum)
 
 (setq frame-inhibit-implied-resize t)
-
-(defun my/set-font ()
-	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-11")))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-10"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
-
-(my/set-font)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;-------------------- Some tricks--------------------------
 (provide 'early-init)
