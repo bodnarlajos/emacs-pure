@@ -39,5 +39,5 @@
 (setq magit--default-directory my/project-dir)  
 (setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))
 
-(my/installed "magit")
+;; (my/installed "magit")
 (provide 'my-magit)
