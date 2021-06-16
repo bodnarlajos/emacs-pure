@@ -35,7 +35,7 @@
 (setq eldoc-echo-area-use-multiline-p 8)
 (setq eldoc-echo-area-prefer-doc-buffer t)
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 3)
 
 (when (and (not my/dev-env) my/dev-hook)
 	(run-hooks 'my/dev-hook))

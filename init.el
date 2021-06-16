@@ -136,4 +136,5 @@
 (straight-use-package 'centaur-tabs)
 (centaur-tabs-mode +1)
 
-(my/start-dev-env)
+(when my/autostart-dev-env
+	(require 'my-dev))
