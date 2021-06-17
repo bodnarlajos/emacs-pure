@@ -1,4 +1,5 @@
 (defconst my/start-time (current-time))
+(defconst my/autostart-dev-env t)
 
 (defvar file-name-handler-alist-old file-name-handler-alist)
 (defconst is-lbodnar (string-equal system-name "lbodnar"))
