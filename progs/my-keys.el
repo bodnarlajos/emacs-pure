@@ -30,6 +30,7 @@
 (global-set-key (kbd "<M-return>") 'find-file-at-point)
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-o") 'find-file)
+(global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-b") 'switch-to-buffer)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "<C-tab>") 'my/select-window)
@@ -84,6 +85,9 @@
 		(call-interactively 'delete-window)))
 
 (define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
+
+(with-eval-after-load 'dired
+	(define-key dired-mode-map (kbd "C-o") 'find-file))
 
 ;; for touchpad
 (define-key minibuffer-local-map [mouse-4] 'next-line)
