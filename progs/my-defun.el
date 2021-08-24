@@ -110,7 +110,8 @@ Version 2017-11-01"
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
-	(straight-use-package 'magit)
+	;; (straight-use-package 'magit)
+	(straight-use-package 'magit-libgit)
   (call-interactively 'magit-status)
 	;; (add-hook 'magit-revision-mode-hook 'my/load-purpose-magit-revision)
 	(delete-other-windows))
@@ -218,10 +219,8 @@ Version 2017-11-01"
 	(let ((ep (line-end-position)))
 		(when (>= ep 1000)
 			(so-long)			
-			(let ((my-load-file
-						 (expand-file-name "progs/longlines.el" user-emacs-directory)))
-				(load my-load-file))
-			(longlines-mode))))
+			(require 'longlines)
+			(longlines-mode +1))))
 
 (defun my/kill-buffer-close-window ()
 	"Kill the current buffer and close the window"
