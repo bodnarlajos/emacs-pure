@@ -169,3 +169,5 @@
 
 (when my/autostart-dev-env
 	(require 'my-dev))
+
+(cd my/base-dir)

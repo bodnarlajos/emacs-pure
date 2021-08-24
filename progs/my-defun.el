@@ -146,8 +146,9 @@ Version 2017-11-01"
 				(projectFindFile "Project find file")
 				(loadLayot "Load layout")
 				(load-desktop "Load desktop")
+				(xahBuffer "New buffer")
 				(projectCompile "Project compile"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer load-desktop rg rgCurrent backTo development xahBuffer openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -170,6 +171,7 @@ Version 2017-11-01"
 				 ((string-equal res flymakeList) (call-interactively 'consult-flymake))
 				 ((string-equal res development) (call-interactively 'my/start-dev-env))
 				 ((string-equal res jumpTo) (call-interactively 'my/dumb-jump-go))
+				 ((string-equal res xahBuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res backTo) (call-interactively 'xref-pop-marker-stack)))))))
 
 (defun my/dumb-jump-go ()

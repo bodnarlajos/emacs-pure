@@ -2,7 +2,7 @@
 (defconst my/autostart-dev-env t)
 
 (defvar file-name-handler-alist-old file-name-handler-alist)
-(defconst is-lbodnar (string-equal system-name "lbodnar"))
+(defconst is-lbodnar (string-equal system-name "debla"))
 
 (setq file-name-handler-alist nil
       message-log-max 16384
