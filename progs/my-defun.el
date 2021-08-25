@@ -233,13 +233,13 @@ Version 2017-11-01"
 (defun my/dark-theme ()
 	"T."
 	(interactive)
-	(load-theme 'spacemacs-dark)
+	(load-theme 'wombat)
 	(my/set-font))
 
 (defun my/light-theme ()
 	"T."
 	(interactive)
-	(load-theme 'spacemacs-light)
+	(disable-theme 'wombat)
 	(my/set-font))
 
 (defun my/load (filename)

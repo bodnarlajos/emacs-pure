@@ -90,6 +90,7 @@
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
+(straight-use-package 'transpose-frame)
 
 (defvar my/dev-hook '())
 (defvar my/dev-env nil)
@@ -164,8 +165,8 @@
 															 (require 'longlines)
 															 (longlines-mode)))
 
-(straight-use-package 'centaur-tabs)
-(centaur-tabs-mode +1)
+;; (straight-use-package 'centaur-tabs)
+;; (centaur-tabs-mode +1)
 
 (when my/autostart-dev-env
 	(require 'my-dev))

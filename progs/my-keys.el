@@ -35,6 +35,7 @@
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "<C-tab>") 'my/select-window)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
+(global-set-key (kbd "C-S-t") 'transpose-frame)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (global-set-key (kbd "C-S-v") 'my/xah-select-line)

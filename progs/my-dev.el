@@ -44,6 +44,8 @@
 
 ;; (purpose-load-window-layout "development")
 
+(global-hl-line-mode +1)
+
 (message "dev end")
 
 (provide 'my-dev)
