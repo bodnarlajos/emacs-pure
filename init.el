@@ -13,8 +13,6 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 
-(straight-use-package 'spacemacs-theme)
-
 (custom-set-variables
  '(custom-safe-themes
 	 '("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
@@ -120,15 +118,17 @@
 				org-support-shift-select t
 				org-log-done t))
 ;; C#
-(defun my/init-cs ()
-	"Init csharp function"
-	(require 'my-csharp)
-	(setq auto-mode-alist (delete my/init-cs-type auto-mode-alist))
-	;; (require 'my-dev)
-	(my/revert-current-buffer))
+(require 'my-csharp)
 
-(defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
-(add-to-list 'auto-mode-alist my/init-cs-type)
+;; (defun my/init-cs ()
+;; 	"Init csharp function"
+;; 	(require 'my-csharp)
+;; 	(setq auto-mode-alist (delete my/init-cs-type auto-mode-alist))
+;; 	;; (require 'my-dev)
+;; 	(my/revert-current-buffer))
+
+;; (defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
+;; (add-to-list 'auto-mode-alist my/init-cs-type)
 
 (add-hook 'so-long-mode-hook (lambda ()
 															 (require 'longlines)
