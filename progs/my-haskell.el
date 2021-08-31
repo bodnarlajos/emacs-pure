@@ -1,4 +1,5 @@
 (straight-use-package 'haskell-mode)
+(straight-use-package 'lsp-haskell)
 
 (message "haskell init")
 (with-eval-after-load 'haskell-mode
@@ -22,8 +23,9 @@
 	"haskell mode development"
 	(add-hook 'haskell-mode-hook (lambda ()
 																 (message "h2 init: haskell mode hook with dev-env")
-																 (eglot-ensure)
-																 (local-set-key (kbd "C-.") 'eglot-find-typeDefinition)
+																 (lsp)
+																 ;; (eglot-ensure)
+																 ;; (local-set-key (kbd "C-.") 'eglot-find-typeDefinition)
 																 (local-set-key (kbd "C-c h") 'haskell-hoogle-lookup-from-local)
 																 (message "h2 end"))))
 

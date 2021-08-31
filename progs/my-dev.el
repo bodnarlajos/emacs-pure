@@ -5,11 +5,13 @@
 (straight-use-package 'company)
 (global-company-mode t)
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
-(straight-use-package 'eglot)
-(straight-use-package 'posframe)
-(require 'eldoc-posframe)
-(global-eldoc-posframe-mode +1)
-(global-eldoc-posframe-enable)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
+(straight-use-package 'company-box)
+(add-hook 'company-mode-hook 'company-box-mode)
+(custom-set-variables
+ '(lsp-ui-doc-show-with-cursor nil))
+
 (straight-use-package 'yaml-mode)
 (require 'my-jump)
 
