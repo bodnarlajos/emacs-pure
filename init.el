@@ -12,6 +12,8 @@
 
 (cua-mode t)
 (blink-cursor-mode 0)
+(set-cursor-color "red")
+(setq cursor-type 'bar)
 
 (custom-set-variables
  '(custom-safe-themes
