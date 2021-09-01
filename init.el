@@ -28,10 +28,10 @@
 ;; intelligent over time
 (prescient-persist-mode +1)
 
-(load (concat (file-name-directory user-init-file) "/custom.el"))
+(load (expand-file-name (concat user-emacs-directory "custom.el")))
 
 (let ((my-load-file
-			 (expand-file-name (concat user-emacs-directory "progs"))))
+       (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
 (require 'my-const)
 (require 'my-defun)
