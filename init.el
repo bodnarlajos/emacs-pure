@@ -36,7 +36,7 @@
 (require 'my-const)
 (require 'my-defun)
 
-(my/light-theme)
+(my/dark-theme)
 
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
