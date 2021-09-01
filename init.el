@@ -10,8 +10,20 @@
 (setq frame-title-format '("%b"))
 (setq file-name-handler-alist nil)
 
-(cua-mode t)
-(blink-cursor-mode 0)
+(setq straight-check-for-modifications nil)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -21,51 +33,42 @@
 (straight-use-package 'selectrum-prescient)
 (straight-use-package 'consult)
 (selectrum-mode +1)
-;; to make sorting and filtering more intelligent
 (selectrum-prescient-mode +1)
-
-;; to save your command history on disk, so the sorting gets more
-;; intelligent over time
 (prescient-persist-mode +1)
 
 (load (expand-file-name (concat user-emacs-directory "custom.el")))
-
-(let ((my-load-file
-       (expand-file-name (concat user-emacs-directory "progs"))))
-  (add-to-list 'load-path my-load-file))
-
 (require 'my-defun)
-(require 'my-const)
-
-(my/theme)
-
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (global-undo-tree-mode)
 (straight-use-package 'smex)
-(recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
 (require 'my-layout2)
 (straight-use-package 'ctrlf)
-(ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
+(straight-use-package 'transpose-frame)
+(straight-use-package 'doom-modeline)
+
+(doom-modeline-mode +1)
+(ctrlf-mode +1)
 (show-paren-mode +1)
+(recentf-mode)
 
 (add-hook 'nxml-mode-hook 'my/long-line)
 (add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
-(straight-use-package 'transpose-frame)
 
 (defvar my/dev-hook '())
 (defvar my/dev-env nil)
 
 ;; add exec-path
 (mapcar (lambda (cdir)
-					(add-to-list 'exec-path cdir)) my/exec-dir)
+	  (add-to-list 'exec-path cdir)) my/exec-dir)
 (mapcar (lambda (cdir)
-					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
+	  (setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
+
 (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
@@ -75,18 +78,18 @@
 	(setq ediff-merge-split-window-function 'split-window-vertically)
 	(setq ediff-diff-options "-w")
 	(setq ediff-window-setup-function #'ediff-setup-windows-plain))
+(add-hook 'so-long-mode-hook (lambda ()
+			       (require 'longlines)
+			       (longlines-mode)))
 
-(straight-use-package 'doom-modeline)
-(doom-modeline-mode +1)
-(custom-set-variables
- '(consult-buffer-filter
-	 '("\\` "
-		 "\\`\\*Completions\\*\\'"
-		 "\\`\\*Flymake log\\*\\'"
-		 "\\`\\*Semantic SymRef\\*\\'"
-		 "\\`\\*Messages\\*\\'"
-		 "\\`\\*straight.*\\*\\'"
-		 "\\`\\*tramp/.*\\*\\'")))
+(cd my/base-dir)
+
+(cua-mode t)
+(blink-cursor-mode 0)
+(set-cursor-color "red")
+(setq-default cursor-type 'bar)
+
+(my/theme)
 
 ;; #######################
 ;; Modules
@@ -101,6 +104,7 @@
 
 (defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
 (add-to-list 'auto-mode-alist my/init-haskell-type)
+
 ;; Web
 (defun my/init-web ()
 	"Init haskell function"
@@ -110,6 +114,7 @@
 
 (defvar my/init-web-type '("\\.\\(?:less\\|ts\\|htm\\|html\\|css\\|js\\)\\'" . my/init-web))
 (add-to-list 'auto-mode-alist my/init-web-type)
+
 ;; Org
 (eval-after-load 'org-mode
 	(setq org-todo-keywords
@@ -119,27 +124,6 @@
 ;; C#
 (require 'my-csharp)
 
-;; (defun my/init-cs ()
-;; 	"Init csharp function"
-;; 	(require 'my-csharp)
-;; 	(setq auto-mode-alist (delete my/init-cs-type auto-mode-alist))
-;; 	;; (require 'my-dev)
-;; 	(my/revert-current-buffer))
-
-;; (defvar my/init-cs-type '("\\.\\(?:cs\\|csproj\\)\\'" . my/init-cs))
-;; (add-to-list 'auto-mode-alist my/init-cs-type)
-
-(add-hook 'so-long-mode-hook (lambda ()
-															 (require 'longlines)
-															 (longlines-mode)))
-
-;; (straight-use-package 'centaur-tabs)
-;; (centaur-tabs-mode +1)
-
+;; End of modules
 (when my/autostart-dev-env
 	(require 'my-dev))
-
-(cd my/base-dir)
-
-(set-cursor-color "red")
-(setq-default cursor-type 'bar)

@@ -22,27 +22,16 @@
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
 (tooltip-mode    -1) ;; Tool tip in the echo
-(flymake-mode    -1)
 
 (setq package-enable-at-startup nil)
-;;(setq straight-check-for-modifications nil)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'selectrum)
 
 (setq frame-inhibit-implied-resize t)
+
+(let ((my-load-file
+       (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
+
+(require 'my-const)
 
 (defun my/set-font ()
 	"Set the default font"

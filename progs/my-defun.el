@@ -233,15 +233,13 @@ Version 2017-11-01"
 	"T."
 	(interactive)
 	(straight-use-package 'color-theme-sanityinc-tomorrow)
-	(load-theme 'sanityinc-tomorrow-bright)
-	(my/set-font))
+	(load-theme 'sanityinc-tomorrow-eighties))
 
 (defun my/light-theme ()
 	"T."
 	(interactive)
 	(straight-use-package 'color-theme-sanityinc-tomorrow)
-	(disable-theme 'sanityinc-tomorrow-day)
-	(my/set-font))
+	(disable-theme 'sanityinc-tomorrow-day))
 
 (defun my/load (filename)
 	"T."							

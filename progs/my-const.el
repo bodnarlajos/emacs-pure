@@ -7,6 +7,8 @@
 ;; the start dir
 (defvar my/base-dir "/home/lbodnar/Projects")
 ;; the theme light/dark
-(defun my/theme () (my/light-theme))
+(defun my/theme () (my/dark-theme))
+;; the font
+(defvar my/font "Hack-11")
 
 (provide 'my-const)
