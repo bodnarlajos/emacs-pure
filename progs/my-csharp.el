@@ -1,15 +1,10 @@
 (straight-use-package 'csharp-mode)
+(straight-use-package 'eglot)
 
-;; ;; the hook function which going to run only once
-;; (defun my/csharp-dev-run ()
-;; 	"csharp mode development"
-;; 	(straight-use-package 'eglot)
-;; 	(straight-use-package 'omnisharp)
-;; 	(add-to-list 'eglot-server-programs `(csharp-mode . ("~/.emacs.d/omnisharp-linux-x64/run")))
-;; 	(add-hook 'csharp-mode-hook 'eglot-ensure))
-
-;; (my/add-dev-hook #'my/csharp-dev-run)
-
-
+(defun start-omni-eglot ()
+	""
+	(interactive)
+	(eglot-ensure)
+	(add-to-list 'eglot-server-programs `(csharp-mode . ("/home/lbodnar/.emacs.d/omnisharp/run" "-lsp"))))
 
 (provide 'my-csharp)
