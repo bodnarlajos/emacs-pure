@@ -12,12 +12,6 @@
 
 (cua-mode t)
 (blink-cursor-mode 0)
-(set-cursor-color "red")
-(setq cursor-type 'bar)
-
-(custom-set-variables
- '(custom-safe-themes
-	 '("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476")))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -34,11 +28,13 @@
 ;; intelligent over time
 (prescient-persist-mode +1)
 
+(load (concat (file-name-directory user-init-file) "/custom.el"))
+
 (let ((my-load-file
 			 (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
-(require 'my-defun)
 (require 'my-const)
+(require 'my-defun)
 
 (my/light-theme)
 
@@ -143,3 +139,6 @@
 	(require 'my-dev))
 
 (cd my/base-dir)
+
+(set-cursor-color "red")
+(setq-default cursor-type 'bar)

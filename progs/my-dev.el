@@ -7,8 +7,6 @@
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
-(straight-use-package 'company-box)
-(add-hook 'company-mode-hook 'company-box-mode)
 (custom-set-variables
  '(lsp-ui-doc-show-with-cursor nil))
 
