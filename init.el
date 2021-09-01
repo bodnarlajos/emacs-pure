@@ -74,7 +74,7 @@
 (recentf-mode)
 (require 'my-keys)
 (require 'my-setq-defaults)
-(require 'my-layout)
+(require 'my-layout2)
 (straight-use-package 'ctrlf)
 (ctrlf-mode +1)
 (straight-use-package 'markdown-mode)
@@ -171,3 +171,6 @@
 
 (set-cursor-color "red")
 (setq-default cursor-type 'bar)
+
+(when (not is-lbodnar)
+	(set-frame-size (selected-frame) 180 60))
