@@ -33,10 +33,11 @@
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
-(require 'my-const)
-(require 'my-defun)
 
-(my/dark-theme)
+(require 'my-defun)
+(require 'my-const)
+
+(my/theme)
 
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)

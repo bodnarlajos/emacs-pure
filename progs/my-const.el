@@ -6,5 +6,7 @@
 (defvar my/notes-dir "/home/lbodnar/Documents/notes/")
 ;; the start dir
 (defvar my/base-dir "/home/lbodnar/Projects")
+;; the theme light/dark
+(defun my/theme () (my/light-theme))
 
 (provide 'my-const)
