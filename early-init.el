@@ -28,6 +28,18 @@
 
 (setq frame-inhibit-implied-resize t)
 
-;;-------------------- Some tricks--------------------------
+(defun my/set-font ()
+	"Set the default font"
+	(if is-lbodnar
+			(progn
+				(add-to-list 'default-frame-alist '(font . "Hack-12")))
+		(progn
+			(add-to-list 'default-frame-alist '(font . "Hack-11"))
+			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
+
+(my/set-font)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (provide 'early-init)
 ;;; early-init.el ends here 
