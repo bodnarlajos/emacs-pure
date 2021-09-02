@@ -34,7 +34,7 @@
 			(progn
 				(add-to-list 'default-frame-alist '(font . "Hack-12")))
 		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-11"))
+			(add-to-list 'default-frame-alist '(font . "Monoid-11"))
 			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
 
 (my/set-font)
