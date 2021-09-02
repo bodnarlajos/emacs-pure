@@ -6,7 +6,7 @@
  '(consult-buffer-filter
 	 '("\\` " "\\`\\*Completions\\*\\'" "\\`\\*Flymake log\\*\\'" "\\`\\*Semantic SymRef\\*\\'" "\\`\\*Messages\\*\\'" "\\`\\*straight.*\\*\\'" "\\`\\*tramp/.*\\*\\'"))
  '(custom-safe-themes
-	 '("58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
+	 '("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default))
  '(highlight-indent-guides-method 'bitmap)
  '(ispell-dictionary nil)
  '(lsp-ui-doc-show-with-cursor nil))

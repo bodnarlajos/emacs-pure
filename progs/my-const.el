@@ -4,7 +4,7 @@
 (setq my/autostart-dev-env t)
 (defvar my/base-dir "c:/Projects")
 ;; the theme light/dark
-(defun my/theme () (my/dark-theme))
+(defun my/theme () (my/light-theme))
 ;; the font
 (defun my/set-font ()
 	"Set the default font"
