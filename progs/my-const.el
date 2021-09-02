@@ -9,6 +9,13 @@
 ;; the theme light/dark
 (defun my/theme () (my/dark-theme))
 ;; the font
-(defvar my/font "Hack-11")
+(defun my/set-font ()
+	"Set the default font"
+	(if is-lbodnar
+			(progn
+				(add-to-list 'default-frame-alist '(font . "Hack-12")))
+		(progn
+			(add-to-list 'default-frame-alist '(font . "Hack-11"))
+			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
 
 (provide 'my-const)
