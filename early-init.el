@@ -22,20 +22,16 @@
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
 (tooltip-mode    -1) ;; Tool tip in the echo
-(flymake-mode    -1)
 
 (setq package-enable-at-startup nil)
 
 (setq frame-inhibit-implied-resize t)
 
-(defun my/set-font ()
-	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-12")))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Monoid-11"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
+(let ((my-load-file
+       (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
+
+(require 'my-const)
 
 (my/set-font)
 
