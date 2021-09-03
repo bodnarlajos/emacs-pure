@@ -10,6 +10,12 @@
 
 ;;(defalias 'yes-or-no-p 'y-or-n-p)	
 
+(let ((my-load-file
+       (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
+
+(require 'my-const)
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -24,17 +30,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (setq straight-check-for-modifications nil)
-
-(defun my/set-font ()
-	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-11")))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-10"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
-
-(my/set-font)
 
 (setq frame-title-format '("%b"))
 (setq file-name-handler-alist nil)
@@ -158,3 +153,5 @@
 ;; End of modules
 (when my/autostart-dev-env
 	(require 'my-dev))
+
+(my/end-of-init)

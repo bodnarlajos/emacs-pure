@@ -27,14 +27,6 @@
 
 (setq frame-inhibit-implied-resize t)
 
-(let ((my-load-file
-       (expand-file-name (concat user-emacs-directory "progs"))))
-  (add-to-list 'load-path my-load-file))
-
-(require 'my-const)
-
-(my/set-font)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (provide 'early-init)

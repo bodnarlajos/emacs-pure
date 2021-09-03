@@ -8,11 +8,11 @@
 ;; the font
 (defun my/set-font ()
 	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-12")))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-11"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
+	(message "set-font")
+	(set-face-attribute 'default nil :family "Iosevka" :height 113))
+;; end script of init
+(defun my/end-of-init ()
+	"The custom script end of the initialization"
+	(set-frame-size (selected-frame) 180 45))
 
 (provide 'my-const)
