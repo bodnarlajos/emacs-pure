@@ -112,8 +112,6 @@
 (blink-cursor-mode 0)
 (set-cursor-color "red")
 (setq-default cursor-type 'bar)
-(when (not is-lbodnar)
-	(set-frame-size (selected-frame) 180 60))
 
 (my/theme)
 
