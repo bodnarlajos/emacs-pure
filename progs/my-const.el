@@ -14,5 +14,7 @@
 		(progn
 			(add-to-list 'default-frame-alist '(font . "Hack-11"))
 			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
+;; set browser
+(setq browse-url-generic-program "firefox")
 
 (provide 'my-const)
