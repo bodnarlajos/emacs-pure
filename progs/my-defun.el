@@ -233,7 +233,8 @@ Version 2017-11-01"
 	"T."
 	(interactive)
 	(straight-use-package 'color-theme-sanityinc-tomorrow)
-	(load-theme 'sanityinc-tomorrow-eighties))
+	(load-theme 'sanityinc-tomorrow-eighties)
+	(my/set-font))
 
 (defun my/light-theme ()
 	"T."

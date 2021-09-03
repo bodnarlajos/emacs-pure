@@ -7,10 +7,12 @@
 
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
-(setq frame-title-format '("%b"))
-(setq file-name-handler-alist nil)
 
-(setq straight-check-for-modifications nil)
+(let ((my-load-file
+       (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
+
+(require 'my-const)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -24,6 +26,8 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+(setq straight-check-for-modifications nil)
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -174,3 +178,5 @@
 ;; End of modules
 (when my/autostart-dev-env
 	(require 'my-dev))
+
+(my/end-of-init)
