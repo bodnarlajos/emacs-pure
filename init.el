@@ -47,13 +47,11 @@
 (straight-use-package 'ctrlf)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
-(straight-use-package 'doom-modeline)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
 (global-undo-tree-mode)
-(doom-modeline-mode +1)
 (ctrlf-mode +1)
 (show-paren-mode +1)
 (recentf-mode)
@@ -138,7 +136,7 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 (set-cursor-color "red")
-(setq-default cursor-type 'bar)
+(setq-default cursor-type 'box)
 
 (my/theme)
 
@@ -146,25 +144,11 @@
 ;; Modules
 ;; #######################
 ;; Haskell
-(defun my/init-haskell ()
-	"Init haskell function"
-	(require 'my-haskell)
-	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
-	;; (require 'my-dev)
-	(my/revert-current-buffer))
-
-(defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
-(add-to-list 'auto-mode-alist my/init-haskell-type)
-
-;; Web
-(defun my/init-web ()
-	"Init haskell function"
-	(require 'my-web)
-	(setq auto-mode-alist (delete my/init-web-type auto-mode-alist))
-	(my/revert-current-buffer))
-
-(defvar my/init-web-type '("\\.\\(?:less\\|ts\\|htm\\|html\\|css\\|js\\)\\'" . my/init-web))
-(add-to-list 'auto-mode-alist my/init-web-type)
+(require 'my-haskell)
+(require 'my-web)
+;; C#
+(require 'my-csharp)
+(require 'my-dev)
 
 ;; Org
 (eval-after-load 'org-mode
@@ -172,11 +156,5 @@
 				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
 				org-support-shift-select t
 				org-log-done t))
-;; C#
-(require 'my-csharp)
-
-;; End of modules
-(when my/autostart-dev-env
-	(require 'my-dev))
 
 (my/end-of-init)
