@@ -23,6 +23,8 @@
 (add-to-list 'purpose-user-mode-purposes '(vc-dir-mode . main-purpose))
 (add-to-list 'purpose-user-mode-purposes '(magit-revision-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(diff-mode . second-purpose))
+(add-to-list 'purpose-user-mode-purposes '(git-log-view-mode . second-purpose))
+(add-to-list 'purpose-user-mode-purposes '(log-view-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(undo-tree-visualizer-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(help-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(haskell-compilation-mode . second-purpose))
