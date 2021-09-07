@@ -8,8 +8,12 @@
 ;; the font
 (defun my/set-font ()
 	"Set the default font"
-			(set-face-attribute 'default nil :family "Iosevka" :foundry "CTDB" :height 90))
-;; set browser
+	(message "set-font")
+	(set-face-attribute 'default nil :family "Iosevka" :height 132))
+;; end script of init
+(defun my/end-of-init ()
+	"The custom script end of the initialization"
+	(my/set-font))
 (setq browse-url-generic-program "firefox")
 
 (provide 'my-const)

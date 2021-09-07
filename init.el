@@ -8,7 +8,11 @@
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
 
-;;(defalias 'yes-or-no-p 'y-or-n-p)	
+(let ((my-load-file
+       (expand-file-name (concat user-emacs-directory "progs"))))
+  (add-to-list 'load-path my-load-file))
+
+(require 'my-const)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -24,35 +28,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (setq straight-check-for-modifications nil)
-
-(defun my/set-font ()
-	"Set the default font"
-	(if is-lbodnar
-			(progn
-				(add-to-list 'default-frame-alist '(font . "Hack-11")))
-		(progn
-			(add-to-list 'default-frame-alist '(font . "Hack-10"))
-			(set-face-attribute 'default nil :family "Hack" :foundry "CTDB" :height 90))))
-
-(my/set-font)
-
-(setq frame-title-format '("%b"))
-(setq file-name-handler-alist nil)
-
-(setq straight-check-for-modifications nil)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
 
 (setq completion-ignore-case t
       read-file-name-completion-ignore-case t
@@ -72,13 +47,11 @@
 (straight-use-package 'ctrlf)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
-(straight-use-package 'doom-modeline)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
 (global-undo-tree-mode)
-(doom-modeline-mode +1)
 (ctrlf-mode +1)
 (show-paren-mode +1)
 (recentf-mode)
@@ -163,9 +136,7 @@
 (cua-mode t)
 (blink-cursor-mode 0)
 (set-cursor-color "red")
-(setq-default cursor-type 'bar)
-(when (not is-lbodnar)
-	(set-frame-size (selected-frame) 180 60))
+(setq-default cursor-type 'box)
 
 (my/theme)
 
@@ -173,25 +144,11 @@
 ;; Modules
 ;; #######################
 ;; Haskell
-(defun my/init-haskell ()
-	"Init haskell function"
-	(require 'my-haskell)
-	(setq auto-mode-alist (delete my/init-haskell-type auto-mode-alist))
-	;; (require 'my-dev)
-	(my/revert-current-buffer))
-
-(defvar my/init-haskell-type '("\\.hs\\'" . my/init-haskell))
-(add-to-list 'auto-mode-alist my/init-haskell-type)
-
-;; Web
-(defun my/init-web ()
-	"Init haskell function"
-	(require 'my-web)
-	(setq auto-mode-alist (delete my/init-web-type auto-mode-alist))
-	(my/revert-current-buffer))
-
-(defvar my/init-web-type '("\\.\\(?:less\\|ts\\|htm\\|html\\|css\\|js\\)\\'" . my/init-web))
-(add-to-list 'auto-mode-alist my/init-web-type)
+(require 'my-haskell)
+(require 'my-web)
+;; C#
+(require 'my-csharp)
+(require 'my-dev)
 
 ;; Org
 (eval-after-load 'org-mode
@@ -199,9 +156,5 @@
 				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
 				org-support-shift-select t
 				org-log-done t))
-;; C#
-(require 'my-csharp)
 
-;; End of modules
-(when my/autostart-dev-env
-	(require 'my-dev))
+(my/end-of-init)
