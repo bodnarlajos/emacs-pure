@@ -9,7 +9,7 @@
 (defun my/set-font ()
 	"Set the default font"
 	(message "set-font")
-	(set-face-attribute 'default nil :family "Iosevka" :height 132))
+	(set-face-attribute 'default nil :family "Iosevka" :height 110))
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
