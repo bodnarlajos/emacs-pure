@@ -1,8 +1,11 @@
-(defvar my/project-dir '("c:/Projects"))
-(defvar my/exec-dir '("c:/ProgramData/Git/usr/bin" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/Git/mingw64/bin"))
-(defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
-(setq my/autostart-dev-env t)
-(defvar my/base-dir "c:/Projects")
+;; the projects
+(defvar my/project-dir '("/home/lbodnar/Projects"))
+;; the exec 
+(defvar my/exec-dir '("/home/lbodnar/.local/bin"))
+;; the notes
+(defvar my/notes-dir "/home/lbodnar/Documents/notes/")
+;; the start dir
+(defvar my/base-dir "/home/lbodnar/Projects")
 ;; the theme light/dark
 (defun my/theme () (my/light-theme))
 ;; the font
@@ -12,8 +15,8 @@
 	(set-face-attribute 'default nil :family "Iosevka" :height 132))
 ;; end script of init
 (defun my/end-of-init ()
-	"The custom script end of the initialization"
-	(my/set-font))
+	"The custom script end of the initialization")
+
 (setq browse-url-generic-program "firefox")
 
 (provide 'my-const)
