@@ -37,7 +37,7 @@
 (global-set-key (kbd "C-S-t") 'transpose-frame)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
-(global-set-key (kbd "C-S-v") 'my/xah-select-line)
+(global-set-key (kbd "C-c v") 'my/xah-select-line)
 (global-set-key (kbd "C-,") 'consult-global-mark)
 (global-set-key (kbd "C-c 1") 'consult-flymake)
 (global-set-key (kbd "C-c 2") 'flymake-show-diagnostics-buffer)
