@@ -7,13 +7,12 @@
 (defun my/theme () (my/light-theme))
 ;; the font
 (defun my/set-font ()
-	"Set the default font"
-	(message "set-font")
-	(set-face-attribute 'default nil :family "Iosevka" :height 113))
+	"Set the default font")
+
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
-	(set-frame-size (selected-frame) 180 45))
+	(set-frame-size (selected-frame) 140 45))
 
 (setq browse-url-generic-program "firefox")
 
