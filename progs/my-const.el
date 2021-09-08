@@ -15,7 +15,8 @@
 	(set-face-attribute 'default nil :family "Iosevka" :height 132))
 ;; end script of init
 (defun my/end-of-init ()
-	"The custom script end of the initialization")
+	"The custom script end of the initialization"
+	(add-to-list 'default-frame-alist '(fullscreen . maximized)))
 
 (setq browse-url-generic-program "firefox")
 
