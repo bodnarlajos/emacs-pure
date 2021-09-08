@@ -136,9 +136,10 @@ Version 2017-11-01"
 				(longLines "Long lines")
 				(projectFindFile "Project find file")
 				(loadLayot "Load layout")
+				(load-desktop "Load desktop")
 				(xahBuffer "New buffer")
 				(projectCompile "Project compile"))
-		(let ((ido-list (list recentfFiles runCommand revertBuffer rg rgCurrent backTo development xahBuffer openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
+		(let ((ido-list (list recentfFiles runCommand revertBuffer load-desktop rg rgCurrent backTo development xahBuffer openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -148,6 +149,7 @@ Version 2017-11-01"
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res longLines) (call-interactively 'my/long-line))
 				 ((string-equal res rg) (call-interactively 'rg))
+				 ((string-equal res load-desktop) (call-interactively 'desktop-read))
 				 ((string-equal res rgCurrent) (call-interactively 'consult-ripgrep))
 				 ((string-equal res elScrn) (call-interactively 'my/elscreen-new))
 				 ((string-equal res elScrnNext) (call-interactively 'my/elscreen-next))
@@ -210,10 +212,8 @@ Version 2017-11-01"
 	(let ((ep (line-end-position)))
 		(when (>= ep 1000)
 			(so-long)			
-			(let ((my-load-file
-						 (expand-file-name "progs/longlines.el" user-emacs-directory)))
-				(load my-load-file))
-			(longlines-mode))))
+			(require 'longlines)
+			(longlines-mode +1))))
 
 (defun my/kill-buffer-close-window ()
 	"Kill the current buffer and close the window"
