@@ -17,7 +17,7 @@
              (garbage-collect)
              (message "Load time %.06f"
                       (float-time (time-since my/start-time)))) t)
-;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (tool-bar-mode   -1)
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
@@ -27,7 +27,7 @@
 
 (setq frame-inhibit-implied-resize t)
 
-;; (defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 (provide 'early-init)
 ;;; early-init.el ends here 

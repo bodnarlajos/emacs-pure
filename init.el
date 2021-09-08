@@ -47,6 +47,7 @@
 (straight-use-package 'ctrlf)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
+(straight-use-package 'git-timemachine)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
