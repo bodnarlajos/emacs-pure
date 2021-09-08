@@ -1,7 +1,7 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
-(straight-use-package 'company-quickhelp)
+;; (straight-use-package 'company-quickhelp)
 (straight-use-package 'company)
 (global-company-mode t)
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
@@ -23,7 +23,7 @@
 	(display-line-numbers-mode)
 	(highlight-indent-guides-mode t)
 	(diff-hl-mode t)
-	(company-quickhelp-local-mode)
+	;; (company-quickhelp-local-mode)
 	(smartparens-mode))
 
 (setq compilation-auto-jump-to-first-error nil)
