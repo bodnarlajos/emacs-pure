@@ -9,11 +9,12 @@
 (defun my/set-font ()
 	"Set the default font"
 	(message "set-font")
-	(set-face-attribute 'default nil :family "Iosevka" :height 110))
+	(set-face-attribute 'default nil :family "Iosevka" :height 113))
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
-	(my/set-font))
+	(set-frame-size (selected-frame) 180 45))
+
 (setq browse-url-generic-program "firefox")
 
 (provide 'my-const)
