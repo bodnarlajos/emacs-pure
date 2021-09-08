@@ -104,7 +104,8 @@ Version 2017-11-01"
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
-	(call-interactively 'vc-dir)
+	(require 'my-magit)
+	(my/magit-status)
 	(delete-other-windows))
 
 (defun my/menu-smex ()
