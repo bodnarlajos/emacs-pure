@@ -104,7 +104,8 @@ Version 2017-11-01"
 (defun my/git-only ()
   "Open the magit and remove other windows"
   (interactive)
-	(call-interactively 'vc-dir)
+	(require 'my-magit)
+	(my/magit-status)
 	(delete-other-windows))
 
 (defun my/menu-smex ()
@@ -224,16 +225,12 @@ Version 2017-11-01"
 (defun my/dark-theme ()
 	"T."
 	(interactive)
-	(straight-use-package 'color-theme-sanityinc-tomorrow)
-	(load-theme 'sanityinc-tomorrow-eighties)
-	(my/set-font))
+	(run-hooks 'my/dark-theme-hook))
 
 (defun my/light-theme ()
 	"T."
 	(interactive)
-	(straight-use-package 'color-theme-sanityinc-tomorrow)
-	(load-theme 'sanityinc-tomorrow-day)
-	(my/set-font))
+	(run-hooks 'my/light-theme-hook))
 
 (defun my/load (filename)
 	"T."							
