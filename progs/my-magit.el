@@ -69,7 +69,6 @@
 	(add-hook 'magit-status-mode-hook 'my/faster-magit)
 	(add-hook 'magit-status-mode-hook 'my/magit-keys))
 
-(setq magit-auto-revert-mode nil)
 (setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
 (setq magit--default-directory my/project-dir)  
 (setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))
