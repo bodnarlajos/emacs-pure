@@ -139,7 +139,6 @@
 (set-cursor-color "red")
 (setq-default cursor-type 'box)
 
-(my/theme)
 
 ;; #######################
 ;; Modules
@@ -159,3 +158,6 @@
 				org-log-done t))
 
 (my/end-of-init)
+
+(my/theme)
+
