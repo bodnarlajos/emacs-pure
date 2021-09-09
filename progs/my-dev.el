@@ -7,6 +7,9 @@
 (remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
+(add-hook 'lsp-ui-doc-frame-hook
+          (lambda (frame _w)
+            (set-face-attribute 'default frame :font "JetBrains Mono" :height 103)))
 (custom-set-variables
  '(lsp-ui-doc-show-with-cursor nil))
 
