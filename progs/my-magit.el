@@ -9,7 +9,6 @@
 
 (defun my/faster-magit ()
 	"Magit without things"
-	;; ;; revision
 	(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
 	(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
 	(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
@@ -25,7 +24,6 @@
 	(remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
 	(remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
 	(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
-  ;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
   (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
   (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
   (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
@@ -33,7 +31,6 @@
 
 (defun my/magit-keys ()
 	""
-	(define-key magit-hunk-section-map [mouse-1] 'magit-diff-visit-file)
   (define-key magit-file-section-map [mouse-1] 'magit-diff-visit-file)
   (define-key magit-commit-section-map [mouse-1] 'magit-diff-show-or-scroll-up)
   (define-key magit-revision-mode-map (kbd "<C-tab>") 'other-window)
@@ -49,16 +46,29 @@
   (define-key magit-blame-mode-map (kbd "SPC") nil)
 
   (define-key magit-log-mode-map (kbd "<C-tab>") 'other-window)
-  (define-key magit-revision-mode-map (kbd "C-c C-c") 'magit-section-cycle-global)
-  (define-key magit-status-mode-map (kbd "C-c C-c") 'magit-section-cycle-global)
-  (define-key magit-log-mode-map (kbd "C-c C-c") 'magit-section-cycle-global))
+  (define-key magit-revision-mode-map (kbd "+") 'magit-section-cycle-global)
+  (define-key magit-status-mode-map (kbd "+") 'magit-section-cycle-global)
+  (define-key magit-log-mode-map (kbd "+") 'magit-section-cycle-global)
+  (define-key magit-diff-mode-map (kbd "+") 'magit-section-cycle-global)
+	(add-hook 'magit-status-mode-hook (lambda ()
+																		(define-key magit-status-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-status-mode-map [mouse-1] 'magit-section-cycle)
+                                    (define-key magit-log-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-log-mode-map [mouse-1] 'magit-show-commit)
+                                    (define-key magit-revision-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-revision-mode-map [mouse-1] 'magit-section-cycle)
+                                    (define-key magit-stash-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-stash-mode-map [mouse-1] 'magit-section-cycle)
+                                    (define-key magit-process-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-process-mode-map [mouse-1] 'magit-section-cycle)
+                                    (define-key magit-diff-mode-map (kbd "<C-tab>") 'my/select-window)
+                                    (define-key magit-diff-mode-map [mouse-1] 'magit-section-cycle))))
+
 
 (with-eval-after-load 'magit
 	(add-hook 'magit-status-mode-hook 'my/faster-magit)
 	(add-hook 'magit-status-mode-hook 'my/magit-keys))
 
-(straight-use-package 'magit)
-(setq magit-auto-revert-mode nil)
 (setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
 (setq magit--default-directory my/project-dir)  
 (setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))

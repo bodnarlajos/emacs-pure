@@ -1,4 +1,5 @@
 (straight-use-package 'window-purpose)
+(require 'window-purpose)
 (purpose-mode +1)
 
 (add-to-list 'purpose-user-mode-purposes '(haskell-mode   . main-purpose))
@@ -34,9 +35,11 @@
 (add-to-list 'purpose-user-mode-purposes '(eshell-mode . second-purpose))
 (add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
+(add-to-list 'purpose-user-regexp-purposes '("\\*.*\\*" . other-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Find.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Message.*" . second-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*scratch\\*" . main-purpose))
 
 (setq purpose-use-default-configuration nil)
 (purpose-compile-user-configuration)
