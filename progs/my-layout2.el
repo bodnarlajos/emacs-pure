@@ -36,7 +36,9 @@
 (add-to-list 'purpose-user-mode-purposes '(grep-mode . second-purpose))
 
 (add-to-list 'purpose-user-regexp-purposes '("\\*.*\\*" . other-purpose))
-(add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . second-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*Flycheck.*" . build-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*haskell-compilation\\*" . build-purpose))
+(add-to-list 'purpose-user-regexp-purposes '("\\*Flymake.*" . build-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Find.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*Message.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*scratch\\*" . main-purpose))

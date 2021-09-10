@@ -22,6 +22,8 @@
 (menu-bar-mode   -1)
 (scroll-bar-mode -1)
 (tooltip-mode    -1) ;; Tool tip in the echo
+(global-flycheck-mode -1)
+(flymake-mode -1)
 
 (setq package-enable-at-startup nil)
 
