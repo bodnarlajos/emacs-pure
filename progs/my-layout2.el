@@ -43,7 +43,10 @@
 (add-to-list 'purpose-user-regexp-purposes '("\\*Message.*" . second-purpose))
 (add-to-list 'purpose-user-regexp-purposes '("\\*scratch\\*" . main-purpose))
 
-(setq purpose-use-default-configuration nil)
+(custom-set-variables
+ `(purpose-use-default-configuration . nil)
+ `(purpose-use-built-in-layouts . nil))
+
 (purpose-compile-user-configuration)
 (purpose-load-window-layout "start")
 
