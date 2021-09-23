@@ -14,7 +14,8 @@
  '(lsp-ui-doc-show-with-cursor nil)
  '(menu-bar-mode nil)
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
