@@ -1,5 +1,9 @@
 (straight-use-package 'project)
 
+(global-set-key (kbd "C-c h") 'windmove-swap-states-left)
+(global-set-key (kbd "C-c k") 'windmove-swap-states-right)
+(global-set-key (kbd "C-c u") 'windmove-swap-states-up)
+(global-set-key (kbd "C-c j") 'windmove-swap-states-down)
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "C-c C-r") 'copy-to-register)
@@ -33,7 +37,7 @@
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "<C-tab>") 'my/select-window)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
-(global-set-key (kbd "C-S-t") 'transpose-frame)
+(global-set-key (kbd "C-c t") 'transpose-frame)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (global-set-key (kbd "C-c v") 'my/xah-select-line)

@@ -36,7 +36,6 @@
 (load (expand-file-name (concat user-emacs-directory "custom.el")))
 (require 'my-defun)
 (require 'my-keys)
-(require 'my-layout2)
 
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
