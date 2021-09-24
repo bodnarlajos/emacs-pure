@@ -17,6 +17,6 @@
 																	 (load-theme 'sanityinc-tomorrow-day)))
 	(set-frame-size (selected-frame) 140 45))
 
-(setq browse-url-generic-program "firefox")
+(setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
 (provide 'my-const)
