@@ -134,7 +134,6 @@
 
 (cd my/base-dir)
 
-(cua-mode t)
 (blink-cursor-mode 0)
 (set-cursor-color "red")
 (setq-default cursor-type 'box)
