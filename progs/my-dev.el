@@ -10,7 +10,7 @@
 (straight-use-package 'flycheck)
 (add-hook 'lsp-ui-doc-frame-hook
           (lambda (frame _w)
-            (set-face-attribute 'default frame :font "JetBrains Mono" :height 103)))
+            (set-face-attribute 'default frame :font "JetBrains Mono" :height 130)))
 (custom-set-variables
  '(lsp-ui-doc-show-with-cursor nil))
 
