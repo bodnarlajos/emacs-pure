@@ -141,7 +141,7 @@ Version 2017-11-01"
 				(xahBuffer "New buffer")
 				(projectCompile "Project compile"))
 		(let ((ido-list (list recentfFiles runCommand revertBuffer load-desktop rg rgCurrent backTo development xahBuffer openNotes magit vcdir longLines replaceString jumpTo flymakeList projectFindFile elScrn elScrnNext projectCompile findnamedired)))
-			(let ((res (completing-read "Action: " ido-list)))
+			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res projectFindFile) (call-interactively 'project-find-file))
@@ -196,14 +196,14 @@ Version 2017-11-01"
 (defun ido-recentf-open ()
 	"Use `ido-completing-read' to find a recent file."
 	(interactive)			
-	(if (find-file (completing-read "Find recent file: " recentf-list))
+	(if (find-file (selectrum-completing-read "Find recent file: " recentf-list))
 			(message "Opening file...")
 		(message "Aborting")))
 
 (defun my/open-notes ()
 	"Open file from the notes directory"
 	(interactive)			
-	(if (find-file (concat my/notes-dir (completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-dir))))))
+	(if (find-file (concat my/notes-dir (selectrum-completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-dir))))))
 			(message "Opening note...")
 		(message "Aborting")))
 
