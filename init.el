@@ -39,6 +39,7 @@
 
 (straight-use-package 'selectrum)
 (straight-use-package 'selectrum-prescient)
+(straight-use-package 'marginalia)
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
@@ -51,6 +52,7 @@
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
+(marginalia-mode +1)
 (global-undo-tree-mode)
 (ctrlf-mode +1)
 (show-paren-mode +1)
