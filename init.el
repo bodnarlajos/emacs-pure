@@ -49,6 +49,7 @@
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
 (straight-use-package 'git-timemachine)
+(straight-use-package 'dired-single)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -94,13 +95,32 @@
  linum-format "%3s"
  mark-ring-max 32)
 
+;; dired
+(defun my-dired-init ()
+  "Bunch of stuff to run for dired, either immediately or when it's
+   loaded."
+  ;; <add other stuff here>
+  (define-key dired-mode-map [remap dired-find-file]
+    'dired-single-buffer)
+  (define-key dired-mode-map [remap dired-mouse-find-file-other-window]
+    'dired-single-buffer-mouse)
+  (define-key dired-mode-map [remap dired-up-directory]
+    'dired-single-up-directory))
+
+;; if dired's already loaded, then the keymap will be bound
+(if (boundp 'dired-mode-map)
+    ;; we're good to go; just add our bindings
+    (my-dired-init)
+  ;; it's not loaded yet, so add our bindings to the load-hook
+  (add-hook 'dired-load-hook 'my-dired-init))
+
 ;; mini-frame and selectrum config
 (custom-set-variables
  '(mini-frame-color-shift-step 12)
  '(mini-frame-internal-border-color "forest green")
  '(mini-frame-mode t)
- '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 16)))
- '(selectrum-max-window-height 15))
+ '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 26)))
+ '(selectrum-max-window-height 25))
 
 ;; Better scrolling
 (setq redisplay-dont-pause t
