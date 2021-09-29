@@ -41,6 +41,7 @@
 (straight-use-package 'selectrum-prescient)
 (straight-use-package 'marginalia)
 (straight-use-package 'consult)
+(straight-use-package 'mini-frame)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (straight-use-package 'smex)
@@ -53,6 +54,7 @@
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
 (marginalia-mode +1)
+(mini-frame-mode +1)
 (global-undo-tree-mode)
 (ctrlf-mode +1)
 (show-paren-mode +1)
@@ -91,6 +93,14 @@
  isearch-allow-prefix t
  linum-format "%3s"
  mark-ring-max 32)
+
+;; mini-frame and selectrum config
+(custom-set-variables
+ '(mini-frame-color-shift-step 12)
+ '(mini-frame-internal-border-color "firebrick")
+ '(mini-frame-mode t)
+ '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 15)))
+ '(selectrum-max-window-height 15))
 
 ;; Better scrolling
 (setq redisplay-dont-pause t
