@@ -14,12 +14,12 @@
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
-	(straight-use-package 'color-theme-sanityinc-tomorrow)
+	;; (straight-use-package 'color-theme-sanityinc-tomorrow)
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(load-theme 'sanityinc-tomorrow-night)))
+																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (load-theme 'sanityinc-tomorrow-day)))
-	(add-to-list 'default-frame-alist '(fullscreen . maximized)))
+																	 (load-theme 'default))))
 
 (setq browse-url-generic-program "firefox")
 
