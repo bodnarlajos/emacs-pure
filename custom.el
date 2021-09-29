@@ -16,7 +16,7 @@
  '(mini-frame-color-shift-step 12)
  '(mini-frame-internal-border-color "forest green")
  '(mini-frame-mode t)
- '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 16)))
+ '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 25)))
  '(selectrum-max-window-height 15)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
