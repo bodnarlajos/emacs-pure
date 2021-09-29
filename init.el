@@ -49,6 +49,7 @@
 (straight-use-package 'transpose-frame)
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
+(straight-use-package 'doom-modeline)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -58,6 +59,7 @@
 (ctrlf-mode +1)
 (show-paren-mode +1)
 (recentf-mode)
+(doom-modeline-mode +1)
 
 ;; set defaults
 (setq-default
