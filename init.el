@@ -99,7 +99,7 @@
  '(mini-frame-color-shift-step 12)
  '(mini-frame-internal-border-color "firebrick")
  '(mini-frame-mode t)
- '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 15)))
+ '(mini-frame-show-parameters '((top . 20) (width . 0.7) (left . 0.5) (height . 16)))
  '(selectrum-max-window-height 15))
 
 ;; Better scrolling
