@@ -11,9 +11,12 @@
 
 (defun my/web-dev-run ()
 	"web mode development"
-	(add-hook 'js-mode-hook 'eglot-ensure)
-	(add-hook 'typescript-mode-hook 'eglot-ensure)
-	(add-hook 'js2-mode-hook 'eglot-ensure))
+	(add-hook 'js-mode-hook #'lsp)
+	(add-hook 'typescript-mode-hook #'lsp)
+	(add-hook 'js2-mode-hook #'lsp))
+
+(add-hook 'hack-local-variables-hook
+          (lambda () (when (derived-mode-p 'html-mode) (lsp))))
 
 (eval-after-load 'typescript-mode
 	(setq-default typescript-indent-level 2))
