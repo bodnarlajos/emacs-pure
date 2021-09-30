@@ -60,6 +60,7 @@
 (show-paren-mode +1)
 (recentf-mode)
 (doom-modeline-mode +1)
+(cua-mode +1)
 
 ;; set defaults
 (setq-default
