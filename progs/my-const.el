@@ -10,7 +10,6 @@
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
