@@ -50,6 +50,7 @@
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'doom-modeline)
+(straight-use-package 'which-key)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -61,6 +62,7 @@
 (recentf-mode)
 (doom-modeline-mode +1)
 (cua-mode +1)
+(which-key-mode +1)
 
 ;; set defaults
 (setq-default
