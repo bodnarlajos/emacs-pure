@@ -14,6 +14,8 @@
 																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
 																	 (disable-theme 'wombat)))
+	(add-to-list 'default-frame-alist '(height . 45))
+  (add-to-list 'default-frame-alist '(width . 140))
 	(set-frame-size (selected-frame) 140 45))
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
