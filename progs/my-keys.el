@@ -20,8 +20,8 @@
 (define-key my-prefix (kbd "w k") 'split-window-horizontally)
 ;; (define-key my-prefix (kbd "w") (cons "Windows" nil))
 
-(define-key my-prefix (kbd "d") 'duplicate-line)
 (define-key my-prefix (kbd "l") 'recenter)
+(define-key my-prefix (kbd "r") 'async-shell-command)
 (define-key my-prefix (kbd "i") 'indent-buffer)
 (define-key my-prefix (kbd "o") 'find-file)
 
@@ -31,11 +31,14 @@
 (define-key my-prefix (kbd "2") 'flycheck-list-errors)
 (define-key my-prefix (kbd "t") 'transpose-frame)
 (define-key my-prefix (kbd "b") 'consult-buffer)
+(define-key my-prefix (kbd "b") 'consult-buffer)
 (define-key my-prefix (kbd "c g") 'my/git-only)
 (define-key my-prefix (kbd "c p") 'project-find-file)
 (define-key my-prefix (kbd "c f") 'rg)
 ;; (define-key my-prefix (kbd "c") (cons "Commands" nil))
 ;; (define-key my-prefix (kbd "e") (cons "Text editing" nil))
+
+(define-key my-prefix (kbd "e d") 'duplicate-line)
 (define-key my-prefix (kbd "e r") 'query-replace)
 (define-key my-prefix (kbd "e a") 'mark-whole-buffer)
 (define-key my-prefix (kbd "e c") 'consult-register-store)
