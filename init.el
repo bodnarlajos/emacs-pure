@@ -52,6 +52,7 @@
 (straight-use-package 'dired-single)
 (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
+(straight-use-package 'visual-regexp)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
