@@ -4,12 +4,26 @@
 (defvar my/base-dir "c:/Projects")
 (defvar my/dark-theme-hook '())
 (defvar my/light-theme-hook '())
+(defvar my/cursor-color "red")
+(defvar my/cursor-type 'box)
 
 (defun my/theme () (my/light-theme))
 
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
+
+	(require 'my-haskell)
+	(require 'my-web)
+	(require 'my-csharp)
+	(require 'my-dev)
+
+	(eval-after-load 'org-mode
+		(setq org-todo-keywords
+					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+					org-support-shift-select t
+					org-log-done t))
+
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
