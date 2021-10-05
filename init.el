@@ -160,6 +160,7 @@
 	(setq ediff-merge-split-window-function 'split-window-vertically)
 	(setq ediff-diff-options "-w")
 	(setq ediff-window-setup-function #'ediff-setup-windows-plain))
+
 (add-hook 'so-long-mode-hook (lambda ()
 			       (require 'longlines)
 			       (longlines-mode)))
@@ -167,26 +168,8 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
-(set-cursor-color "red")
-(setq-default cursor-type 'box)
-
-
-;; #######################
-;; Modules
-;; #######################
-;; Haskell
-(require 'my-haskell)
-(require 'my-web)
-;; C#
-(require 'my-csharp)
-(require 'my-dev)
-
-;; Org
-(eval-after-load 'org-mode
-	(setq org-todo-keywords
-				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
-				org-support-shift-select t
-				org-log-done t))
+(set-cursor-color my/cursor-color)
+(setq-default cursor-type my/cursor-type)
 
 (my/end-of-init)
 
