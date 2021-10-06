@@ -8,6 +8,9 @@
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
 
+(defvar my/dark-theme-hook '())
+(defvar my/light-theme-hook '())
+
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))

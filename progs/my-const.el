@@ -30,9 +30,14 @@
 					org-log-done t))
 
 	(add-hook 'my/dark-theme-hook (lambda ()
+																	(disable-theme 'tsdh-light)
 																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat))))
+																	 (disable-theme 'wombat)
+																	 (load-theme 'tsdh-light)))
+	(add-to-list 'default-frame-alist '(height . 45))
+  (add-to-list 'default-frame-alist '(width . 140))
+	(set-frame-size (selected-frame) 140 45))
 
 (setq browse-url-generic-program "firefox")
 
