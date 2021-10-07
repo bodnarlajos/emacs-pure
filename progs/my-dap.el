@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'dap-mode)
 (straight-use-package 'dap-utils)
 

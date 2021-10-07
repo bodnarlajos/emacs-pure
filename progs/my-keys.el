@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'project)
 
 (define-prefix-command 'my-prefix)

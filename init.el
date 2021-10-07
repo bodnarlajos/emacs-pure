@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; (require 'package)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`

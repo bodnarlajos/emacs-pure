@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defconst my/start-time (current-time))
 (defconst my/autostart-dev-env t)
 

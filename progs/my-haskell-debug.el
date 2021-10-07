@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'dap-mode)
 (require 'dap-utils)
 
