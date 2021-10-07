@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (straight-use-package 'haskell-mode)
 (straight-use-package 'lsp-haskell)
 

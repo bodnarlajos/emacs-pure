@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'projectile)
 ;; (straight-use-package 'counsel-projectile)
 ;; (my/load-my "ivy")

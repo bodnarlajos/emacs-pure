@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (defun find-in-log (text)
 	"T."
 	(interactive "sCount: ")

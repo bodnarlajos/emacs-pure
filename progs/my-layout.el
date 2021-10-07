@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (push (cons "\\*eshell\\*" display-buffer--other-frame-action) display-buffer-alist)
 (push (cons "\\*rg\\*" display-buffer--other-frame-action) display-buffer-alist)
 (push (cons "^magit-log: " display-buffer--other-frame-action) display-buffer-alist)

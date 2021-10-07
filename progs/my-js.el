@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)

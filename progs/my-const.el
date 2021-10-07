@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; the projects
 (defvar my/project-dir '("/home/lbodnar/Projects"))
 ;; the exec 

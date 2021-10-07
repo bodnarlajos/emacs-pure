@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'csharp-mode)
 (straight-use-package 'eglot)
 

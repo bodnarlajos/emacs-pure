@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'ivy)
 (straight-use-package 'smex)
 (straight-use-package 'counsel)

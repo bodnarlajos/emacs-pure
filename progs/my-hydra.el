@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'hydra)
 
 (global-unset-key (kbd "C-l"))

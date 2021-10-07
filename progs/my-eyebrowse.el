@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 (require 'eyebrowse)
 (with-eval-after-load 'eyebrowse
 	(set-face-attribute 'eyebrowse-mode-line-active nil :foreground "red" :underline t :bold t)
