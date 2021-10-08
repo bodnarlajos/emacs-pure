@@ -36,4 +36,18 @@
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
+;; (defun my/set-bigger-font ()
+;; 	"bigger font size"
+;; 	(interactive)
+;; 	(custom-set-faces
+;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))))
+;; (defun my/set-normal-font ()
+;; 	"bigger font size"
+;; 	(interactive)
+;; 	(custom-set-faces
+;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 98 :width normal))))))
+
+;; (add-hook 'window-size-change-functions (lambda (a)
+;; 																					(run-if-monitor 'my/set-normal-font 'my/set-bigger-font)))
+
 (provide 'my-const)
