@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t -*-
 ;; https://github.com/purcell/emacs.d/blob/master/lisp/init-compile.el
 
 (setq-default compilation-scroll-output t)

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'dumb-jump)
 
 (with-eval-after-load 'dumb-jump

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'window-purpose)
 (require 'window-purpose)
 (purpose-mode +1)

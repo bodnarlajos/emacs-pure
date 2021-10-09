@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (defun my-long-line ()
 	"T."
 	(interactive)

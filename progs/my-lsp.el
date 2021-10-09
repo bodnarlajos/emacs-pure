@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
 
