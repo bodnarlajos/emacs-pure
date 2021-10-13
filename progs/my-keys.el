@@ -3,12 +3,28 @@
 (straight-use-package 'project)
 
 (define-prefix-command 'my-prefix)
+
+;; (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+;; (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+;; (global-set-key [escape] 'keyboard-quit)
+
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'keyboard-quit)
+
+
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
 (define-key my-prefix (kbd "m k") 'windmove-swap-states-down)
-;; (define-key my-prefix (kbd "m") (cons "Move" nil))
+
 (define-key my-prefix (kbd "g h") 'windmove-left)
 (define-key my-prefix (kbd "g l") 'windmove-right)
 (define-key my-prefix (kbd "g j") 'windmove-up)
@@ -50,6 +66,9 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
+(global-set-key (kbd "C-`") 'popper-cycle)
+(global-set-key (kbd "C-~") 'popper-toggle-type)
+
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
 
@@ -68,13 +87,13 @@
 (global-set-key (kbd "C-S-f") 'rg-dwim)
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
-(global-set-key (kbd "C-`") 'window-toggle-side-windows)
 (global-set-key (kbd "C-M-o") 'find-file-literally-at-point)
 (global-set-key (kbd "<M-return>") 'find-file-at-point)
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
-(global-set-key (kbd "<C-tab>") 'my/select-window)
+(global-set-key (kbd "<C-tab>") 'consult-buffer)
+(define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
@@ -83,7 +102,6 @@
 (add-hook 'org-mode-hook (lambda ()
 													 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window)))
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
-(global-set-key (kbd "C-`") 'push-mark-no-activate)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 
 (define-key mode-line-buffer-identification-keymap
