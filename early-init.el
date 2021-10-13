@@ -30,7 +30,7 @@
 
 (setq frame-inhibit-implied-resize t)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+;; (defalias 'yes-or-no-p 'y-or-n-p)
 
 (provide 'early-init)
 ;;; early-init.el ends here 
