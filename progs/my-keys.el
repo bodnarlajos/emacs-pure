@@ -43,6 +43,9 @@
 (define-key my-prefix (kbd "i") 'indent-buffer)
 (define-key my-prefix (kbd "o") 'find-file)
 
+;; frames
+(define-key my-prefix (kbd "f k") 'delete-frame)
+
 ;; (define-key my-prefix (kbd "s") (cons "Selection" nil))
 (define-key my-prefix (kbd "s l") 'my/xah-select-line)
 (define-key my-prefix (kbd "s c") 'my/copy-line)
@@ -57,7 +60,7 @@
 ;; (define-key my-prefix (kbd "e") (cons "Text editing" nil))
 
 (define-key my-prefix (kbd "e d") 'duplicate-line)
-(define-key my-prefix (kbd "e r") 'query-replace)
+(define-key my-prefix (kbd "e r") 'vr/replace)
 (define-key my-prefix (kbd "e a") 'mark-whole-buffer)
 (define-key my-prefix (kbd "e c") 'consult-register-store)
 (define-key my-prefix (kbd "e r") 'consult-register-load)
