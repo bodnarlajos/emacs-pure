@@ -24,7 +24,7 @@
          (side . bottom)
          (slot . 0)
 				 (window-parameters (mode-line-format . none)))
-				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*"
+				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
 				(".*"
 				 (display-buffer-reuse-window my/open-it-in-main))))
