@@ -22,15 +22,13 @@
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
-         (slot . 0)
-				 (window-parameters (mode-line-format . none)))
-				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*"
+         (slot . 0))
+				 ;; (window-parameters (mode-line-format . none)))
+				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
 				(".*"
 				 (display-buffer-reuse-window my/open-it-in-main))))
 
-(push (cons "^magit-log: " display-buffer--other-frame-action) display-buffer-alist)
-(push (cons ".~.*~$" display-buffer--other-frame-action) display-buffer-alist)
 (setq switch-to-buffer-preserve-window-point nil)
 (setq switch-to-buffer-obey-display-actions t)
 
