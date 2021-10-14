@@ -66,8 +66,7 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(global-set-key (kbd "C-`") 'popper-cycle)
-(global-set-key (kbd "C-~") 'popper-toggle-type)
+(global-set-key (kbd "C-`") 'window-toggle-side-windows)
 
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
