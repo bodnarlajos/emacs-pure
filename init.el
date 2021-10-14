@@ -53,12 +53,10 @@
 (straight-use-package 'ctrlf)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
-(straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
-(straight-use-package 'popper)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
