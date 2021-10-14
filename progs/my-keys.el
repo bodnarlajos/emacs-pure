@@ -45,6 +45,7 @@
 
 ;; frames
 (define-key my-prefix (kbd "f k") 'delete-frame)
+(define-key my-prefix (kbd "f c") 'make-frame)
 
 ;; (define-key my-prefix (kbd "s") (cons "Selection" nil))
 (define-key my-prefix (kbd "s l") 'my/xah-select-line)
