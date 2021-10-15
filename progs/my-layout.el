@@ -9,10 +9,11 @@
 (defun my/open-it-in-main (buffer alist)
 	"open buffer in main window"
 	(let ((curr-window (car (window-list))))
-		(message "open it in main window, curr-window: %s, buffer: %s" curr-window (buffer-name buffer))
-		(if (and (not (window-at-side-p curr-window)) (not (equal curr-window my/mainwindow)))
-				(set-window-buffer curr-window buffer)
-			(set-window-buffer my/mainwindow buffer))))
+		(let ((isSideWindow (window-parameter curr-window 'window-slot)))
+			(message "open it in main window, bufferName: %s" (buffer-name buffer))
+			(if (and (not (equal curr-window my/mainwindow)) (not isSideWindow))
+					(set-window-buffer curr-window buffer)
+				(set-window-buffer my/mainwindow buffer)))))
 
 (setq display-buffer-alist
       `(;; no window
@@ -23,7 +24,7 @@
          (window-height . 0.33)
          (side . bottom)
          (slot . 0))
-				 ;; (window-parameters (mode-line-format . none)))
+				;; (window-parameters (mode-line-format . none)))
 				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
 				(".*"

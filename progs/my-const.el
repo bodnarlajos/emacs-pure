@@ -8,15 +8,14 @@
 (defvar my/cursor-type 'box)
 
 (defun my/theme () (my/light-theme))
-
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
 
-	(require 'my-haskell)
+	(require 'my-dev)
+	;; (require 'my-haskell)
 	(require 'my-web)
 	(require 'my-csharp)
-	(require 'my-dev)
 
 	(eval-after-load 'org-mode
 		(setq org-todo-keywords
@@ -26,9 +25,9 @@
 
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(disable-theme 'tsdh-light)
-																	(load-theme 'wombat)))
+																	(load-theme 'tsdh-dark)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat)
+																	 (disable-theme 'tsdh-dark)
 																	 (load-theme 'tsdh-light)))
 	(add-to-list 'default-frame-alist '(height . 45))
   (add-to-list 'default-frame-alist '(width . 140))
