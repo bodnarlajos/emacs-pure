@@ -60,7 +60,7 @@
 (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
-(straight-use-package 'popper)
+(straight-use-package 'centaur-tabs)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -73,6 +73,7 @@
 (doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
+(centaur-tabs-mode +1)
 
 ;; set defaults
 (setq-default
