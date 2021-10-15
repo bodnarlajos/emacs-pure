@@ -14,7 +14,7 @@
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
-(defun my/theme () (my/light-theme))
+(defun my/theme () (my/dark-theme))
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
@@ -33,9 +33,9 @@
 
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(disable-theme 'tsdh-light)
-																	(load-theme 'wombat)))
+																	(load-theme 'tsdh-dark)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat)
+																	 (disable-theme 'tsdh-dark)
 																	 (load-theme 'tsdh-light)))
 	(add-to-list 'default-frame-alist '(height . 45))
   (add-to-list 'default-frame-alist '(width . 140))

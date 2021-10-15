@@ -3,6 +3,15 @@
 (require 'cl-lib)
 (straight-use-package 'ace-window)
 
+(defun my/enlarge-side-window ()
+	"Enlarge side window"
+	(interactive)
+	(enlarge-window 20))
+(defun my/shrink-side-window ()
+	"Shrink side window"
+	(interactive)
+	(shrink-window 20))
+
 (defun run-if-monitor (monitor1 monitor2)
 	"Retrive which monitor is in use"
 	(let ((dp (car (frame-position (selected-frame)))))
