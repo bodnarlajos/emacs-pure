@@ -4,13 +4,6 @@
 
 (define-prefix-command 'my-prefix)
 
-;; (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-;; (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-;; (global-set-key [escape] 'keyboard-quit)
-
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
@@ -67,7 +60,8 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(global-set-key (kbd "C-`") 'window-toggle-side-windows)
+(global-set-key (kbd "C-~") 'window-toggle-side-windows)
+(global-set-key (kbd "C-`") 'my/toggle-size-side-window-bottom)
 
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
@@ -92,7 +86,7 @@
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
-(global-set-key (kbd "<C-tab>") 'consult-buffer)
+(global-set-key (kbd "<C-tab>") 'other-window)
 (define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)

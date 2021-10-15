@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
+(straight-use-package 'treemacs)
+(global-unset-key (kbd "<f2>"))
+(global-set-key (kbd "<f2>") 'treemacs)
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)

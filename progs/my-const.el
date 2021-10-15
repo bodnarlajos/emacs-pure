@@ -4,6 +4,7 @@
 (defvar my/exec-dir '("c:/ProgramData/Git/usr/bin" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
+
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
@@ -23,15 +24,21 @@
 					org-support-shift-select t
 					org-log-done t))
 
+	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'tsdh-light)
-																	(load-theme 'tsdh-dark)))
+																	(disable-theme 'doom-one-light)
+																	(load-theme 'doom-one)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'tsdh-dark)
-																	 (load-theme 'tsdh-light)))
-	(add-to-list 'default-frame-alist '(height . 45))
-  (add-to-list 'default-frame-alist '(width . 140))
-	(set-frame-size (selected-frame) 140 45))
+																	 (disable-theme 'doom-one)
+																	 (load-theme 'doom-one-light)))
+	;; The window initial size
+	;; specified size
+  ;; (add-to-list 'default-frame-alist '(width . 140))
+	;; (add-to-list 'default-frame-alist '(height . 45))
+	;; (set-frame-size (selected-frame) 140 45))
+	;; fullscreen
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
