@@ -8,9 +8,7 @@
 (defvar my/notes-dir "/home/lbodnar/Documents/notes/")
 ;; the start dir
 (defvar my/base-dir "/home/lbodnar/Projects")
-;;
-(defvar my/dark-theme-hook '())
-(defvar my/light-theme-hook '())
+
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
@@ -18,7 +16,6 @@
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 	(require 'my-haskell)
 	(require 'my-web)
@@ -31,15 +28,21 @@
 					org-support-shift-select t
 					org-log-done t))
 
+	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'tsdh-light)
-																	(load-theme 'tsdh-dark)))
+																	(disable-theme 'doom-one-light)
+																	(load-theme 'doom-one)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'tsdh-dark)
-																	 (load-theme 'tsdh-light)))
-	(add-to-list 'default-frame-alist '(height . 45))
-  (add-to-list 'default-frame-alist '(width . 140))
-	(set-frame-size (selected-frame) 140 45))
+																	 (disable-theme 'doom-one)
+																	 (load-theme 'doom-one-light)))
+	;; The window initial size
+	;; specified size
+  ;; (add-to-list 'default-frame-alist '(width . 140))
+	;; (add-to-list 'default-frame-alist '(height . 45))
+	;; (set-frame-size (selected-frame) 140 45))
+	;; fullscreen
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
 
