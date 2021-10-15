@@ -44,7 +44,7 @@
 	(interactive)
 	(let ((bottomSideWindow (my/find-side-window-bottom)))
 		(when bottomSideWindow
-			(if (< my/side-bottom-window-size (window-total-height bottomSideWindow))
+			(if (< my/side-bottom-window-height-threshold (window-total-height bottomSideWindow))
 					(my/shrink-side-window)
 				(my/enlarge-side-window)))))
 
