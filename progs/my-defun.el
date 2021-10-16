@@ -7,7 +7,9 @@
 	"Make the frame readnoly
   It means that you can't switch the buffer"
 	(interactive)
-	(make-frame '((name . (concat "ro: " (buffer-name (current-buffer)))) (minibuffer . nil))))
+	(let ((buffname (concat "RO" (string-replace "." "" (string-replace "-" "" (buffer-name (current-buffer)))))))
+		;; (message "%s" buffname)
+		(make-frame '((name . "RO buffer") (minibuffer . nil) (mode-line-format . nil)))))
 
 (defun run-if-monitor (monitor1 monitor2)
 	"Retrive which monitor is in use"

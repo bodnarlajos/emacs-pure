@@ -12,7 +12,7 @@
 	(let ((wins (window-list))
 				(resultwin nil))
 		(while wins
-			(message "%s" (car wins))
+			;; (message "%s" (car wins))
 			(let ((winslot (window-parameter (car wins) 'window-slot))
 						(winside (window-parameter (car wins) 'window-side)))
 				(if (and winslot (equal winside 'bottom))
@@ -51,22 +51,23 @@
 
 (defun my/display-buffer-bottom (buffer alist)
 	"Display buffer in where i want it"
-	(message "my/display-buffer")
+	;; (message "my/display-buffer")
 	(display-buffer-reuse-window buffer alist))
 
 (defun my/open-it-in-main (buffer alist)
 	"open buffer in main window"
-	(let ((curr-window (car (window-list)))
+	(let ((curr-window (selected-window))
 				(curr-frame (selected-frame)))
-		(message "%s" (window-list))
-		(message "curr-frame: %s, main-frame: %s" curr-frame my/mainframe)
+		;; (message "%s" (window-list))
+		;; (message "curr-frame: %s, main-frame: %s" curr-frame my/mainframe)
 		(let ((isSideWindow (window-parameter curr-window 'window-slot)))
-			(message "open it in main window, bufferName: %s" (buffer-name buffer))
-			(if (equal curr-frame my/mainframe)
+			;; (message "open it in main window, bufferName: %s" (buffer-name buffer))
+			(if (equal curr-frame my/mainframe) ;; if main frame is the selected-frame
 					(if (and (not (equal curr-window my/mainwindow)) (not isSideWindow))
 							(set-window-buffer curr-window buffer)
 						(set-window-buffer my/mainwindow buffer))
-				(message "other frame")))))
+				(progn
+					(message "other frame"))))))
 
 (setq switch-to-buffer-preserve-window-point nil)
 (setq switch-to-buffer-obey-display-actions t)

@@ -39,6 +39,7 @@
 ;; frames
 (define-key my-prefix (kbd "f k") 'delete-frame)
 (define-key my-prefix (kbd "f c") 'make-frame)
+(define-key my-prefix (kbd "f r") 'my/make-frame-readonly)
 
 ;; (define-key my-prefix (kbd "s") (cons "Selection" nil))
 (define-key my-prefix (kbd "s l") 'my/xah-select-line)
@@ -60,8 +61,8 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(global-set-key (kbd "C-~") 'window-toggle-side-windows)
-(global-set-key (kbd "C-`") 'my/toggle-size-side-window-bottom)
+(global-set-key (kbd "<S-f1>") 'window-toggle-side-windows)
+(global-set-key (kbd "<f1>") 'my/toggle-size-side-window-bottom)
 
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
