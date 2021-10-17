@@ -17,10 +17,10 @@
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
 
+	(require 'my-dev)
 	(require 'my-haskell)
 	(require 'my-web)
 	(require 'my-csharp)
-	(require 'my-dev)
 
 	(eval-after-load 'org-mode
 		(setq org-todo-keywords
@@ -42,7 +42,7 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-) ;; end of my/end-of-init 
+	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
 
