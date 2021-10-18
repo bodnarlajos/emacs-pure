@@ -33,12 +33,14 @@
 																	 (load-theme 'doom-one-light)))
 	;; The window initial size
 	;; specified size
-  ;; (add-to-list 'default-frame-alist '(width . 140))
-	;; (add-to-list 'default-frame-alist '(height . 45))
+  (add-to-list 'default-frame-alist '(width . 160))
+	(add-to-list 'default-frame-alist '(height . 45))
+	(add-to-list 'default-frame-alist '(left . 400))
+	(add-to-list 'default-frame-alist '(top . 10))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-) ;; end of my/end-of-init 
+	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 

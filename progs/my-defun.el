@@ -3,6 +3,14 @@
 (require 'cl-lib)
 (straight-use-package 'ace-window)
 
+(defun my/make-frame-readonly ()
+	"Make the frame readnoly
+  It means that you can't switch the buffer"
+	(interactive)
+	(let ((buffname (concat "RO" (string-replace "." "" (string-replace "-" "" (buffer-name (current-buffer)))))))
+		;; (message "%s" buffname)
+		(make-frame '((name . "RO buffer") (minibuffer . nil) (mode-line-format . nil)))))
+
 (defun run-if-monitor (monitor1 monitor2)
 	"Retrive which monitor is in use"
 	(let ((dp (car (frame-position (selected-frame)))))
