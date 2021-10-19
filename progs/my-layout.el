@@ -77,14 +77,15 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\)\\*"
+        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|Async-native-compile-log\\|Ediff Registry\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
          (slot . 0))
 				;; it'll behave like normaly
-				("magit.*:.*\\|COMMIT_EDITMSG\\|\\*transient\\*\\|\\*Deletions\\*"
+				("magit.*:.*\\|\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
+				("COMMIT_EDITMSG" display-buffer-pop-up-window)
 				;; the other windows go to the main window
 				(".*"
 				 (display-buffer-reuse-window my/open-it-in-main))))
