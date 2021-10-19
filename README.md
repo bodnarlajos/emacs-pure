@@ -45,4 +45,5 @@ git log
 ![img3](/emacs3.png)
 emacs diff   
 ![img4](/emacs4.png)
+short menu
 ![img5](/emacs5.png)
