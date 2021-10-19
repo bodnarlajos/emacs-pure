@@ -37,3 +37,9 @@ bottom panel
 left panel   
 
 You can split the main window (C-x 2, C-x 3) but it won't do it manually.   
+
+## pics
+![img2](/emacs2.png)
+![img3](/emacs3.png)
+![img4](/emacs4.png)
+![img5](/emacs5.png)
