@@ -39,8 +39,10 @@ left panel
 You can split the main window (C-x 2, C-x 3) but it won't do it manually.   
 
 ## pics
-The f1 keypress
+The f1 keypress   
 ![img2](/emacs2.png)
+git log   
 ![img3](/emacs3.png)
+emacs diff   
 ![img4](/emacs4.png)
 ![img5](/emacs5.png)
