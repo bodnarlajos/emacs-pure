@@ -1,7 +1,7 @@
 # emacs-pure
 emacs with native + libjson what I used to use nowadays ...   
 I can start emacs with this setup ~ 1sec in win10 and linux as well.   
-
+![img1](/emacs1.png)
 ## Install   
 all-the-icons-install-fonts   
 win: msys2 (install: git, diffutils), ($PATH + c:/msys2/usr/bin)   
