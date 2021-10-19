@@ -141,22 +141,30 @@ Version 2017-11-01"
 
 (defun my/menu-item-formatter (itemName signer)
 	"."
-	(format "%s %-20s " signer itemName))
+	(format "|%s %-20s |" signer itemName))
+
+(defun my/menu-item (itemName)
+	"."
+	(my/menu-item-formatter itemName " "))
+
+(defun my/menu-item-for-program (itemName)
+	"."
+	(my/menu-item-formatter itemName "!"))
 
 (defun my/menu-base ()
 	"Base menu"				
 	(interactive)			
-	(let ((replaceString (my/menu-item-formatter "Replace string" " "))
-				(replaceStringRegex (my/menu-item-formatter "Replace regexp" " "))
-				(rg (my/menu-item-formatter "Rg search" " "))
-				(rgCurrent (my/menu-item-formatter "Rg in current dir" " "))
-				(revertBuffer (my/menu-item-formatter "Revert buffer" " "))
-				(magit (my/menu-item-formatter "Git" "!"))
-				(restclient (my/menu-item-formatter "RestClient" "!"))
-				(openNotes (my/menu-item-formatter "Notes" "!"))
-				(findnamedired (my/menu-item-formatter "Find in directory" "!"))
-				(development (my/menu-item-formatter "Start development" "!"))
-				(longLines (my/menu-item-formatter "Long lines" "!")))
+	(let ((replaceString (my/menu-item "Replace string"))
+				(replaceStringRegex (my/menu-item "Replace regexp"))
+				(rg (my/menu-item "Rg search"))
+				(rgCurrent (my/menu-item "Rg in current dir"))
+				(revertBuffer (my/menu-item "Revert buffer"))
+				(magit (my/menu-item-for-program "Git"))
+				(restclient (my/menu-item-for-program "RestClient"))
+				(openNotes (my/menu-item-for-program "Notes"))
+				(findnamedired (my/menu-item-for-program "Find in directory"))
+				(development (my/menu-item-for-program "Start development"))
+				(longLines (my/menu-item-for-program "Long lines")))
 		(let ((ido-list (list replaceStringRegex restclient revertBuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
