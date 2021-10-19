@@ -14,10 +14,10 @@ haskell (haskell-ide-engine)
 ...
 
 ## tools
-restclient
-ripgrep
-magit as git client
-notes in the menu can list a folder to reach the org files easily
+restclient   
+ripgrep   
+magit as git client   
+notes in the menu can list a folder to reach the org files easily   
 
 ## keys
 C-j a new key-prefix
