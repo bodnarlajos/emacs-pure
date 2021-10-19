@@ -30,11 +30,11 @@
 
 	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'doom-one-light)
+																	(disable-theme 'doom-acario-dark)
 																	(load-theme 'doom-one)))
 	(add-hook 'my/light-theme-hook (lambda ()
 																	 (disable-theme 'doom-one)
-																	 (load-theme 'doom-one-light)))
+																	 (load-theme 'doom-acario-light)))
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
