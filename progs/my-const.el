@@ -40,6 +40,21 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	(setq centaur-tabs-height 32)
+	(setq centaur-tabs-set-icons t)
+	(setq centaur-tabs-plain-icons t)
+	(setq centaur-tabs-set-bar 'left)
+	(setq centaur-tabs-set-bar 'under)
+	(setq centaur-tabs-set-modified-marker t)
+	(defun centaur-tabs-buffer-groups ()
+    (list
+		 (cond
+			((and
+				(string-equal "*" (substring (buffer-name) 0 1))
+				(not (string-equal "*scratch*" (buffer-name))))
+			 "Messages")
+			(t
+			 "All"))))
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
