@@ -57,6 +57,7 @@
 				(string-equal "*" (substring (buffer-name) 0 1))
 				(not (member (buffer-name) '("*scratch*" "*HTTP Response*"))))
 			 "Messages")
+			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
 			(t
 			 "All"))))
 	) ;; end of my/end-of-init 
