@@ -45,15 +45,17 @@
 	(setq centaur-tabs-height 32)
 	(setq centaur-tabs-set-icons t)
 	(setq centaur-tabs-plain-icons t)
-	(setq centaur-tabs-set-bar 'left)
+	;; (setq centaur-tabs-set-bar 'left)
 	(setq centaur-tabs-set-bar 'under)
 	(setq centaur-tabs-set-modified-marker t)
+  (setq centaur-tabs-modified-marker "●")	
+	(centaur-tabs-mode +1)
 	(defun centaur-tabs-buffer-groups ()
     (list
 		 (cond
 			((and
 				(string-equal "*" (substring (buffer-name) 0 1))
-				(not (string-equal "*scratch*" (buffer-name))))
+				(not (member (buffer-name) '("*scratch*" "*HTTP Response*"))))
 			 "Messages")
 			(t
 			 "All"))))

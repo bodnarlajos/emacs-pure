@@ -1,7 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'cl-lib)
-(straight-use-package 'ace-window)
+;; (straight-use-package 'ace-window)
+
+(defun my/start/restclient ()
+	"Start restclient"
+	(interactive)
+	(straight-use-package 'restclient)
+	(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
 
 (defun my/make-frame-readonly ()
 	"Make the frame readnoly
@@ -119,7 +125,7 @@ Version 2017-11-01"
                   (point))))
     (comment-or-uncomment-region start end)))
 
-(defun my/git-only ()
+(defun my/start/git ()
   "Open the magit and remove other windows"
   (interactive)
 	(require 'my-magit)
@@ -133,34 +139,37 @@ Version 2017-11-01"
 	(setq ido-text "Run Command")
 	(ido-exit-minibuffer))
 
+(defun my/menu-item-formatter (itemName signer)
+	"."
+	(format "%s %-20s " signer itemName))
+
 (defun my/menu-base ()
 	"Base menu"				
 	(interactive)			
-	(let ((replaceString "Replace string")
-				(replaceStringRegex "Replace regexp")
-				(rg "Rg search")
-				(rgCurrent "Rg in current dir")
-				(revertBuffer "Revert buffer")
-				(magit "Git")
-				(openNotes "Notes ...")
-				(findnamedired "Find in directory")
-				(development "Start development!")
-				(longLines "Long lines")
-				(xahBuffer "New buffer"))
-		(let ((ido-list (list replaceStringRegex revertBuffer rg rgCurrent development xahBuffer openNotes magit longLines replaceString findnamedired)))
-			(let ((res (completing-read "Action: " ido-list)))
+	(let ((replaceString (my/menu-item-formatter "Replace string" " "))
+				(replaceStringRegex (my/menu-item-formatter "Replace regexp" " "))
+				(rg (my/menu-item-formatter "Rg search" " "))
+				(rgCurrent (my/menu-item-formatter "Rg in current dir" " "))
+				(revertBuffer (my/menu-item-formatter "Revert buffer" " "))
+				(magit (my/menu-item-formatter "Git" "!"))
+				(restclient (my/menu-item-formatter "RestClient" "!"))
+				(openNotes (my/menu-item-formatter "Notes" "!"))
+				(findnamedired (my/menu-item-formatter "Find in directory" "!"))
+				(development (my/menu-item-formatter "Start development" "!"))
+				(longLines (my/menu-item-formatter "Long lines" "!")))
+		(let ((ido-list (list replaceStringRegex restclient revertBuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
+			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res replaceStringRegex) (call-interactively 'vr/replace))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res longLines) (call-interactively 'my/long-line))
 				 ((string-equal res rg) (call-interactively 'rg))
-				 ((string-equal res rgCurrent) (call-interactively 'consult-ripgrep))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
-				 ((string-equal res magit) (call-interactively 'my/git-only))
-				 ((string-equal res development) (call-interactively 'my/start-dev-env))
-				 ((string-equal res xahBuffer) (call-interactively 'my/xah-new-empty-buffer)))))))
+				 ((string-equal res magit) (call-interactively 'my/start/git))
+				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
+				 ((string-equal res development) (call-interactively 'my/start-dev-env)))))))
 
 (defun my/dumb-jump-go ()
 	"Initialize and jump"
