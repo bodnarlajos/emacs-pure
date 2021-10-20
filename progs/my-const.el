@@ -50,6 +50,7 @@
 	(setq centaur-tabs-set-modified-marker t)
   (setq centaur-tabs-modified-marker "●")	
 	(centaur-tabs-mode +1)
+	(add-hook 'ediff-mode 'centaur-tabs-local-mode)
 	(defun centaur-tabs-buffer-groups ()
     (list
 		 (cond
