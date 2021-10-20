@@ -51,7 +51,6 @@
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
-(straight-use-package 'smex)
 (straight-use-package 'ctrlf)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
