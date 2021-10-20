@@ -24,13 +24,12 @@
 					org-support-shift-select t
 					org-log-done t))
 
-	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'doom-one-light)
-																	(load-theme 'doom-one)))
+																	(disable-theme 'modus-operandi)
+																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'doom-one)
-																	 (load-theme 'doom-one-light)))
+																	 (disable-theme 'wombat)
+																	 (load-theme 'modus-operandi)))
 	;; The window initial size
 	;; specified size
   (add-to-list 'default-frame-alist '(width . 160))
@@ -52,10 +51,11 @@
     (list
 		 (cond
 			((and
-				(string-equal "*" (substring (buffer-name) 0 1))
-				(not (member (buffer-name) '("*scratch*" "*HTTP Response*"))))
+				(string-prefix-p "*" (buffer-name))
+				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize"))))
 			 "Messages")
 			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
+			((string-prefix-p "magit-revision" (buffer-name)) "Magitrevision")
 			(t
 			 "All"))))
 	) ;; end of my/end-of-init 

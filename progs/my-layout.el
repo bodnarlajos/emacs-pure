@@ -54,6 +54,11 @@
 	;; (message "my/display-buffer")
 	(display-buffer-reuse-window buffer alist))
 
+(defun my/display-buffer-second (buffer alist)
+	"Display buffer in where i want it"
+	;; (message "my/display-buffer")
+	(display-buffer-reuse-window buffer alist))
+
 (defun my/open-it-in-main (buffer alist)
 	"open buffer in main window"
 	(let ((curr-window (selected-window))
@@ -83,8 +88,9 @@
          (side . bottom)
          (slot . 0))
 				;; it'll behave like normaly
-				("magit.*:.*\\|\\*transient\\*\\|\\*Deletions\\*"
+				("\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
+				("magit-revision:.*" (display-buffer-reuse-window display-buffer-pop-up-window))
 				("COMMIT_EDITMSG" display-buffer-pop-up-window)
 				;; the other windows go to the main window
 				(".*"
