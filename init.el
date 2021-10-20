@@ -129,7 +129,7 @@
 
 ;; selectrum config
 (custom-set-variables
- '(selectrum-max-window-height 25))
+ '(selectrum-max-window-height 15))
 
 ;; Better scrolling
 (setq redisplay-dont-pause t
