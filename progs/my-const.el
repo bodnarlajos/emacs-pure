@@ -33,9 +33,10 @@
 																	 (load-theme 'modus-operandi)))
 	;; modus-operandi theme changing
 	(eval-after-load 'magit-status
-		(custom-set-variables
+		(custom-set-faces
 		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
-		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))))
+		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
+		 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
 
 	;; msys2 find dir in windows
 	(setq find-program "c:/msys64/usr/bin/find.exe")
@@ -57,6 +58,9 @@
 	(setq centaur-tabs-set-modified-marker t)
   (setq centaur-tabs-modified-marker "●")
 	(setq centaur-tabs-cycle-scope 'tabs)
+	(custom-set-variables
+	 '(centaur-tabs-hide-tabs-hooks
+		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
 	(centaur-tabs-mode +1)
 
 	(defun centaur-tabs-buffer-groups ()
@@ -67,7 +71,6 @@
 				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
 			 "Messages")
 			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
-			((string-prefix-p "magit-revision" (buffer-name)) "Magitrevision")
 			(t
 			 "All"))))
 	) ;; end of my/end-of-init 
