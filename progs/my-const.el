@@ -28,12 +28,22 @@
 					org-support-shift-select t
 					org-log-done t))
 
+	(straight-use-package 'tango-plus-theme)
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(disable-theme 'modus-operandi)
-																	(load-theme 'wombat)))
+																	(load-theme 'tango-plus)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat)
+																	 (disable-theme 'tango-plus)
 																	 (load-theme 'modus-operandi)))
+	;; modus-operandi theme changing
+	(eval-after-load 'magit-status
+		(custom-set-variables
+		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
+		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))))
+
+	;; msys2 find dir in windows
+	(setq find-program "c:/msys64/usr/bin/find.exe")
+	
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
@@ -55,7 +65,7 @@
 		 (cond
 			((and
 				(string-prefix-p "*" (buffer-name))
-				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize"))))
+				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
 			 "Messages")
 			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
 			((string-prefix-p "magit-revision" (buffer-name)) "Magitrevision")
