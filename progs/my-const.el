@@ -28,12 +28,23 @@
 					org-support-shift-select t
 					org-log-done t))
 
+	(straight-use-package 'tango-plus-theme)
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(disable-theme 'modus-operandi)
-																	(load-theme 'wombat)))
+																	(load-theme 'tango-plus)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat)
+																	 (disable-theme 'tango-plus)
 																	 (load-theme 'modus-operandi)))
+	;; modus-operandi theme changing
+	(eval-after-load 'magit-status
+		(custom-set-faces
+		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
+		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
+		 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
+
+	;; msys2 find dir in windows
+	(setq find-program "c:/msys64/usr/bin/find.exe")
+	
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
@@ -47,18 +58,21 @@
 	;; (setq centaur-tabs-set-bar 'left)
 	(setq centaur-tabs-set-bar 'under)
 	(setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-modified-marker "●")	
+  (setq centaur-tabs-modified-marker "●")
+	(setq centaur-tabs-cycle-scope 'tabs)
+	(custom-set-variables
+	 '(centaur-tabs-hide-tabs-hooks
+		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
 	(centaur-tabs-mode +1)
-	(add-hook 'ediff-mode 'centaur-tabs-local-mode)
+
 	(defun centaur-tabs-buffer-groups ()
     (list
 		 (cond
 			((and
 				(string-prefix-p "*" (buffer-name))
-				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize"))))
+				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
 			 "Messages")
 			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
-			((string-prefix-p "magit-revision" (buffer-name)) "Magitrevision")
 			(t
 			 "All"))))
 	) ;; end of my/end-of-init 

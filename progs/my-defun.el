@@ -296,11 +296,15 @@ Version 2017-11-01"
 (defun move-line-up ()
 	(interactive)
 	(let ((col (current-column)))
-		(save-excursion
-			(transpose-lines 1)
-			(forward-line -1))
-		(forward-line -1)
+		(transpose-lines 1)
+		(forward-line -2)
 		(move-to-column col)))
+
+(defun my/select-all ()
+	"T."
+	(interactive)
+	(cua-exchange-point-and-mark nil)
+	(mark-whole-buffer))
 
 (defun parent-directory (dir)
 	(unless (equal "/" dir)

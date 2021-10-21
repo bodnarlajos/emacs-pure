@@ -54,10 +54,17 @@
 	;; (message "my/display-buffer")
 	(display-buffer-reuse-window buffer alist))
 
-(defun my/display-buffer-second (buffer alist)
+(defun my/display-buffer-magit (buffer alist)
 	"Display buffer in where i want it"
 	;; (message "my/display-buffer")
-	(display-buffer-reuse-window buffer alist))
+	(let ((commitBufferWin (get-buffer-window "COMMIT_EDITMSG"))
+				(currWin (selected-window)))
+		(if (equal "COMMIT_EDITMSG" (buffer-name buffer))
+				(display-buffer-pop-up-window buffer alist)
+			(if (equal commitBufferWin currWin)
+					(set-window-buffer my/mainwindow buffer)
+				(display-buffer-reuse-window buffer alist))))
+	);; my/display-buffer-magit
 
 (defun my/open-it-in-main (buffer alist)
 	"open buffer in main window"
@@ -82,7 +89,7 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|Async-native-compile-log\\|Ediff Registry\\)\\*"
+        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
@@ -90,8 +97,7 @@
 				;; it'll behave like normaly
 				("\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
-				("magit-revision:.*" (display-buffer-reuse-window display-buffer-pop-up-window))
-				("COMMIT_EDITMSG" display-buffer-pop-up-window)
+				("magit-diff:.*\\|COMMIT_EDITMSG" my/display-buffer-magit)
 				;; the other windows go to the main window
 				(".*"
 				 (display-buffer-reuse-window my/open-it-in-main))))
