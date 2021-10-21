@@ -57,9 +57,10 @@
 	;; (setq centaur-tabs-set-bar 'left)
 	(setq centaur-tabs-set-bar 'under)
 	(setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-modified-marker "●")	
+  (setq centaur-tabs-modified-marker "●")
+	(setq centaur-tabs-cycle-scope 'tabs)
 	(centaur-tabs-mode +1)
-	(add-hook 'ediff-mode 'centaur-tabs-local-mode)
+
 	(defun centaur-tabs-buffer-groups ()
     (list
 		 (cond
