@@ -12,6 +12,12 @@
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
+	;; add shell
+	;; (setq explicit-shell-file-name "c:/msys64/usr/bin/zsh.exe")
+	;; (setq shell-file-name "zsh")
+	;; (setq explicit-zsh.exe-args '("--login" "-i"))
+	;; (setenv "SHELL" shell-file-name)
+	;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
 
 	(require 'my-dev)
 	;; (require 'my-haskell)

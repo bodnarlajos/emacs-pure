@@ -57,9 +57,9 @@
 (defun my/display-buffer-magit (buffer alist)
 	"Display buffer in where i want it"
 	;; (message "my/display-buffer")
-	(let ((commitBufferWin (get-buffer-window "COMMIT_EDITMSG"))
+	(let ((commitBufferWin (or (get-buffer-window "COMMIT_EDITMSG") (get-buffer-window "MERGE_MSG")))
 				(currWin (selected-window)))
-		(if (equal "COMMIT_EDITMSG" (buffer-name buffer))
+		(if (member  (buffer-name buffer) '("COMMIT_EDITMSG" "MERGE_MSG"))
 				(display-buffer-pop-up-window buffer alist)
 			(if (equal commitBufferWin currWin)
 					(set-window-buffer my/mainwindow buffer)
@@ -89,7 +89,7 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
+        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
