@@ -12,7 +12,7 @@
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
-(defun my/theme () (my/dark-theme))
+(defun my/theme () (my/light-theme))
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
