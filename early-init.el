@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defconst my/start-time (current-time))
-(defconst my/autostart-dev-env t)
+(defconst my/autostart-dev-env nil)
 
 (defvar file-name-handler-alist-old file-name-handler-alist)
 (defconst is-lbodnar (string-equal system-name "debla"))
@@ -21,7 +21,7 @@
                       (float-time (time-since my/start-time)))) t)
 
 (tool-bar-mode   -1)
-(menu-bar-mode   -1)
+;; (menu-bar-mode   -1)
 (scroll-bar-mode -1)
 (tooltip-mode    -1) ;; Tool tip in the echo
 (flymake-mode -1)
