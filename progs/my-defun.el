@@ -3,6 +3,18 @@
 (require 'cl-lib)
 ;; (straight-use-package 'ace-window)
 
+(defun my/check/start-with-in-list (str thelist)
+	"T."
+	(let ((inlist thelist)
+				(result nil))
+		(while inlist
+			(when (string-prefix-p (car inlist) str)
+				(progn
+					(setq result (car inlist))
+					(setq inlist nil)))
+			(setq inlist (cdr inlist)))
+		result))
+
 (defun my/start/restclient ()
 	"Start restclient"
 	(interactive)
@@ -35,25 +47,25 @@
 	(ace-swap-window))
 
 (defun my/copy-line (arg)
-  "Copy lines (as many as prefix argument) in the kill ring.
+	"Copy lines (as many as prefix argument) in the kill ring.
       Ease of use features:
       - Move to start of next line.
       - Appends the copy on sequential calls.
       - Use newline as last char even on the last line of the buffer.
       - If region is active, copy its lines."
-  (interactive "p")
-  (let ((beg (line-beginning-position))
-        (end (line-end-position arg)))
-    (when mark-active
-      (if (> (point) (mark))
-          (setq beg (save-excursion (goto-char (mark)) (line-beginning-position)))
-        (setq end (save-excursion (goto-char (mark)) (line-end-position)))))
-    (if (eq last-command 'copy-line)
-        (kill-append (buffer-substring beg end) (< end beg))
-      (kill-ring-save beg end)))
-  (kill-append "\n" nil)
-  (beginning-of-line (or (and arg (1+ arg)) 2))
-  (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
+	(interactive "p")
+	(let ((beg (line-beginning-position))
+				(end (line-end-position arg)))
+		(when mark-active
+			(if (> (point) (mark))
+					(setq beg (save-excursion (goto-char (mark)) (line-beginning-position)))
+				(setq end (save-excursion (goto-char (mark)) (line-end-position)))))
+		(if (eq last-command 'copy-line)
+				(kill-append (buffer-substring beg end) (< end beg))
+			(kill-ring-save beg end)))
+	(kill-append "\n" nil)
+	(beginning-of-line (or (and arg (1+ arg)) 2))
+	(if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
 (defun my/ffap ()
 	"ffap"
@@ -62,14 +74,14 @@
 		(browse-url url)))
 
 (defun my/xah-new-empty-buffer ()
-  "Create a new empty buffer."
-  (interactive)
-  (let (($buf (generate-new-buffer "untitled")))
-    (switch-to-buffer $buf)
-    (funcall initial-major-mode)
-    (setq buffer-offer-save t)
-    $buf
-    ))
+	"Create a new empty buffer."
+	(interactive)
+	(let (($buf (generate-new-buffer "untitled")))
+		(switch-to-buffer $buf)
+		(funcall initial-major-mode)
+		(setq buffer-offer-save t)
+		$buf
+		))
 
 (defun my/add-dev-hook (fv)
 	"Add or run a function when dev mode is active or not"
@@ -85,49 +97,49 @@
 		(find-file currBuffPath)))
 
 (defun push-mark-no-activate ()
-  "Pushes `point' to `mark-ring' and does not activate the region
+	"Pushes `point' to `mark-ring' and does not activate the region
    Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
-  (interactive)
-  (push-mark (point) t nil)
-  (message "Pushed mark to ring"))
+	(interactive)
+	(push-mark (point) t nil)
+	(message "Pushed mark to ring"))
 
 (defun exchange-point-and-mark-no-activate ()
-  "Identical to \\[exchange-point-and-mark] but will not activate the region."
-  (interactive)
-  (exchange-point-and-mark)
-  (deactivate-mark nil))
+	"Identical to \\[exchange-point-and-mark] but will not activate the region."
+	(interactive)
+	(exchange-point-and-mark)
+	(deactivate-mark nil))
 
 (defun my/xah-select-line ()
-  "Select current line. If region is active, extend selection downward by line.
+	"Select current line. If region is active, extend selection downward by line.
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
 Version 2017-11-01"
-  (interactive)
-  (if (region-active-p)
-      (progn
-        (forward-line 1)
-        (end-of-line))
-    (progn
-      (end-of-line)
-      (set-mark (line-beginning-position)))))
+	(interactive)
+	(if (region-active-p)
+			(progn
+				(forward-line 1)
+				(end-of-line))
+		(progn
+			(end-of-line)
+			(set-mark (line-beginning-position)))))
 
 (defun my/comment-uncomment-line ()
-  (interactive)
-  (let ((start (line-beginning-position))
-        (end (line-end-position)))
-    (when (or (not transient-mark-mode) (region-active-p))
-      (setq start (save-excursion
-                    (goto-char (region-beginning))
-                    (beginning-of-line)
-                    (point))
-            end (save-excursion
-                  (goto-char (region-end))
-                  (end-of-line)
-                  (point))))
-    (comment-or-uncomment-region start end)))
+	(interactive)
+	(let ((start (line-beginning-position))
+				(end (line-end-position)))
+		(when (or (not transient-mark-mode) (region-active-p))
+			(setq start (save-excursion
+										(goto-char (region-beginning))
+										(beginning-of-line)
+										(point))
+						end (save-excursion
+									(goto-char (region-end))
+									(end-of-line)
+									(point))))
+		(comment-or-uncomment-region start end)))
 
 (defun my/start/git ()
-  "Open the magit and remove other windows"
-  (interactive)
+	"Open the magit and remove other windows"
+	(interactive)
 	(require 'my-magit)
 	(my/magit-status)
 	(delete-other-windows))
@@ -284,11 +296,15 @@ Version 2017-11-01"
 (defun move-line-up ()
 	(interactive)
 	(let ((col (current-column)))
-		(save-excursion
-			(transpose-lines 1)
-			(forward-line -1))
-		(forward-line -1)
+		(transpose-lines 1)
+		(forward-line -2)
 		(move-to-column col)))
+
+(defun my/select-all ()
+	"T."
+	(interactive)
+	(cua-exchange-point-and-mark nil)
+	(mark-whole-buffer))
 
 (defun parent-directory (dir)
 	(unless (equal "/" dir)
