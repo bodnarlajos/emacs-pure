@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defvar my/project-dir '("c:/Projects"))
-(defvar my/exec-dir '("c:/ProgramData/Git/usr/bin" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/Git/mingw64/bin"))
+(defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
 
@@ -13,11 +13,11 @@
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
 	;; add shell
-	;; (setq explicit-shell-file-name "c:/msys64/usr/bin/zsh.exe")
-	;; (setq shell-file-name "zsh")
-	;; (setq explicit-zsh.exe-args '("--login" "-i"))
-	;; (setenv "SHELL" shell-file-name)
-	;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
+	(setq explicit-shell-file-name "C:/Program Files/Git/usr/bin/zsh.exe")
+	(setq shell-file-name "C:/Program Files/Git/usr/bin/zsh.exe")
+	(setq explicit-zsh.exe-args '("--login" "-i"))
+	(setenv "SHELL" shell-file-name)
+	(add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
 
 	(require 'my-dev)
 	;; (require 'my-haskell)
@@ -30,28 +30,26 @@
 					org-support-shift-select t
 					org-log-done t))
 
-	(straight-use-package 'tango-plus-theme)
 	(add-hook 'my/dark-theme-hook (lambda ()
 																	(disable-theme 'modus-operandi)
-																	(load-theme 'tango-plus)))
+																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'tango-plus)
+																	 (disable-theme 'wombat)
 																	 (load-theme 'modus-operandi)))
 	;; modus-operandi theme changing
 	(eval-after-load 'magit-status
 		(custom-set-faces
 		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
-		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
-		 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
+		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))))
 
-	;; msys2 find dir in windows
-	(setq find-program "c:/msys64/usr/bin/find.exe")
+	;; git-bash find dir in windows
+	(setq find-program "C:/Program Files/Git/usr/bin/find.exe")
 	
 	;; The window initial size
 	;; specified size
-  (add-to-list 'default-frame-alist '(width . 160))
-	(add-to-list 'default-frame-alist '(height . 45))
-	(add-to-list 'default-frame-alist '(left . 400))
+  (add-to-list 'default-frame-alist '(width . 220))
+	(add-to-list 'default-frame-alist '(height . 55))
+	(add-to-list 'default-frame-alist '(left . 200))
 	(add-to-list 'default-frame-alist '(top . 10))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
@@ -68,7 +66,7 @@
 	 '(centaur-tabs-hide-tabs-hooks
 		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
 	(centaur-tabs-mode +1)
-
+	(centaur-tabs-change-fonts "Segoe UI" 100)
 	(defun centaur-tabs-buffer-groups ()
     (list
 		 (cond
