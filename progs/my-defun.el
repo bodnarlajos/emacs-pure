@@ -153,7 +153,7 @@ Version 2017-11-01"
 
 (defun my/menu-item-formatter (itemName signer)
 	"."
-	(format "|%s %-20s |" signer itemName))
+	(format "|%s %-200s |" signer itemName))
 
 (defun my/menu-item (itemName)
 	"."
@@ -173,11 +173,12 @@ Version 2017-11-01"
 				(revertBuffer (my/menu-item "Revert buffer"))
 				(magit (my/menu-item-for-program "Git"))
 				(restclient (my/menu-item-for-program "RestClient"))
+				(newbuffer (my/menu-item "New buffer"))
 				(openNotes (my/menu-item-for-program "Notes"))
 				(findnamedired (my/menu-item-for-program "Find in directory"))
 				(development (my/menu-item-for-program "Start development"))
 				(longLines (my/menu-item-for-program "Long lines")))
-		(let ((ido-list (list replaceStringRegex restclient revertBuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
+		(let ((ido-list (list replaceStringRegex restclient revertBuffer newbuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
 			(let ((res (selectrum-completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
@@ -189,6 +190,7 @@ Version 2017-11-01"
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
 				 ((string-equal res magit) (call-interactively 'my/start/git))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
+				 ((string-equal res newbuffer) (call-interactively 'centaur-tabs--create-new-tab))
 				 ((string-equal res development) (call-interactively 'my/start-dev-env)))))))
 
 (defun my/dumb-jump-go ()
