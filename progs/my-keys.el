@@ -12,6 +12,9 @@
 (global-set-key [escape] 'keyboard-quit)
 
 
+(global-set-key (kbd "<M-left>") 'winner-undo)
+(global-set-key (kbd "<M-right>") 'winner-redo)
+
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
@@ -82,8 +85,9 @@
 (global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
-(global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
-(global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
+;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
+(global-set-key (kbd "<C-tab>") 'other-window)
+;; (global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
 (define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)

@@ -1,14 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-;; the projects
 (defvar my/project-dir '("/home/lbodnar/Projects"))
-;; the exec 
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
-;; the notes
 (defvar my/notes-dir "/home/lbodnar/Documents/notes/")
-;; the start dir
 (defvar my/base-dir "/home/lbodnar/Projects")
-
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
@@ -36,51 +31,19 @@
 
 	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'doom-monokai-octagon)
-																	(load-theme 'doom-one)))
+																	(disable-theme 'dichromacy)
+																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'doom-one)
-																	 (load-theme 'doom-monokai-octagon)))
-	;; modus-operandi theme changing
-	;; (eval-after-load 'magit-status
-	;; 	(custom-set-faces
-	;; 	 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
-	;; 	 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
-	;; 	 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
+																	 (disable-theme 'wombat)
+																	 (load-theme 'dichromacy)))
 
-	;; msys2 find dir in windows
-	(setq find-program "c:/msys64/usr/bin/find.exe")
-	
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
 	;; (add-to-list 'default-frame-alist '(height . 45))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-	(setq centaur-tabs-height 32)
-	(setq centaur-tabs-set-icons t)
-	(setq centaur-tabs-plain-icons t)
-	;; (setq centaur-tabs-set-bar 'left)
-	(setq centaur-tabs-set-bar 'under)
-	(setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-modified-marker "●")
-	(setq centaur-tabs-cycle-scope 'tabs)
-	(custom-set-variables
-	 '(centaur-tabs-hide-tabs-hooks
-		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
-
-	(defun centaur-tabs-buffer-groups ()
-    (list
-		 (cond
-			((and
-				(string-prefix-p "*" (buffer-name))
-				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
-			 "Messages")
-			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
-			(t
-			 "All"))))
-	(centaur-tabs-mode +1)
+	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
