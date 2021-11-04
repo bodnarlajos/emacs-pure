@@ -2,13 +2,7 @@
 
 (defvar my/project-dir '("/home/lbodnar/Projects"))
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
-<<<<<<< HEAD
-;; the notes
 (defvar my/notes-dir "/home/lbodnar/MyDocuments/notes/")
-;; the start dir
-=======
-(defvar my/notes-dir "/home/lbodnar/Documents/notes/")
->>>>>>> main
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
@@ -49,7 +43,7 @@
 	;; (add-to-list 'default-frame-alist '(height . 45))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
-	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
