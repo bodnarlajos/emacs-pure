@@ -43,7 +43,7 @@
 (load (expand-file-name (concat user-emacs-directory "custom.el")))
 (require 'my-defun)
 (require 'my-keys)
-(require 'my-layout)
+;; (require 'my-layout)
 
 (straight-use-package 'selectrum)
 (straight-use-package 'selectrum-prescient)
@@ -56,10 +56,10 @@
 (straight-use-package 'transpose-frame)
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
-(straight-use-package 'doom-modeline)
+;; (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
-(straight-use-package 'centaur-tabs)
+;; (straight-use-package 'centaur-tabs)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -69,7 +69,7 @@
 (ctrlf-mode +1)
 (show-paren-mode +1)
 (recentf-mode)
-(doom-modeline-mode +1)
+;; (doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
 
@@ -154,23 +154,25 @@
 
 ;; add exec-path
 (mapcar (lambda (cdir)
-	  (add-to-list 'exec-path cdir)) my/exec-dir)
+					(add-to-list 'exec-path cdir)) my/exec-dir)
 (mapcar (lambda (cdir)
-	  (setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
+					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
 
 (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
+(winner-mode +1)
 (with-eval-after-load 'ediff
 	;; add ediff configuration
 	(setq ediff-split-window-function 'split-window-horizontally)
 	(setq ediff-merge-split-window-function 'split-window-vertically)
 	(setq ediff-diff-options "-w")
+	(add-hook 'ediff-after-quit-hook-internal 'winner-undo)
 	(setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (add-hook 'so-long-mode-hook (lambda ()
-			       (require 'longlines)
-			       (longlines-mode)))
+															 (require 'longlines)
+															 (longlines-mode)))
 
 (cd my/base-dir)
 
