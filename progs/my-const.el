@@ -18,7 +18,12 @@
 	(setq explicit-zsh.exe-args '("--login" "-i"))
 	(setenv "SHELL" shell-file-name)
 	(add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-
+	(custom-set-variables
+	 '(ediff-diff-program "C:/Program Files/Git/usr/bin/diff.exe")
+	 '(ediff-diff3-program "C:/Program Files/Git/usr/bin/diff3.exe")
+	 '(ediff-custom-diff-program "C:/Program Files/Git/usr/bin/diff3.exe"))
+	(setq find-program "C:/Program Files/Git/usr/bin/find.exe")
+	
 	(require 'my-dev)
 	;; (require 'my-haskell)
 	(require 'my-web)
