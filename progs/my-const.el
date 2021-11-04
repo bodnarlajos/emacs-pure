@@ -34,19 +34,19 @@
 					org-support-shift-select t
 					org-log-done t))
 
-	(straight-use-package 'tango-plus-theme)
+	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'modus-operandi)
-																	(load-theme 'tango-plus)))
+																	(disable-theme 'doom-monokai-octagon)
+																	(load-theme 'doom-one)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'tango-plus)
-																	 (load-theme 'modus-operandi)))
+																	 (disable-theme 'doom-one)
+																	 (load-theme 'doom-monokai-octagon)))
 	;; modus-operandi theme changing
-	(eval-after-load 'magit-status
-		(custom-set-faces
-		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
-		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
-		 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
+	;; (eval-after-load 'magit-status
+	;; 	(custom-set-faces
+	;; 	 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
+	;; 	 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))
+	;; 	 '(magit-section-highlight ((t (:extend t :background "ghost white"))))))
 
 	;; msys2 find dir in windows
 	(setq find-program "c:/msys64/usr/bin/find.exe")
@@ -69,7 +69,6 @@
 	(custom-set-variables
 	 '(centaur-tabs-hide-tabs-hooks
 		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
-	(centaur-tabs-mode +1)
 
 	(defun centaur-tabs-buffer-groups ()
     (list
@@ -81,6 +80,7 @@
 			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
 			(t
 			 "All"))))
+	(centaur-tabs-mode +1)
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
