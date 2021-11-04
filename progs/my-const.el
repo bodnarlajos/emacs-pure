@@ -4,7 +4,10 @@
 (defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
-
+(defvar my/project-dir '("/home/lbodnar/Projects"))
+(defvar my/exec-dir '("/home/lbodnar/.local/bin"))
+(defvar my/notes-dir "/home/lbodnar/Documents/notes/")
+(defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
@@ -36,20 +39,12 @@
 					org-log-done t))
 
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'modus-operandi)
+																	(disable-theme 'dichromacy)
 																	(load-theme 'wombat)))
 	(add-hook 'my/light-theme-hook (lambda ()
 																	 (disable-theme 'wombat)
-																	 (load-theme 'modus-operandi)))
-	;; modus-operandi theme changing
-	(eval-after-load 'magit-status
-		(custom-set-faces
-		 '(magit-diff-added ((t (:extend t :background "pale green" :foreground "steel blue"))))
-		 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "orange red"))))))
+																	 (load-theme 'dichromacy)))
 
-	;; git-bash find dir in windows
-	(setq find-program "C:/Program Files/Git/usr/bin/find.exe")
-	
 	;; The window initial size
 	;; specified size
   (add-to-list 'default-frame-alist '(width . 220))
@@ -59,29 +54,6 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
-	(setq centaur-tabs-height 32)
-	(setq centaur-tabs-set-icons t)
-	(setq centaur-tabs-plain-icons t)
-	;; (setq centaur-tabs-set-bar 'left)
-	(setq centaur-tabs-set-bar 'under)
-	(setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-modified-marker "●")
-	(setq centaur-tabs-cycle-scope 'tabs)
-	(custom-set-variables
-	 '(centaur-tabs-hide-tabs-hooks
-		 '(magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
-	(centaur-tabs-mode +1)
-	(centaur-tabs-change-fonts "Segoe UI" 100)
-	(defun centaur-tabs-buffer-groups ()
-    (list
-		 (cond
-			((and
-				(string-prefix-p "*" (buffer-name))
-				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
-			 "Messages")
-			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
-			(t
-			 "All"))))
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
