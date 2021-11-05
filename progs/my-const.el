@@ -44,6 +44,30 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+	;; centaur tabs
+	(straight-use-package 'centaur-tabs)
+	(setq centaur-tabs-height 32)
+	(setq centaur-tabs-set-icons t)
+	(setq centaur-tabs-plain-icons t)
+	;; (setq centaur-tabs-set-bar 'left)
+	(setq centaur-tabs-set-bar 'under)
+	(setq centaur-tabs-set-modified-marker t)
+  (setq centaur-tabs-modified-marker "●")
+	(setq centaur-tabs-cycle-scope 'tabs)
+	(centaur-tabs-mode +1)
+	(custom-set-variables
+	 '(centaur-tabs-hide-tabs-hooks
+		 '(ediff-mode-hook magit-popup-mode-hook reb-mode-hook completion-list-mode-hook)))
+	(defun centaur-tabs-buffer-groups ()
+    (list
+		 (cond
+			((and
+				(string-prefix-p "*" (buffer-name))
+				(not (my/check/start-with-in-list (buffer-name) '("*scratch*" "*HTTP Response*" "*Customize" "*Colors*"))))
+			 "Messages")
+			((string-equal "COMMIT_EDITMSG" (buffer-name)) "Magitcommitmsg")
+			(t
+			 "All"))))
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
