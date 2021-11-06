@@ -49,6 +49,14 @@
 					(my/shrink-side-window)
 				(my/enlarge-side-window)))))
 
+(defun my/get-main-window ()
+	"Gets the main window"
+	(if (member my/mainwindow (window-list))
+			my/mainwindow
+		(progn
+			(message "new window as my/mainwindow: %s" (car (window-list)))
+			(car (window-list)))))
+
 (defun my/display-buffer-bottom (buffer alist)
 	"Display buffer in where i want it"
 	;; (message "my/display-buffer")
@@ -58,26 +66,28 @@
 	"Display buffer in where i want it"
 	;; (message "my/display-buffer")
 	(let ((commitBufferWin (or (get-buffer-window "COMMIT_EDITMSG") (get-buffer-window "MERGE_MSG")))
-				(currWin (selected-window)))
+				(currWin (selected-window))
+				(mainWindow (my/get-main-window)))
 		(if (member  (buffer-name buffer) '("COMMIT_EDITMSG" "MERGE_MSG"))
 				(display-buffer-pop-up-window buffer alist)
 			(if (equal commitBufferWin currWin)
-					(set-window-buffer my/mainwindow buffer)
+					(set-window-buffer mainwindow buffer)
 				(display-buffer-reuse-window buffer alist))))
 	);; my/display-buffer-magit
 
 (defun my/open-it-in-main (buffer alist)
 	"open buffer in main window"
 	(let ((curr-window (selected-window))
-				(curr-frame (selected-frame)))
+				(curr-frame (selected-frame))
+				(mainWindow (my/get-main-window)))
 		;; (message "%s" (window-list))
 		;; (message "curr-frame: %s, main-frame: %s" curr-frame my/mainframe)
 		(let ((isSideWindow (window-parameter curr-window 'window-slot)))
 			;; (message "open it in main window, bufferName: %s" (buffer-name buffer))
 			(if (equal curr-frame my/mainframe) ;; if main frame is the selected-frame
-					(if (and (not (equal curr-window my/mainwindow)) (not isSideWindow))
+					(if (and (not (equal curr-window mainWindow)) (not isSideWindow))
 							(set-window-buffer curr-window buffer)
-						(set-window-buffer my/mainwindow buffer))
+						(set-window-buffer mainWindow buffer))
 				(progn
 					(message "other frame"))))))
 
