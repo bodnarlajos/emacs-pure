@@ -9,15 +9,17 @@
 ;; (straight-use-package 'company-quickhelp)
 (straight-use-package 'company)
 (global-company-mode t)
-(remove-hook 'flymake-diagnostic-functions 'flymake-proc-legacy-flymake)
-(straight-use-package 'lsp-mode)
-(straight-use-package 'lsp-ui)
 (straight-use-package 'flycheck)
-(add-hook 'lsp-ui-doc-frame-hook
-          (lambda (frame _w)
-            (set-face-attribute 'default frame :font "JetBrains Mono" :height 130)))
-(custom-set-variables
- '(lsp-ui-doc-show-with-cursor nil))
+(straight-use-package 'dockerfile-mode)
+
+(add-hook 'my/dev-hook (lambda ()
+												 (straight-use-package 'lsp-mode)
+												 (straight-use-package 'lsp-ui))
+					(add-hook 'lsp-ui-doc-frame-hook
+										(lambda (frame _w)
+											(set-face-attribute 'default frame :font "JetBrains Mono" :height 130)))
+					(custom-set-variables
+					 '(lsp-ui-doc-show-with-cursor nil)))
 
 (straight-use-package 'yaml-mode)
 (require 'my-jump)
@@ -33,7 +35,7 @@
 	(highlight-indent-guides-mode t)
 	(diff-hl-mode t)
 	;; (company-quickhelp-local-mode)
-	(smartparens-mode))
+	(smartparens-mode +1))
 
 (setq compilation-auto-jump-to-first-error nil)
 (setq compilation-ask-about-save nil)
