@@ -34,7 +34,6 @@
 (define-key my-prefix (kbd "w j") 'split-window-vertically)
 (define-key my-prefix (kbd "w k") 'split-window-horizontally)
 
-(define-key my-prefix (kbd "l") 'recenter)
 (define-key my-prefix (kbd "r") 'async-shell-command)
 (define-key my-prefix (kbd "i") 'indent-buffer)
 (define-key my-prefix (kbd "o") 'find-file)
@@ -53,6 +52,7 @@
 (define-key my-prefix (kbd "c g") 'my/start/git)
 (define-key my-prefix (kbd "c p") 'project-find-file)
 (define-key my-prefix (kbd "c f") 'rg)
+(define-key my-prefix (kbd "c m") 'my/menu-base)
 
 (define-key my-prefix (kbd "e d") 'duplicate-line)
 (define-key my-prefix (kbd "e r") 'vr/replace)
@@ -60,6 +60,8 @@
 (define-key my-prefix (kbd "e c") 'consult-register-store)
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
+
+(define-key my-prefix (kbd "C-j") 'my/menu-base)
 
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
@@ -82,7 +84,6 @@
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-M-o") 'find-file-literally-at-point)
 (global-set-key (kbd "<M-return>") 'find-file-at-point)
-(global-set-key (kbd "C-l") 'my/menu-base)
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 ;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
