@@ -51,7 +51,8 @@
 
 (defun my/get-main-window ()
 	"Gets the main window"
-	(if (member my/mainwindow (window-list))
+	(message "mainwindow: %s" my/mainwindow)
+	(if (and my/mainwindow (member my/mainwindow (window-list)))
 			my/mainwindow
 		(progn
 			(message "new window as my/mainwindow: %s" (car (window-list)))
@@ -99,7 +100,7 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
+        ("\\*\\(Backtrace\\|haskell.compilation.*\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
