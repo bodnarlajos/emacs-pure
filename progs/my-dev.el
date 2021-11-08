@@ -59,7 +59,7 @@
 			(funcall fv)
 		(add-hook 'my/dev-hook fv)))
 
-(defun my/start-dev-env ()
+(defun my/start/devenv ()
 	"T."
 	(interactive)
 	(my/run-dev-hook)
