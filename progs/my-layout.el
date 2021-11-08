@@ -99,7 +99,7 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
+        ("\\*\\(Backtrace\\|haskell.compilation.*\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
