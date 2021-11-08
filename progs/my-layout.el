@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-
+;; (toggle-debug-on-error)
 (defvar my/side-bottom-window-height-threshold 20 "It means how many lines mean it is a big size")
 (defvar my/side-bottom-window-height 10 "This value and the minimal height will be the height to the bottom side window")
 (defvar my/mainframe (selected-frame))
@@ -51,11 +51,10 @@
 
 (defun my/get-main-window ()
 	"Gets the main window"
-	(if (member my/mainwindow (window-list))
+	(if (and my/mainwindow (member my/mainwindow (window-list)) (eq my/mainframe (selected-frame)))
 			my/mainwindow
 		(progn
-			(message "new window as my/mainwindow: %s" (car (window-list)))
-			(car (window-list)))))
+			(car (window-list (selected-frame))))))
 
 (defun my/display-buffer-bottom (buffer alist)
 	"Display buffer in where i want it"

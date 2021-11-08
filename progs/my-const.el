@@ -37,13 +37,13 @@
 					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
 					org-support-shift-select t
 					org-log-done t))
-
+	(straight-use-package 'doom-themes)
 	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'dichromacy)
-																	(load-theme 'wombat)))
+																	(disable-theme 'doom-ayu-light)
+																	(load-theme 'doom-ayu)))
 	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'wombat)
-																	 (load-theme 'dichromacy)))
+																	 (disable-theme 'doom-ayu)
+																	 (load-theme 'doom-ayu-light)))
 
 	;; The window initial size
 	;; specified size
