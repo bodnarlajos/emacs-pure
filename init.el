@@ -55,7 +55,7 @@
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
 (straight-use-package 'dired-single)
-;; (straight-use-package 'doom-modeline)
+(straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 ;; (straight-use-package 'centaur-tabs)
@@ -68,13 +68,14 @@
 (ctrlf-mode +1)
 (show-paren-mode +1)
 (recentf-mode)
-;; (doom-modeline-mode +1)
+(doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
 
 ;; set defaults
 (setq-default
  dired-dwim-target t
+ doom-modeline-height 25
  autoload-compute-prefixes nil
  frame-inhibit-implied-resize t
  initial-major-mode 'fundamental-mode

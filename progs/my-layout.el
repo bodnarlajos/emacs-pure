@@ -4,8 +4,11 @@
 (defvar my/side-bottom-window-height 10 "This value and the minimal height will be the height to the bottom side window")
 (defvar my/mainframe (selected-frame))
 
+(defun write-to-file (msg)
+	"t."
+	(append-to-file (concat msg "\n") nil "c:/temp/emacs.log"))
 ;; It's a technical variable, don't modify it
-(defvar my/mainwindow (car (window-list)))
+(defvar my/mainwindow (car (window-list (selected-frame))))
 
 (defun my/find-side-window-bottom ()
 	"Find the bottom side window"
@@ -51,26 +54,27 @@
 
 (defun my/get-main-window ()
 	"Gets the main window"
-	(if (and my/mainwindow (member my/mainwindow (window-list)) (eq my/mainframe (selected-frame)))
+	;; (write-to-file "get-main-window")
+	(if (and (bound-and-true-p my/mainwindow) (member my/mainwindow (window-list)) (eq my/mainframe (selected-frame)))
 			my/mainwindow
 		(progn
 			(car (window-list (selected-frame))))))
 
 (defun my/display-buffer-bottom (buffer alist)
 	"Display buffer in where i want it"
-	;; (message "my/display-buffer")
+	;; (write-to-file "my/display-buffer")
 	(display-buffer-reuse-window buffer alist))
 
 (defun my/display-buffer-magit (buffer alist)
 	"Display buffer in where i want it"
-	;; (message "my/display-buffer")
+	;; (write-to-file "my/display-buffer")
 	(let ((commitBufferWin (or (get-buffer-window "COMMIT_EDITMSG") (get-buffer-window "MERGE_MSG")))
 				(currWin (selected-window))
 				(mainWindow (my/get-main-window)))
 		(if (member  (buffer-name buffer) '("COMMIT_EDITMSG" "MERGE_MSG"))
 				(display-buffer-pop-up-window buffer alist)
 			(if (equal commitBufferWin currWin)
-					(set-window-buffer mainwindow buffer)
+					(set-window-buffer mainWindow buffer)
 				(display-buffer-reuse-window buffer alist))))
 	);; my/display-buffer-magit
 
@@ -79,10 +83,10 @@
 	(let ((curr-window (selected-window))
 				(curr-frame (selected-frame))
 				(mainWindow (my/get-main-window)))
-		;; (message "%s" (window-list))
-		;; (message "curr-frame: %s, main-frame: %s" curr-frame my/mainframe)
+		;; (write-to-file "%s" (window-list))
+		;; (write-to-file "curr-frame: %s, main-frame: %s" curr-frame my/mainframe)
 		(let ((isSideWindow (window-parameter curr-window 'window-slot)))
-			;; (message "open it in main window, bufferName: %s" (buffer-name buffer))
+			;; (write-to-file "open it in main window, bufferName: %s" (buffer-name buffer))
 			(if (equal curr-frame my/mainframe) ;; if main frame is the selected-frame
 					(if (and (not (equal curr-window mainWindow)) (not isSideWindow))
 							(set-window-buffer curr-window buffer)
