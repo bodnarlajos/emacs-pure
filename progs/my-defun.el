@@ -185,7 +185,7 @@ Version 2017-11-01"
 				 ((string-equal res magit) (call-interactively 'my/start/git))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res newbuffer) (call-interactively 'centaur-tabs--create-new-tab))
-				 ((string-equal res development) (call-interactively 'my/start-dev-env)))))))
+				 ((string-equal res development) (call-interactively 'my/start/devenv)))))))
 
 (defun my/dumb-jump-go ()
 	"Initialize and jump"
