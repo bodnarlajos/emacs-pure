@@ -7,7 +7,8 @@
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
-(defun my/theme () (my/light-theme))
+(defun my/theme () (load-theme 'modus-operandi))
+
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
@@ -27,15 +28,7 @@
 		(setq org-todo-keywords
 					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
 					org-support-shift-select t
-					org-log-done t))
-	(straight-use-package 'doom-themes)
-	(add-hook 'my/dark-theme-hook (lambda ()
-																	(disable-theme 'doom-nord-light)
-																	(load-theme 'doom-nord)))
-	(add-hook 'my/light-theme-hook (lambda ()
-																	 (disable-theme 'doom-nord)
-																	 (load-theme 'doom-nord-light)))
-
+					org-log-done t))	
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
