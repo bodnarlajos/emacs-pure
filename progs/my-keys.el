@@ -95,57 +95,14 @@
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (global-set-key (kbd "C-,") 'consult-global-mark)
 (define-key project-prefix-map (kbd "C-c C-c") 'project-compile)
-;; (add-hook 'org-mode-hook (lambda ()
-;; 													 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window)))
 (define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
 (define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 
-;; (define-key mode-line-buffer-identification-keymap
-;;   [mode-line mouse-1]
-;;   (lambda ()
-;;     (interactive)
-;;     (call-interactively 'consult-buffer)))
-
-;; (define-key mode-line-buffer-identification-keymap
-;;   [mode-line-buffer-identification mouse-1]
-;;   (lambda ()
-;;     (interactive)
-;;     (call-interactively 'consult-buffer)))
-
-;; (define-key global-map
-;;   [mode-line mouse-1]
-;;   (lambda ()
-;;     (interactive)
-;;     (call-interactively 'my/menu-base)))
-;; (define-key global-map
-;;   [mode-line mouse-3]
-;;   (lambda ()
-;;     (interactive)
-;;     (call-interactively 'delete-window)))
-
-;; (define-key minibuffer-local-map [mouse-3] 'keyboard-escape-quit)
-
-;; ;; for touchpad
-;; (define-key minibuffer-local-map [mouse-4] 'next-line)
-;; (define-key minibuffer-local-map [mouse-5] 'previous-line)
-;; ;; for mouse
-;; (define-key minibuffer-local-map [wheel-down] 'next-line)
-;; (define-key minibuffer-local-map [wheel-up] 'previous-line)
-
 ;; org mode map
-;; (with-eval-after-load 'org
-;;   (define-key org-mode-map [mouse-1] 'org-cycle)
-;;   (define-key org-mode-map [mouse-3] 'org-shiftright)
-;;   (defvar org-right-popup-menu
-;;     (let ((org-menu (copy-keymap right-popup-menu))
-;; 					(define-key org-menu [org-shiftright] (cons "Shift TODO" 'org-shiftright))
-;; 					org-menu)))
-;;   (defun org-right-popup-command ()
-;;     "Run the command selected from right-popup-menu'." 
-;;     (interactive) 
-;;     (call-interactively (or (car (x-popup-menu t org-right-popup-menu))))) 
-;;   (define-key org-mode-map [mouse-3] 'org-right-popup-command)) 
-
+(with-eval-after-load 'org
+  (define-key org-mode-map [mouse-1] 'org-cycle)
+	(add-hook 'org-mode-hook (lambda ()
+													 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
 ;; menu 
 (defvar right-popup-menu 
   (let ((menu (make-sparse-keymap "Commands"))) 
