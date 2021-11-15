@@ -32,8 +32,7 @@
 	(straight-use-package 'org-bullets)
 	(org-bullets-mode +1)
 	(custom-set-faces
-	 '(magit-diff-added ((t (:extend t :background "#d4fad4" :foreground "#004500" :inverse-video t))))
-	 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "#691616" :inverse-video t))))
+	 '(magit-section-highlight ((t (:background nil))))
 	 '(org-level-1 ((t (:inherit outline-1 :height 2.0))))
 	 '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
 	 '(org-level-3 ((t (:inherit outline-3 :height 1.2))))

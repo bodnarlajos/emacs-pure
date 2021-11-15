@@ -107,6 +107,12 @@
          (window-height . 0.33)
          (side . bottom)
          (slot . 0))
+				;; go to the left sidewindow
+				("\\*undo-tree\\*"
+         (display-buffer-reuse-window display-buffer-in-side-window)
+         (window-height . 0.20)
+         (side . left)
+         (slot . 5))
 				;; it'll behave like normaly
 				("\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
