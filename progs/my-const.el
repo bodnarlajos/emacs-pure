@@ -57,11 +57,11 @@
 	;; fullscreen
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 	;; Windows like epg config
-	;; (custom-set-variables
-	;;  '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
-	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
-	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
-	;;  )
+	(custom-set-variables
+	 '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
+	 '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
+	 '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
+	 )
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
