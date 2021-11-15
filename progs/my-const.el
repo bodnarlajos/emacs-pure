@@ -33,10 +33,10 @@
 	(org-bullets-mode +1)
 	(custom-set-faces
 	 '(magit-section-highlight ((t (:background nil))))
-	 '(org-level-1 ((t (:inherit outline-1 :height 2.0))))
-	 '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
+	 '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+	 '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
 	 '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-	 '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+	 '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
 	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 	;; The window initial size
 	;; specified size
