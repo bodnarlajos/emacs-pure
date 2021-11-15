@@ -43,10 +43,10 @@
 	(custom-set-faces
 	 '(magit-diff-added ((t (:extend t :background "#d4fad4" :foreground "#004500" :inverse-video t))))
 	 '(magit-diff-removed ((t (:extend t :background "#ffe8ef" :foreground "#691616" :inverse-video t))))
-	 '(org-level-1 ((t (:inherit outline-1 :height 2.0))))
-	 '(org-level-2 ((t (:inherit outline-2 :height 1.5))))
+	 '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+	 '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
 	 '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-	 '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+	 '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
 	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 	;; The window initial size
 	;; specified size
@@ -57,6 +57,12 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	;; Windows like epg config
+	;; (custom-set-variables
+	;;  '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
+	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
+	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
+	;;  )
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
