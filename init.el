@@ -56,7 +56,7 @@
 (straight-use-package 'transpose-frame)
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
-(straight-use-package 'doom-modeline)
+;; (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 ;; (straight-use-package 'centaur-tabs)
@@ -68,8 +68,8 @@
 (global-undo-tree-mode)
 (ctrlf-mode +1)
 (show-paren-mode +1)
-(recentf-mode)
-(doom-modeline-mode +1)
+;; (recentf-mode)
+;; (doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
 
@@ -127,10 +127,6 @@
   ;; it's not loaded yet, so add our bindings to the load-hook
   (add-hook 'dired-load-hook 'my-dired-init))
 
-;; selectrum config
-(custom-set-variables
- '(selectrum-max-window-height 15))
-
 ;; Better scrolling
 (setq redisplay-dont-pause t
       scroll-margin 1
@@ -182,6 +178,4 @@
 (setq-default cursor-type my/cursor-type)
 
 (my/end-of-init)
-
-(my/theme)
 
