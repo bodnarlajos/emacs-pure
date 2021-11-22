@@ -102,7 +102,7 @@
         ("\\*\\(Async Shell.*\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
 				;; go to the bottom window
-        ("\\*\\(Backtrace\\|haskell.compilation.*\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
+        ("\\*\\(scratch\\|Backtrace\\|.*compilation.*\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
          (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
          (window-height . 0.33)
          (side . bottom)
@@ -117,6 +117,11 @@
 				("\\*transient\\*\\|\\*Deletions\\*"
 				 (display-buffer-reuse-window display-buffer-use-some-window display-buffer-same-window))
 				("magit-diff:.*\\|COMMIT_EDITMSG" my/display-buffer-magit)
+				("\\*.*\\*"
+         (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
+         (window-height . 0.33)
+         (side . bottom)
+         (slot . 0))
 				;; the other windows go to the main window
 				(".*"
 				 (display-buffer-reuse-window my/open-it-in-main))))

@@ -17,12 +17,8 @@
 (add-hook 'my/dev-hook (lambda ()
 												 (straight-use-package 'lsp-mode)
 												 (straight-use-package 'lsp-ui)
-												 (add-hook 'lsp-ui-doc-frame-hook
-																	 (lambda (frame _w)
-																		 (set-face-attribute 'default frame :font "JetBrains Mono" :height 90)))
 												 (custom-set-variables
-													'(lsp-ui-doc-show-with-cursor nil))))
-
+													'(lsp-ui-doc-show-with-cursor t))))
 
 (with-eval-after-load 'highlight-indent-guides
 	(custom-set-variables

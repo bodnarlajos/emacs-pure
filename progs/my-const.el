@@ -11,8 +11,6 @@
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 
-(defun my/theme () (load-theme 'modus-operandi))
-
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
@@ -40,7 +38,11 @@
 					org-log-done t))
 	(straight-use-package 'org-bullets)
 	(org-bullets-mode +1)
+	;; selectrum config
+	(custom-set-variables
+	 '(selectrum-max-window-height 15))
 	(custom-set-faces
+	 '(mode-line ((t (:height 1.2))))
 	 '(magit-section-highlight ((t (:background nil))))
 	 '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
 	 '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
@@ -56,6 +58,8 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	(straight-use-package 'material-theme)
+	(load-theme 'material)
 	;; Windows like epg config
 	(custom-set-variables
 	 '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
