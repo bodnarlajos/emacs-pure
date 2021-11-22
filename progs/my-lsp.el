@@ -42,7 +42,7 @@
 	 '(lsp-ui-doc-border "black")
 	 '(lsp-ui-doc-show-with-cursor nil)
 	 '(lsp-ui-doc-show-with-mouse t)
-	 '(lsp-headerline-breadcrumb-enable nil)
+	 '(lsp-headerline-breadcrumb-enable t)
 	 '(lsp-ui-sideline-ignore-duplicate t)
 	 '(lsp-ui-sideline-update-mode 'line)))
 
@@ -52,22 +52,5 @@
 
 (with-eval-after-load 'lsp-ui-imenu
 	(setq lsp-ui-imenu--custom-mode-line-format nil))
-
-(defun my/toggle-lsp-ui-doc ()
-	(interactive)
-	(when lsp-ui-doc--bounds
-		(my/toogle-lsp-ui-doc-kill-timer))
-	(lsp-ui-doc-hide)
-	(lsp-ui-doc-show)
-	(setq my/lspTimerId (run-at-time 10 nil 'lsp-ui-doc-hide)))
-
-(defvar my/lspTimerId nil "The lsp timer's identifier")
-
-(defun my/toogle-lsp-ui-doc-kill-timer ()
-	"T."
-	(interactive)
-	(when my/lspTimerId
-		(message "cancel-timer: %s" my/lspTimerId)
-		(cancel-timer my/lspTimerId)))
 
 (provide 'my-lsp)
