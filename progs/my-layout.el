@@ -99,15 +99,11 @@
 
 (setq display-buffer-alist
       `(;; no window
-        ("\\*\\(Async Shell.*\\)\\*"
-         (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
-				;; go to the bottom window
-        ("\\*\\(scratch\\|Backtrace\\|.*compilation.*\\|rg\\|Warnings\\|Compile-Log\\|Flycheck errors\\|Messages\\|Help\\|eshell\\|shell\\|Async-native-compile-log\\|Ediff Registry\\|Find\\)\\*"
-         (display-buffer-reuse-window my/display-buffer-bottom display-buffer-in-side-window)
-         (window-height . 0.33)
-         (side . bottom)
-         (slot . 0))
-				;; go to the left sidewindow
+				("\\*\\(scratch\\)\\*" ;; to avoid the all *...* buffer to bottom logic
+         (display-buffer-reuse-window my/open-it-in-main))
+        ;; ("\\*\\(Async Shell.*\\)\\*"
+        ;;  (display-buffer-reuse-window my/display-buffer-bottom display-buffer-no-window))
+				;; ;; go to the left sidewindow
 				("\\*undo-tree\\*"
          (display-buffer-reuse-window display-buffer-in-side-window)
          (window-height . 0.20)

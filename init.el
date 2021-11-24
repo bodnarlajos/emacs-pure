@@ -45,6 +45,7 @@
 (require 'my-keys)
 (require 'my-layout)
 
+(straight-use-package 'diminish)
 (straight-use-package 'selectrum)
 (straight-use-package 'selectrum-prescient)
 (straight-use-package 'marginalia)
@@ -65,18 +66,21 @@
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
 (marginalia-mode +1)
-(global-undo-tree-mode)
+(global-undo-tree-mode +1)
+(diminish 'undo-tree-mode)
 (ctrlf-mode +1)
 (show-paren-mode +1)
 ;; (recentf-mode)
 ;; (doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
+(diminish 'which-key-mode)
 
+(eldoc-mode -1)
 ;; set defaults
 (setq-default
  dired-dwim-target t
- doom-modeline-height 25
+ ;; doom-modeline-height 25
  autoload-compute-prefixes nil
  frame-inhibit-implied-resize t
  initial-major-mode 'fundamental-mode
