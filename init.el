@@ -43,7 +43,7 @@
 (load (expand-file-name (concat user-emacs-directory "custom.el")))
 (require 'my-defun)
 (require 'my-keys)
-;; (require 'my-layout)
+(require 'my-layout)
 
 (straight-use-package 'diminish)
 (straight-use-package 'selectrum)
