@@ -44,11 +44,11 @@
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.2))))
 	 '(magit-section-highlight ((t (:background nil))))
-	 '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
-	 '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
-	 '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-	 '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
-	 '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+	 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+	 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+	 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+	 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+	 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil)))))
 	;; The window initial size
 	;; specified size
   (add-to-list 'default-frame-alist '(width . 220))
@@ -60,6 +60,7 @@
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 	(straight-use-package 'material-theme)
 	(load-theme 'material)
+	(set-face-attribute 'region nil :inverse-video t)
 	;; Windows like epg config
 	(custom-set-variables
 	 '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
