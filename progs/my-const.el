@@ -60,7 +60,8 @@
 	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 	(straight-use-package 'material-theme)
 	(load-theme 'material)
-	(set-face-attribute 'region nil :inverse-video t)
+	;; fix for material theme
+	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
 	;; Windows like epg config
 	(custom-set-variables
 	 '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
