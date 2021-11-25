@@ -23,6 +23,7 @@
 													'(lsp-ui-doc-show-with-cursor t))))
 
 (with-eval-after-load 'highlight-indent-guides
+	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)
 	(custom-set-variables
 	 '(highlight-indent-guides-method 'bitmap)))
 
