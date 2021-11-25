@@ -3,6 +3,33 @@
 (require 'cl-lib)
 ;; (straight-use-package 'ace-window)
 
+(defun my/theme ()
+	"Theme"
+	(interactive)
+	(straight-use-package 'material-theme)
+	(disable-theme 'material-light)
+	(load-theme 'material)
+	(highlight-indent-guides-mode -1)
+	(highlight-indent-guides-mode +1)
+	;; fix for material theme
+	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
+	(custom-set-faces
+	 '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
+
+(defun my/light-theme ()
+	"Theme light"
+	(interactive)
+	(straight-use-package 'material-theme)
+	(disable-theme 'material)
+	(load-theme 'material-light)
+	(highlight-indent-guides-mode -1)
+	(highlight-indent-guides-mode +1)
+	;; fix for material theme
+	(set-face-attribute 'region nil :background "#90a4ae" :inverse-video nil)
+	(custom-set-faces
+	 '(hl-line ((t (:extend t :background "#eceff1" :inverse-video nil))))))
+
+
 (defun my/check/start-with-in-list (str thelist)
 	"T."
 	(let ((inlist thelist)
@@ -241,11 +268,6 @@ Version 2017-11-01"
 	"T."
 	(interactive)
 	(run-hooks 'my/dark-theme-hook))
-
-(defun my/light-theme ()
-	"T."
-	(interactive)
-	(run-hooks 'my/light-theme-hook))
 
 (defun my/load (filename)
 	"T."							

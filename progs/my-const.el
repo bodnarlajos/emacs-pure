@@ -32,6 +32,9 @@
 	;; selectrum config
 	(custom-set-variables
 	 '(selectrum-max-window-height 15))
+
+	(my/theme)
+	
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.2))))
 	 '(magit-section-highlight ((t (:background nil))))
