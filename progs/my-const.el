@@ -32,12 +32,10 @@
 	;; selectrum config
 	(custom-set-variables
 	 '(selectrum-max-window-height 15))
-	(straight-use-package 'material-theme)
-	(load-theme 'material)
-	;; fix for material theme
-	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
+
+	(my/theme)
+	
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))
 	 '(mode-line ((t (:height 1.2))))
 	 '(magit-section-highlight ((t (:background nil))))
 	 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
