@@ -24,9 +24,9 @@
 	(highlight-indent-guides-mode -1)
 	(highlight-indent-guides-mode +1)
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#90a4ae" :inverse-video nil)
+	(set-face-attribute 'region nil :background "#61ccf9" :inverse-video nil)
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#feeffe" :inverse-video nil))))))
+	 '(hl-line ((t (:extend t :background "#e1f4fd" :inverse-video nil))))))
 
 
 (defun my/check/start-with-in-list (str thelist)
