@@ -7,7 +7,7 @@
 	"Theme"
 	(interactive)
 	(straight-use-package 'material-theme)
-	(disable-theme 'material-light)
+	(disable-theme 'leuven)
 	(load-theme 'material)
 	(highlight-indent-guides-mode -1)
 	(highlight-indent-guides-mode +1)
@@ -19,15 +19,14 @@
 (defun my/light-theme ()
 	"Theme light"
 	(interactive)
-	(straight-use-package 'material-theme)
 	(disable-theme 'material)
-	(load-theme 'material-light)
+	(load-theme 'leuven)
 	(highlight-indent-guides-mode -1)
 	(highlight-indent-guides-mode +1)
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#90a4ae" :inverse-video nil)
+	(set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#eceff1" :inverse-video nil))))))
+	 '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
 
 
 (defun my/check/start-with-in-list (str thelist)
