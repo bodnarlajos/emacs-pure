@@ -9,7 +9,7 @@
 (defvar my/notes-dir "/home/lbodnar/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
-(defvar my/cursor-type 'box)
+(defvar my/cursor-type 'bar)
 
 ;; end script of init
 (defun my/end-of-init ()
@@ -26,32 +26,33 @@
 	 '(ediff-custom-diff-program "C:/Program Files/Git/usr/bin/diff3.exe"))
 	(setq find-program "C:/Program Files/Git/usr/bin/find.exe")
 	
-	(require 'my-dev)
-	;; (require 'my-haskell)
-	(require 'my-web)
-	(require 'my-csharp)
-
 	(eval-after-load 'org-mode
-		(setq org-todo-keywords
-					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
-					org-support-shift-select t
-					org-log-done t))
-	(straight-use-package 'org-bullets)
-	(org-bullets-mode +1)
+		(progn
+			(straight-use-package 'org-bullets)
+			(org-bullets-mode +1)
+			(setq org-todo-keywords
+						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+						org-support-shift-select t
+						org-log-done t)
+			(custom-set-faces
+			 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+			 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+			 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+			 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil)))))))
+	
 	;; selectrum config
 	(custom-set-variables
 	 '(selectrum-max-window-height 15))
 
-	(my/theme)
+	(require 'my-dev)
+	(my/light-theme)
 	
 	(custom-set-faces
-	 '(mode-line ((t (:height 1.2))))
-	 '(magit-section-highlight ((t (:background nil))))
-	 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
-	 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
-	 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
-	 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-	 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil)))))
+	 '(mode-line ((t (:height 1.2)))))
+	(eval-after-load 'magit
+		(custom-set-faces
+		 '(magit-section-highlight ((t (:background nil))))))
 	
 	;; The window initial size
 	;; specified size
@@ -68,6 +69,12 @@
 	 '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	 '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	 )
+	(run-with-timer 1 nil (lambda ()
+													(recentf-mode)
+													(require 'my-haskell)
+													(require 'my-web)
+													(require 'my-csharp)))
+	(set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
