@@ -3,6 +3,11 @@
 (require 'cl-lib)
 ;; (straight-use-package 'ace-window)
 
+(defun my/start/gitg ()
+	"Start gitg process"
+	(interactive)
+	(async-shell-command "\"C:/Program Files/gitg/bin/gitg.exe\""))
+
 (defun my/theme ()
 	"Theme"
 	(interactive)
