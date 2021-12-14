@@ -3,6 +3,16 @@
 (require 'cl-lib)
 ;; (straight-use-package 'ace-window)
 
+(defun my/copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard.It's a prelude code ..."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+
 (defun my/theme ()
 	"Theme"
 	(interactive)
