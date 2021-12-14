@@ -13,6 +13,11 @@
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+(defun my/start/gitg ()
+	"Start gitg process"
+	(interactive)
+	(async-shell-command "\"C:/Program Files/gitg/bin/gitg.exe\""))
+
 (defun my/theme ()
 	"Theme"
 	(interactive)

@@ -5,7 +5,6 @@
 (global-set-key (kbd "<f2>") 'treemacs)
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
-(diminish 'highlight-indent-guides-mode-hook)
 (straight-use-package 'smartparens)
 (straight-use-package 'company-quickhelp)
 (straight-use-package 'company)
@@ -32,6 +31,7 @@
 	(setq-local tab-width 2)
 	(display-line-numbers-mode)
 	(highlight-indent-guides-mode t)
+	(diminish 'highlight-indent-guides-mode-hook)
 	(diff-hl-mode t)
 	(smartparens-mode +1))
 
