@@ -6,7 +6,7 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
-;; (straight-use-package 'company-quickhelp)
+(straight-use-package 'company-quickhelp)
 (straight-use-package 'company)
 (global-company-mode t)
 (diminish 'company-mode)
