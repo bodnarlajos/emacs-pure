@@ -10,14 +10,16 @@
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
 
-(defvar my/dark-theme-hook '())
-(defvar my/light-theme-hook '())
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
+
+;; the ide mode enabled or not
+(defvar my/dev-env nil)
+;; the ide mode hook
+(defvar my/dev-hook '())
 
 (require 'my-const)
 
@@ -146,8 +148,6 @@
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
-(defvar my/dev-hook '())
-(defvar my/dev-env nil)
 
 ;; add exec-path
 (mapcar (lambda (cdir)

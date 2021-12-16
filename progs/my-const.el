@@ -5,7 +5,17 @@
 (defvar my/notes-dir "/home/lbodnar/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
-(defvar my/cursor-type 'bar)
+(defvar my/cursor-type 'box)
+(defun my/start-modules ()
+	"Start these modules after init"
+	(interactive)
+	(recentf-mode)
+	(require 'my-prog)
+	(require 'my-jump)
+	(require 'my-haskell)
+	(require 'my-web)
+	(require 'my-csharp)
+	)
 
 ;; end script of init
 (defun my/end-of-init ()
@@ -30,7 +40,11 @@
 			 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
 			 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
 			 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil)))))))
+			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
+			 '(org-fontify-done-headline nil)
+       '(org-fontify-todo-headline t)
+       '(org-fontify-whole-heading-line t)
+       '(org-hide-leading-stars t))))
 	
 	;; selectrum config
 	(custom-set-variables
@@ -58,11 +72,7 @@
 	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	;;  )
-	(run-with-timer 1 nil (lambda ()
-													(recentf-mode)
-													(require 'my-haskell)
-													(require 'my-web)
-													(require 'my-csharp)))
+	(run-with-timer 1 nil 'my/start-modules)
 	(set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 

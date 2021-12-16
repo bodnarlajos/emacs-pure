@@ -24,8 +24,9 @@
 	(straight-use-package 'material-theme)
 	(disable-theme 'leuven)
 	(load-theme 'material)
-	(highlight-indent-guides-mode -1)
-	(highlight-indent-guides-mode +1)
+	(when (fboundp 'highlight-indent-guides)
+		(highlight-indent-guides-mode -1)
+		(highlight-indent-guides-mode +1))
 	;; fix for material theme
 	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
 	(custom-set-faces
@@ -36,8 +37,9 @@
 	(interactive)
 	(disable-theme 'material)
 	(load-theme 'leuven)
-	(highlight-indent-guides-mode -1)
-	(highlight-indent-guides-mode +1)
+	(when (fboundp 'highlight-indent-guides)
+		(highlight-indent-guides-mode -1)
+		(highlight-indent-guides-mode +1))
 	;; fix for material theme
 	(set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
 	(custom-set-faces
