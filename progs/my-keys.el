@@ -68,6 +68,7 @@
 
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
+(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 
 (global-unset-key (kbd "C-s"))
 (global-set-key (kbd "C-s") 'save-buffer)

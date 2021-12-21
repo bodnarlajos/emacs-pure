@@ -10,14 +10,16 @@
 ;; (message "%s" file-name-handler-alist)
 ;; (setq debug-on-error t)
 
-(defvar my/dark-theme-hook '())
-(defvar my/light-theme-hook '())
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
+
+;; the ide mode enabled or not
+(defvar my/dev-env nil)
+;; the ide mode hook
+(defvar my/dev-hook '())
 
 (require 'my-const)
 
@@ -52,15 +54,13 @@
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
-(straight-use-package 'ctrlf)
+(straight-use-package 'anzu)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
-;; (straight-use-package 'doom-modeline)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
-;; (straight-use-package 'centaur-tabs)
 
 (selectrum-mode +1)
 (selectrum-prescient-mode +1)
@@ -68,10 +68,8 @@
 (marginalia-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
-(ctrlf-mode +1)
+(global-anzu-mode +1)
 (show-paren-mode +1)
-;; (recentf-mode)
-;; (doom-modeline-mode +1)
 (cua-mode +1)
 (which-key-mode +1)
 (diminish 'which-key-mode)
@@ -150,8 +148,6 @@
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
-(defvar my/dev-hook '())
-(defvar my/dev-env nil)
 
 ;; add exec-path
 (mapcar (lambda (cdir)
