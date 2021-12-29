@@ -15,7 +15,8 @@
 	"web mode development"
 	(add-hook 'js-mode-hook #'lsp)
 	(add-hook 'typescript-mode-hook #'lsp)
-	(add-hook 'js2-mode-hook #'lsp))
+	(add-hook 'js2-mode-hook #'lsp)
+	(add-hook 'web-mode-hook #'lsp))
 
 (add-hook 'hack-local-variables-hook
           (lambda () (when (derived-mode-p 'html-mode) (lsp))))
