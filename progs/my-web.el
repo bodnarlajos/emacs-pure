@@ -15,13 +15,21 @@
 	"web mode development"
 	(add-hook 'js-mode-hook #'lsp)
 	(add-hook 'typescript-mode-hook #'lsp)
-	(add-hook 'js2-mode-hook #'lsp))
+	(add-hook 'js2-mode-hook #'lsp)
+	(add-hook 'web-mode-hook #'lsp))
 
 (add-hook 'hack-local-variables-hook
           (lambda () (when (derived-mode-p 'html-mode) (lsp))))
 
 (eval-after-load 'typescript-mode
 	(setq-default typescript-indent-level 2))
+
+(eval-after-load 'web-mode
+	(custom-set-variables
+	 '(web-mode-code-indent-offset 2)
+	 '(web-mode-css-indent-offset 2)
+	 '(web-mode-markup-indent-offset 2)
+	 '(web-mode-sql-indent-offset 2)))
 
 (my/add-dev-hook #'my/web-dev-run)
 
