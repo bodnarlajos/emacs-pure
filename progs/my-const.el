@@ -51,7 +51,9 @@
 	 '(selectrum-max-window-height 15))
 
 	(require 'my-dev)
-	(my/light-theme)
+	;; (my/light-theme)
+	(straight-use-package 'doom-themes)
+	(load-theme 'doom-nord)
 	
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.2)))))
