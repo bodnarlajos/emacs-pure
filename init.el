@@ -77,6 +77,11 @@
 (diminish 'which-key-mode)
 
 (eldoc-mode -1)
+(defun just-one-face (fn &rest args)
+	(let ((orderless-match-faces [completions-common-part]))
+		(apply fn args)))
+(advice-add 'company-capf--candidates :around #'just-one-face)
+
 ;; set defaults
 (setq-default
  dired-dwim-target t
@@ -104,6 +109,7 @@
  browse-url-browser-function 'browse-url-generic
  set-mark-command-repeat-pop t
  completion-styles '(orderless)
+ orderless-component-separator "[ .]"
  resize-mini-windows t
  completions-format 'vertical
  isearch-allow-scroll t
