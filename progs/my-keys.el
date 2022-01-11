@@ -14,6 +14,7 @@
 
 (global-set-key (kbd "<M-left>") 'winner-undo)
 (global-set-key (kbd "<M-right>") 'winner-redo)
+(global-set-key (kbd "C-x C-z") #'selectrum-repeat)
 
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)

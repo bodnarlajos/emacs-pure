@@ -18,32 +18,34 @@
 	(interactive)
 	(async-shell-command "\"C:/Program Files/gitg/bin/gitg.exe\""))
 
-(defun my/theme ()
+(defun my/theme-dark ()
 	"Theme"
 	(interactive)
-	(straight-use-package 'material-theme)
-	(disable-theme 'leuven)
-	(load-theme 'material)
+	;; (straight-use-package 'material-theme)
+	(disable-theme 'tsdh-light)
+	(load-theme 'tsdh-dark)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
-	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
+	;; (set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
+	;; (custom-set-faces
+	;;  '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
+	)
 
 (defun my/light-theme ()
 	"Theme light"
 	(interactive)
-	(disable-theme 'material)
-	(load-theme 'leuven)
+	(disable-theme 'tsdh-dark)
+	(load-theme 'tsdh-light)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
-	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
+	;; (set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
+	;; (custom-set-faces
+	;;  '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
+	)
 
 
 (defun my/check/start-with-in-list (str thelist)
