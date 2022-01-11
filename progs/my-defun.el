@@ -21,29 +21,31 @@
 (defun my/theme ()
 	"Theme"
 	(interactive)
-	(straight-use-package 'material-theme)
-	(disable-theme 'leuven)
-	(load-theme 'material)
+	;; (straight-use-package 'material-theme)
+	(disable-theme 'tango)
+	(load-theme 'tango-dark)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
-	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
+	;; (set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
+	;; (custom-set-faces
+	;;  '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
+	)
 
 (defun my/light-theme ()
 	"Theme light"
 	(interactive)
-	(disable-theme 'material)
-	(load-theme 'leuven)
+	(disable-theme 'tango-dark)
+	(load-theme 'tango)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
 	;; fix for material theme
-	(set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
-	(custom-set-faces
-	 '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
+	;; (set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
+	;; (custom-set-faces
+	;;  '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
+	)
 
 
 (defun my/check/start-with-in-list (str thelist)

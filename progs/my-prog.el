@@ -6,10 +6,19 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
-(straight-use-package 'company-quickhelp)
 (straight-use-package 'company)
+(straight-use-package 'company-prescient)
+(straight-use-package 'company-quickhelp)
 (global-company-mode t)
+(company-prescient-mode +1)
 (diminish 'company-mode)
+(custom-set-variables
+ '(company-idle-delay 0.5)
+ '(company-minimum-prefix-length 2)
+ '(company-backends
+	 '((company-capf :with company-dabbrev-code :with company-keywords)
+		 (company-files :with company-dabbrev))))
+
 (straight-use-package 'flycheck)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'yaml-mode)

@@ -45,14 +45,14 @@
 (load (expand-file-name (concat user-emacs-directory "custom.el")))
 (require 'my-defun)
 (require 'my-keys)
-(require 'my-layout)
+;; (require 'my-layout)
 
 (straight-use-package 'diminish)
 (straight-use-package 'selectrum)
+(straight-use-package 'prescient)
 (straight-use-package 'selectrum-prescient)
 (straight-use-package 'marginalia)
 (straight-use-package 'consult)
-(straight-use-package 'orderless)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (straight-use-package 'anzu)
@@ -102,7 +102,7 @@
  gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"
  browse-url-browser-function 'browse-url-generic
  set-mark-command-repeat-pop t
- completion-styles '(orderless)
+ completion-styles '(basic partial-completion substring flex)
  resize-mini-windows t
  completions-format 'vertical
  isearch-allow-scroll t
