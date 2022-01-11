@@ -18,12 +18,12 @@
 	(interactive)
 	(async-shell-command "\"C:/Program Files/gitg/bin/gitg.exe\""))
 
-(defun my/theme ()
+(defun my/theme-dark ()
 	"Theme"
 	(interactive)
 	;; (straight-use-package 'material-theme)
-	(disable-theme 'tango)
-	(load-theme 'tango-dark)
+	(disable-theme 'tsdh-light)
+	(load-theme 'tsdh-dark)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
@@ -36,8 +36,8 @@
 (defun my/light-theme ()
 	"Theme light"
 	(interactive)
-	(disable-theme 'tango-dark)
-	(load-theme 'tango)
+	(disable-theme 'tsdh-dark)
+	(load-theme 'tsdh-light)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
 		(highlight-indent-guides-mode +1))
