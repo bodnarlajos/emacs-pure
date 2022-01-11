@@ -52,6 +52,7 @@
 (straight-use-package 'prescient)
 (straight-use-package 'selectrum-prescient)
 (straight-use-package 'marginalia)
+(straight-use-package 'mini-frame)
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
@@ -67,6 +68,7 @@
 (selectrum-prescient-mode +1)
 (prescient-persist-mode +1)
 (marginalia-mode +1)
+(mini-frame-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
 (diminish 'anzu-mode)
@@ -103,7 +105,6 @@
  gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"
  browse-url-browser-function 'browse-url-generic
  set-mark-command-repeat-pop t
- completion-styles '(basic partial-completion substring flex)
  resize-mini-windows t
  completions-format 'vertical
  isearch-allow-scroll t
