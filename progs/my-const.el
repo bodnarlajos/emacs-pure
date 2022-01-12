@@ -2,7 +2,7 @@
 
 (defvar my/project-dir '("/home/lbodnar/Projects"))
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
-(defvar my/notes-dir "/home/lbodnar/MyDocuments/notes/")
+(defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes")
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
