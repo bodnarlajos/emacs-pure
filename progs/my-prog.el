@@ -7,17 +7,19 @@
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
 (straight-use-package 'company)
+;; (straight-use-package 'company-box)
 (straight-use-package 'company-prescient)
-(straight-use-package 'company-quickhelp)
-(global-company-mode t)
+;; (straight-use-package 'company-quickhelp)
 (company-prescient-mode +1)
-(diminish 'company-mode)
+;; (diminish 'company-mode)
 (custom-set-variables
- '(company-idle-delay 0.5)
- '(company-minimum-prefix-length 2)
+ '(company-minimum-prefix-length 1)
+ '(company-idle-delay 0.0)
  '(company-backends
 	 '((company-capf :with company-dabbrev-code :with company-keywords)
 		 (company-files :with company-dabbrev))))
+(global-company-mode t)
+;; (company-box-mode +1)
 
 (straight-use-package 'flycheck)
 (straight-use-package 'dockerfile-mode)
@@ -30,7 +32,6 @@
 (setq compilation-skip-threshold 2)
 (setq eldoc-echo-area-use-multiline-p 8)
 (setq eldoc-echo-area-prefer-doc-buffer t)
-(setq company-minimum-prefix-length 3)
 (global-hl-line-mode +1)
 (with-eval-after-load 'highlight-indent-guides
 	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)

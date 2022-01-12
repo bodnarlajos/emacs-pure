@@ -24,6 +24,7 @@
 (add-hook 'my/dev-hook (lambda ()
 												 (straight-use-package 'lsp-mode)
 												 (straight-use-package 'lsp-ui)
+												 (lsp-headerline-breadcrumb-mode -1)
 												 (custom-set-variables
 													'(lsp-ui-doc-show-with-cursor t))))
 ;; end of the ide-mode customization
@@ -38,5 +39,6 @@
 	(diff-hl-mode t)
 	(smartparens-mode +1))
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
+(setq lsp-headerline-breadcrumb-enable nil)
 
 (provide 'my-dev)

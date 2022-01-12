@@ -72,7 +72,7 @@
 	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	;;  )
-	(run-with-timer 1 nil 'my/start-modules)
+	(my/start-modules)
 	(set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 

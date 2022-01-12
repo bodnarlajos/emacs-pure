@@ -12,8 +12,14 @@
 (global-set-key [escape] 'keyboard-quit)
 
 
-(global-set-key (kbd "<M-left>") 'winner-undo)
-(global-set-key (kbd "<M-right>") 'winner-redo)
+(global-set-key (kbd "<M-left>") 'windmove-left)
+(global-set-key (kbd "<M-right>") 'windmove-right)
+(global-set-key (kbd "<M-up>") 'windmove-up)
+(global-set-key (kbd "<M-down>") 'windmove-down)
+(global-set-key (kbd "<M-C-left>") 'windmove-swap-states-left)
+(global-set-key (kbd "<M-C-right>") 'windmove-swap-states-right)
+(global-set-key (kbd "<M-C-up>") 'windmove-swap-states-up)
+(global-set-key (kbd "<M-C-down>") 'windmove-swap-states-down)
 (global-set-key (kbd "C-x C-z") #'selectrum-repeat)
 
 (global-set-key (kbd "C-j") 'my-prefix)
