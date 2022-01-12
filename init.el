@@ -78,7 +78,6 @@
 (which-key-mode +1)
 (diminish 'which-key-mode)
 
-(eldoc-mode -1)
 ;; set defaults
 (setq-default
  dired-dwim-target t
