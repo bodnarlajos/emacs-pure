@@ -65,9 +65,11 @@
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 (straight-use-package 'el-get)
+(corfu-global-mode +1)
 (straight-use-package '(cape
 			:type git
 			:repo "minad/cape"))
+
 (use-package cape
   ;; Bind dedicated completion commands
   :bind (("C-c p p" . completion-at-point) ;; capf
@@ -86,22 +88,23 @@
 				 )
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-tex)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;; (add-to-list 'completion-at-point-functions #'cape-file)
+  ;; (add-to-list 'completion-at-point-functions #'cape-tex)
+  ;; (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  ;; (add-to-list 'completion-at-point-functions #'cape-keyword)
   ;;(add-to-list 'completion-at-point-functions #'cape-sgml)
   ;;(add-to-list 'completion-at-point-functions #'cape-rfc1345)
   ;;(add-to-list 'completion-at-point-functions #'cape-abbrev)
   ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
   ;;(add-to-list 'completion-at-point-functions #'cape-dict)
-  (add-to-list 'completion-at-point-functions #'cape-symbol)
-  (add-to-list 'completion-at-point-functions #'cape-line)
-)
+  ;; (add-to-list 'completion-at-point-functions #'cape-symbol)
+  ;; (add-to-list 'completion-at-point-functions #'cape-line))
 ;; (straight-use-package 'cape
-;;  :type git :repo minad/cape)
+	;;  :type git :repo minad/cape)
+	(setq completion-at-point-functions
+				(list (cape-super-capf #'cape-dabbrev #'cape-file #'cape-keyword #'cape-symbol #'cape-line)))
+)
 
-(corfu-global-mode +1)
 (marginalia-mode +1)
 (vertico-mode +1)
 ;; (mini-frame-mode +1)
