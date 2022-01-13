@@ -9,7 +9,6 @@
 (straight-use-package 'company)
 (straight-use-package 'company-prescient)
 (straight-use-package 'company-quickhelp)
-(global-company-mode t)
 (company-prescient-mode +1)
 (diminish 'company-mode)
 (custom-set-variables
@@ -18,6 +17,7 @@
  '(company-backends
 	 '((company-capf :with company-dabbrev-code :with company-keywords)
 		 (company-files :with company-dabbrev))))
+(global-company-mode t)
 
 (straight-use-package 'flycheck)
 (straight-use-package 'dockerfile-mode)
