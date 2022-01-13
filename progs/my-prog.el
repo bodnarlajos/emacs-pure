@@ -6,20 +6,6 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
-(straight-use-package 'company)
-;; (straight-use-package 'company-box)
-(straight-use-package 'company-prescient)
-;; (straight-use-package 'company-quickhelp)
-(company-prescient-mode +1)
-;; (diminish 'company-mode)
-(custom-set-variables
- '(company-minimum-prefix-length 1)
- '(company-idle-delay 0.0)
- '(company-backends
-	 '((company-capf :with company-dabbrev-code :with company-keywords)
-		 (company-files :with company-dabbrev))))
-(global-company-mode t)
-;; (company-box-mode +1)
 
 (straight-use-package 'flycheck)
 (straight-use-package 'dockerfile-mode)
