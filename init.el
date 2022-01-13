@@ -48,11 +48,11 @@
 ;; (require 'my-layout)
 
 (straight-use-package 'diminish)
-(straight-use-package 'selectrum)
-(straight-use-package 'prescient)
-(straight-use-package 'selectrum-prescient)
+(straight-use-package 'vertico)
+(straight-use-package 'orderless)
+(straight-use-package 'corfu)
 (straight-use-package 'marginalia)
-(straight-use-package 'mini-frame)
+;; (straight-use-package 'mini-frame)
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
@@ -64,11 +64,10 @@
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 
-(selectrum-mode +1)
-(selectrum-prescient-mode +1)
-(prescient-persist-mode +1)
+(corfu-global-mode +1)
 (marginalia-mode +1)
-(mini-frame-mode +1)
+(vertico-mode +1)
+;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
 (diminish 'anzu-mode)
@@ -78,7 +77,7 @@
 (which-key-mode +1)
 (diminish 'which-key-mode)
 
-(eldoc-mode -1)
+(require 'dabbrev)
 ;; set defaults
 (setq-default
  dired-dwim-target t
@@ -107,6 +106,12 @@
  set-mark-command-repeat-pop t
  resize-mini-windows t
  completions-format 'vertical
+ completion-styles '(orderless)
+ completion-category-defaults nil
+ completion-category-overrides '((file (styles . (partial-completion))))
+ completion-cycle-threshold 3
+ tab-always-indent 'complete
+ corfu-cycle t
  isearch-allow-scroll t
  scroll-preserve-screen-position t
  isearch-allow-prefix t

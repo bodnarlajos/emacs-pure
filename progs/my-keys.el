@@ -11,6 +11,15 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'keyboard-quit)
 
+;; (with-eval-after-load 'dabbrev
+;; 	(global-set-key (kbd "M-/") dabbrev-completion)
+;; 	(global-set-key (kbd "C-M-/") dabbrev-expand))
+;; (with-eval-after-load 'corfu
+;; 	(define-key corfu-map (kbd "TAB") corfu-next)
+;; 	(define-key corfu-map (kbd [tab]) corfu-next)
+;; 	(define-key corfu-map (kbd [backtab]) corfu-previous)
+;; 	(define-key corfu-map (kbd "S-TAB") corfu-previous)
+;; 	)
 
 (global-set-key (kbd "<M-left>") 'winner-undo)
 (global-set-key (kbd "<M-right>") 'winner-redo)
