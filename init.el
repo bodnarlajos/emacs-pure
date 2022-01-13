@@ -66,8 +66,8 @@
 (straight-use-package 'visual-regexp)
 (straight-use-package 'el-get)
 (straight-use-package '(cape
-												:type git
-												:repo "https://github.com/minad/cape"))
+			:type git
+			:repo "minad/cape"))
 (use-package cape
   ;; Bind dedicated completion commands
   :bind (("C-c p p" . completion-at-point) ;; capf
