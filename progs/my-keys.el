@@ -12,18 +12,20 @@
 (global-set-key [escape] 'keyboard-quit)
 
 (with-eval-after-load 'dabbrev
-	(global-set-key (kbd "M-/") 'dabbrev-completion)
-	(global-set-key (kbd "C-M-/") 'dabbrev-expand))
+	(global-set-key (kbd "C-M-/") 'dabbrev-completion)
+	(global-set-key (kbd "C-M-S-/") 'dabbrev-expand))
+(global-set-key (kbd "M-/") 'completion-at-point)
 (with-eval-after-load 'corfu
 	(define-key corfu-map (kbd "TAB") 'corfu-next)
 	(define-key corfu-map [tab] 'corfu-next)
 	(define-key corfu-map [backtab] 'corfu-previous)
 	(define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+	(define-key corfu-map (kbd "M-/") 'corfu-next)
 	)
 
 (global-set-key (kbd "<M-left>") 'winner-undo)
 (global-set-key (kbd "<M-right>") 'winner-redo)
-(global-set-key (kbd "C-x C-z") #'selectrum-repeat)
+(global-set-key (kbd "C-x C-z") #'repeat-complex-command)
 
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
