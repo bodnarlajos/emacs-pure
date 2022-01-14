@@ -73,6 +73,12 @@
 
 (define-key my-prefix (kbd "C-j") 'my/menu-base)
 
+(define-key my-prefix (kbd "p f") 'cape-file)
+(define-key my-prefix (kbd "p d") 'cape-dabbrev)
+(define-key my-prefix (kbd "p l") 'cape-line)
+(define-key my-prefix (kbd "p s") 'cape-symbol)
+(define-key my-prefix (kbd "p k") 'cape-keyword)
+
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
 
