@@ -70,8 +70,8 @@
 	
 	;; The window initial size
 	;; specified size
-  (add-to-list 'default-frame-alist '(width . 220))
-	(add-to-list 'default-frame-alist '(height . 55))
+  (add-to-list 'default-frame-alist '(width . 180))
+	(add-to-list 'default-frame-alist '(height . 48))
 	(add-to-list 'default-frame-alist '(left . 200))
 	(add-to-list 'default-frame-alist '(top . 10))
 	;; (set-frame-size (selected-frame) 140 45))
