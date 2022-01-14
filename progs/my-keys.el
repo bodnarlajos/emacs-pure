@@ -12,13 +12,15 @@
 (global-set-key [escape] 'keyboard-quit)
 
 (with-eval-after-load 'dabbrev
-	(global-set-key (kbd "M-/") 'dabbrev-completion)
+	(global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
 	(global-set-key (kbd "C-M-/") 'dabbrev-expand))
+(global-set-key (kbd "M-/") 'completion-at-point)
 (with-eval-after-load 'corfu
 	(define-key corfu-map (kbd "TAB") 'corfu-next)
 	(define-key corfu-map [tab] 'corfu-next)
 	(define-key corfu-map [backtab] 'corfu-previous)
 	(define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+	(define-key corfu-map (kbd "M-/") 'corfu-next)
 	)
 
 (global-set-key (kbd "<M-left>") 'windmove-left)
@@ -30,6 +32,7 @@
 (global-set-key (kbd "<M-C-up>") 'windmove-swap-states-up)
 (global-set-key (kbd "<M-C-down>") 'windmove-swap-states-down)
 (global-set-key (kbd "C-x C-z") #'selectrum-repeat)
+(global-set-key (kbd "C-x C-z") #'repeat-complex-command)
 
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
@@ -88,12 +91,12 @@
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
 
-(global-unset-key (kbd "C-f"))
-(global-set-key (kbd "C-f") 'isearch-forward)
-(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+;; (global-unset-key (kbd "C-f"))
+;; (global-set-key (kbd "C-f") 'isearch-forward)
+;; (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 
-(global-unset-key (kbd "C-s"))
-(global-set-key (kbd "C-s") 'save-buffer)
+;; (global-unset-key (kbd "C-s"))
+;; (global-set-key (kbd "C-s") 'save-buffer)
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
