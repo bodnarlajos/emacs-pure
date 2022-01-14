@@ -52,7 +52,6 @@
 												 (straight-use-package 'eldoc-box)
 												 (global-eldoc-mode +1)
 												 (add-hook 'lsp-mode-hook 'eldoc-box-hover-mode +1)))
-
 ;; end of the ide-mode customization
 
 ;; the custom prog mode
