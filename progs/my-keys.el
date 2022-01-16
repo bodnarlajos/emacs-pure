@@ -14,7 +14,8 @@
 (with-eval-after-load 'dabbrev
 	(global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
 	(global-set-key (kbd "C-M-/") 'dabbrev-expand))
-(global-set-key (kbd "M-/") 'completion-at-point)
+(global-set-key (kbd "<C-tab>") 'completion-at-point)
+
 (with-eval-after-load 'corfu
 	(define-key corfu-map (kbd "TAB") 'corfu-next)
 	(define-key corfu-map [tab] 'corfu-next)
@@ -113,7 +114,6 @@
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 ;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
-(global-set-key (kbd "<C-tab>") 'other-window)
 ;; (global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
 (define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)

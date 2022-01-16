@@ -11,6 +11,7 @@
 	(interactive)
 	(recentf-mode)
 	(require 'my-prog)
+	(require 'my-dev)
 	(require 'my-jump)
 	(require 'my-haskell)
 	(require 'my-web)
@@ -46,12 +47,9 @@
        '(org-fontify-whole-heading-line t)
        '(org-hide-leading-stars t))))
 	
-	;; selectrum config
-	(custom-set-variables
-	 '(selectrum-max-window-height 15))
-
-	(require 'my-dev)
-	(my/light-theme)
+	(my/start-modules)
+	(straight-use-package 'doom-themes)
+	(load-theme 'doom-one)
 	
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.2)))))
@@ -72,7 +70,6 @@
 	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	;;  )
-	(my/start-modules)
 	(set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 
