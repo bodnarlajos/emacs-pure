@@ -219,13 +219,13 @@ Version 2017-11-01"
 				(development (my/menu-item-for-program "Start development"))
 				(longLines (my/menu-item-for-program "Long lines")))
 		(let ((ido-list (list replaceStringRegex recentfiles restclient revertBuffer newbuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
-			(let ((res (selectrum-completing-read "Action: " ido-list)))
+			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res replaceStringRegex) (call-interactively 'vr/replace))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res longLines) (call-interactively 'my/long-line))
-				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
+				 ((string-equal res recentfiles) (call-interactively 'my/recentf-open))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
@@ -255,7 +255,7 @@ Version 2017-11-01"
 	(when (featurep 'elscreen)
 		(elscreen-next)))
 
-(defun ido-recentf-open ()
+(defun my/recentf-open ()
 	"Use `ido-completing-read' to find a recent file."
 	(interactive)			
 	(if (find-file (completing-read "Find recent file: " recentf-list))

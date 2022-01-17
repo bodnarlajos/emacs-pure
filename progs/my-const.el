@@ -4,10 +4,6 @@
 (defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
-(defvar my/project-dir '("/home/lbodnar/Projects"))
-(defvar my/exec-dir '("/home/lbodnar/.local/bin"))
-(defvar my/notes-dir "/home/lbodnar/Documents/notes/")
-(defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/cursor-color "red")
 (defvar my/cursor-type 'box)
 (defun my/start-modules ()
@@ -15,6 +11,7 @@
 	(interactive)
 	(recentf-mode)
 	(require 'my-prog)
+	(require 'my-dev)
 	(require 'my-jump)
 	(require 'my-haskell)
 	(require 'my-web)
@@ -55,19 +52,16 @@
        '(org-fontify-whole-heading-line t)
        '(org-hide-leading-stars t))))
 	
-	;; selectrum config
-	(custom-set-variables
-	 '(selectrum-max-window-height 15))
-
-	(require 'my-dev)
-	(my/light-theme)
+	(my/start-modules)
+	(straight-use-package 'doom-themes)
+	(load-theme 'doom-one)
 	
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.2)))))
 	(eval-after-load 'magit
 		(custom-set-faces
 		 '(magit-section-highlight ((t (:background nil))))))
-	
+
 	;; The window initial size
 	;; specified size
   (add-to-list 'default-frame-alist '(width . 180))
@@ -76,15 +70,13 @@
 	(add-to-list 'default-frame-alist '(top . 10))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
-	;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 	;; Windows like epg config
 	(custom-set-variables
 	 '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
 	 '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	 '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	 )
-	(run-with-timer 1 nil 'my/start-modules)
-	;; (set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")

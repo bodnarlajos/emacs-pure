@@ -64,20 +64,41 @@
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 (straight-use-package 'el-get)
+
 (corfu-global-mode +1)
+(require 'savehist)
+(savehist-mode +1)
 (straight-use-package '(cape
-			:type git
-			:repo "minad/cape"))
+												:type git
+												:repo "minad/cape"))
 
-(use-package cape
-  :init
-  ;; Add `completion-at-point-functions', used by `completion-at-point'.
-  (setq completion-at-point-functions '(cape-line))
-  (add-to-list 'completion-at-point-functions #'cape-symbol)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file))
+(setq completion-at-point-functions '(cape-line))
+(add-to-list 'completion-at-point-functions #'cape-symbol)
+(add-to-list 'completion-at-point-functions #'cape-keyword)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+(add-to-list 'completion-at-point-functions #'cape-file)
+(setq corfu-cycle t)
 
+(defun my/ignore-elisp-keywords (cand)
+  (or (not (keywordp cand))
+			(eq (char-after (car completion-in-region--data)) ?:)))
+
+(defun my/setup-elisp ()
+  (setq-local completion-at-point-functions
+							`(,(cape-super-capf
+									(cape-capf-with-predicate
+									 #'elisp-completion-at-point
+									 #'my/ignore-elisp-keywords)
+									#'cape-dabbrev)
+								cape-file)
+							cape-dabbrev-min-length 5))
+(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+
+(with-eval-after-load 'project
+	(setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project))))))
 (marginalia-mode +1)
 (vertico-mode +1)
 ;; (mini-frame-mode +1)
@@ -118,7 +139,6 @@
  browse-url-browser-function 'browse-url-generic
  set-mark-command-repeat-pop t
  resize-mini-windows t
- completions-format 'vertical
  completion-styles '(orderless)
  completion-category-defaults nil
  completion-category-overrides '((file (styles . (partial-completion))))

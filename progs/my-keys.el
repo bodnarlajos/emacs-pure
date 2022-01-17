@@ -14,7 +14,8 @@
 (with-eval-after-load 'dabbrev
 	(global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
 	(global-set-key (kbd "C-M-/") 'dabbrev-expand))
-(global-set-key (kbd "M-/") 'completion-at-point)
+(global-set-key (kbd "<C-tab>") 'completion-at-point)
+
 (with-eval-after-load 'corfu
 	(define-key corfu-map (kbd "TAB") 'corfu-next)
 	(define-key corfu-map [tab] 'corfu-next)
@@ -23,8 +24,15 @@
 	(define-key corfu-map (kbd "M-/") 'corfu-next)
 	)
 
-(global-set-key (kbd "<M-left>") 'winner-undo)
-(global-set-key (kbd "<M-right>") 'winner-redo)
+(global-set-key (kbd "<M-left>") 'windmove-left)
+(global-set-key (kbd "<M-right>") 'windmove-right)
+(global-set-key (kbd "<M-up>") 'windmove-up)
+(global-set-key (kbd "<M-down>") 'windmove-down)
+(global-set-key (kbd "<M-C-left>") 'windmove-swap-states-left)
+(global-set-key (kbd "<M-C-right>") 'windmove-swap-states-right)
+(global-set-key (kbd "<M-C-up>") 'windmove-swap-states-up)
+(global-set-key (kbd "<M-C-down>") 'windmove-swap-states-down)
+(global-set-key (kbd "C-x C-z") #'selectrum-repeat)
 (global-set-key (kbd "C-x C-z") #'repeat-complex-command)
 
 (global-set-key (kbd "C-j") 'my-prefix)
@@ -106,7 +114,6 @@
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 ;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
-(global-set-key (kbd "<C-tab>") 'other-window)
 ;; (global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
 (define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
