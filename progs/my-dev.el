@@ -22,13 +22,10 @@
 (defun my/setup-lsp-capf ()
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
-							`(,(cape-super-capf
-									(cape-capf-with-predicate
-									 #'lsp-completion-at-point
-									 #'my/ignore-elisp-keywords)
-									#'cape-dabbrev)
+							'(lsp-completion-at-point
+									 cape-dabbrev
 								cape-file)
-							cape-dabbrev-min-length 3))
+							cape-dabbrev-min-length 2))
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
 ;; beginning of the ide-mode customization

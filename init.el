@@ -47,7 +47,7 @@
 (require 'my-keys)
 ;; (require 'my-layout)
 
-(straight-use-package 'use-package)
+;; (straight-use-package 'use-package)
 (straight-use-package 'diminish)
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
@@ -64,6 +64,9 @@
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 (straight-use-package 'el-get)
+(straight-use-package 'doom-modeline)
+
+(doom-modeline-mode +1)
 
 (corfu-global-mode +1)
 (require 'savehist)
@@ -85,13 +88,10 @@
 
 (defun my/setup-elisp ()
   (setq-local completion-at-point-functions
-							`(,(cape-super-capf
-									(cape-capf-with-predicate
-									 #'elisp-completion-at-point
-									 #'my/ignore-elisp-keywords)
-									#'cape-dabbrev)
+							'(elisp-completion-at-point
+									cape-dabbrev
 								cape-file)
-							cape-dabbrev-min-length 5))
+							cape-dabbrev-min-length 2))
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
 (with-eval-after-load 'project
@@ -115,7 +115,7 @@
 ;; set defaults
 (setq-default
  dired-dwim-target t
- ;; doom-modeline-height 25
+ doom-modeline-height 25
  autoload-compute-prefixes nil
  frame-inhibit-implied-resize t
  initial-major-mode 'fundamental-mode

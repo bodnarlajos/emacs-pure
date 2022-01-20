@@ -22,31 +22,28 @@
 	"Theme"
 	(interactive)
 	;; (straight-use-package 'material-theme)
-	(disable-theme 'tsdh-light)
-	(load-theme 'tsdh-dark)
+	(disable-theme 'doom-one-light)
+	(load-theme 'doom-one)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
-		(highlight-indent-guides-mode +1))
+		(highlight-indent-guides-mode +1)))
 	;; fix for material theme
 	;; (set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
 	;; (custom-set-faces
-	;;  '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
-	)
+	;;  '(hl-line ((t (:extend t :background "#0f0f0f" :inverse-video nil))))))
 
-(defun my/light-theme ()
+(defun my/theme-light ()
 	"Theme light"
 	(interactive)
-	(disable-theme 'tsdh-dark)
-	(load-theme 'tsdh-light)
+	(disable-theme 'doom-one)
+	(load-theme 'doom-one-light)
 	(when (fboundp 'highlight-indent-guides)
 		(highlight-indent-guides-mode -1)
-		(highlight-indent-guides-mode +1))
+		(highlight-indent-guides-mode +1)))
 	;; fix for material theme
 	;; (set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
 	;; (custom-set-faces
-	;;  '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
-	)
-
+	;;  '(hl-line ((t (:extend t :background "#ffffff" :inverse-video nil))))))
 
 (defun my/check/start-with-in-list (str thelist)
 	"T."
@@ -283,11 +280,6 @@ Version 2017-11-01"
 	(interactive)
 	(kill-buffer)
 	(delete-window))
-
-(defun my/dark-theme ()
-	"T."
-	(interactive)
-	(run-hooks 'my/dark-theme-hook))
 
 (defun my/load (filename)
 	"T."							
