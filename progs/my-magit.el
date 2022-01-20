@@ -69,7 +69,9 @@
 
 (with-eval-after-load 'magit
 	(add-hook 'magit-status-mode-hook 'my/faster-magit)
-	(add-hook 'magit-status-mode-hook 'my/magit-keys))
+	(add-hook 'magit-status-mode-hook 'my/magit-keys)
+	(custom-set-faces 
+		'(magit-diff-hunk-heading ((t (:foreground "orange"))))))
 
 (setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
 (setq magit--default-directory my/project-dir)  
