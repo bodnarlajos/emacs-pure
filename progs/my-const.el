@@ -4,8 +4,6 @@
 (defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
-(defvar my/cursor-color "red")
-(defvar my/cursor-type 'box)
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
@@ -16,6 +14,7 @@
 	(require 'my-haskell)
 	(require 'my-web)
 	(require 'my-csharp)
+	(require 'my-magit)
 	)
 
 ;; end script of init
@@ -56,18 +55,12 @@
 	(straight-use-package 'doom-themes)
 	(load-theme 'doom-one)
 	
-	(custom-set-faces
-	 '(mode-line ((t (:height 1.2)))))
-	(eval-after-load 'magit
-		(custom-set-faces
-		 '(magit-section-highlight ((t (:background nil))))))
-
 	;; The window initial size
 	;; specified size
-  (add-to-list 'default-frame-alist '(width . 180))
-	(add-to-list 'default-frame-alist '(height . 48))
-	(add-to-list 'default-frame-alist '(left . 200))
-	(add-to-list 'default-frame-alist '(top . 10))
+  ;; (add-to-list 'default-frame-alist '(width . 180))
+	;; (add-to-list 'default-frame-alist '(height . 48))
+	;; (add-to-list 'default-frame-alist '(left . 200))
+	;; (add-to-list 'default-frame-alist '(top . 10))
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
