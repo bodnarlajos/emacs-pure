@@ -4,8 +4,6 @@
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
 (defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
-(defvar my/cursor-color "red")
-(defvar my/cursor-type 'box)
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
@@ -16,6 +14,7 @@
 	(require 'my-haskell)
 	(require 'my-web)
 	(require 'my-csharp)
+	(require 'my-magit)
 	)
 
 ;; end script of init
@@ -51,12 +50,6 @@
 	(straight-use-package 'doom-themes)
 	(load-theme 'doom-one)
 	
-	(custom-set-faces
-	 '(mode-line ((t (:height 1.2)))))
-	(eval-after-load 'magit
-		(custom-set-faces
-		 '(magit-section-highlight ((t (:background nil))))))
-
 	;; The window initial size
 	;; specified size
   ;; (add-to-list 'default-frame-alist '(width . 140))
