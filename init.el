@@ -95,6 +95,12 @@
 							cape-dabbrev-min-length 2))
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
+(straight-use-package '(kind-icon
+												:type git
+												:repo "jdtsmith/kind-icon"))
+(setq kind-icon-default-face 'corfu-default)
+(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+
 (with-eval-after-load 'project
 	(setq consult-project-root-function
         (lambda ()
@@ -216,8 +222,6 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
-(set-cursor-color my/cursor-color)
-(setq-default cursor-type my/cursor-type)
 
 (my/end-of-init)
 
