@@ -98,6 +98,7 @@
 (straight-use-package '(kind-icon
 												:type git
 												:repo "jdtsmith/kind-icon"))
+(require 'kind-icon)
 (setq kind-icon-default-face 'corfu-default)
 (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
