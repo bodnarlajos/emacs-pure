@@ -63,7 +63,7 @@
 	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	;;  )
-	(set-cursor-color "#ff0000")
+	;; (set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
