@@ -47,12 +47,13 @@
 (require 'my-keys)
 ;; (require 'my-layout)
 
+;; (straight-use-package 'use-package)
 (straight-use-package 'diminish)
-(straight-use-package 'selectrum)
-(straight-use-package 'prescient)
-(straight-use-package 'selectrum-prescient)
+(straight-use-package 'vertico)
+(straight-use-package 'orderless)
+(straight-use-package 'corfu)
 (straight-use-package 'marginalia)
-(straight-use-package 'mini-frame)
+;; (straight-use-package 'mini-frame)
 (straight-use-package 'consult)
 (straight-use-package 'rg)
 (straight-use-package 'undo-tree)
@@ -62,12 +63,53 @@
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
+(straight-use-package 'el-get)
+(straight-use-package 'doom-modeline)
 
-(selectrum-mode +1)
-(selectrum-prescient-mode +1)
-(prescient-persist-mode +1)
+(doom-modeline-mode +1)
+
+(corfu-global-mode +1)
+(require 'savehist)
+(savehist-mode +1)
+(straight-use-package '(cape
+												:type git
+												:repo "minad/cape"))
+
+(setq completion-at-point-functions '(cape-line))
+(add-to-list 'completion-at-point-functions #'cape-symbol)
+(add-to-list 'completion-at-point-functions #'cape-keyword)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+(add-to-list 'completion-at-point-functions #'cape-file)
+(setq corfu-cycle t)
+
+(defun my/ignore-elisp-keywords (cand)
+  (or (not (keywordp cand))
+			(eq (char-after (car completion-in-region--data)) ?:)))
+
+(defun my/setup-elisp ()
+  (setq-local completion-at-point-functions
+							'(elisp-completion-at-point
+									cape-dabbrev
+								cape-file)
+							cape-dabbrev-min-length 2))
+(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+
+(straight-use-package '(kind-icon
+												:type git
+												:repo "jdtsmith/kind-icon"))
+(require 'kind-icon)
+(setq kind-icon-default-face 'corfu-default)
+(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+
+(with-eval-after-load 'project
+	(setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project))))))
 (marginalia-mode +1)
-(mini-frame-mode +1)
+(setq vertico-cycle t)
+(vertico-mode +1)
+;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
 (diminish 'anzu-mode)
@@ -77,11 +119,11 @@
 (which-key-mode +1)
 (diminish 'which-key-mode)
 
-(eldoc-mode -1)
+(require 'dabbrev)
 ;; set defaults
 (setq-default
  dired-dwim-target t
- ;; doom-modeline-height 25
+ doom-modeline-height 25
  autoload-compute-prefixes nil
  frame-inhibit-implied-resize t
  initial-major-mode 'fundamental-mode
@@ -105,7 +147,12 @@
  browse-url-browser-function 'browse-url-generic
  set-mark-command-repeat-pop t
  resize-mini-windows t
- completions-format 'vertical
+ completion-styles '(orderless)
+ completion-category-defaults nil
+ completion-category-overrides '((file (styles . (partial-completion))))
+ completion-cycle-threshold 3
+ tab-always-indent 'complete
+ corfu-cycle t
  isearch-allow-scroll t
  scroll-preserve-screen-position t
  isearch-allow-prefix t
@@ -176,8 +223,6 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
-(set-cursor-color my/cursor-color)
-(setq-default cursor-type my/cursor-type)
 
 (my/end-of-init)
 

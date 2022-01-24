@@ -11,10 +11,37 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'keyboard-quit)
 
+(with-eval-after-load 'dabbrev
+  (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
+  (global-set-key (kbd "C-M-/") 'dabbrev-expand))
+(global-set-key (kbd "<C-tab>") 'completion-at-point)
 
-(global-set-key (kbd "<M-left>") 'winner-undo)
-(global-set-key (kbd "<M-right>") 'winner-redo)
+(with-eval-after-load 'corfu
+  (define-key corfu-map (kbd "TAB") 'corfu-next)
+  (define-key corfu-map [tab] 'corfu-next)
+  (define-key corfu-map [backtab] 'corfu-previous)
+  (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+  (define-key corfu-map (kbd "M-/") 'corfu-next)
+  )
+
+(global-unset-key (kbd "C-x C-b"))
+(global-unset-key (kbd "C-x b"))
+(global-set-key (kbd "C-x b") 'my/switch-to-buffer)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+
+(with-eval-after-load 'vertico
+  (define-key vertico-map (kbd "TAB") 'vertico-next))
+
+(global-set-key (kbd "<M-left>") 'windmove-left)
+(global-set-key (kbd "<M-right>") 'windmove-right)
+(global-set-key (kbd "<M-up>") 'windmove-up)
+(global-set-key (kbd "<M-down>") 'windmove-down)
+(global-set-key (kbd "<M-C-left>") 'windmove-swap-states-left)
+(global-set-key (kbd "<M-C-right>") 'windmove-swap-states-right)
+(global-set-key (kbd "<M-C-up>") 'windmove-swap-states-up)
+(global-set-key (kbd "<M-C-down>") 'windmove-swap-states-down)
 (global-set-key (kbd "C-x C-z") #'selectrum-repeat)
+(global-set-key (kbd "C-x C-z") #'repeat-complex-command)
 
 (global-set-key (kbd "C-j") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
@@ -64,15 +91,21 @@
 
 (define-key my-prefix (kbd "C-j") 'my/menu-base)
 
+(define-key my-prefix (kbd "p f") 'cape-file)
+(define-key my-prefix (kbd "p d") 'cape-dabbrev)
+(define-key my-prefix (kbd "p l") 'cape-line)
+(define-key my-prefix (kbd "p s") 'cape-symbol)
+(define-key my-prefix (kbd "p k") 'cape-keyword)
+
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
 
-(global-unset-key (kbd "C-f"))
-(global-set-key (kbd "C-f") 'isearch-forward)
-(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+;; (global-unset-key (kbd "C-f"))
+;; (global-set-key (kbd "C-f") 'isearch-forward)
+;; (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 
-(global-unset-key (kbd "C-s"))
-(global-set-key (kbd "C-s") 'save-buffer)
+;; (global-unset-key (kbd "C-s"))
+;; (global-set-key (kbd "C-s") 'save-buffer)
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
@@ -89,7 +122,6 @@
 (global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 ;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
-(global-set-key (kbd "<C-tab>") 'other-window)
 ;; (global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
 (define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
 (global-set-key (kbd "C-S-m") 'my/swap-window)
@@ -103,8 +135,8 @@
 ;; org mode map
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
-	(add-hook 'org-mode-hook (lambda ()
-													 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
+  (add-hook 'org-mode-hook (lambda ()
+			     (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
 ;; menu 
 (defvar right-popup-menu 
   (let ((menu (make-sparse-keymap "Commands"))) 
@@ -115,7 +147,7 @@
     (define-key menu [save-buffer] (cons "Save buffer" 'save-buffer)) 
     (define-key menu [mark-whole-buffer] (cons "Select all" 'my/select-all)) 
     (define-key menu [my/dumb-jump-go] (cons "Goto" 'my/dumb-jump-go))
-		(define-key menu [xref-pop-marker-stack] (cons "Back to ..." 'xref-pop-marker-stack)) 
+    (define-key menu [xref-pop-marker-stack] (cons "Back to ..." 'xref-pop-marker-stack)) 
     (define-key menu [my/xah-new-empty-buffer] (cons "New buffer" 'my/xah-new-empty-buffer)) 
     (define-key menu [yank] (cons "Paste" 'yank)) 
     (define-key menu [copy-region-as-kill] (cons "Copy" 'copy-region-as-kill)) 

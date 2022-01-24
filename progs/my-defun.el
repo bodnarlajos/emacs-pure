@@ -1,7 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
 (require 'cl-lib)
-;; (straight-use-package 'ace-window)
+
+(defun my/switch-to-buffer ()
+	"Switch to the buffer or switch to buffer inside a project"
+	(interactive)
+	(if doom-modeline--project-root
+			(call-interactively 'project-switch-to-buffer)
+		(call-interactively 'switch-to-buffer)))
 
 (defun my/copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard.It's a prelude code ..."
@@ -12,41 +18,6 @@
     (when filename
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
-
-(defun my/start/gitg ()
-	"Start gitg process"
-	(interactive)
-	(async-shell-command "\"C:/Program Files/gitg/bin/gitg.exe\""))
-
-(defun my/theme-dark ()
-	"Theme"
-	(interactive)
-	;; (straight-use-package 'material-theme)
-	(disable-theme 'tsdh-light)
-	(load-theme 'tsdh-dark)
-	(when (fboundp 'highlight-indent-guides)
-		(highlight-indent-guides-mode -1)
-		(highlight-indent-guides-mode +1))
-	;; fix for material theme
-	;; (set-face-attribute 'region nil :background "#54869e" :inverse-video nil)
-	;; (custom-set-faces
-	;;  '(hl-line ((t (:extend t :background "#606a6f" :inverse-video nil))))))
-	)
-
-(defun my/light-theme ()
-	"Theme light"
-	(interactive)
-	(disable-theme 'tsdh-dark)
-	(load-theme 'tsdh-light)
-	(when (fboundp 'highlight-indent-guides)
-		(highlight-indent-guides-mode -1)
-		(highlight-indent-guides-mode +1))
-	;; fix for material theme
-	;; (set-face-attribute 'region nil :background "#aed5fc" :inverse-video nil)
-	;; (custom-set-faces
-	;;  '(hl-line ((t (:extend t :background "#dbedff" :inverse-video nil))))))
-	)
-
 
 (defun my/check/start-with-in-list (str thelist)
 	"T."
@@ -82,15 +53,6 @@
 				(funcall monitor2)
 			(funcall monitor1))))
 
-(defun my/select-window ()
-	"select a window"
-	(interactive)
-	(ace-select-window))
-(defun my/swap-window ()
-	"swap a window"
-	(interactive)
-	(ace-swap-window))
-
 (defun my/copy-line (arg)
 	"Copy lines (as many as prefix argument) in the kill ring.
       Ease of use features:
@@ -112,7 +74,7 @@
 	(beginning-of-line (or (and arg (1+ arg)) 2))
 	(if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
-(defun my/ffap ()
+(defun my/ffap-url ()
 	"ffap"
 	(interactive)
 	(let ((url (ffap-url-at-point)))
@@ -176,20 +138,6 @@ Version 2017-11-01"
 									(point))))
 		(comment-or-uncomment-region start end)))
 
-(defun my/start/git ()
-	"Open the magit and remove other windows"
-	(interactive)
-	(require 'my-magit)
-	(my/magit-status)
-	(delete-other-windows))
-
-(defun my/menu-smex ()
-	"T."
-	(interactive)
-	(setq ido-selected "Run Command")
-	(setq ido-text "Run Command")
-	(ido-exit-minibuffer))
-
 (defun my/menu-item-formatter (itemName signer)
 	"."
 	(format "|%s %-200s |" signer itemName))
@@ -219,13 +167,13 @@ Version 2017-11-01"
 				(development (my/menu-item-for-program "Start development"))
 				(longLines (my/menu-item-for-program "Long lines")))
 		(let ((ido-list (list replaceStringRegex recentfiles restclient revertBuffer newbuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
-			(let ((res (selectrum-completing-read "Action: " ido-list)))
+			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res replaceStringRegex) (call-interactively 'vr/replace))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res longLines) (call-interactively 'my/long-line))
-				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
+				 ((string-equal res recentfiles) (call-interactively 'my/recentf-open))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
@@ -240,27 +188,6 @@ Version 2017-11-01"
 	(when (not (featurep 'dumb-jump))
 		(straight-use-package 'dumb-jump))
 	(dumb-jump-go))
-
-(defun my/elscreen-new ()
-	"Initialize the elscreen and create a new empty screen"
-	(interactive)
-	(when (not (featurep 'elscreen))
-		(straight-use-package 'elscreen)
-		(elscreen-start))
-	(elscreen-create))
-
-(defun my/elscreen-next ()
-	"Jump to the next elscreen page"
-	(interactive)
-	(when (featurep 'elscreen)
-		(elscreen-next)))
-
-(defun ido-recentf-open ()
-	"Use `ido-completing-read' to find a recent file."
-	(interactive)			
-	(if (find-file (completing-read "Find recent file: " recentf-list))
-			(message "Opening file...")
-		(message "Aborting")))
 
 (defun my/open-notes ()
 	"Open file from the notes directory"
@@ -283,23 +210,6 @@ Version 2017-11-01"
 	(interactive)
 	(kill-buffer)
 	(delete-window))
-
-(defun my/dark-theme ()
-	"T."
-	(interactive)
-	(run-hooks 'my/dark-theme-hook))
-
-(defun my/load (filename)
-	"T."							
-	(let ((my-load-file
-				 (expand-file-name (concat "progs/my-" filename ".el") user-emacs-directory)))
-		(load my-load-file)))
-
-(defun my/add-load-path (dir)
-	"T."							
-	(let ((my-load-file
-				 (expand-file-name (concat "progs/" dir) user-emacs-directory)))
-		(add-to-list 'load-path my-load-file)))
 
 (defun indent-buffer ()
 	(interactive)			
@@ -349,11 +259,6 @@ Version 2017-11-01"
 	(highlight-lines-matching-regexp "\\(\\[Error.*\\]\\)" 'hi-red-b)
 	(highlight-lines-matching-regexp "\\(Exception.*\\)" 'hi-red-b)
 	(highlight-lines-matching-regexp "\\(\\[Info.*\\]\\)" 'hi-green-b))
-
-(defun open-note ()	
-	"T."							
-	(interactive)			
-	(find-file "~/note.org"))
 
 (defun switch-to-previous-buffer ()
 	"Switch to previously open buffer.
