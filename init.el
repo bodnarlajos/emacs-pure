@@ -108,6 +108,7 @@
           (when-let (project (project-current))
             (car (project-roots project))))))
 (marginalia-mode +1)
+(setq vertico-cycle t)
 (vertico-mode +1)
 ;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)

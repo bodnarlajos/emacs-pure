@@ -2,6 +2,13 @@
 
 (require 'cl-lib)
 
+(defun my/switch-to-buffer ()
+	"Switch to the buffer or switch to buffer inside a project"
+	(interactive)
+	(if doom-modeline--project-root
+			(call-interactively 'project-switch-to-buffer)
+		(call-interactively 'switch-to-buffer)))
+
 (defun my/copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard.It's a prelude code ..."
   (interactive)

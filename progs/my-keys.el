@@ -24,6 +24,13 @@
 	(define-key corfu-map (kbd "M-/") 'corfu-next)
 	)
 
+(global-unset-key (kbd "C-x C-b"))
+(global-unset-key (kbd "C-x b"))
+(global-set-key (kbd "C-x b") 'my/switch-to-buffer)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+
+(define-key vertico-map (kbd "TAB") 'vertico-next)
+
 (global-set-key (kbd "<M-left>") 'windmove-left)
 (global-set-key (kbd "<M-right>") 'windmove-right)
 (global-set-key (kbd "<M-up>") 'windmove-up)
