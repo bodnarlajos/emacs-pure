@@ -12,24 +12,25 @@
 (global-set-key [escape] 'keyboard-quit)
 
 (with-eval-after-load 'dabbrev
-	(global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
-	(global-set-key (kbd "C-M-/") 'dabbrev-expand))
+  (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
+  (global-set-key (kbd "C-M-/") 'dabbrev-expand))
 (global-set-key (kbd "<C-tab>") 'completion-at-point)
 
 (with-eval-after-load 'corfu
-	(define-key corfu-map (kbd "TAB") 'corfu-next)
-	(define-key corfu-map [tab] 'corfu-next)
-	(define-key corfu-map [backtab] 'corfu-previous)
-	(define-key corfu-map (kbd "S-TAB") 'corfu-previous)
-	(define-key corfu-map (kbd "M-/") 'corfu-next)
-	)
+  (define-key corfu-map (kbd "TAB") 'corfu-next)
+  (define-key corfu-map [tab] 'corfu-next)
+  (define-key corfu-map [backtab] 'corfu-previous)
+  (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+  (define-key corfu-map (kbd "M-/") 'corfu-next)
+  )
 
 (global-unset-key (kbd "C-x C-b"))
 (global-unset-key (kbd "C-x b"))
 (global-set-key (kbd "C-x b") 'my/switch-to-buffer)
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 
-(define-key vertico-map (kbd "TAB") 'vertico-next)
+(with-eval-after-load 'vertico
+  (define-key vertico-map (kbd "TAB") 'vertico-next))
 
 (global-set-key (kbd "<M-left>") 'windmove-left)
 (global-set-key (kbd "<M-right>") 'windmove-right)
@@ -134,8 +135,8 @@
 ;; org mode map
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
-	(add-hook 'org-mode-hook (lambda ()
-													 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
+  (add-hook 'org-mode-hook (lambda ()
+			     (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
 ;; menu 
 (defvar right-popup-menu 
   (let ((menu (make-sparse-keymap "Commands"))) 
@@ -146,7 +147,7 @@
     (define-key menu [save-buffer] (cons "Save buffer" 'save-buffer)) 
     (define-key menu [mark-whole-buffer] (cons "Select all" 'my/select-all)) 
     (define-key menu [my/dumb-jump-go] (cons "Goto" 'my/dumb-jump-go))
-		(define-key menu [xref-pop-marker-stack] (cons "Back to ..." 'xref-pop-marker-stack)) 
+    (define-key menu [xref-pop-marker-stack] (cons "Back to ..." 'xref-pop-marker-stack)) 
     (define-key menu [my/xah-new-empty-buffer] (cons "New buffer" 'my/xah-new-empty-buffer)) 
     (define-key menu [yank] (cons "Paste" 'yank)) 
     (define-key menu [copy-region-as-kill] (cons "Copy" 'copy-region-as-kill)) 
