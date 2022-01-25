@@ -51,7 +51,6 @@
 (straight-use-package 'diminish)
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
-(straight-use-package 'corfu)
 (straight-use-package 'marginalia)
 ;; (straight-use-package 'mini-frame)
 (straight-use-package 'consult)
@@ -65,14 +64,25 @@
 (straight-use-package 'which-key)
 (straight-use-package 'visual-regexp)
 (straight-use-package 'el-get)
-(straight-use-package 'doom-modeline)
 
-(doom-modeline-mode +1)
+(use-package use-package
+	:config
+	(setq use-package-ensure t))
 
-(corfu-global-mode +1)
-(require 'savehist)
-(savehist-mode +1)
-(setq corfu-cycle t)
+(use-package doom-modeline
+	:config
+	(doom-modeline-mode +1))
+
+(use-package corfu
+	:straight t
+	:config
+	(setq corfu-cycle t)
+	(corfu-global-mode +1))
+
+(use-package savehist
+	:straight t
+	:config
+	(savehist-mode +1))
 
 (use-package cape
 	:straight (cape :type git :host github :repo "minad/cape")
