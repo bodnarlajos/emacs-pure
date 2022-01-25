@@ -27,6 +27,9 @@
 	;; (setenv "SHELL" shell-file-name)
 	;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
 
+	(require 'frontside-windowing)
+	(frontside-windowing-mode +1)
+	
 	(eval-after-load 'org-mode
 		(progn
 			(straight-use-package 'org-bullets)
@@ -48,7 +51,7 @@
 	
 	(my/start-modules)
 	(straight-use-package 'doom-themes)
-	(load-theme 'doom-one)
+	(load-theme 'doom-zenburn)
 	
 	;; The window initial size
 	;; specified size
