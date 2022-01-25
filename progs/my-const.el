@@ -2,7 +2,7 @@
 
 (defvar my/project-dir '("/home/lbodnar/Projects"))
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
-(defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes")
+(defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defun my/start-modules ()
 	"Start these modules after init"
