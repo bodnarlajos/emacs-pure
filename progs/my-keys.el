@@ -29,9 +29,6 @@
 (global-set-key (kbd "C-x b") 'my/switch-to-buffer)
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 
-(with-eval-after-load 'vertico
-  (define-key vertico-map (kbd "TAB") 'vertico-next))
-
 (global-set-key (kbd "<M-left>") 'windmove-left)
 (global-set-key (kbd "<M-right>") 'windmove-right)
 (global-set-key (kbd "<M-up>") 'windmove-up)
