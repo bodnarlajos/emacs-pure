@@ -66,10 +66,12 @@
 (straight-use-package 'el-get)
 
 (use-package use-package
+	:straight t
 	:config
 	(setq use-package-ensure t))
 
 (use-package doom-modeline
+	:straight t
 	:config
 	(doom-modeline-mode +1))
 
