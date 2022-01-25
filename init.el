@@ -47,7 +47,7 @@
 (require 'my-keys)
 ;; (require 'my-layout)
 
-;; (straight-use-package 'use-package)
+(straight-use-package 'use-package)
 (straight-use-package 'diminish)
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
@@ -72,28 +72,30 @@
 (corfu-global-mode +1)
 (require 'savehist)
 (savehist-mode +1)
-(straight-use-package '(cape
-												:type git
-												:repo "minad/cape"))
-
-(setq completion-at-point-functions '(cape-line))
-(add-to-list 'completion-at-point-functions #'cape-symbol)
-(add-to-list 'completion-at-point-functions #'cape-keyword)
-(add-to-list 'completion-at-point-functions #'cape-dabbrev)
-(add-to-list 'completion-at-point-functions #'cape-file)
 (setq corfu-cycle t)
 
-(defun my/ignore-elisp-keywords (cand)
-  (or (not (keywordp cand))
-			(eq (char-after (car completion-in-region--data)) ?:)))
+(use-package cape
+	:straight (cape :type git :host github :repo "minad/cape")
+	:config
+	(setq completion-at-point-functions '(cape-line))
+	(add-to-list 'completion-at-point-functions #'cape-symbol)
+	(add-to-list 'completion-at-point-functions #'cape-keyword)
+	(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+	(add-to-list 'completion-at-point-functions #'cape-file)
+	(defun my/ignore-elisp-keywords (cand)
+		(or (not (keywordp cand))
+				(eq (char-after (car completion-in-region--data)) ?:)))
 
-(defun my/setup-elisp ()
-  (setq-local completion-at-point-functions
-							'(elisp-completion-at-point
+	(defun my/setup-elisp ()
+		(setq-local completion-at-point-functions
+								'(elisp-completion-at-point
 									cape-dabbrev
-								cape-file)
-							cape-dabbrev-min-length 2))
-(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+									cape-file)
+								cape-dabbrev-min-length 2))
+	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+	:bind
+	("M-/" . cape-dabbrev))
+
 
 (straight-use-package '(kind-icon
 												:type git
