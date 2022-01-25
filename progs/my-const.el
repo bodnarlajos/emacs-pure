@@ -32,6 +32,8 @@
 	 '(ediff-diff3-program "C:/Program Files/Git/usr/bin/diff3.exe")
 	 '(ediff-custom-diff-program "C:/Program Files/Git/usr/bin/diff3.exe"))
 	(setq find-program "C:/Program Files/Git/usr/bin/find.exe")
+	(require 'frontside-windowing)
+	(frontside-windowing-mode +1)
 	
 	(eval-after-load 'org-mode
 		(progn
@@ -54,7 +56,7 @@
 	
 	(my/start-modules)
 	(straight-use-package 'doom-themes)
-	(load-theme 'doom-one)
+	(load-theme 'doom-zenburn)
 	
 	;; The window initial size
 	;; specified size
