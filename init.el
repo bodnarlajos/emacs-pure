@@ -65,47 +65,48 @@
 (straight-use-package 'el-get)
 
 (use-package use-package
-	:straight t
-	:config
-	(setq use-package-ensure t))
+						 :straight t
+						 :config
+						 (setq use-package-ensure t))
 
 (use-package doom-modeline
-	:straight t
-	:config
-	(doom-modeline-mode +1))
+						 :straight t
+						 :config
+						 (doom-modeline-mode +1))
 
 (use-package corfu
-	:straight t
-	:config
-	(setq corfu-cycle t)
-	(corfu-global-mode +1))
+						 :straight t
+						 :config
+						 (setq corfu-cycle t)
+						 (corfu-global-mode +1))
 
 (use-package savehist
-	:straight t
-	:config
-	(savehist-mode +1))
+						 :straight t
+						 :config
+						 (savehist-mode +1))
 
 (use-package cape
-	:straight (cape :type git :host github :repo "minad/cape")
-	:config
-	(setq completion-at-point-functions '(cape-line))
-	(add-to-list 'completion-at-point-functions #'cape-symbol)
-	(add-to-list 'completion-at-point-functions #'cape-keyword)
-	(add-to-list 'completion-at-point-functions #'cape-dabbrev)
-	(add-to-list 'completion-at-point-functions #'cape-file)
-	(defun my/ignore-elisp-keywords (cand)
-		(or (not (keywordp cand))
-				(eq (char-after (car completion-in-region--data)) ?:)))
+						 :straight (cape :type git :host github :repo "minad/cape")
+						 :init
+						 (defun my/ignore-elisp-keywords (cand)
+							 (or (not (keywordp cand))
+									 (eq (char-after (car completion-in-region--data)) ?:)))
 
-	(defun my/setup-elisp ()
-		(setq-local completion-at-point-functions
-								'(elisp-completion-at-point
-									cape-dabbrev
-									cape-file)
-								cape-dabbrev-min-length 2))
-	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
-	:bind
-	("M-/" . cape-dabbrev))
+						 (defun my/setup-elisp ()
+							 (setq-local completion-at-point-functions
+													 '(elisp-completion-at-point
+														 cape-dabbrev
+														 cape-file)
+													 cape-dabbrev-min-length 2))
+						 :config
+						 (setq completion-at-point-functions '(cape-line))
+						 (add-to-list 'completion-at-point-functions #'cape-symbol)
+						 (add-to-list 'completion-at-point-functions #'cape-keyword)
+						 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+						 (add-to-list 'completion-at-point-functions #'cape-file)
+						 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+						 :bind
+						 ("M-/" . cape-dabbrev))
 
 
 (straight-use-package '(kind-icon
