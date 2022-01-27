@@ -26,7 +26,12 @@
 	;; (setq explicit-zsh.exe-args '("--login" "-i"))
 	;; (setenv "SHELL" shell-file-name)
 	;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-
+	;; (custom-set-variables
+	;;  '(ediff-diff-program "C:/Program Files/Git/usr/bin/diff.exe")
+	;;  '(ediff-diff3-program "C:/Program Files/Git/usr/bin/diff3.exe")
+	;;  '(ediff-custom-diff-program "C:/Program Files/Git/usr/bin/diff3.exe"))
+	;; (setq find-program "C:/Program Files/Git/usr/bin/find.exe")
+	
 	(require 'frontside-windowing)
 	(frontside-windowing-mode +1)
 	
@@ -50,8 +55,7 @@
        '(org-hide-leading-stars t))))
 	
 	(my/start-modules)
-	(straight-use-package 'doom-themes)
-	(load-theme 'doom-zenburn)
+	(load-theme 'tsdh-light)
 	
 	;; The window initial size
 	;; specified size

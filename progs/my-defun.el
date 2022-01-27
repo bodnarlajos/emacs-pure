@@ -2,6 +2,27 @@
 
 (require 'cl-lib)
 
+(defun o0 ()
+	"Go to main menu"
+	(interactive)
+	(my/menu-base))
+
+(defun my/org-screenshot-win ()
+  "Take a screenshot into a time stamped unique-named file in the
+same directory as the org-buffer and insert a link to this file."
+  (interactive)
+  (setq filename
+        (concat
+         (make-temp-name
+          (concat (buffer-file-name)
+                  "_"
+                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
+  (shell-command "snippingtool /clip")
+  (shell-command (concat "powershell -command \"Add-Type -AssemblyName System.Windows.Forms;if ($([System.Windows.Forms.Clipboard]::ContainsImage())) {$image = [System.Windows.Forms.Clipboard]::GetImage();[System.Drawing.Bitmap]$image.Save('" filename "',[System.Drawing.Imaging.ImageFormat]::Png); Write-Output 'clipboard content saved as file'} else {Write-Output 'clipboard does not contain image data'}\""))
+  (insert (concat "[[file:" filename "]]"))
+  (org-display-inline-images))
+
+
 (defun my/switch-to-buffer ()
 	"Switch to the buffer or switch to buffer inside a project"
 	(interactive)
@@ -179,7 +200,7 @@ Version 2017-11-01"
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
 				 ((string-equal res magit) (call-interactively 'my/start/git))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
-				 ((string-equal res newbuffer) (call-interactively 'centaur-tabs--create-new-tab))
+				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res development) (call-interactively 'my/start/devenv)))))))
 
 (defun my/dumb-jump-go ()
