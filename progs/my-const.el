@@ -37,8 +37,8 @@
 	
 	(eval-after-load 'org-mode
 		(progn
-			(straight-use-package 'org-bullets)
-			(org-bullets-mode +1)
+			(straight-use-package 'org-superstar)
+			(org-superstar-mode +1)
 			(setq org-todo-keywords
 						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
 						org-support-shift-select t
