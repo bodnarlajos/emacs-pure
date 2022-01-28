@@ -2,7 +2,25 @@
 
 (require 'cl-lib)
 
-(defun 00 ()
+(defun my/change/dark-theme ()
+	"The dark theme"
+	(interactive)
+	(my/change-theme my/dark-theme))
+
+(defun my/change/light-theme ()
+	"The dark theme"
+	(interactive)
+	(my/change-theme my/light-theme))
+
+(defun my/change-theme(theme)
+	"change the theme"
+	(interactive)
+	(highlight-indent-guides-mode -1)
+	(mapcar #'disable-theme custom-enabled-themes)
+	(load-theme theme t)
+	(highlight-indent-guides-mode +1))
+
+(defun o0 ()
 	"Go to main menu"
 	(interactive)
 	(my/menu-base))
@@ -22,13 +40,13 @@ same directory as the org-buffer and insert a link to this file."
   (insert (concat "[[file:" filename "]]"))
   (org-display-inline-images))
 
-
 (defun my/switch-to-buffer ()
 	"Switch to the buffer or switch to buffer inside a project"
 	(interactive)
-	(if doom-modeline--project-root
+	(let ((currProject (project-current)))
+		(if currProject
 			(call-interactively 'project-switch-to-buffer)
-		(call-interactively 'switch-to-buffer)))
+		(call-interactively 'switch-to-buffer))))
 
 (defun my/copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard.It's a prelude code ..."
