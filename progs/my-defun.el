@@ -2,7 +2,7 @@
 
 (require 'cl-lib)
 
-(defun o0 ()
+(defun 00 ()
 	"Go to main menu"
 	(interactive)
 	(my/menu-base))
