@@ -5,6 +5,7 @@
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
 
+
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
@@ -35,11 +36,19 @@
 	
 	(require 'frontside-windowing)
 	(frontside-windowing-mode +1)
+	(my/start-modules)
+
+	(straight-use-package 'doom-themes)
+	(defvar my/light-theme 'doom-one-light)
+	(defvar my/dark-theme 'doom-one)
+	(my/change/light-theme)
 	
 	(eval-after-load 'org-mode
 		(progn
 			(straight-use-package 'org-superstar)
+			(straight-use-package 'org-bullets)
 			(add-hook 'org-mode-hook (lambda ()
+																 (org-bullets-mode +1)
 																 (org-superstar-mode +1)))
 			(setq org-todo-keywords
 						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
@@ -56,8 +65,6 @@
        '(org-fontify-whole-heading-line t)
        '(org-hide-leading-stars t))))
 	
-	(my/start-modules)
-	(load-theme 'tsdh-light)
 	
 	;; The window initial size
 	;; specified size
