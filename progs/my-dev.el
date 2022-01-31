@@ -4,6 +4,7 @@
 (defun my/run-dev-hook ()
 	"T."
 	(when (and (not my/dev-env) my/dev-hook)
+		(my/before-dev-hook)
 		(run-hooks 'my/dev-hook)
 		(setq my/dev-env t)))
 
@@ -23,45 +24,36 @@
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
 							'(lsp-completion-at-point
-									 cape-dabbrev
+								cape-dabbrev
 								cape-file)
 							cape-dabbrev-min-length 2))
-(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
 ;; beginning of the ide-mode customization
-(add-hook 'my/dev-hook (lambda ()
-												 (straight-use-package 'lsp-mode)
-												 (straight-use-package 'lsp-ui)
-												 (setq lsp-headerline-breadcrumb-enable nil)
-												 (setq lsp-completion-provider :none)
-												 (setq lsp-ui-imenu-enable t)
-												 (setq lsp-ui-sideline-enable t)
-												 (setq lsp-ui-sideline-show-diagnostics t)
-												 (setq lsp-ui-sideline-show-hover nil)
-												 (setq lsp-enable-snippet nil)
-												 (setq lsp-ui-sideline-show-symbol nil)
-												 (setq lsp-ui-sideline-show-code-actions t)
-												 (setq lsp-ui-sideline-diagnostic-max-lines 5)
-												 (setq lsp-ui-peek-enable nil)
-												 (setq lsp-ui-doc-enable t)
-												 (setq lsp-ui-doc-show-with-mouse t)
-												 (setq lsp-ui-doc-show-with-cursor nil)
-												 
-												 (add-hook 'lsp-mode-hook
-																	 (lambda ()
-																		 (setf (caadr ;; Pad before lsp modeline error info
-																						(assq 'global-mode-string mode-line-misc-info))
-																					 " ")
-																		 (message "lsp2")))
-												 (add-hook 'lsp-completion-mode-hook #'my/setup-lsp-capf)
-												 (add-hook 'lsp-completion-mode-hook
-																	 (lambda ()
-																		 (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))
-																		 (message "lsp1")))
-												 ;; (straight-use-package 'eldoc-box)
-												 (global-eldoc-mode +1)))
-												 ;; (add-hook 'lsp-mode-hook 'eldoc-box-hover-mode +1)))
-;; end of the ide-mode customization
+(defun my/before-dev-hook ()
+	"T."
+	(straight-use-package 'flycheck)
+	(flycheck-mode +1)
+	(straight-use-package 'lsp-mode)
+	;; (custom-set-variables
+	;; 	 '(lsp-disabled-clients
+	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls))))
+	(setq lsp-headerline-breadcrumb-enable nil)
+	(setq lsp-completion-provider :none)
+	(setq lsp-enable-snippet nil)
+	
+	(add-hook 'lsp-mode-hook
+						(lambda ()
+							(setf (caadr ;; Pad before lsp modeline error info
+										 (assq 'global-mode-string mode-line-misc-info))
+										" ")))
+	(add-hook 'lsp-completion-mode-hook #'my/setup-lsp-capf)
+	(add-hook 'lsp-completion-mode-hook
+						(lambda ()
+							(setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
+	(global-eldoc-mode +1)
+	
+	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp))
+
 (defun my/append-cape-to-capf ()
 	"T."
 	(interactive)
@@ -71,16 +63,5 @@
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-keyword)))
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-symbol)))
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-line)))))
-
-;; the custom prog mode
-(defun my/local-prog-mode ()
-	"T."
-	(setq-local tab-width 2)
-	(display-line-numbers-mode)
-	(highlight-indent-guides-mode t)
-	(diminish 'highlight-indent-guides-mode-hook)
-	(diff-hl-mode t)
-	(smartparens-mode +1))
-(add-hook 'prog-mode-hook 'my/local-prog-mode)
 
 (provide 'my-dev)

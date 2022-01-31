@@ -36,6 +36,8 @@
 	(frontside-windowing-mode +1)
 	(my/start-modules)
 
+	(my-web-mode)
+
 	(straight-use-package 'doom-themes)
 	(defvar my/light-theme 'doom-one-light)
 	(defvar my/dark-theme 'doom-one)
@@ -62,7 +64,9 @@
        '(org-fontify-todo-headline t)
        '(org-fontify-whole-heading-line t)
        '(org-hide-leading-stars t))))
-	
+
+	(custom-set-faces
+	 '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
 	
 	;; The window initial size
 	;; specified size
