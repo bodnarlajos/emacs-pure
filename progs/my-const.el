@@ -44,7 +44,7 @@
 	(defvar my/light-theme 'doom-one-light)
 	(defvar my/dark-theme 'doom-one)
 	;; start the light/dark theme
-	(my/change/light-theme)
+	(my/change/dark-theme)
 	;; (set-cursor-color "#ff0000")
 	
 	;; The window initial size
