@@ -13,6 +13,7 @@
 	(require 'my-jump)
 	(require 'my-haskell)
 	(require 'my-web)
+	(my-web-mode)
 	(require 'my-csharp)
 	(require 'my-magit)
 	)
@@ -20,53 +21,31 @@
 ;; end script of init
 (defun my/end-of-init ()
 	"The custom script end of the initialization"
+	(defvar my/is-mswindows (when (string-equal "windows-nt" 'system-type)))
 	;; add shell
 	;; (setq explicit-shell-file-name "c:/msys64/usr/bin/zsh.exe")
 	;; (setq shell-file-name "zsh")
 	;; (setq explicit-zsh.exe-args '("--login" "-i"))
 	;; (setenv "SHELL" shell-file-name)
 	;; (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m)
-	;; (custom-set-variables
-	;;  '(ediff-diff-program "C:/Program Files/Git/usr/bin/diff.exe")
-	;;  '(ediff-diff3-program "C:/Program Files/Git/usr/bin/diff3.exe")
-	;;  '(ediff-custom-diff-program "C:/Program Files/Git/usr/bin/diff3.exe"))
-	;; (setq find-program "C:/Program Files/Git/usr/bin/find.exe")
+	(when my/is-mswindows
+		(progn
+			(defvar my/git-bash-bin-path "C:/Program Files/Git/usr/bin/")
+			(custom-set-variables
+			 '(ediff-diff-program (concat my/git-bash-bin-path "diff.exe"))
+			 '(ediff-diff3-program (concat my/git-bash-bin-path "diff3.exe"))
+			 '(ediff-custom-diff-program (concat my/git-bash-bin-path "diff3.exe")))
+			(setq find-program (concat my/git-bash-bin-path "find.exe"))))
 	
-	(require 'frontside-windowing)
-	(frontside-windowing-mode +1)
+	
 	(my/start-modules)
-
-	(my-web-mode)
 
 	(straight-use-package 'doom-themes)
 	(defvar my/light-theme 'doom-one-light)
 	(defvar my/dark-theme 'doom-one)
+	;; start the light/dark theme
 	(my/change/light-theme)
-	
-	(eval-after-load 'org-mode
-		(progn
-			(straight-use-package 'org-superstar)
-			(straight-use-package 'org-bullets)
-			(add-hook 'org-mode-hook (lambda ()
-																 (org-bullets-mode +1)
-																 (org-superstar-mode +1)))
-			(setq org-todo-keywords
-						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
-						org-support-shift-select t
-						org-log-done t)
-			(custom-set-faces
-			 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
-			 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
-			 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
-			 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
-			 '(org-fontify-done-headline nil)
-       '(org-fontify-todo-headline t)
-       '(org-fontify-whole-heading-line t)
-       '(org-hide-leading-stars t))))
-
-	(custom-set-faces
-	 '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
+	;; (set-cursor-color "#ff0000")
 	
 	;; The window initial size
 	;; specified size
@@ -81,11 +60,9 @@
 	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
 	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
 	;;  )
-	;; (set-cursor-color "#ff0000")
 	) ;; end of my/end-of-init 
 
 (setq browse-url-generic-program "firefox")
-
 ;; (defun my/set-bigger-font ()
 ;; 	"bigger font size"
 ;; 	(interactive)
