@@ -52,8 +52,6 @@
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
-;; (straight-use-package 'mini-frame)
-(straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (straight-use-package 'anzu)
 (straight-use-package 'markdown-mode)
@@ -75,10 +73,16 @@
 	:config
 	(setq use-package-ensure t))
 
+(use-package rg
+	:straight t
+	:bind
+	("M-s r" . rg))
+
 (use-package consult
 	:straight t
 	:bind
-	("M-s s" . consult-ripgrep))
+	("M-s s" . consult-ripgrep)
+	("M-s g" . consult-git-grep))
 
 (use-package embark
 	:straight t
@@ -245,7 +249,6 @@
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
-
 ;; add exec-path
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
@@ -294,7 +297,16 @@
 
 	(custom-set-faces
 	 '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
-	
+
+(use-package emacs
+	:config
+	(global-unset-key (kbd "M-k"))
+	(define-prefix-command 'my-emacs-prefix)
+	(global-set-key (kbd "M-k") 'my-emacs-prefix)
+	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
+	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
+	(define-key 'my-emacs-prefix (kbd "l") 'kill-line))
+
 (cd my/base-dir)
 
 (blink-cursor-mode 0)

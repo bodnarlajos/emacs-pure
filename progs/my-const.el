@@ -4,6 +4,7 @@
 (defvar my/exec-dir '("/home/lbodnar/.local/bin"))
 (defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
+
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
@@ -46,21 +47,18 @@
 	;; start the light/dark theme
 	(my/change/light-theme)
 	;; (set-cursor-color "#ff0000")
+)
 	
-	;; The window initial size
-	;; specified size
-  ;; (add-to-list 'default-frame-alist '(width . 140))
-	;; (add-to-list 'default-frame-alist '(height . 45))
-	;; (set-frame-size (selected-frame) 140 45))
-	;; fullscreen
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-	;; Windows like epg config
-	;; (custom-set-variables
-	;;  '(epg-gpg-home-directory "c:/Users/lbodnar/AppData/Roaming/gnupg")
-	;;  '(epg-gpg-program "c:/Program Files (x86)/gnupg/bin/gpg.exe")
-	;;  '(epg-gpgconf-program "c:/Program Files (x86)/gnupg/bin/gpgconf.exe")
-	;;  )
-	) ;; end of my/end-of-init 
+	;; The window initial size specified size (add-to-list
+	;; 'default-frame-alist '(width . 140)) (add-to-list
+	;; 'default-frame-alist '(height . 45)) (set-frame-size
+	;; (selected-frame) 140 45)) fullscreen (add-to-list
+	;; 'default-frame-alist '(fullscreen . maximized)) Windows like epg
+	;; config (custom-set-variables '(epg-gpg-home-directory
+	;; "c:/Users/lbodnar/AppData/Roaming/gnupg") '(epg-gpg-program
+	;; "c:/Program Files (x86)/gnupg/bin/gpg.exe") '(epg-gpgconf-program
+	;; "c:/Program Files (x86)/gnupg/bin/gpgconf.exe") ) ) ;; end of
+	;; my/end-of-init
 
 (setq browse-url-generic-program "firefox")
 ;; (defun my/set-bigger-font ()

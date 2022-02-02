@@ -40,7 +40,7 @@
 ;; (global-set-key (kbd "C-x C-z") #'selectrum-repeat)
 ;; (global-set-key (kbd "C-x C-z") #'repeat-complex-command)
 
-(global-set-key (kbd "C-j") 'my-prefix)
+(global-set-key (kbd "M-o") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
@@ -61,7 +61,6 @@
 
 (define-key my-prefix (kbd "r") 'async-shell-command)
 (define-key my-prefix (kbd "i") 'indent-buffer)
-(define-key my-prefix (kbd "o") 'find-file)
 
 ;; frames
 (define-key my-prefix (kbd "f k") 'delete-frame)
@@ -86,7 +85,7 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(define-key my-prefix (kbd "C-j") 'my/menu-base)
+(define-key my-prefix (kbd "o") 'my/menu-base)
 
 (define-key my-prefix (kbd "p f") 'cape-file)
 (define-key my-prefix (kbd "p d") 'cape-dabbrev)
@@ -106,28 +105,12 @@
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "<M-down>") 'move-line-down)
-(global-set-key (kbd "<M-up>") 'move-line-up)
-(global-set-key (kbd "C-S-z") 'undo-tree-redo)
-(global-set-key (kbd "C-z") 'undo-tree-undo)
-(global-set-key (kbd "C-S-c") 'my/copy-line)
-(global-set-key (kbd "C-S-f") 'rg-dwim)
 (global-set-key (kbd "<S-return>") 'crux-smart-open-line)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
-(global-set-key (kbd "C-M-o") 'find-file-literally-at-point)
-(global-set-key (kbd "<M-return>") 'find-file-at-point)
-(global-set-key (kbd "C-S-p") 'execute-extended-command)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
-;; (global-set-key (kbd "<C-tab>") 'centaur-tabs-forward)
-;; (global-set-key (kbd "<C-S-tab>") 'centaur-tabs-backward)
-(define-key minibuffer-local-map (kbd "<C-tab>") 'next-line)
-(global-set-key (kbd "C-S-m") 'my/swap-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
-(global-set-key (kbd "C-,") 'consult-global-mark)
 (define-key project-prefix-map (kbd "C-c C-c") 'project-compile)
-(define-key minibuffer-local-map (kbd "C-S-i") 'insert-register)
-(define-key global-map [remap exchange-point-and-mark] 'exchange-point-and-mark-no-activate)
 
 ;; org mode map
 (with-eval-after-load 'org
