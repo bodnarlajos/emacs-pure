@@ -59,6 +59,12 @@
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
+
+(use-package move-text
+	:straight t
+	:config
+	(move-text-default-bindings))
+
 (use-package visual-regexp
 	:straight t
 	:bind
