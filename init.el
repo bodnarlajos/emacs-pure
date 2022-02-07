@@ -52,32 +52,42 @@
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
-;; (straight-use-package 'mini-frame)
-(straight-use-package 'rg)
 (straight-use-package 'undo-tree)
 (straight-use-package 'anzu)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
-(straight-use-package 'visual-regexp)
+(use-package visual-regexp
+	:straight t
+	:bind
+	("M-r" . vr/replace))
 (straight-use-package 'el-get)
 
+(use-package wgrep
+	:straight t)
+
 (use-package use-package
-						 :straight t
-						 :config
-						 (setq use-package-ensure t))
+	:straight t
+	:config
+	(setq use-package-ensure t))
+
+(use-package rg
+	:straight t
+	:bind
+	("M-s r" . rg))
 
 (use-package consult
 	:straight t
 	:bind
-	("M-s s" . consult-ripgrep))
+	("M-s s" . consult-ripgrep)
+	("M-s g" . consult-git-grep))
 
 (use-package embark
 	:straight t
   :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
-   ("C-;" . embark-dwim)        ;; good alternative: M-.
+  (("C-;" . embark-act)         ;; pick some comfortable binding
+   ("C-." . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -101,38 +111,38 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-						 :straight t
-						 :config
-						 (setq corfu-cycle t)
-						 (corfu-global-mode +1))
+	:straight t
+	:config
+	(setq corfu-cycle t)
+	(corfu-global-mode +1))
 
 (use-package savehist
-						 :straight t
-						 :config
-						 (savehist-mode +1))
+	:straight t
+	:config
+	(savehist-mode +1))
 
 (use-package cape
-						 :straight (cape :type git :host github :repo "minad/cape")
-						 :init
-						 (defun my/ignore-elisp-keywords (cand)
-							 (or (not (keywordp cand))
-									 (eq (char-after (car completion-in-region--data)) ?:)))
+	:straight (cape :type git :host github :repo "minad/cape")
+	:init
+	(defun my/ignore-elisp-keywords (cand)
+		(or (not (keywordp cand))
+				(eq (char-after (car completion-in-region--data)) ?:)))
 
-						 (defun my/setup-elisp ()
-							 (setq-local completion-at-point-functions
-													 '(elisp-completion-at-point
-														 cape-dabbrev
-														 cape-file)
-													 cape-dabbrev-min-length 2))
-						 :config
-						 (setq completion-at-point-functions '(cape-line))
-						 (add-to-list 'completion-at-point-functions #'cape-symbol)
-						 (add-to-list 'completion-at-point-functions #'cape-keyword)
-						 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-						 (add-to-list 'completion-at-point-functions #'cape-file)
-						 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
-						 :bind
-						 ("M-/" . cape-dabbrev))
+	(defun my/setup-elisp ()
+		(setq-local completion-at-point-functions
+								'(elisp-completion-at-point
+									cape-dabbrev
+									cape-file)
+								cape-dabbrev-min-length 2))
+	:config
+	(setq completion-at-point-functions '(cape-line))
+	(add-to-list 'completion-at-point-functions #'cape-symbol)
+	(add-to-list 'completion-at-point-functions #'cape-keyword)
+	(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+	(add-to-list 'completion-at-point-functions #'cape-file)
+	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+	:bind
+	("M-/" . cape-dabbrev))
 
 
 (straight-use-package '(kind-icon
@@ -238,7 +248,6 @@
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
-
 ;; add exec-path
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
@@ -260,6 +269,42 @@
 (add-hook 'so-long-mode-hook (lambda ()
 															 (require 'longlines)
 															 (longlines-mode)))
+
+(require 'frontside-windowing)
+(frontside-windowing-mode +1)
+(eval-after-load 'org-mode
+		(progn
+			(straight-use-package 'org-superstar)
+			(straight-use-package 'org-bullets)
+			(add-hook 'org-mode-hook (lambda ()
+																 (org-bullets-mode +1)
+																 (org-superstar-mode +1)))
+			(setq org-todo-keywords
+						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+						org-support-shift-select t
+						org-log-done t)
+			(custom-set-faces
+			 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+			 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+			 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+			 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
+			 '(org-fontify-done-headline nil)
+       '(org-fontify-todo-headline t)
+       '(org-fontify-whole-heading-line t)
+       '(org-hide-leading-stars t))))
+
+	(custom-set-faces
+	 '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
+
+(use-package emacs
+	:config
+	(global-unset-key (kbd "M-k"))
+	(define-prefix-command 'my-emacs-prefix)
+	(global-set-key (kbd "M-k") 'my-emacs-prefix)
+	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
+	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
+	(define-key 'my-emacs-prefix (kbd "l") 'kill-line))
 
 (cd my/base-dir)
 

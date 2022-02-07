@@ -6,7 +6,6 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
-(straight-use-package 'flycheck)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'yaml-mode)
 (setq compilation-auto-jump-to-first-error nil)
@@ -22,5 +21,15 @@
 	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)
 	(custom-set-variables
 	 '(highlight-indent-guides-method 'bitmap)))
+;; the custom prog mode
+(defun my/local-prog-mode ()
+	"T."
+	(setq-local tab-width 2)
+	(display-line-numbers-mode)
+	(highlight-indent-guides-mode t)
+	(diminish 'highlight-indent-guides-mode-hook)
+	(diff-hl-mode t)
+	(smartparens-mode +1))
+(add-hook 'prog-mode-hook 'my/local-prog-mode)
 
 (provide 'my-prog)
