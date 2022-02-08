@@ -60,6 +60,13 @@
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
 
+(use-package back-button
+	:straight t
+	:config
+	(back-button-mode +1)
+	:bind
+	("M-i" . back-button-global))
+
 (use-package move-text
 	:straight t
 	:config
@@ -88,7 +95,8 @@
 	:straight t
 	:bind
 	("M-s s" . consult-ripgrep)
-	("M-s g" . consult-git-grep))
+	("M-s g" . consult-git-grep)
+	("M-S-i" . consult-global-mark))
 
 (use-package embark
 	:straight t
@@ -280,32 +288,33 @@
 (require 'frontside-windowing)
 (frontside-windowing-mode +1)
 (eval-after-load 'org-mode
-		(progn
-			(straight-use-package 'org-superstar)
-			(straight-use-package 'org-bullets)
-			(add-hook 'org-mode-hook (lambda ()
-																 (org-bullets-mode +1)
-																 (org-superstar-mode +1)))
-			(setq org-todo-keywords
-						'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
-						org-support-shift-select t
-						org-log-done t)
-			(custom-set-faces
-			 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
-			 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
-			 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
-			 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-			 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
-			 '(org-fontify-done-headline nil)
-       '(org-fontify-todo-headline t)
-       '(org-fontify-whole-heading-line t)
-       '(org-hide-leading-stars t))))
+	(progn
+		(straight-use-package 'org-superstar)
+		(straight-use-package 'org-bullets)
+		(add-hook 'org-mode-hook (lambda ()
+															 (org-bullets-mode +1)
+															 (org-superstar-mode +1)))
+		(setq org-todo-keywords
+					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+					org-support-shift-select t
+					org-log-done t)
+		(custom-set-faces
+		 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+		 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+		 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+		 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+		 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
+		 '(org-fontify-done-headline nil)
+     '(org-fontify-todo-headline t)
+     '(org-fontify-whole-heading-line t)
+     '(org-hide-leading-stars t))))
 
-	(custom-set-faces
-	 '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
+(custom-set-faces
+ '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
 
 (use-package emacs
 	:config
+	(setq display-line-numbers-width 4)
 	(global-unset-key (kbd "M-k"))
 	(define-prefix-command 'my-emacs-prefix)
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
