@@ -69,10 +69,12 @@
 	(with-eval-after-load 'web-mode
 		(custom-set-variables
 		 '(web-mode-code-indent-offset 2)
-		 '(web-mode-css-indent-offset 2)
 		 '(web-mode-markup-indent-offset 2)
 		 '(web-mode-sql-indent-offset 2)))
-
+	(with-eval-after-load 'css-mode
+		(custom-set-variables 
+		 '(web-mode-css-indent-offset 2)))
+	
 	(my/add-dev-hook #'my/web-dev-run))
 
 (provide 'my-web)
