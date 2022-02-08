@@ -8,7 +8,6 @@
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
-	(recentf-mode)
 	(require 'my-prog)
 	(require 'my-dev)
 	(require 'my-jump)
@@ -50,7 +49,7 @@
 	(defvar my/light-theme 'doom-one-light)
 	(defvar my/dark-theme 'doom-one)
 	;; start the light/dark theme
-	(my/change/dark-theme)
+	(my/change/light-theme)
 
 	;; The window initial size
 	;; specified size
