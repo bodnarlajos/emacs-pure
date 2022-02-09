@@ -59,13 +59,18 @@
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
+(straight-use-package 'el-get)
 
 (use-package back-button
 	:straight t
 	:config
 	(back-button-mode +1)
 	:bind
-	("M-i" . back-button-global))
+	("M-i" . back-button-global)
+	("C-i" . back-button-push-mark-local-and-global))
+
+(use-package recentf
+	:defer t)
 
 (use-package move-text
 	:straight t
@@ -76,7 +81,6 @@
 	:straight t
 	:bind
 	("M-r" . vr/replace))
-(straight-use-package 'el-get)
 
 (use-package wgrep
 	:straight t)
@@ -315,6 +319,12 @@
 (use-package emacs
 	:config
 	(setq display-line-numbers-width 4)
+	(global-unset-key (kbd "M-p"))
+	(global-set-key (kbd "M-p") 'my/switch-to-buffer)
+	(global-unset-key (kbd "C-S-o"))
+	(global-set-key (kbd "C-S-o") 'find-file)
+	(global-unset-key (kbd "C-o"))
+	(global-set-key (kbd "C-o") 'project-find-file)
 	(global-unset-key (kbd "M-k"))
 	(define-prefix-command 'my-emacs-prefix)
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
