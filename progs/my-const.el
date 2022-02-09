@@ -8,7 +8,6 @@
 (defun my/start-modules ()
 	"Start these modules after init"
 	(interactive)
-	(recentf-mode)
 	(require 'my-prog)
 	(require 'my-dev)
 	(require 'my-jump)
@@ -46,6 +45,18 @@
 	(defvar my/dark-theme 'doom-one)
 	;; start the light/dark theme
 	(my/change/light-theme)
+
+	;; The window initial size
+	;; specified size
+	;; (add-to-list 'default-frame-alist '(width . 180))
+	;; (add-to-list 'default-frame-alist '(height . 48))
+	;; (add-to-list 'default-frame-alist '(left . 200))
+	;; (add-to-list 'default-frame-alist '(top . 10))
+	;; (set-frame-size (selected-frame) 140 45))
+	;; fullscreen
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+	;; Windows like epg config
+
 	;; (set-cursor-color "#ff0000")
 )
 	

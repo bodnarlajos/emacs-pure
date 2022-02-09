@@ -59,6 +59,7 @@
 (straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
+(straight-use-package 'el-get)
 
 (use-package back-button
 	:straight t
@@ -67,6 +68,9 @@
 	:bind
 	("M-i" . back-button-global)
 	("C-i" . back-button-push-mark-local-and-global))
+
+(use-package recentf
+	:defer t)
 
 (use-package move-text
 	:straight t
@@ -77,7 +81,6 @@
 	:straight t
 	:bind
 	("M-r" . vr/replace))
-(straight-use-package 'el-get)
 
 (use-package wgrep
 	:straight t)

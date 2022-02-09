@@ -29,17 +29,6 @@
 (global-set-key (kbd "C-x b") 'my/switch-to-buffer)
 (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
 
-;; (global-set-key (kbd "<M-left>") 'windmove-left)
-;; (global-set-key (kbd "<M-right>") 'windmove-right)
-;; (global-set-key (kbd "<M-up>") 'windmove-up)
-;; (global-set-key (kbd "<M-down>") 'windmove-down)
-;; (global-set-key (kbd "<M-C-left>") 'windmove-swap-states-up)
-;; (global-set-key (kbd "<M-C-right>") 'windmove-swap-states-right)
-;; (global-set-key (kbd "<M-C-up>") 'windmove-swap-states-up)
-;; (global-set-key (kbd "<M-C-down>") 'windmove-swap-states-down)
-;; (global-set-key (kbd "C-x C-z") #'selectrum-repeat)
-;; (global-set-key (kbd "C-x C-z") #'repeat-complex-command)
-
 (global-set-key (kbd "M-o") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
