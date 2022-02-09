@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 128 :width normal))))
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 113 :width normal))))
  '(magit-diff-hunk-heading ((t (:foreground "orange"))))
  '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10))))
  '(org-fontify-todo-headline t)
