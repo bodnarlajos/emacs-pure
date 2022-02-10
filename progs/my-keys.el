@@ -24,11 +24,6 @@
   (define-key corfu-map (kbd "M-/") 'corfu-next)
   )
 
-(global-unset-key (kbd "C-x C-b"))
-(global-unset-key (kbd "C-x b"))
-(global-set-key (kbd "C-x b") 'my/switch-to-buffer)
-(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
-
 (global-set-key (kbd "M-o") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
