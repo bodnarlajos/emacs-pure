@@ -37,6 +37,7 @@
 	;; (custom-set-variables
 	;; 	 '(lsp-disabled-clients
 	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls))))
+	(setq lsp-client-packages '(lsp-angular lsp-css lsp-xml lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
 	(setq lsp-headerline-breadcrumb-enable nil)
 	(setq lsp-completion-provider :none)
 	(setq lsp-enable-snippet nil)
