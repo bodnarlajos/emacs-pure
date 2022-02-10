@@ -319,6 +319,10 @@
 (use-package emacs
 	:config
 	(setq display-line-numbers-width 4)
+	(global-unset-key (kbd "C-x C-b"))
+	(global-unset-key (kbd "C-x b"))
+	(global-set-key (kbd "M-l") 'my/switch-to-buffer)
+	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
 	(global-unset-key (kbd "M-p"))
@@ -332,7 +336,10 @@
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
 	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
-	(define-key 'my-emacs-prefix (kbd "l") 'kill-line))
+	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+	:bind
+	(:map minibuffer-mode-map
+				("M-l" . next-line)))
 
 (cd my/base-dir)
 
