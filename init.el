@@ -318,6 +318,8 @@
 (use-package emacs
 	:config
 	(setq display-line-numbers-width 4)
+	(global-set-key (kbd "<M-left>") 'windmove-left)
+	(global-set-key (kbd "<M-right>") 'windmove-right)
 	(global-unset-key (kbd "M-p"))
 	(global-set-key (kbd "M-p") 'my/switch-to-buffer)
 	(global-unset-key (kbd "C-S-o"))
