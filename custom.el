@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 113 :width normal))))
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 120 :width normal))))
  '(magit-diff-hunk-heading ((t (:foreground "orange"))))
  '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10))))
  '(org-fontify-todo-headline t)
@@ -25,6 +25,15 @@
  '(custom-safe-themes
 	 '("835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "90a6f96a4665a6a56e36dec873a15cbedf761c51ec08dd993d6604e32dd45940" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "d268b67e0935b9ebc427cad88ded41e875abfcc27abd409726a92e55459e0d01" default))
  '(highlight-indent-guides-method 'bitmap)
+ '(lsp-clients-typescript-tls-path "/usr/lib/node_modules/typescript-language-server")
+ '(lsp-eslint-server-command
+	 '("node" "/usr/lib/node_modules/eslint/bin/eslint.js" "--stdin"))
+ '(lsp-ui-imenu-enable nil)
+ '(lsp-ui-peek-enable nil)
+ '(lsp-ui-sideline-ignore-duplicate t)
+ '(lsp-ui-sideline-show-code-actions t)
+ '(lsp-ui-sideline-show-hover t)
+ '(lsp-ui-sideline-update-mode 'line)
  '(tool-bar-mode nil)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
