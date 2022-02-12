@@ -43,8 +43,9 @@
 	 '(lsp-ui-sideline-show-code-actions t)
 	 '(lsp-ui-sideline-show-hover t)
 	 '(lsp-ui-sideline-update-mode 'line))
-	;; (custom-set-variables
-	;; 	 '(lsp-disabled-clients
+	(custom-set-variables
+	 '(lsp-disabled-clients
+		 '(eslint)))
 	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls)
 	;; 			 (typescript-mode . angular-ls))))
 	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
