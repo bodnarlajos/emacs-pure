@@ -318,7 +318,6 @@
 
 (use-package emacs
 	:config
-	(setq display-line-numbers-width 4)
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "M-l") 'my/switch-to-buffer)

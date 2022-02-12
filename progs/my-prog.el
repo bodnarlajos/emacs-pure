@@ -25,6 +25,7 @@
 (defun my/local-prog-mode ()
 	"T."
 	(setq-local tab-width 2)
+	(setq display-line-numbers-width 4)
 	(display-line-numbers-mode)
 	(highlight-indent-guides-mode t)
 	(diminish 'highlight-indent-guides-mode-hook)
