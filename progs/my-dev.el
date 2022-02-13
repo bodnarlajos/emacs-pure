@@ -36,6 +36,7 @@
 	(straight-use-package 'lsp-mode)
 	(straight-use-package 'lsp-ui)
 	(lsp-ui-mode +1)
+	;; (setq lsp-log-io t)
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
 	 '(lsp-ui-peek-enable nil)
@@ -45,7 +46,7 @@
 	 '(lsp-ui-sideline-update-mode 'line))
 	(custom-set-variables
 	 '(lsp-disabled-clients
-		 '(eslint)))
+		 '(eslint html-ls)))
 	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls)
 	;; 			 (typescript-mode . angular-ls))))
 	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
