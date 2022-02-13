@@ -61,6 +61,7 @@
 (straight-use-package 'which-key)
 (straight-use-package 'el-get)
 
+
 (use-package back-button
 	:straight t
 	:config
@@ -346,3 +347,7 @@
 
 (my/end-of-init)
 
+(use-package remember-last-theme
+	:straight t
+	;; :init (straight-use-package 'doom-themes)
+	:config (remember-last-theme-enable))
