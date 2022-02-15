@@ -22,10 +22,15 @@
  '(blink-cursor-mode nil)
  '(css-indent-offset 2)
  '(cua-mode t)
+ '(custom-enabled-themes '(tsdh-dark))
  '(custom-safe-themes
 	 '("835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "90a6f96a4665a6a56e36dec873a15cbedf761c51ec08dd993d6604e32dd45940" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "d268b67e0935b9ebc427cad88ded41e875abfcc27abd409726a92e55459e0d01" default))
  '(highlight-indent-guides-method 'bitmap)
+ '(js-indent-level 2)
+ '(lsp-clients-angular-language-server-command
+	 '("node" "/home/lbodnar/.vscode-oss/extensions/angular.ng-template-13.2.3/server" "--logToConsole" "--ngProbeLocations" "/home/lbodnar/.vscode-oss/extensions/angular.ng-template-13.2.3,/home/lbodnar/Projects/courses" "--includeAutomaticOptionalChainCompletions" "--includeCompletionsWithSnippetText" "--tsProbeLocations" ",/home/lbodnar/.vscode-oss/extensions/angular.ng-template-13.2.3,/home/lbodnar/Projects/courses" "--stdio"))
  '(lsp-clients-typescript-tls-path "/usr/lib/node_modules/typescript-language-server")
+ '(lsp-disabled-clients '(eslint html-ls))
  '(lsp-eslint-server-command
 	 '("node" "/usr/lib/node_modules/eslint/bin/eslint.js" "--stdin"))
  '(lsp-ui-imenu-enable nil)
