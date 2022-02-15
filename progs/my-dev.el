@@ -36,18 +36,20 @@
 	(straight-use-package 'lsp-mode)
 	(straight-use-package 'lsp-ui)
 	(lsp-ui-mode +1)
+	;; (setq lsp-log-io t)
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
 	 '(lsp-ui-peek-enable nil)
-	 '(lsp-ui-sideline-actions-icon "")
 	 '(lsp-ui-sideline-ignore-duplicate t)
 	 '(lsp-ui-sideline-show-code-actions t)
 	 '(lsp-ui-sideline-show-hover t)
 	 '(lsp-ui-sideline-update-mode 'line))
-	;; (custom-set-variables
-	;; 	 '(lsp-disabled-clients
-	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls))))
-	(setq lsp-client-packages '(lsp-angular lsp-css lsp-xml lsp-json lsp-csharp lsp-html lsp-javascript lsp-eslint))
+	(custom-set-variables
+	 '(lsp-disabled-clients
+		 '(eslint html-ls)))
+	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls)
+	;; 			 (typescript-mode . angular-ls))))
+	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
 	(setq lsp-headerline-breadcrumb-enable nil)
 	(setq lsp-completion-provider :none)
 	(setq lsp-enable-snippet nil)

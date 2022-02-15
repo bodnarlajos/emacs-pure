@@ -60,6 +60,7 @@
 (straight-use-package 'which-key)
 (straight-use-package 'el-get)
 
+
 (use-package back-button
 	:straight t
 	:config
@@ -317,7 +318,6 @@
 
 (use-package emacs
 	:config
-	(setq display-line-numbers-width 4)
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "M-l") 'my/switch-to-buffer)
@@ -336,6 +336,7 @@
 	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
 				("M-l" . next-line)))
@@ -346,3 +347,7 @@
 
 (my/end-of-init)
 
+(use-package remember-last-theme
+	:straight t
+	;; :init (straight-use-package 'doom-themes)
+	:config (remember-last-theme-enable))

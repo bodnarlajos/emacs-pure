@@ -4,7 +4,7 @@
 (global-unset-key (kbd "<f2>"))
 (global-set-key (kbd "<f2>") 'treemacs)
 (straight-use-package 'diff-hl)
-(straight-use-package 'highlight-indent-guides)
+;; (straight-use-package 'highlight-indent-guides)
 (straight-use-package 'smartparens)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'yaml-mode)
@@ -17,17 +17,18 @@
 (setq eldoc-echo-area-use-multiline-p 8)
 (setq eldoc-echo-area-prefer-doc-buffer t)
 (global-hl-line-mode +1)
-(with-eval-after-load 'highlight-indent-guides
-	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)
-	(custom-set-variables
-	 '(highlight-indent-guides-method 'bitmap)))
+;; (with-eval-after-load 'highlight-indent-guides
+;; 	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)
+;; 	(custom-set-variables
+;; 	 '(highlight-indent-guides-method 'bitmap)))
 ;; the custom prog mode
 (defun my/local-prog-mode ()
 	"T."
 	(setq-local tab-width 2)
+	(setq display-line-numbers-width 4)
 	(display-line-numbers-mode)
-	(highlight-indent-guides-mode t)
-	(diminish 'highlight-indent-guides-mode-hook)
+	;; (highlight-indent-guides-mode t)
+	;; (diminish 'highlight-indent-guides-mode-hook)
 	(diff-hl-mode t)
 	(smartparens-mode +1))
 (add-hook 'prog-mode-hook 'my/local-prog-mode)

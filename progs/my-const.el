@@ -45,12 +45,6 @@
 
 	(my/start-modules)
 
-	(straight-use-package 'doom-themes)
-	(defvar my/light-theme 'doom-one-light)
-	(defvar my/dark-theme 'doom-one)
-	;; start the light/dark theme
-	(my/change/light-theme)
-
 	;; The window initial size
 	;; specified size
 	;; (add-to-list 'default-frame-alist '(width . 180))
