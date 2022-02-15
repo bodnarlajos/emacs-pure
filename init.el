@@ -337,6 +337,7 @@
 	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
 				("M-l" . next-line)))
