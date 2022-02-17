@@ -15,10 +15,8 @@
 (defun my/change-theme(theme)
 	"change the theme"
 	(interactive)
-	(highlight-indent-guides-mode -1)
 	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme theme t)
-	(highlight-indent-guides-mode +1))
+	(load-theme theme t))
 
 (defun o0 ()
 	"Go to main menu"

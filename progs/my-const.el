@@ -39,7 +39,11 @@
 	
 	
 	(my/start-modules)
-
+	(straight-use-package 'doom-themes)
+	(defvar my/light-theme 'doom-acario-light)
+	(defvar my/dark-theme 'doom-acario-dark)
+	;; start the light/dark theme
+	(my/change/dark-theme)
 	;; The window initial size
 	;; specified size
 	;; (add-to-list 'default-frame-alist '(width . 180))
@@ -52,18 +56,18 @@
 	;; Windows like epg config
 
 	;; (set-cursor-color "#ff0000")
-)
-	
-	;; The window initial size specified size (add-to-list
-	;; 'default-frame-alist '(width . 140)) (add-to-list
-	;; 'default-frame-alist '(height . 45)) (set-frame-size
-	;; (selected-frame) 140 45)) fullscreen (add-to-list
-	;; 'default-frame-alist '(fullscreen . maximized)) Windows like epg
-	;; config (custom-set-variables '(epg-gpg-home-directory
-	;; "c:/Users/lbodnar/AppData/Roaming/gnupg") '(epg-gpg-program
-	;; "c:/Program Files (x86)/gnupg/bin/gpg.exe") '(epg-gpgconf-program
-	;; "c:/Program Files (x86)/gnupg/bin/gpgconf.exe") ) ) ;; end of
-	;; my/end-of-init
+	)
+
+;; The window initial size specified size (add-to-list
+;; 'default-frame-alist '(width . 140)) (add-to-list
+;; 'default-frame-alist '(height . 45)) (set-frame-size
+;; (selected-frame) 140 45)) fullscreen (add-to-list
+;; 'default-frame-alist '(fullscreen . maximized)) Windows like epg
+;; config (custom-set-variables '(epg-gpg-home-directory
+;; "c:/Users/lbodnar/AppData/Roaming/gnupg") '(epg-gpg-program
+;; "c:/Program Files (x86)/gnupg/bin/gpg.exe") '(epg-gpgconf-program
+;; "c:/Program Files (x86)/gnupg/bin/gpgconf.exe") ) ) ;; end of
+;; my/end-of-init
 
 (setq browse-url-generic-program "firefox")
 ;; (defun my/set-bigger-font ()
