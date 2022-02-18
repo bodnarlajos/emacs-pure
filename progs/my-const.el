@@ -10,13 +10,13 @@
 	(interactive)
 	(require 'my-prog)
 	(require 'my-dev)
-	(require 'my-jump)
 	(require 'my-haskell)
 	(require 'my-web)
 	(my-web-mode)
 	(require 'my-csharp)
 	(require 'my-magit)
-	)
+	(require 'my-windowmodify)
+	(my-windowmodify-mode))
 
 ;; end script of init
 (defun my/end-of-init ()
@@ -43,8 +43,6 @@
 			 '(ediff-custom-diff-program (concat my/git-bash-bin-path "diff3.exe")))
 			(setq find-program (concat my/git-bash-bin-path "find.exe"))))
 
-	(my/start-modules)
-
 	;; The window initial size
 	;; specified size
 	;; (add-to-list 'default-frame-alist '(width . 180))
@@ -54,24 +52,8 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-	;; Windows like epg config
-
-	;; (set-cursor-color "#ff0000")
 	)
 
 (setq browse-url-generic-program "firefox")
-;; (defun my/set-bigger-font ()
-;; 	"bigger font size"
-;; 	(interactive)
-;; 	(custom-set-faces
-;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))))
-;; (defun my/set-normal-font ()
-;; 	"bigger font size"
-;; 	(interactive)
-;; 	(custom-set-faces
-;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))))
-
-;; (add-hook 'window-size-change-functions (lambda (a)
-;; 																					(run-if-monitor 'my/set-normal-font 'my/set-bigger-font)))
 
 (provide 'my-const)

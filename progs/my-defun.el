@@ -15,10 +15,8 @@
 (defun my/change-theme(theme)
 	"change the theme"
 	(interactive)
-	(highlight-indent-guides-mode -1)
 	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme theme t)
-	(highlight-indent-guides-mode +1))
+	(load-theme theme t))
 
 (defun o0 ()
 	"Go to main menu"
@@ -83,14 +81,6 @@ same directory as the org-buffer and insert a link to this file."
 	(let ((buffname (concat "RO" (string-replace "." "" (string-replace "-" "" (buffer-name (current-buffer)))))))
 		;; (message "%s" buffname)
 		(make-frame '((name . "RO buffer") (minibuffer . nil) (mode-line-format . nil)))))
-
-(defun run-if-monitor (monitor1 monitor2)
-	"Retrive which monitor is in use"
-	(let ((dp (car (frame-position (selected-frame)))))
-		(message "%s" dp)
-		(if (< dp -20)
-				(funcall monitor2)
-			(funcall monitor1))))
 
 (defun my/copy-line (arg)
 	"Copy lines (as many as prefix argument) in the kill ring.
@@ -220,13 +210,6 @@ Version 2017-11-01"
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res development) (call-interactively 'my/start/devenv)))))))
-
-(defun my/dumb-jump-go ()
-	"Initialize and jump"
-	(interactive)
-	(when (not (featurep 'dumb-jump))
-		(straight-use-package 'dumb-jump))
-	(dumb-jump-go))
 
 (defun my/open-notes ()
 	"Open file from the notes directory"
