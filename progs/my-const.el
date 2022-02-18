@@ -40,8 +40,8 @@
 	
 	(my/start-modules)
 	(straight-use-package 'doom-themes)
-	(defvar my/light-theme 'doom-acario-light)
-	(defvar my/dark-theme 'doom-acario-dark)
+	(defvar my/light-theme 'tsdh-light)
+	(defvar my/dark-theme 'tsdh-dark)
 	;; start the light/dark theme
 	(my/change/dark-theme)
 	;; The window initial size
