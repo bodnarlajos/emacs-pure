@@ -236,11 +236,11 @@
    loaded."
   ;; <add other stuff here>
   (define-key dired-mode-map [remap dired-find-file]
-    'dired-single-buffer)
+							'dired-single-buffer)
   (define-key dired-mode-map [remap dired-mouse-find-file-other-window]
-    'dired-single-buffer-mouse)
+							'dired-single-buffer-mouse)
   (define-key dired-mode-map [remap dired-up-directory]
-    'dired-single-up-directory))
+							'dired-single-up-directory))
 
 ;; if dired's already loaded, then the keymap will be bound
 (if (boundp 'dired-mode-map)
@@ -314,9 +314,6 @@
      '(org-fontify-whole-heading-line t)
      '(org-hide-leading-stars t))))
 
-(custom-set-faces
- '(mode-line ((t (:height 1.1 :font-family "Monospace" :font-size 10)))))
-
 (use-package emacs
 	:config
 	(global-unset-key (kbd "C-x C-b"))
@@ -337,6 +334,7 @@
 	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+	(setq standard-indent 2)
 	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
@@ -348,7 +346,20 @@
 
 (my/end-of-init)
 
-(use-package remember-last-theme
+;; (use-package remember-last-theme
+;; 	:straight t
+;; 	;; :init (straight-use-package 'doom-themes)
+;; 	:config (remember-last-theme-enable))
+
+(use-package dumb-jump
 	:straight t
-	;; :init (straight-use-package 'doom-themes)
-	:config (remember-last-theme-enable))
+	:bind
+	("M-s d" . dumb-jump-go)
+	:hook
+	(xref-backend-functions . dumb-jump-xref-activate)
+	:config
+	(custom-set-variables
+	 '(dumb-jump-max-find-time 5)
+	 '(dumb-jump-selector 'completing-read)
+	 '(dumb-jump-preferred-searcher 'rg))
+	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))

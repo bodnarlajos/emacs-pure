@@ -219,13 +219,6 @@ Version 2017-11-01"
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res development) (call-interactively 'my/start/devenv)))))))
 
-(defun my/dumb-jump-go ()
-	"Initialize and jump"
-	(interactive)
-	(when (not (featurep 'dumb-jump))
-		(straight-use-package 'dumb-jump))
-	(dumb-jump-go))
-
 (defun my/open-notes ()
 	"Open file from the notes directory"
 	(interactive)			
