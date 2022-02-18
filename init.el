@@ -346,10 +346,12 @@
 
 (my/end-of-init)
 
-;; (use-package remember-last-theme
-;; 	:straight t
-;; 	;; :init (straight-use-package 'doom-themes)
-;; 	:config (remember-last-theme-enable))
+(use-package remember-last-theme
+	:straight t
+	;; :init (straight-use-package 'doom-themes)
+	;; :hook
+	;; (kill-emacs-hook . remember-theme-save)
+	:config (progn (remember-last-theme-enable)))
 
 (use-package dumb-jump
 	:straight t
