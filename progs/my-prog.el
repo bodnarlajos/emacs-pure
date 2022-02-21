@@ -33,4 +33,7 @@
 	(smartparens-mode +1))
 (add-hook 'prog-mode-hook 'my/local-prog-mode)
 
+(custom-set-variables
+ '(standard-indent 2))
+
 (provide 'my-prog)
