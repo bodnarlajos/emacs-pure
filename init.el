@@ -90,15 +90,33 @@
 	:config
 	(setq use-package-ensure t))
 
-(use-package rg
+(use-package affe
 	:straight t
 	:bind
-	("M-s r" . rg))
+	("M-s s" . affe-grep)
+	("M-s f" . affe-find)
+	:config
+	(defun affe-orderless-regexp-compiler (input _type)
+		(setq input (orderless-pattern-compiler input))
+		(cons input (lambda (str) (orderless--highlight input str))))
+	(setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
+
+(use-package rg
+	:straight t
+  :init
+	(defun my/project/rg ()
+		"T."
+		(interactive)
+		(let ((currProject (project-current)))
+			(if currProject
+					(call-interactively 'rg-project)
+				(call-interactively 'rg))))
+	:bind
+	("M-s r" . my/project/rg))
 
 (use-package consult
 	:straight t
 	:bind
-	("M-s s" . consult-ripgrep)
 	("M-s g" . consult-git-grep)
 	("M-S-i" . consult-global-mark))
 
@@ -271,7 +289,7 @@
 (mapcar (lambda (cdir)
 					(add-to-list 'exec-path cdir)) my/exec-dir)
 (mapcar (lambda (cdir)
-					(setenv (concat cdir ";" (getenv "PATH")))) my/exec-dir)
+					(setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
 
 (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
@@ -346,12 +364,12 @@
 (my/start-modules)
 (my/end-of-init)
 
+(straight-use-package 'one-themes)
 (use-package remember-last-theme
 	:straight t
-	;; :init (straight-use-package 'doom-themes)
 	;; :hook
 	;; (kill-emacs-hook . remember-theme-save)
-	:config (progn (remember-last-theme-enable)))
+	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
 (use-package dumb-jump
 	:straight t
@@ -365,3 +383,6 @@
 	 '(dumb-jump-selector 'completing-read)
 	 '(dumb-jump-preferred-searcher 'rg))
 	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+
+(defun consult-ripgrep ()
+  (consult--grep "Ripgrep" #'consult--ripgrep-builder dir initial))

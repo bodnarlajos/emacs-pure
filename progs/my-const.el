@@ -55,5 +55,18 @@
 	)
 
 (setq browse-url-generic-program "firefox")
+;; (defun my/set-bigger-font ()
+;; 	"bigger font size"
+;; 	(interactive)
+;; 	(custom-set-faces
+;; 	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))))
+;; (defun my/set-normal-font ()
+;; 	"bigger font size"
+;; 	(interactive)
+;; 	(custom-set-faces
+;; 	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 98 :width normal))))))
+
+;; (add-hook 'window-size-change-functions (lambda (a)
+;; 																					(run-if-monitor 'my/set-normal-font 'my/set-bigger-font)))
 
 (provide 'my-const)
