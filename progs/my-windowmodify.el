@@ -17,7 +17,7 @@
 (defun run-if-monitor (monitor1 monitor2)
 	"Retrive which monitor is in use"
 	(let ((dp (car (frame-position (selected-frame)))))
-		(message "%s" dp)
+		;; (message "%s" dp)
 		(if (< dp -20)
 				(funcall monitor2)
 			(funcall monitor1))))
