@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defvar my/project-dir '("/home/lbodnar/Projects"))
-(defvar my/exec-dir '("/home/lbodnar/.local/bin"))
+(defvar my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
 (defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
 
