@@ -73,12 +73,12 @@
 ;; 	"bigger font size"
 ;; 	(interactive)
 ;; 	(custom-set-faces
-;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 120 :width normal))))))
+;; 	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))))
 ;; (defun my/set-normal-font ()
 ;; 	"bigger font size"
 ;; 	(interactive)
 ;; 	(custom-set-faces
-;; 	 '(default ((t (:family "Iosevka" :foundry "outline" :slant normal :weight normal :height 98 :width normal))))))
+;; 	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 98 :width normal))))))
 
 ;; (add-hook 'window-size-change-functions (lambda (a)
 ;; 																					(run-if-monitor 'my/set-normal-font 'my/set-bigger-font)))

@@ -48,6 +48,10 @@
 ;; (require 'my-layout)
 
 (straight-use-package 'use-package)
+(use-package use-package
+	:config
+	(setq use-package-always-ensure t))
+
 (straight-use-package 'diminish)
 (straight-use-package 'vertico)
 (straight-use-package 'orderless)
@@ -102,6 +106,11 @@
 		(cons input (lambda (str) (orderless--highlight input str))))
 	(setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
 
+(use-package easy-kill
+	:straight t
+	:config
+	(global-set-key [remap kill-ring-save] 'easy-kill))
+
 (use-package rg
 	:straight t
   :init
@@ -113,11 +122,12 @@
 					(call-interactively 'rg-project)
 				(call-interactively 'rg))))
 	:bind
-	("M-s r" . my/project/rg))
+	("M-s R" . my/project/rg))
 
 (use-package consult
 	:straight t
 	:bind
+	("M-s r" . consult-ripgrep)
 	("M-s g" . consult-git-grep)
 	("M-S-i" . consult-global-mark))
 
@@ -383,6 +393,3 @@
 	 '(dumb-jump-selector 'completing-read)
 	 '(dumb-jump-preferred-searcher 'rg))
 	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))
-
-(defun consult-ripgrep ()
-  (consult--grep "Ripgrep" #'consult--ripgrep-builder dir initial))
