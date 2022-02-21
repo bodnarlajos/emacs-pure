@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defvar my/project-dir '("c:/Projects"))
-(defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "C:/Program Files/Git/mingw64/bin"))
+(defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/emacs-native/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
 
