@@ -106,6 +106,11 @@
 		(cons input (lambda (str) (orderless--highlight input str))))
 	(setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
 
+(use-package easy-kill
+	:straight t
+	:config
+	(global-set-key [remap kill-ring-save] 'easy-kill))
+
 (use-package rg
 	:straight t
   :init
