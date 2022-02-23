@@ -175,7 +175,10 @@
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
+								 (display-buffer-reuse-window display-buffer-in-side-window)
+								 (window-height . 0.20)
+								 (side . left)
+								 (slot . 4)
                  (window-parameters (mode-line-format . none)))))
 
 ;; Consult users will also want the embark-consult package.
@@ -392,6 +395,10 @@
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
 	(setq standard-indent 2)
+	(save-place-mode +1)
+	(setq use-dialog-box nil)
+	(setq global-auto-revert-non-file-buffers t)
+	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
