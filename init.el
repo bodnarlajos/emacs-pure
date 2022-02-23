@@ -363,6 +363,10 @@
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
 	(setq standard-indent 2)
+	(save-place-mode +1)
+	(setq use-dialog-box nil)
+	(setq global-auto-revert-non-file-buffers t)
+	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
