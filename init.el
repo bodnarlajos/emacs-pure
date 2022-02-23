@@ -53,7 +53,6 @@
 	(setq use-package-always-ensure t))
 
 (straight-use-package 'diminish)
-(straight-use-package 'vertico)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
 (straight-use-package 'undo-tree)
@@ -65,6 +64,32 @@
 (straight-use-package 'which-key)
 (straight-use-package 'el-get)
 
+(use-package vertico
+	:straight t
+	:config
+	(setq vertico-cycle t)
+	(vertico-mode +1))
+
+(use-package mini-popup
+	:straight t
+	:config
+	(progn
+		(mini-popup-mode +1)
+		(defun mini-popup-height-resize ()
+			(* (1+ (min vertico--total vertico-count)) (default-line-height)))
+		(defun mini-popup-height-fixed ()
+			(* (1+ (if vertico--input vertico-count 0)) (default-line-height)))
+		(setq mini-popup--height-function #'mini-popup-height-fixed)
+
+		;; Disable the minibuffer resizing of Vertico (HACK)
+		(advice-add #'vertico--resize-window :around
+								(lambda (&rest args)
+									(unless mini-popup-mode
+										(apply args))))
+
+		;; Ensure that the popup is updated after refresh (Consult-specific)
+		(add-hook 'consult--completion-refresh-hook
+							(lambda (&rest _) (mini-popup--setup)) 99)))
 
 (use-package back-button
 	:straight t
@@ -95,16 +120,23 @@
 	:config
 	(setq use-package-ensure t))
 
-(use-package affe
-	:straight t
+;; (use-package affe
+;; 	:straight t
+;; 	:bind
+;; 	("M-s s" . affe-grep)
+;; 	;; ("M-s f" . affe-find)
+;; 	:config
+;; 	(progn 
+;; 		(setq invocation-name "runemacs.exe")
+;; 		(defun affe-orderless-regexp-compiler (input _type)
+;; 			(setq input (orderless-pattern-compiler input))
+;; 			(cons input (lambda (str) (orderless--highlight input str))))
+;; 		(setq affe-regexp-compiler #'affe-orderless-regexp-compiler)))
+
+(use-package find-file-rg
+	:straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
 	:bind
-	("M-s s" . affe-grep)
-	("M-s f" . affe-find)
-	:config
-	(defun affe-orderless-regexp-compiler (input _type)
-		(setq input (orderless-pattern-compiler input))
-		(cons input (lambda (str) (orderless--highlight input str))))
-	(setq affe-regexp-compiler #'affe-orderless-regexp-compiler))
+	("M-s f" . find-file-rg))
 
 (use-package easy-kill
 	:straight t
@@ -122,12 +154,12 @@
 					(call-interactively 'rg-project)
 				(call-interactively 'rg))))
 	:bind
-	("M-s R" . my/project/rg))
+	("M-s r" . my/project/rg))
 
 (use-package consult
 	:straight t
 	:bind
-	("M-s r" . consult-ripgrep)
+	("M-s s" . consult-ripgrep)
 	("M-s g" . consult-git-grep)
 	("M-S-i" . consult-global-mark))
 
@@ -206,8 +238,6 @@
           (when-let (project (project-current))
             (car (project-roots project))))))
 (marginalia-mode +1)
-(setq vertico-cycle t)
-(vertico-mode +1)
 ;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
@@ -367,6 +397,11 @@
 	:bind
 	(:map minibuffer-mode-map
 				("M-l" . next-line)))
+
+(use-package recentf
+	:straight t
+	:config
+	(recentf-mode))
 
 (cd my/base-dir)
 
