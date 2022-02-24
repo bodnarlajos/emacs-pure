@@ -155,12 +155,56 @@
 	:bind
 	("M-s r" . my/project/rg))
 
+(use-package all-the-icons-completion
+	:straight t
+	:config
+	(all-the-icons-completion-mode +1)
+	(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
+
 (use-package consult
 	:straight t
 	:bind
-	("M-s s" . consult-ripgrep)
+	("M-s s" . consult-ripgrep-symbol-at-point)
 	("M-s g" . consult-git-grep)
-	("M-S-i" . consult-global-mark))
+	("M-S-i" . consult-global-mark)
+	("M-s M-s" . consult-ripgrep-related-files)
+	:config
+	(defun consult-ripgrep-symbol-at-point ()
+		"Seearch in files whose base name is the same as the current file's."
+		(interactive)
+		(minibuffer-with-setup-hook
+				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
+			(consult-ripgrep (my/root-project-dir)
+											 (if-let ((sap (symbol-at-point)))
+													 (format "%s" sap)
+												 (user-error "Buffer is not visiting a file")))))
+	(defun restrict-to-current-file ()
+		(interactive)
+		(if-let ((file (with-minibuffer-selected-window
+										 (buffer-file-name))))
+				;; (message "file: %s" file)
+				(save-excursion
+					(goto-char (point-max))
+					(insert " -- -g " (file-name-base file) "*.*"))
+			(user-error "Buffer is not visiting a file")))
+	(defun consult-ripgrep-related-files ()
+		"Seearch in files whose base name is the same as the current file's."
+		(interactive)
+		(minibuffer-with-setup-hook
+				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
+			(consult-ripgrep (my/root-project-dir)
+											 (if-let ((file (buffer-file-name)))
+													 (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
+												 (user-error "Buffer is not visiting a file")))))
+	(defun restrict-to-current-file ()
+		(interactive)
+		(if-let ((file (with-minibuffer-selected-window
+										 (buffer-file-name))))
+				;; (message "file: %s" file)
+				(save-excursion
+					(goto-char (point-max))
+					(insert " -- -g " (file-name-base file) "*.*"))
+			(user-error "Buffer is not visiting a file"))))
 
 (use-package embark
 	:straight t
@@ -235,10 +279,13 @@
 (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
 (with-eval-after-load 'project
-	(setq consult-project-root-function
-        (lambda ()
-          (when-let (project (project-current))
-            (car (project-roots project))))))
+	(setq consult-project-root-function #'my/root-project-dir))
+
+(defun my/root-project-dir ()
+	(if-let ((project (project-current)))
+					 (car (project-roots project))
+			(format "%s" default-directory)))
+
 (marginalia-mode +1)
 ;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)
