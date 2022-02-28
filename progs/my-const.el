@@ -4,6 +4,7 @@
 (defvar my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
 (defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
 (defvar my/base-dir "/home/lbodnar/Projects")
+(defvar my/temp-dir "/home/lbodnar/Projects/temp")
 
 (defun my/start-modules ()
 	"Start these modules after init"
