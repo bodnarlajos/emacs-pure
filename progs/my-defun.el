@@ -169,7 +169,7 @@ Version 2017-11-01"
 
 (defun my/menu-item-formatter (itemName signer)
 	"."
-	(format "|%s %-200s |" signer itemName))
+	(format "|%s %-30s |" signer itemName))
 
 (defun my/menu-item (itemName)
 	"."

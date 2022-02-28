@@ -267,6 +267,22 @@
 	(add-to-list 'completion-at-point-functions #'cape-dabbrev)
 	(add-to-list 'completion-at-point-functions #'cape-file)
 	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+	(setq cape-dabbrev-min-length 2)
+	;; (defun my/dabbrev-select-buffer ()
+	;; 	"T."
+	;; 	(let ((bl (buffer-list))
+	;; 				(result '()))
+	;; 		(while bl
+	;; 			(message "%s" (car bl))
+	;; 			(when (buffer-file-name (car bl))
+	;; 				(add-to-list 'result (car bl)))
+	;; 			(setq bl (cdr bl)))
+	;; 		result))
+
+	;; (setq dabbrev-friend-buffer-function #'my/dabbrev-select-buffer)
+	;; (setq dabbrev-select-buffers-function #'my/dabbrev-select-buffer)
+	;; (setq dabbrev-case-fold-search nil
+	;; 			dabbrev-case-replace nil)
 	:bind
 	("M-/" . cape-dabbrev))
 
@@ -283,8 +299,8 @@
 
 (defun my/root-project-dir ()
 	(if-let ((project (project-current)))
-					 (car (project-roots project))
-			(format "%s" default-directory)))
+			(car (project-roots project))
+		(format "%s" default-directory)))
 
 (marginalia-mode +1)
 ;; (mini-frame-mode +1)
@@ -330,7 +346,7 @@
  completion-category-overrides '((file (styles . (partial-completion))))
  completion-cycle-threshold 3
  tab-always-indent 'complete
- corfu-cycle t
+ ;; corfu-cycle t
  isearch-allow-scroll t
  scroll-preserve-screen-position t
  isearch-allow-prefix t
