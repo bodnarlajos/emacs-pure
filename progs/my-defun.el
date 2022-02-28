@@ -117,6 +117,8 @@ same directory as the org-buffer and insert a link to this file."
 		(funcall initial-major-mode)
 		(setq buffer-offer-save t)
 		$buf
+		(auto-save-mode +1)
+		(write-file (concat my/temp-dir "/" (buffer-name) "." (calendar-date-string (calendar-current-date) nil)))
 		))
 
 (defun my/revert-current-buffer ()

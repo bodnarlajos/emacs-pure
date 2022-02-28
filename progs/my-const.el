@@ -4,6 +4,7 @@
 (defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/emacs-native/bin" "C:/Program Files/Git/mingw64/bin"))
 (defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
 (defvar my/base-dir "c:/Projects")
+(defvar my/temp-dir "c:/users/lbodnar/Box/temp")
 
 (defun my/start-modules ()
 	"Start these modules after init"
