@@ -220,7 +220,10 @@
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
+								 (display-buffer-reuse-window display-buffer-in-side-window)
+								 (window-height . 0.20)
+								 (side . left)
+								 (slot . 4)
                  (window-parameters (mode-line-format . none)))))
 
 ;; Consult users will also want the embark-consult package.
