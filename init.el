@@ -59,7 +59,6 @@
 (straight-use-package 'anzu)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
-(straight-use-package 'git-timemachine)
 (straight-use-package 'dired-single)
 (straight-use-package 'which-key)
 (straight-use-package 'el-get)
@@ -69,27 +68,6 @@
 	:config
 	(setq vertico-cycle t)
 	(vertico-mode +1))
-
-(use-package mini-popup
-	:straight t
-	:config
-	(progn
-		(mini-popup-mode +1)
-		(defun mini-popup-height-resize ()
-			(* (1+ (min vertico--total vertico-count)) (default-line-height)))
-		(defun mini-popup-height-fixed ()
-			(* (1+ (if vertico--input vertico-count 0)) (default-line-height)))
-		(setq mini-popup--height-function #'mini-popup-height-fixed)
-
-		;; Disable the minibuffer resizing of Vertico (HACK)
-		(advice-add #'vertico--resize-window :around
-								(lambda (&rest args)
-									(unless mini-popup-mode
-										(apply args))))
-
-		;; Ensure that the popup is updated after refresh (Consult-specific)
-		(add-hook 'consult--completion-refresh-hook
-							(lambda (&rest _) (mini-popup--setup)) 99)))
 
 (use-package back-button
 	:straight t
@@ -166,7 +144,8 @@
 	:straight t
 	:bind
 	("M-s s" . consult-ripgrep-symbol-at-point)
-	("M-s g" . consult-git-grep)
+	("M-s g" . consult-ripgrep)
+	("M-s M-g" . consult-git-grep)
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
@@ -446,8 +425,6 @@
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
-	(global-unset-key (kbd "M-p"))
-	(global-set-key (kbd "M-p") 'my/switch-to-buffer)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
