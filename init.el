@@ -69,27 +69,6 @@
 	(setq vertico-cycle t)
 	(vertico-mode +1))
 
-(use-package mini-popup
-	:straight t
-	:config
-	(progn
-		(mini-popup-mode +1)
-		(defun mini-popup-height-resize ()
-			(* (1+ (min vertico--total vertico-count)) (default-line-height)))
-		(defun mini-popup-height-fixed ()
-			(* (1+ (if vertico--input vertico-count 0)) (default-line-height)))
-		(setq mini-popup--height-function #'mini-popup-height-fixed)
-
-		;; Disable the minibuffer resizing of Vertico (HACK)
-		(advice-add #'vertico--resize-window :around
-								(lambda (&rest args)
-									(unless mini-popup-mode
-										(apply args))))
-
-		;; Ensure that the popup is updated after refresh (Consult-specific)
-		(add-hook 'consult--completion-refresh-hook
-							(lambda (&rest _) (mini-popup--setup)) 99)))
-
 (use-package back-button
 	:straight t
 	:config
@@ -165,7 +144,8 @@
 	:straight t
 	:bind
 	("M-s s" . consult-ripgrep-symbol-at-point)
-	("M-s g" . consult-git-grep)
+	("M-s g" . consult-ripgrep)
+	("M-s M-g" . consult-git-grep)
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
@@ -351,12 +331,15 @@
  scroll-preserve-screen-position t
  isearch-allow-prefix t
  linum-format "%3s"
+ ls-lisp-dirs-first t
+ ls-lisp-use-insert-directory-program nil
  mark-ring-max 32)
 
 ;; dired
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's
    loaded."
+	(define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
   ;; <add other stuff here>
   (define-key dired-mode-map [remap dired-find-file]
 							'dired-single-buffer)
@@ -397,8 +380,8 @@
 (mapcar (lambda (cdir)
 					(setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
 
-(setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
-(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+;; (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
+;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (winner-mode +1)
 (with-eval-after-load 'ediff
@@ -445,8 +428,6 @@
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
-	(global-unset-key (kbd "M-p"))
-	(global-set-key (kbd "M-p") 'my/switch-to-buffer)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
@@ -480,6 +461,8 @@
 (my/end-of-init)
 
 (straight-use-package 'one-themes)
+(straight-use-package 'doom-themes)
+
 (use-package remember-last-theme
 	:straight t
 	;; :hook
