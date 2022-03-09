@@ -120,6 +120,7 @@ same directory as the org-buffer and insert a link to this file."
 (defun my/xah-new-empty-buffer ()
 	"Create a new empty buffer."
 	(interactive)
+	(require 'calendar)
 	(let (($buf (generate-new-buffer "untitled")))
 		(switch-to-buffer $buf)
 		(funcall initial-major-mode)
