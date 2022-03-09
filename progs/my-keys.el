@@ -24,7 +24,7 @@
   )
 
 (define-prefix-command 'my-prefix)
-(global-set-key (kbd "<print>") 'my-prefix)
+(global-set-key (kbd "<f12>") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
@@ -69,7 +69,7 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(define-key my-prefix (kbd "<print>") 'my/menu-base)
+(define-key my-prefix (kbd "<f12>") 'my/menu-base)
 
 (define-key my-prefix (kbd "p f") 'cape-file)
 (define-key my-prefix (kbd "p d") 'cape-dabbrev)
