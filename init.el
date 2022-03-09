@@ -331,12 +331,15 @@
  scroll-preserve-screen-position t
  isearch-allow-prefix t
  linum-format "%3s"
+ ls-lisp-dirs-first t
+ ls-lisp-use-insert-directory-program nil
  mark-ring-max 32)
 
 ;; dired
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's
    loaded."
+	(define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
   ;; <add other stuff here>
   (define-key dired-mode-map [remap dired-find-file]
 							'dired-single-buffer)
@@ -377,8 +380,8 @@
 (mapcar (lambda (cdir)
 					(setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
 
-(setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
-(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+;; (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
+;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (winner-mode +1)
 (with-eval-after-load 'ediff
@@ -457,6 +460,8 @@
 (my/end-of-init)
 
 (straight-use-package 'one-themes)
+(straight-use-package 'doom-themes)
+
 (use-package remember-last-theme
 	:straight t
 	;; :hook
