@@ -2,7 +2,6 @@
 
 (straight-use-package 'project)
 
-(define-prefix-command 'my-prefix)
 
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
@@ -24,7 +23,8 @@
   (define-key corfu-map (kbd "M-/") 'corfu-next)
   )
 
-(global-set-key (kbd "M-o") 'my-prefix)
+(define-prefix-command 'my-prefix)
+(global-set-key (kbd "C-c o") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
