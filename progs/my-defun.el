@@ -43,8 +43,8 @@ same directory as the org-buffer and insert a link to this file."
 	(interactive)
 	(let ((currProject (project-current)))
 		(if currProject
-			(call-interactively 'project-switch-to-buffer)
-		(call-interactively 'switch-to-buffer))))
+				(call-interactively 'project-switch-to-buffer)
+			(call-interactively 'switch-to-buffer))))
 
 (defun my/copy-file-name-to-clipboard ()
   "Copy the current buffer file name to the clipboard.It's a prelude code ..."
@@ -237,6 +237,12 @@ Version 2017-11-01"
 			(so-long)			
 			(require 'longlines)
 			(longlines-mode +1))))
+
+(defun my/long-line-wrap ()
+	"Wrap long lines to 120 char long string"
+	(interactive)
+	(save-excursion
+		(query-replace-regexp ".\\\{120\\}" "\\\& ┃\n" nil (point-min) (point-max))))
 
 (defun my/kill-buffer-close-window ()
 	"Kill the current buffer and close the window"
