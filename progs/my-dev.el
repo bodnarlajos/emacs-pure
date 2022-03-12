@@ -18,8 +18,11 @@
 	"T."
 	(interactive)
 	(my/run-dev-hook)
+	(my/start/restclient)
 	(my/revert-current-buffer))
+
 ;; end of the helper functions of ide-mode
+
 (defun my/setup-lsp-capf ()
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
