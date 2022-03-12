@@ -196,6 +196,7 @@
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
+	(define-key embark-buffer-map (kbd "M-m") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -226,6 +227,9 @@
 	:straight t
 	:config
 	(savehist-mode +1))
+
+(use-package multiple-cursors
+	:straight t)
 
 (use-package cape
 	:straight (cape :type git :host github :repo "minad/cape")
@@ -428,6 +432,7 @@
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
+	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
