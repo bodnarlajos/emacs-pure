@@ -149,33 +149,35 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
+	(defun mark-it ()
+		"T."
+		(cua-set-mark)
+		(cua-set-mark)
+		(consult-ripgrep-symbol-at-point))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
+		(cua-set-mark)
+		(cua-set-mark)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((sap (symbol-at-point)))
 													 (format "%s" sap)
 												 (user-error "Buffer is not visiting a file")))))
-	(defun restrict-to-current-file ()
-		(interactive)
-		(if-let ((file (with-minibuffer-selected-window
-										 (buffer-file-name))))
-				;; (message "file: %s" file)
-				(save-excursion
-					(goto-char (point-max))
-					(insert " -- -g " (file-name-base file) "*.*"))
-			(user-error "Buffer is not visiting a file")))
+	
 	(defun consult-ripgrep-related-files ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
+		(cua-set-mark)
+		(cua-set-mark)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((file (buffer-file-name)))
 													 (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
 												 (user-error "Buffer is not visiting a file")))))
+	
 	(defun restrict-to-current-file ()
 		(interactive)
 		(if-let ((file (with-minibuffer-selected-window
