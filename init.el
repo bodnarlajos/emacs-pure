@@ -42,7 +42,7 @@
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
-(load (expand-file-name (concat user-emacs-directory "custom.el")))
+(load (expand-file-name (concat user-emacs-directory "custom.new.el")))
 (require 'my-defun)
 (require 'my-keys)
 ;; (require 'my-layout)
@@ -316,7 +316,7 @@
  history-length 500
  make-backup-files nil  ; don't create backup~ files
  package-check-signature nil
- custom-file (concat user-emacs-directory "custom.el")
+ custom-file (concat user-emacs-directory "custom.new.el")
  inhibit-startup-screen t
  tab-width 2
  split-height-threshold 0
