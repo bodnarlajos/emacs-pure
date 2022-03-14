@@ -15,7 +15,6 @@
 	(require 'my-web)
 	(my-web-mode)
 	(require 'my-csharp)
-	(require 'my-magit)
 	(require 'my-windowmodify)
 	(my-windowmodify-mode))
 
