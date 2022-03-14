@@ -14,9 +14,7 @@
 	(require 'my-haskell)
 	(require 'my-web)
 	(my-web-mode)
-	(require 'my-csharp)
-	(require 'my-magit)
-	)
+	(require 'my-csharp))
 
 ;; end script of init
 (defun my/end-of-init ()

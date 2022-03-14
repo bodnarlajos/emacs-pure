@@ -73,6 +73,7 @@
 	:straight t
 	:config
 	(back-button-mode +1)
+	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
 	:bind
 	("M-i" . back-button-global)
 	("C-i" . back-button-push-mark-local-and-global))
@@ -151,14 +152,12 @@
 	:config
 	(defun mark-it ()
 		"T."
-		(cua-set-mark)
-		(cua-set-mark)
+		(back-button-push-mark-local-and-global)
 		(consult-ripgrep-symbol-at-point))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(cua-set-mark)
-		(cua-set-mark)
+		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -169,8 +168,7 @@
 	(defun consult-ripgrep-related-files ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(cua-set-mark)
-		(cua-set-mark)
+		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -479,15 +477,66 @@
 	;; (kill-emacs-hook . remember-theme-save)
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
-(use-package dumb-jump
+;; (use-package dumb-jump
+;; 	:straight t
+;; 	:bind
+;; 	("M-s d" . dumb-jump-go)
+;; 	:hook
+;; 	(xref-backend-functions . dumb-jump-xref-activate)
+;; 	:config
+;; 	(custom-set-variables
+;; 	 '(dumb-jump-max-find-time 5)
+;; 	 '(dumb-jump-selector 'completing-read)
+;; 	 '(dumb-jump-preferred-searcher 'rg))
+;; 	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+
+;; (use-package better-jumper
+;; 	:straight t
+;; 	:config
+;; 	(setq better-jumper-context 'buffer)
+;; 	(setq better-jumper-savehist t)
+;; 	(setq better-jumper-use-savehist t)
+;; 	(better-jumper-mode +1)
+;; 	:demand t
+;; 	:bind
+;; 	("M-i" . better-jumper-jump-backward)
+;; 	("M-S-i" . better-jumper-jump-forward))
+
+
+(use-package magit
 	:straight t
-	:bind
-	("M-s d" . dumb-jump-go)
-	:hook
-	(xref-backend-functions . dumb-jump-xref-activate)
+	:commands (magit-status)
 	:config
-	(custom-set-variables
-	 '(dumb-jump-max-find-time 5)
-	 '(dumb-jump-selector 'completing-read)
-	 '(dumb-jump-preferred-searcher 'rg))
-	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))
+	(add-hook 'magit-status-mode-hook (lambda ()
+																			(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
+																			(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
+																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
+																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-notes)
+																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-tag)
+																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
+																			(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
+																			(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
+																			(setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
+																			(setq magit--default-directory my/project-dir)  
+																			(setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))
+																			(define-key magit-stash-mode-map (kbd "a") (lambda ()
+																																									 (magit-stash-apply)
+																																									 (magit-log-bury-buffer)
+																																									 (magit-refresh)))
+																			(define-key magit-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
+	(custom-set-faces 
+	 '(magit-diff-hunk-heading ((t (:foreground "orange"))))))
