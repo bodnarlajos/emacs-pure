@@ -172,7 +172,7 @@ Version 2017-11-01"
 
 (defun my/menu-item-formatter (itemName signer)
 	"."
-	(format "|%s %-30s |" signer itemName))
+	(format "[%s]-| %s" signer itemName))
 
 (defun my/menu-item (itemName)
 	"."
@@ -197,15 +197,17 @@ Version 2017-11-01"
 				(openNotes (my/menu-item-for-program "Notes"))
 				(findnamedired (my/menu-item-for-program "Find in directory"))
 				(development (my/menu-item-for-program "Start development"))
+				(breakto8 (my/menu-item-for-program "Break lines to 8 chars..."))
 				(longLines (my/menu-item-for-program "Long lines")))
-		(let ((ido-list (list replaceStringRegex recentfiles restclient revertBuffer newbuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
+		(let ((ido-list (list replaceStringRegex recentfiles restclient breakto8 revertBuffer newbuffer rg rgCurrent development openNotes magit longLines replaceString findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res replaceString) (call-interactively 'query-replace))
 				 ((string-equal res replaceStringRegex) (call-interactively 'vr/replace))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res longLines) (call-interactively 'my/long-line))
-				 ((string-equal res recentfiles) (call-interactively 'my/recentf-open))
+				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
+				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res rg) (call-interactively 'rg))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res findnamedired) (call-interactively 'find-name-dired))
@@ -231,7 +233,13 @@ Version 2017-11-01"
 			(longlines-mode +1))))
 
 (defun my/long-line-wrap ()
-	"Wrap long lines to 120 char long string"
+	"Wrap long lines to window-width char long string"
+	(interactive)
+	(save-excursion
+		(query-replace-regexp (format ".\\\{%d\\}" (- (window-width) 8)) "\\\& ┃\n" nil (point-min) (point-max))))
+
+(defun my/long-line-to8 ()
+	"Wrap long lines to window-width char long string"
 	(interactive)
 	(save-excursion
 		(query-replace-regexp ".\\\{120\\}" "\\\& ┃\n" nil (point-min) (point-max))))

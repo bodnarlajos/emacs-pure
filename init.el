@@ -149,33 +149,35 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
+	(defun mark-it ()
+		"T."
+		(cua-set-mark)
+		(cua-set-mark)
+		(consult-ripgrep-symbol-at-point))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
+		(cua-set-mark)
+		(cua-set-mark)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((sap (symbol-at-point)))
 													 (format "%s" sap)
 												 (user-error "Buffer is not visiting a file")))))
-	(defun restrict-to-current-file ()
-		(interactive)
-		(if-let ((file (with-minibuffer-selected-window
-										 (buffer-file-name))))
-				;; (message "file: %s" file)
-				(save-excursion
-					(goto-char (point-max))
-					(insert " -- -g " (file-name-base file) "*.*"))
-			(user-error "Buffer is not visiting a file")))
+	
 	(defun consult-ripgrep-related-files ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
+		(cua-set-mark)
+		(cua-set-mark)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((file (buffer-file-name)))
 													 (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
 												 (user-error "Buffer is not visiting a file")))))
+	
 	(defun restrict-to-current-file ()
 		(interactive)
 		(if-let ((file (with-minibuffer-selected-window
@@ -196,6 +198,7 @@
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
+	(define-key embark-buffer-map (kbd "M-m") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -226,6 +229,9 @@
 	:straight t
 	:config
 	(savehist-mode +1))
+
+(use-package multiple-cursors
+	:straight t)
 
 (use-package cape
 	:straight (cape :type git :host github :repo "minad/cape")
@@ -264,7 +270,7 @@
 	;; (setq dabbrev-case-fold-search nil
 	;; 			dabbrev-case-replace nil)
 	:bind
-	("M-/" . cape-dabbrev))
+	("C-/" . cape-dabbrev))
 
 
 (straight-use-package '(kind-icon
@@ -424,10 +430,14 @@
 	:config
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
-	(global-set-key (kbd "M-l") 'my/switch-to-buffer)
+	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
+	(global-set-key (kbd "C-`") 'delete-other-windows)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
+	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
+	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
+	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
@@ -446,7 +456,8 @@
 	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
-				("M-l" . next-line)))
+				("<C-tab>" . next-line)
+				("C-`" . exit-minibuffer)))
 
 (use-package recentf
 	:straight t

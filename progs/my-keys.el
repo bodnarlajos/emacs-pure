@@ -2,7 +2,6 @@
 
 (straight-use-package 'project)
 
-
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
@@ -13,7 +12,7 @@
 (with-eval-after-load 'dabbrev
   (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
   (global-set-key (kbd "C-M-/") 'dabbrev-expand))
-(global-set-key (kbd "<C-tab>") 'completion-at-point)
+(global-set-key (kbd "M-/") 'completion-at-point)
 
 (with-eval-after-load 'corfu
   (define-key corfu-map (kbd "TAB") 'corfu-next)
@@ -24,7 +23,7 @@
   )
 
 (define-prefix-command 'my-prefix)
-(global-set-key (kbd "<f12>") 'my-prefix)
+(global-set-key (kbd "M-m") 'my-prefix)
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
@@ -69,7 +68,7 @@
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
 
-(define-key my-prefix (kbd "<f12>") 'my/menu-base)
+(define-key my-prefix (kbd "M-m") 'my/menu-base)
 
 (define-key my-prefix (kbd "p f") 'cape-file)
 (define-key my-prefix (kbd "p d") 'cape-dabbrev)
