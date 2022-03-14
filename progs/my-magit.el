@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(straight-use-package 'magit)
-
 (defun my/magit-status ()
   "Open a magit directory."
   (interactive)
@@ -36,17 +34,25 @@
 
 (with-eval-after-load 'magit
 	(add-hook 'magit-status-mode-hook 'my/faster-magit)
-	(define-key magit-stash-mode-map (kbd "a") (lambda ()
-																								(magit-stash-apply)
-																								(magit-log-bury-buffer)
-																								(magit-refresh)))
+	
 	(custom-set-faces 
 	 '(magit-diff-hunk-heading ((t (:foreground "orange"))))))
 
 (defun my/start/git ()
 	"Open the magit and remove other windows"
 	(interactive)
-	(my/magit-status)
+	(straight-use-package 'magit)
+	(add-hook 'magit-status-mode-hook (lambda ()
+																			(message "magit status hook")
+																			(define-key magit-stash-mode-map (kbd "a") (lambda ()
+																																									 (magit-stash-apply)
+																																									 (magit-log-bury-buffer)
+																																									 (magit-refresh)))
+																			(define-key magit-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
+																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
+	(my/magit-status) 
 	(delete-other-windows))
 
 (provide 'my-magit)

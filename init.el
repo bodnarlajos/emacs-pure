@@ -270,7 +270,7 @@
 	;; (setq dabbrev-case-fold-search nil
 	;; 			dabbrev-case-replace nil)
 	:bind
-	("M-/" . cape-dabbrev))
+	("C-/" . cape-dabbrev))
 
 
 (straight-use-package '(kind-icon
@@ -430,10 +430,13 @@
 	:config
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
-	(global-set-key (kbd "M-l") 'my/switch-to-buffer)
+	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
+	(global-set-key (kbd "C-`") 'delete-other-windows)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
+	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
+	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
@@ -453,7 +456,8 @@
 	(global-visual-line-mode t)
 	:bind
 	(:map minibuffer-mode-map
-				("M-l" . next-line)))
+				("<C-tab>" . next-line)
+				("C-`" . exit-minibuffer)))
 
 (use-package recentf
 	:straight t

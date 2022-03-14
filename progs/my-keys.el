@@ -2,7 +2,6 @@
 
 (straight-use-package 'project)
 
-
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
@@ -13,7 +12,7 @@
 (with-eval-after-load 'dabbrev
   (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
   (global-set-key (kbd "C-M-/") 'dabbrev-expand))
-(global-set-key (kbd "<C-tab>") 'completion-at-point)
+(global-set-key (kbd "M-/") 'completion-at-point)
 
 (with-eval-after-load 'corfu
   (define-key corfu-map (kbd "TAB") 'corfu-next)
