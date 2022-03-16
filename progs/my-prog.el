@@ -17,16 +17,19 @@
 (setq eldoc-echo-area-use-multiline-p 8)
 (setq eldoc-echo-area-prefer-doc-buffer t)
 (global-hl-line-mode +1)
+
 ;; (with-eval-after-load 'highlight-indent-guides
 ;; 	(setq highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line)
 ;; 	(custom-set-variables
 ;; 	 '(highlight-indent-guides-method 'bitmap)))
 ;; the custom prog mode
+
 (defun my/local-prog-mode ()
 	"T."
 	(setq-local tab-width 2)
 	(setq display-line-numbers-width 4)
 	(display-line-numbers-mode)
+	(hs-minor-mode +1)
 	;; (highlight-indent-guides-mode t)
 	;; (diminish 'highlight-indent-guides-mode-hook)
 	(diff-hl-mode t)
