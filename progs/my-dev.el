@@ -19,7 +19,8 @@
 	(interactive)
 	(my/run-dev-hook)
 	(my/start/restclient)
-	(my/revert-current-buffer))
+	(when (buffer-file-name)
+		(my/revert-current-buffer)))
 
 ;; end of the helper functions of ide-mode
 

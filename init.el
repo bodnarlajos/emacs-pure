@@ -540,3 +540,15 @@
 																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
 	(custom-set-faces 
 	 '(magit-diff-hunk-heading ((t (:foreground "orange"))))))
+
+(use-package undo-fu
+	:straight t
+	:bind
+	("C-z" . undo-fu-only-undo)
+	("C-y" . undo-fu-only-redo))
+	
+
+(use-package crux
+	:straight t)
+
+(my/start/devenv)
