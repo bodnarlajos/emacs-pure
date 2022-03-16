@@ -551,4 +551,9 @@
 (use-package crux
 	:straight t)
 
+(use-package doom-modeline
+	:straight t
+	:config
+	(doom-modeline-mode +1))
+
 (my/start/devenv)
