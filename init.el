@@ -452,6 +452,7 @@
 	(setq global-auto-revert-non-file-buffers t)
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
+	(pixel-scroll-precision-mode +1)
 	:bind
 	(:map minibuffer-mode-map
 				("<C-tab>" . next-line)
