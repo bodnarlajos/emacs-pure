@@ -190,7 +190,6 @@
 	:straight t
   :bind
   (("C-;" . embark-act)         ;; pick some comfortable binding
-   ("C-." . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -430,11 +429,11 @@
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
-	(global-set-key (kbd "C-`") 'delete-other-windows)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
+	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
@@ -445,6 +444,7 @@
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
 	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
 	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
+	(define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
 	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
 	(setq standard-indent 2)
 	(save-place-mode +1)
@@ -455,8 +455,7 @@
 	(pixel-scroll-precision-mode +1)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . next-line)
-				("C-`" . exit-minibuffer)))
+				("<C-tab>" . next-line)))
 
 (use-package recentf
 	:straight t
@@ -548,7 +547,6 @@
 	("C-z" . undo-fu-only-undo)
 	("C-y" . undo-fu-only-redo))
 	
-
 (use-package crux
 	:straight t)
 
@@ -556,5 +554,13 @@
 	:straight t
 	:config
 	(doom-modeline-mode +1))
+
+(use-package ibuffer-sidebar
+	:straight t
+	:commands (ibuffer-sidebar-toggle-sidebar)
+	:bind
+	("M-`" . ibuffer-sidebar-toggle-sidebar)
+	:config
+  (setq ibuffer-sidebar-use-custom-font t))
 
 (my/start/devenv)
