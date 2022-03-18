@@ -547,7 +547,7 @@
 	:bind
 	("C-z" . undo-fu-only-undo)
 	("C-y" . undo-fu-only-redo))
-	
+
 (use-package crux
 	:straight t)
 
@@ -560,8 +560,16 @@
 	:straight t
 	:commands (ibuffer-sidebar-toggle-sidebar)
 	:bind
-	("M-`" . ibuffer-sidebar-toggle-sidebar)
+	(("C-x C-b" . ibuffer-sidebar-toggle-sidebar)
+	 (:map my-prefix
+				("c b" . ibuffer-sidebar-toggle-sidebar)))
 	:config
   (setq ibuffer-sidebar-use-custom-font t))
+
+(use-package efar
+	:straight t)
+
+(use-package command-frequency
+	:straight t)
 
 (my/start/devenv)
