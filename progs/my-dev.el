@@ -60,6 +60,7 @@
 	
 	(add-hook 'lsp-mode-hook
 						(lambda ()
+							(display-line-numbers-mode +1)
 							(setf (caadr ;; Pad before lsp modeline error info
 										 (assq 'global-mode-string mode-line-misc-info))
 										" ")))
