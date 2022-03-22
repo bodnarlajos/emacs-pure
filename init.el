@@ -150,10 +150,26 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
-	(defun mark-it ()
-		"T."
-		(back-button-push-mark-local-and-global)
-		(consult-ripgrep-symbol-at-point))
+	;; (defvar after-load-theme-hook nil
+	;; 	"Hook run after a color theme is loaded using `load-theme'.")
+	;; (defadvice consult-theme (after run-after-load-theme-hook activate)
+	;; 	"Run `after-load-theme-hook'."
+	;; 	(run-hooks 'after-load-theme-hook))
+
+	;; (add-hook 'after-load-theme-hook (lambda ()
+	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-light")
+	;; 																		 (custom-set-faces
+	;; 																			'(lsp-face-highlight-read ((t (:background "red" :inverse-video nil :underline t))))))
+	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-dark")
+	;; 																		 (custom-set-faces
+	;; 																			'(lsp-face-highlight-read ((t (:background "burlywood" :inverse-video nil :underline t))))))
+	;; 																	 (message "theme loaded")))
+	
+	;; (defun mark-it ()
+	;; 	"T."
+	;; 	(back-button-push-mark-local-and-global)
+	;; 	(consult-ripgrep-symbol-at-point))
+	
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -504,6 +520,28 @@
 ;; 	("M-S-i" . better-jumper-jump-forward))
 
 
+(defun my/goto-magit ()
+	"T."
+	(interactive)
+	(require 'consult)
+	(let* ((buffers (buffer-list))
+				 (projroot (my/root-project-dir))
+				 (projname (consult--project-name projroot))
+				 (magitbuffer nil)
+				 (projbuffername (concat "magit: " projname)))
+		(while buffers
+			(when (string-equal (buffer-name (car buffers)) projbuffername)
+				(setq magitbuffer (car buffers))
+				(setq buffers nil))
+			(setq buffers (cdr buffers))
+			(message "%s" magitbuffer)
+			)
+		(if magitbuffer
+				(switch-to-buffer magitbuffer)
+			(magit-status))
+		)
+	)
+
 (use-package magit
 	:straight t
 	:commands (magit-status)
@@ -562,7 +600,7 @@
 	:bind
 	(("C-x C-b" . ibuffer-sidebar-toggle-sidebar)
 	 (:map my-prefix
-				("c b" . ibuffer-sidebar-toggle-sidebar)))
+				 ("c b" . ibuffer-sidebar-toggle-sidebar)))
 	:config
   (setq ibuffer-sidebar-use-custom-font t))
 
@@ -572,4 +610,4 @@
 (use-package command-frequency
 	:straight t)
 
-(my/start/devenv)
+;; (my/start/devenv)

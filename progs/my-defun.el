@@ -193,21 +193,23 @@ Version 2017-11-01"
 				(development (my/menu-item-for-program "Start development"))
 				(openNotes (my/menu-item-for-program "Notes"))
 				(magit (my/menu-item-for-program "Git"))
+				(initel (my/menu-item-for-program "init.el"))
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list efar recentfiles restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res efar) (call-interactively 'efar))
+				 ((string-equal res initel) 'my/open-emacsd)
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res development) (call-interactively 'my/start/devenv))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
-				 ((string-equal res magit) (call-interactively 'magit-status))
+				 ((string-equal res magit) (call-interactively 'my/goto-magit))
 				 ((string-equal res longLines) (call-interactively 'my/long-line-wrap))
 				 ((string-equal res findnamedired) (call-interactively 'find-file-rg)))))))
 
@@ -384,5 +386,9 @@ Position the cursor at its beginning, according to the current mode."
 		(if (file-exists-p filepath)
 				(my/view-file filepath)
 			(message "It's not a file: %s" filepath))))
+
+(defun my/open-emacsd ()
+	"Open the emacs.d/init.el file"
+	(find-file "~/.emacs.d/init.el"))
 
 (provide 'my-defun)	

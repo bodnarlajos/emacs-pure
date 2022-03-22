@@ -56,7 +56,7 @@
 (define-key my-prefix (kbd "t") 'transpose-frame)
 (define-key my-prefix (kbd "b") 'consult-buffer)
 (define-key my-prefix (kbd "b") 'consult-buffer)
-(define-key my-prefix (kbd "c g") 'magit-status)
+(define-key my-prefix (kbd "c g") 'my/goto-magit)
 (define-key my-prefix (kbd "c p") 'project-find-file)
 (define-key my-prefix (kbd "c f") 'rg)
 (define-key my-prefix (kbd "c m") 'my/menu-base)
