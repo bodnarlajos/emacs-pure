@@ -98,7 +98,7 @@ This way, it can be reverted if for any reason this windowing mode is disabled")
          (window-height . 0.20)
          (side . left)
          (slot . 5))
-				("\\*\\(transient\\|Deletions\\|Messages\\|Completions\\)\\*"
+				("\\*\\(transient\\|Deletions\\|Messages\\|Completions\\|flycheck errors\\)\\*"
 				 (display-buffer-reuse-window display-buffer-in-side-window)
          (window-height . 0.20)
          (side . bottom)
