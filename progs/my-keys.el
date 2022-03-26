@@ -23,7 +23,12 @@
   )
 
 (define-prefix-command 'my-prefix)
-(global-set-key (kbd "M-o") 'my-prefix)
+(global-set-key (kbd "M-m") 'my-prefix)
+(define-key my-prefix (kbd "(") 'kmacro-start-macro)
+(define-key my-prefix (kbd ")") 'kmacro-end-macro)
+(define-key my-prefix (kbd ">") 'kmacro-call-macro)
+(define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
+
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
@@ -74,7 +79,7 @@
 (define-key my-prefix (kbd "p s") 'cape-symbol)
 (define-key my-prefix (kbd "p k") 'cape-keyword)
 
-(global-set-key (kbd "M-m") 'my/menu-base)
+(global-set-key (kbd "C-S-p") 'my/menu-base)
 
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
@@ -92,7 +97,7 @@
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
   (add-hook 'org-mode-hook (lambda ()
-			     (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
+														 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window))))
 ;; menu 
 (defvar right-popup-menu 
   (let ((menu (make-sparse-keymap "Commands"))) 
