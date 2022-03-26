@@ -707,6 +707,8 @@
 	:straight t)
 
 (use-package command-frequency
-	:straight t)
+	:straight t
+	:config
+	(command-frequency-mode +1))
 
 ;; (my/start/devenv)
