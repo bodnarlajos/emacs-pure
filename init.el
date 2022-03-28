@@ -587,6 +587,8 @@
 
 (straight-use-package 'one-themes)
 (straight-use-package 'doom-themes)
+(straight-use-package 'vs-light-theme)
+(straight-use-package 'vs-dark-theme)
 
 (use-package remember-last-theme
 	:straight t
@@ -710,6 +712,7 @@
 (use-package command-frequency
 	:straight t
 	:config
-	(command-frequency-mode +1))
+	(command-frequency-mode +1)
+	(command-frequency-autosave-mode +1))
 
 ;; (my/start/devenv)
