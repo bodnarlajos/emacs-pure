@@ -571,7 +571,7 @@
 	(pixel-scroll-precision-mode +1)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . next-line)))
+				("<C-tab>" . previous-line)))
 
 (use-package recentf
 	:straight t
@@ -708,6 +708,8 @@
 	:straight t)
 
 (use-package command-frequency
-	:straight t)
+	:straight t
+	:config
+	(command-frequency-mode +1))
 
 ;; (my/start/devenv)
