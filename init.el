@@ -80,25 +80,25 @@
                                 ))
   :bind
   (:map vertico-map
-            (("<tab>" . vertico-insert) ; Set manually otherwise setting `vertico-quick-insert' overrides this
-            ("<escape>" . minibuffer-keyboard-quit)
-            ("?" . minibuffer-completion-help)
-            ("C-M-n" . vertico-next-group)
-            ("C-M-p" . vertico-previous-group)
-            ;; Multiform toggles
-            ("<backspace>" . vertico-directory-delete-char)
-            ("C-w" . vertico-directory-delete-word)
-            ("C-<backspace>" . vertico-directory-delete-word)
-            ("RET" . vertico-directory-enter)
-            ("C-i" . vertico-quick-insert)
-            ("C-o" . vertico-quick-exit)
-            ("M-o" . kb/vertico-quick-embark)
-            ("M-G" . vertico-multiform-grid)
-            ("M-F" . vertico-multiform-flat)
-            ("M-R" . vertico-multiform-reverse)
-            ("M-U" . vertico-multiform-unobtrusive)
-            ("C-l" . kb/vertico-multiform-flat-toggle)
-            ))
+        (("<tab>" . vertico-insert) ; Set manually otherwise setting `vertico-quick-insert' overrides this
+         ("<escape>" . minibuffer-keyboard-quit)
+         ("?" . minibuffer-completion-help)
+         ("C-M-n" . vertico-next-group)
+         ("C-M-p" . vertico-previous-group)
+         ;; Multiform toggles
+         ("<backspace>" . vertico-directory-delete-char)
+         ("C-w" . vertico-directory-delete-word)
+         ("C-<backspace>" . vertico-directory-delete-word)
+         ("RET" . vertico-directory-enter)
+         ("C-i" . vertico-quick-insert)
+         ("C-o" . vertico-quick-exit)
+         ("M-o" . kb/vertico-quick-embark)
+         ("M-G" . vertico-multiform-grid)
+         ("M-F" . vertico-multiform-flat)
+         ("M-R" . vertico-multiform-reverse)
+         ("M-U" . vertico-multiform-unobtrusive)
+         ("C-l" . kb/vertico-multiform-flat-toggle)
+         ))
   :hook ((rfn-eshadow-update-overlay . vertico-directory-tidy) ; Clean up file path when typing
          (minibuffer-setup . vertico-repeat-save) ; Make sure vertico state is saved
          )
@@ -569,9 +569,42 @@
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	(pixel-scroll-precision-mode +1)
+	(my/light-modeline)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line)))
+				("<C-tab>" . previous-line))
+	:init
+	(defun my/light-modeline ()
+		"The light mode-line color schema"
+		(set-face-attribute 'mode-line nil
+												:background "#99ccff"
+												:foreground "white"
+												:box '(:line-width 8 :color "#99ccff")
+												:overline nil
+												:underline nil)
+
+		(set-face-attribute 'mode-line-inactive nil
+												:background "#ffcc99"
+												:foreground "white"
+												:box '(:line-width 8 :color "#ffcc99")
+												:overline nil
+												:underline nil))
+	(defun my/dark-modeline ()
+		"The dark modeline color schema"
+		(set-face-attribute 'mode-line nil
+												:background "#cc3300"
+												:foreground "white"
+												:box '(:line-width 8 :color "#cc3300")
+												:overline nil
+												:underline nil)
+
+		(set-face-attribute 'mode-line-inactive nil
+												:background "#802000"
+												:foreground "white"
+												:box '(:line-width 8 :color "#802000")
+												:overline nil
+												:underline nil))
+	)
 
 (use-package recentf
 	:straight t
