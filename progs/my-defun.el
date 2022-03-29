@@ -109,6 +109,21 @@ same directory as the org-buffer and insert a link to this file."
 	(let ((url (ffap-url-at-point)))
 		(browse-url url)))
 
+(defun my/xah-new-empty-buffer-org ()
+	"Create a new empty buffer."
+	(interactive)
+	(require 'calendar)
+	(let (($buf (generate-new-buffer "untitled")))
+		(switch-to-buffer $buf)
+		(funcall initial-major-mode)
+		(setq buffer-offer-save t)
+		(org-mode)
+		(auto-save-mode +1)
+		(let ((datestr (format-time-string "%Y_%m_%d_%H_%M_%S")))
+			(write-file (concat my/temp-dir "/" (buffer-name) "." datestr ".org")))
+		$buf
+		))
+
 (defun my/xah-new-empty-buffer ()
 	"Create a new empty buffer."
 	(interactive)
@@ -119,7 +134,8 @@ same directory as the org-buffer and insert a link to this file."
 		(setq buffer-offer-save t)
 		$buf
 		(auto-save-mode +1)
-		(write-file (concat my/temp-dir "/" (buffer-name) "." (calendar-date-string (calendar-current-date) nil)))
+		(let ((datestr (format-time-string "%Y_%m_%d_%H_%M_%S")))
+			(write-file (concat my/temp-dir "/" (buffer-name) "." datestr ".txt")))
 		))
 
 (defun my/revert-current-buffer ()
@@ -190,6 +206,7 @@ Version 2017-11-01"
 				(breakto8 (my/menu-item-for-program "Break lines to 8 chars..."))
 				(revertBuffer (my/menu-item "Revert buffer"))
 				(newbuffer (my/menu-item "New buffer"))
+				(neworgbuffer (my/menu-item "New org"))
 				(development (my/menu-item-for-program "Start development"))
 				(openNotes (my/menu-item-for-program "Notes"))
 				(magit (my/menu-item-for-program "Git"))
@@ -197,7 +214,7 @@ Version 2017-11-01"
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
@@ -207,6 +224,7 @@ Version 2017-11-01"
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
+				 ((string-equal res neworgbuffer) (call-interactively 'my/xah-new-empty-buffer-org))
 				 ((string-equal res development) (call-interactively 'my/start/devenv))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
 				 ((string-equal res magit) (call-interactively 'my/goto-magit))
