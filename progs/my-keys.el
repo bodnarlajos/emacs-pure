@@ -29,6 +29,8 @@
 (define-key my-prefix (kbd ">") 'kmacro-call-macro)
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
 
+(define-key my-prefix (kbd "x") 'execute-extended-command)
+
 (define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
 (define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
