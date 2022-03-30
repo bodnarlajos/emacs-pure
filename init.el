@@ -105,7 +105,7 @@
   :custom
   (vertico-count 13)
   (vertico-resize t)
-  (vertico-cycle nil)
+  (vertico-cycle t)
   ;; Extensions
   (vertico-grid-separator "       ")
   (vertico-grid-lookahead 50)
