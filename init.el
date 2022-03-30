@@ -538,15 +538,39 @@
      '(org-fontify-whole-heading-line t)
      '(org-hide-leading-stars t))))
 
-(use-package remember-last-theme
-	:straight t
-	:init
-	(straight-use-package 'vs-light-theme)
-	(straight-use-package 'vs-dark-theme)
-	;; :hook
-	;; (kill-emacs-hook . remember-theme-save)
-	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
-
+(use-package emacs
+	:config
+	(global-unset-key (kbd "C-x C-b"))
+	(global-unset-key (kbd "C-x b"))
+	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
+	(global-set-key (kbd "C-x b") 'switch-to-buffer)
+	(global-set-key (kbd "<M-left>") 'windmove-left)
+	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
+	(global-set-key (kbd "<M-right>") 'windmove-right)
+	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
+	(global-set-key (kbd "C-.") 'repeat-complex-command)
+	(global-set-key (kbd "M-C-o") 'consult-recent-file)
+	(global-unset-key (kbd "C-S-o"))
+	(global-set-key (kbd "C-S-o") 'find-file)
+	(global-unset-key (kbd "C-o"))
+	(global-set-key (kbd "C-o") 'project-find-file)
+	(global-unset-key (kbd "M-k"))
+	(define-prefix-command 'my-emacs-prefix)
+	(global-set-key (kbd "M-k") 'my-emacs-prefix)
+	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
+	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
+	(define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
+	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+	(setq standard-indent 2)
+	(save-place-mode +1)
+	(setq use-dialog-box nil)
+	(setq global-auto-revert-non-file-buffers t)
+	(global-auto-revert-mode 1)
+	(global-visual-line-mode t)
+	(pixel-scroll-precision-mode +1)
+	:bind
+	(:map minibuffer-mode-map
+				("<C-tab>" . previous-line)))
 
 (use-package recentf
 	:straight t
@@ -645,117 +669,33 @@
 	(command-frequency-mode +1)
 	(command-frequency-autosave-mode +1))
 
-(use-package emacs
+(use-package git-timemachine
+	:straight t)
+
+(use-package remember-last-theme
+	:straight t)
+
+(use-package doom-modeline
+	:straight t
 	:config
-	(global-unset-key (kbd "C-x C-b"))
-	(global-unset-key (kbd "C-x b"))
-	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
-	(global-set-key (kbd "C-x b") 'switch-to-buffer)
-	(global-set-key (kbd "<M-left>") 'windmove-left)
-	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
-	(global-set-key (kbd "<M-right>") 'windmove-right)
-	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
-	(global-set-key (kbd "C-.") 'repeat-complex-command)
-	(global-set-key (kbd "M-C-o") 'consult-recent-file)
-	(global-unset-key (kbd "C-S-o"))
-	(global-set-key (kbd "C-S-o") 'find-file)
-	(global-unset-key (kbd "C-o"))
-	(global-set-key (kbd "C-o") 'project-find-file)
-	(global-unset-key (kbd "M-k"))
-	(define-prefix-command 'my-emacs-prefix)
-	(global-set-key (kbd "M-k") 'my-emacs-prefix)
-	(define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
-	(define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
-	(define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
-	(define-key 'my-emacs-prefix (kbd "l") 'kill-line)
-	(setq standard-indent 2)
-	(save-place-mode +1)
-	(setq use-dialog-box nil)
-	(setq global-auto-revert-non-file-buffers t)
-	(global-auto-revert-mode 1)
-	(global-visual-line-mode t)
-	(pixel-scroll-precision-mode +1)
-	(add-hook 'after-init-hook 'my/light-modeline)
-	:bind
-	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line))
+	(setq doom-modeline-lsp t)
+	(setq doom-modeline-workspace-name t)
+	(setq doom-modeline-vcs-max-length 12)
+	(setq doom-modeline-checker-simple-format t)
+	(setq doom-modeline-indent-info nil)
+	(setq doom-modeline-buffer-encoding t)
+	;; (setq doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode))
+	(setq doom-modeline-enable-word-count t)
+	(setq doom-modeline-buffer-name t)
+	(setq doom-modeline-buffer-modification-icon t)
+	(setq doom-modeline-major-mode-color-icon t)
+	(setq doom-modeline-major-mode-icon t)
+	(setq doom-modeline-buffer-file-name-style 'auto)
+	(setq doom-modeline-project-detection 'auto)
+	(setq doom-modeline-height 25)
 	:init
-	(defun my/light-modeline ()
-		"The light mode-line color schema"
-		(message "modeline started")
+	(doom-modeline-mode 1))
 
-		(custom-set-variables
-		 '(mode-line-format
-			 (list
-				;; day and time
-				'(:eval (propertize (format-time-string " %b %d %H:%M ")
-														'face '(:foreground "#314457")))
-
-
-				;; '(:eval (propertize (substring vc-mode 5)
-				;;                     'face 'font-lock-comment-face))
-
-				;; the buffer name; the file name as a tool tip
-				'(:eval (propertize " %b "
-														'face
-														(let ((face (buffer-modified-p)))
-															(if face '(:foreground "##c96565")
-																'(:foreground "#314457")))
-														'help-echo (buffer-file-name)))
-
-				;; line and column
-				" (" ;; '%02' to set to 2 chars at least; prevents flickering
-				(propertize "%02l" 'face 'font-lock-keyword-face) ","
-				(propertize "%02c" 'face 'font-lock-keyword-face)
-				") "
-
-				;; relative position, size of file
-				" ["
-				(propertize "%p" 'face '(:foreground "#314457")) ;; % above top
-				"/"
-				(propertize "%I" 'face '(:foreground "#314457")) ;; size
-				"] "
-
-				;; spaces to align right
-				'(:eval (propertize
-								 " " 'display
-								 `((space :align-to (- (+ right right-fringe right-margin)
-																			 ,(+ 3 (string-width mode-name)))))))
-
-																				;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
-
-				;; the current major mode
-				(propertize " %m " 'face '(:foreground "#314457"))
-				;;minor-mode-alist
-				)
-			 ))
-		(set-face-attribute 'mode-line nil
-												:background "#99ccff"
-												:foreground "white"
-												:box '(:line-width 8 :color "#99ccff")
-												:overline nil
-												:underline nil)
-
-		(set-face-attribute 'mode-line-inactive nil
-												:background "#ffcc99"
-												:foreground "white"
-												:box '(:line-width 8 :color "#ffcc99")
-												:overline nil
-												:underline nil)
-		)
-	(defun my/dark-modeline ()
-		"The dark modeline color schema"
-		(set-face-attribute 'mode-line nil
-												:background "#cc3300"
-												:foreground "white"
-												:box '(:line-width 8 :color "#cc3300")
-												:overline nil
-												:underline nil)
-
-		(set-face-attribute 'mode-line-inactive nil
-												:background "#802000"
-												:foreground "white"
-												:box '(:line-width 8 :color "#802000")
-												:overline nil
-												:underline nil))
-	)
+(use-package doom-themes
+	:straight t
+	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
