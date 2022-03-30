@@ -568,42 +568,9 @@
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	(pixel-scroll-precision-mode +1)
-	(my/light-modeline)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line))
-	:init
-	(defun my/light-modeline ()
-		"The light mode-line color schema"
-		(set-face-attribute 'mode-line nil
-												:background "#99ccff"
-												:foreground "white"
-												:box '(:line-width 8 :color "#99ccff")
-												:overline nil
-												:underline nil)
-
-		(set-face-attribute 'mode-line-inactive nil
-												:background "#ffcc99"
-												:foreground "white"
-												:box '(:line-width 8 :color "#ffcc99")
-												:overline nil
-												:underline nil))
-	(defun my/dark-modeline ()
-		"The dark modeline color schema"
-		(set-face-attribute 'mode-line nil
-												:background "#cc3300"
-												:foreground "white"
-												:box '(:line-width 8 :color "#cc3300")
-												:overline nil
-												:underline nil)
-
-		(set-face-attribute 'mode-line-inactive nil
-												:background "#802000"
-												:foreground "white"
-												:box '(:line-width 8 :color "#802000")
-												:overline nil
-												:underline nil))
-	)
+				("<C-tab>" . previous-line)))
 
 (use-package recentf
 	:straight t
@@ -615,42 +582,6 @@
 (blink-cursor-mode 0)
 
 (my/end-of-init)
-
-(straight-use-package 'one-themes)
-(straight-use-package 'doom-themes)
-(straight-use-package 'vs-light-theme)
-(straight-use-package 'vs-dark-theme)
-
-(use-package remember-last-theme
-	:straight t
-	;; :hook
-	;; (kill-emacs-hook . remember-theme-save)
-	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
-
-;; (use-package dumb-jump
-;; 	:straight t
-;; 	:bind
-;; 	("M-s d" . dumb-jump-go)
-;; 	:hook
-;; 	(xref-backend-functions . dumb-jump-xref-activate)
-;; 	:config
-;; 	(custom-set-variables
-;; 	 '(dumb-jump-max-find-time 5)
-;; 	 '(dumb-jump-selector 'completing-read)
-;; 	 '(dumb-jump-preferred-searcher 'rg))
-;; 	(setq xref-show-definitions-function #'xref-show-definitions-completing-read))
-
-;; (use-package better-jumper
-;; 	:straight t
-;; 	:config
-;; 	(setq better-jumper-context 'buffer)
-;; 	(setq better-jumper-savehist t)
-;; 	(setq better-jumper-use-savehist t)
-;; 	(better-jumper-mode +1)
-;; 	:demand t
-;; 	:bind
-;; 	("M-i" . better-jumper-jump-backward)
-;; 	("M-S-i" . better-jumper-jump-forward))
 
 
 (defun my/goto-magit ()
@@ -722,11 +653,6 @@
 (use-package crux
 	:straight t)
 
-;; (use-package doom-modeline
-;; 	:straight t
-;; 	:config
-;; 	(doom-modeline-mode +1))
-
 (use-package ibuffer-sidebar
 	:straight t
 	:commands (ibuffer-sidebar-toggle-sidebar)
@@ -749,6 +675,9 @@
 (use-package git-timemachine
 	:straight t)
 
+(use-package remember-last-theme
+	:straight t)
+
 (use-package doom-modeline
 	:straight t
 	:config
@@ -769,3 +698,7 @@
 	(setq doom-modeline-height 25)
 	:init
 	(doom-modeline-mode 1))
+
+(use-package doom-themes
+	:straight t
+	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
