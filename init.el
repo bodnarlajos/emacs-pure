@@ -416,7 +416,6 @@
 ;; set defaults
 (setq-default
  dired-dwim-target t
- doom-modeline-height 25
  autoload-compute-prefixes nil
  frame-inhibit-implied-resize t
  initial-major-mode 'fundamental-mode
@@ -690,10 +689,10 @@
 (use-package crux
 	:straight t)
 
-(use-package doom-modeline
-	:straight t
-	:config
-	(doom-modeline-mode +1))
+;; (use-package doom-modeline
+;; 	:straight t
+;; 	:config
+;; 	(doom-modeline-mode +1))
 
 (use-package ibuffer-sidebar
 	:straight t
@@ -714,4 +713,26 @@
 	(command-frequency-mode +1)
 	(command-frequency-autosave-mode +1))
 
-;; (my/start/devenv)
+(use-package git-timemachine
+	:straight t)
+
+(use-package doom-modeline
+	:straight t
+	:config
+	(setq doom-modeline-lsp t)
+	(setq doom-modeline-workspace-name t)
+	(setq doom-modeline-vcs-max-length 12)
+	(setq doom-modeline-checker-simple-format t)
+	(setq doom-modeline-indent-info nil)
+	(setq doom-modeline-buffer-encoding t)
+	;; (setq doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode))
+	(setq doom-modeline-enable-word-count t)
+	(setq doom-modeline-buffer-name t)
+	(setq doom-modeline-buffer-modification-icon t)
+	(setq doom-modeline-major-mode-color-icon t)
+	(setq doom-modeline-major-mode-icon t)
+	(setq doom-modeline-buffer-file-name-style 'auto)
+	(setq doom-modeline-project-detection 'auto)
+	(setq doom-modeline-height 25)
+	:init
+	(doom-modeline-mode 1))
