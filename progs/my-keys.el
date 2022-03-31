@@ -81,6 +81,11 @@
 (define-key my-prefix (kbd "p s") 'cape-symbol)
 (define-key my-prefix (kbd "p k") 'cape-keyword)
 
+(define-key my-prefix (kbd "M-[") 'hs-show-all)
+(define-key my-prefix (kbd "[") 'hs-show-block)
+(define-key my-prefix (kbd "M-]") 'hs-hide-all)
+(define-key my-prefix (kbd "]") 'hs-hide-block)
+
 (global-set-key (kbd "C-S-p") 'my/menu-base)
 
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)

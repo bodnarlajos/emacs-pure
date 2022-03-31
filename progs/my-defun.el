@@ -211,16 +211,18 @@ Version 2017-11-01"
 				(openNotes (my/menu-item-for-program "Notes"))
 				(magit (my/menu-item-for-program "Git"))
 				(initel (my/menu-item-for-program "init.el"))
+				(magitemacs (my/menu-item-for-program "emacs Git"))
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res efar) (call-interactively 'efar))
-				 ((string-equal res initel) 'my/open-emacsd)
+				 ((string-equal res initel) 'my/open-emacs-init)
+				 ((string-equal res magitemacs) 'my/open-emacs-git)
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
@@ -405,8 +407,14 @@ Position the cursor at its beginning, according to the current mode."
 				(my/view-file filepath)
 			(message "It's not a file: %s" filepath))))
 
-(defun my/open-emacsd ()
+(defun my/open-emacs-init ()
 	"Open the emacs.d/init.el file"
+	(interactive)
 	(find-file "~/.emacs.d/init.el"))
+
+(defun my/open-emacs-git ()
+	"Open the emacs.d/init.el file"
+	(interactive)
+	(magit-status "~/.emacs.d"))
 
 (provide 'my-defun)	
