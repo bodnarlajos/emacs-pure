@@ -413,8 +413,14 @@ Position the cursor at its beginning, according to the current mode."
 				(my/view-file filepath)
 			(message "It's not a file: %s" filepath))))
 
-(defun my/open-emacsd ()
+(defun my/open-emacs-init ()
 	"Open the emacs.d/init.el file"
+	(interactive)
 	(find-file "~/.emacs.d/init.el"))
+
+(defun my/open-emacs-git ()
+	"Open the emacs.d/init.el file"
+	(interactive)
+	(magit-status "~/.emacs.d"))
 
 (provide 'my-defun)	
