@@ -51,9 +51,10 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-	;; Windows like epg config
-
-	;; (set-cursor-color "#ff0000")
+	(use-package org
+		:config
+		(setq org-agenda-files (list
+														"~/Box/notes/daily.org")))
 	)
 
 ;; The window initial size specified size (add-to-list

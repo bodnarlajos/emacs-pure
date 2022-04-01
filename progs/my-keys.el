@@ -67,6 +67,7 @@
 (define-key my-prefix (kbd "c p") 'project-find-file)
 (define-key my-prefix (kbd "c f") 'rg)
 (define-key my-prefix (kbd "c m") 'my/menu-base)
+(define-key my-prefix (kbd "c a") 'org-agenda)
 
 (define-key my-prefix (kbd "e d") 'duplicate-line)
 (define-key my-prefix (kbd "e r") 'vr/replace)

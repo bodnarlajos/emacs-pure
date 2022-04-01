@@ -610,6 +610,14 @@
 	:straight t
 	:commands (magit-status)
 	:init
+
+	(defun my/magit-status ()
+		"Open a magit directory."
+		(interactive)
+		(let ((current-prefix-arg '(4)))
+			(call-interactively #'magit-status)
+			(delete-other-windows)))
+
 	(defun my/goto-magit ()
 		"T."
 		(interactive)
@@ -628,7 +636,7 @@
 				)
 			(if magitbuffer
 					(switch-to-buffer magitbuffer)
-				(magit-status))
+				(my/magit-status))
 			)
 		)
 	:config

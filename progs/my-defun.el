@@ -241,6 +241,42 @@ Version 2017-11-01"
 				 ((string-equal res longLines) (call-interactively 'my/long-line-wrap))
 				 ((string-equal res findnamedired) (call-interactively 'find-file-rg)))))))
 
+(defvar my-menu-bar-menu (make-sparse-keymap "Mine"))
+(define-key global-map [menu-bar my-menu] (cons "Mine" my-menu-bar-menu))
+
+(define-key my-menu-bar-menu [consult-recent-file]
+						'(menu-item "Recent files" consult-recent-file :help "Recent files"))
+(define-key my-menu-bar-menu [my/xah-new-empty-buffer]
+						'(menu-item "New buffer" my/xah-new-empty-buffer :help "New buffer"))
+(define-key my-menu-bar-menu [my/xah-new-empty-buffer-org]
+						'(menu-item "New org buffer" my/xah-new-empty-buffer-org :help "New org buffer"))
+(define-key my-menu-bar-menu [my/start/devenv]
+						'(menu-item "Start development environment" my/start/devenv :help "Start development environment"))
+(define-key my-menu-bar-menu [my/open-note-daily]
+						'(menu-item "Open daily" my/open-note-daily :help "Open daily"))
+(define-key my-menu-bar-menu [my/goto-magit]
+						'(menu-item "Git" my/goto-magit :help "Open git"))
+
+;; (defvar notes-menu-bar-menu (make-sparse-keymap "Notes"))
+;; (define-key global-map [menu-bar notes-menu] (cons "Notes" notes-menu-bar-menu))
+;; (define-key notes-menu-bar-menu ["d"]
+;; 						'(menu-item "d.d" (lambda () (find-file (concat my/notes-dir "daily.org"))) :help "Open"))
+
+;; (let ((notesfiles (directory-files my/notes-dir)))
+;; 	(while notesfiles
+;; 		(let* ((currnote (car notesfiles))
+;; 					 (title "Note: "))
+;; 			(when (string-suffix-p ".org" currnote)
+;; 				(define-key notes-menu-bar-menu ["cj"]
+;; 										'(menu-item "cj" my/start/devenv :help "Open"))))
+;; 		(setq notesfiles nil)))
+
+(defun my/open-note-daily ()
+	"Open the daily notes"
+	(interactive)
+  (find-file (concat my/notes-dir "daily.org"))
+	(org-agenda nil "n"))
+
 (defun my/open-notes ()
 	"Open file from the notes directory"
 	(interactive)			
