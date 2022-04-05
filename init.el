@@ -560,6 +560,7 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
+(setq cursor-type 'bar)
 
 (my/start-modules)
 (my/end-of-init)
