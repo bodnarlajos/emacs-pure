@@ -257,9 +257,14 @@ Version 2017-11-01"
 
 (defun my/long-line-wrap ()
 	"Wrap long lines to window-width char long string"
-	(interactive)
-	(save-excursion
-		(query-replace-regexp (format ".\\\{%d\\}" (- (window-width) 8)) "\\\& ┃\n" nil (point-min) (point-max))))
+	(interactive) 
+	(let ((isreadonly buffer-read-only))
+		(when isreadonly
+			(read-only-mode -1))
+		(save-excursion
+			(replace-regexp (format ".\\\{%d\\}" (- (window-width) 8)) "\\\& ┃\n" nil (point-min) (point-max)))
+		(when isreadonly
+			(read-only-mode +1))))
 
 (defun my/long-line-to8 ()
 	"Wrap long lines to window-width char long string"
