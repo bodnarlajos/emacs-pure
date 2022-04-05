@@ -250,26 +250,6 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
-	;; (defvar after-load-theme-hook nil
-	;; 	"Hook run after a color theme is loaded using `load-theme'.")
-	;; (defadvice consult-theme (after run-after-load-theme-hook activate)
-	;; 	"Run `after-load-theme-hook'."
-	;; 	(run-hooks 'after-load-theme-hook))
-
-	;; (add-hook 'after-load-theme-hook (lambda ()
-	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-light")
-	;; 																		 (custom-set-faces
-	;; 																			'(lsp-face-highlight-read ((t (:background "red" :inverse-video nil :underline t))))))
-	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-dark")
-	;; 																		 (custom-set-faces
-	;; 																			'(lsp-face-highlight-read ((t (:background "burlywood" :inverse-video nil :underline t))))))
-	;; 																	 (message "theme loaded")))
-	
-	;; (defun mark-it ()
-	;; 	"T."
-	;; 	(back-button-push-mark-local-and-global)
-	;; 	(consult-ripgrep-symbol-at-point))
-	
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -588,6 +568,14 @@
 	:straight t
 	:commands (magit-status)
 	:init
+
+	(defun my/magit-status ()
+		"Open a magit directory."
+		(interactive)
+		(let ((current-prefix-arg '(4)))
+			(call-interactively #'magit-status)
+			(delete-other-windows)))
+
 	(defun my/goto-magit ()
 		"T."
 		(interactive)
@@ -606,7 +594,7 @@
 				)
 			(if magitbuffer
 					(switch-to-buffer magitbuffer)
-				(magit-status))
+				(my/magit-status))
 			)
 		)
 	:config
@@ -651,7 +639,11 @@
 	("C-y" . undo-fu-only-redo))
 
 (use-package crux
-	:straight t)
+	:straight t
+	:bind
+	("<C-S-return>" . crux-smart-open-line-above)
+	("<S-return>" . 'crux-smart-open-line)
+	("C-k" . 'crux-smart-kill-line))
 
 (use-package ibuffer-sidebar
 	:straight t
@@ -699,3 +691,14 @@
 (use-package doom-themes
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
+
+(use-package highlight-current-line
+	:straight t
+	:config
+	(global-hl-line-mode -1)
+	(custom-set-variables
+	  '(highlight-current-line-whole-line nil)
+	  '(highlight-current-line-globally t nil (highlight-current-line)))
+	(custom-set-faces
+	 '(highlight-current-line-face ((t (:box (:line-width (1 . 1) :color "grey75" :style flat-button))))))
+	(highlight-current-line-minor-mode))

@@ -52,6 +52,10 @@
 	;; (set-frame-size (selected-frame) 140 45))
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
+	(use-package org
+		:config
+		(setq org-agenda-files (list
+														"~/Box/notes/daily.org")))
 	)
 
 (setq browse-url-generic-program "firefox")
