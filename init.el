@@ -311,7 +311,7 @@
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
-	(define-key embark-buffer-map (kbd "M-m") 'my/menu-base)
+	(define-key embark-buffer-map (kbd "C-S-p") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -609,6 +609,36 @@
 (use-package magit
 	:straight t
 	:commands (magit-status)
+	:init
+
+	(defun my/magit-status ()
+		"Open a magit directory."
+		(interactive)
+		(let ((current-prefix-arg '(4)))
+			(call-interactively #'magit-status)
+			(delete-other-windows)))
+
+	(defun my/goto-magit ()
+		"T."
+		(interactive)
+		(require 'consult)
+		(let* ((buffers (buffer-list))
+					 (projroot (my/root-project-dir))
+					 (projname (consult--project-name projroot))
+					 (magitbuffer nil)
+					 (projbuffername (concat "magit: " projname)))
+			(while buffers
+				(when (string-equal (buffer-name (car buffers)) projbuffername)
+					(setq magitbuffer (car buffers))
+					(setq buffers nil))
+				(setq buffers (cdr buffers))
+				(message "%s" magitbuffer)
+				)
+			(if magitbuffer
+					(switch-to-buffer magitbuffer)
+				(my/magit-status))
+			)
+		)
 	:config
 	(add-hook 'magit-status-mode-hook (lambda ()
 																			(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
@@ -665,10 +695,7 @@
 	 (:map my-prefix
 				 ("c b" . ibuffer-sidebar-toggle-sidebar)))
 	:config
-  (setq ibuffer-sidebar-use-custom-font t))
-
-(use-package efar
-	:straight t)
+	(setq ibuffer-sidebar-use-custom-font t))
 
 (use-package command-frequency
 	:straight t

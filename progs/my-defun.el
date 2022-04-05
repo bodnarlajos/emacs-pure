@@ -219,16 +219,18 @@ Version 2017-11-01"
 				(openNotes (my/menu-item-for-program "Notes"))
 				(magit (my/menu-item-for-program "Git"))
 				(initel (my/menu-item-for-program "init.el"))
+				(magitemacs (my/menu-item-for-program "emacs Git"))
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res efar) (call-interactively 'efar))
-				 ((string-equal res initel) 'my/open-emacsd)
+				 ((string-equal res initel) 'my/open-emacs-init)
+				 ((string-equal res magitemacs) 'my/open-emacs-git)
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
@@ -238,6 +240,42 @@ Version 2017-11-01"
 				 ((string-equal res magit) (call-interactively 'my/goto-magit))
 				 ((string-equal res longLines) (call-interactively 'my/long-line-wrap))
 				 ((string-equal res findnamedired) (call-interactively 'find-file-rg)))))))
+
+(defvar my-menu-bar-menu (make-sparse-keymap "Mine"))
+(define-key global-map [menu-bar my-menu] (cons "Mine" my-menu-bar-menu))
+
+(define-key my-menu-bar-menu [consult-recent-file]
+						'(menu-item "Recent files" consult-recent-file :help "Recent files"))
+(define-key my-menu-bar-menu [my/xah-new-empty-buffer]
+						'(menu-item "New buffer" my/xah-new-empty-buffer :help "New buffer"))
+(define-key my-menu-bar-menu [my/xah-new-empty-buffer-org]
+						'(menu-item "New org buffer" my/xah-new-empty-buffer-org :help "New org buffer"))
+(define-key my-menu-bar-menu [my/start/devenv]
+						'(menu-item "Start development environment" my/start/devenv :help "Start development environment"))
+(define-key my-menu-bar-menu [my/open-note-daily]
+						'(menu-item "Open daily" my/open-note-daily :help "Open daily"))
+(define-key my-menu-bar-menu [my/goto-magit]
+						'(menu-item "Git" my/goto-magit :help "Open git"))
+
+;; (defvar notes-menu-bar-menu (make-sparse-keymap "Notes"))
+;; (define-key global-map [menu-bar notes-menu] (cons "Notes" notes-menu-bar-menu))
+;; (define-key notes-menu-bar-menu ["d"]
+;; 						'(menu-item "d.d" (lambda () (find-file (concat my/notes-dir "daily.org"))) :help "Open"))
+
+;; (let ((notesfiles (directory-files my/notes-dir)))
+;; 	(while notesfiles
+;; 		(let* ((currnote (car notesfiles))
+;; 					 (title "Note: "))
+;; 			(when (string-suffix-p ".org" currnote)
+;; 				(define-key notes-menu-bar-menu ["cj"]
+;; 										'(menu-item "cj" my/start/devenv :help "Open"))))
+;; 		(setq notesfiles nil)))
+
+(defun my/open-note-daily ()
+	"Open the daily notes"
+	(interactive)
+  (find-file (concat my/notes-dir "daily.org"))
+	(org-agenda nil "n"))
 
 (defun my/open-notes ()
 	"Open file from the notes directory"
@@ -418,8 +456,14 @@ Position the cursor at its beginning, according to the current mode."
 				(my/view-file filepath)
 			(message "It's not a file: %s" filepath))))
 
-(defun my/open-emacsd ()
+(defun my/open-emacs-init ()
 	"Open the emacs.d/init.el file"
+	(interactive)
 	(find-file "~/.emacs.d/init.el"))
+
+(defun my/open-emacs-git ()
+	"Open the emacs.d/init.el file"
+	(interactive)
+	(magit-status "~/.emacs.d"))
 
 (provide 'my-defun)	
