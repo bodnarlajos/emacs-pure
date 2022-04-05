@@ -93,8 +93,6 @@
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "<S-return>") 'crux-smart-open-line)
-(global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)

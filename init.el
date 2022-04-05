@@ -651,7 +651,11 @@
 	("C-y" . undo-fu-only-redo))
 
 (use-package crux
-	:straight t)
+	:straight t
+	:bind
+	("<C-S-return>" . crux-smart-open-line-above)
+	("<S-return>" . 'crux-smart-open-line)
+	("C-k" . 'crux-smart-kill-line))
 
 (use-package ibuffer-sidebar
 	:straight t
