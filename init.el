@@ -250,26 +250,6 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
-	;; (defvar after-load-theme-hook nil
-	;; 	"Hook run after a color theme is loaded using `load-theme'.")
-	;; (defadvice consult-theme (after run-after-load-theme-hook activate)
-	;; 	"Run `after-load-theme-hook'."
-	;; 	(run-hooks 'after-load-theme-hook))
-
-	;; (add-hook 'after-load-theme-hook (lambda ()
-	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-light")
-	;; 																		 (custom-set-faces
-	;; 																			'(lsp-face-highlight-read ((t (:background "red" :inverse-video nil :underline t))))))
-	;; 																	 (when (string-equal (car custom-enabled-themes) "tsdh-dark")
-	;; 																		 (custom-set-faces
-	;; 																			'(lsp-face-highlight-read ((t (:background "burlywood" :inverse-video nil :underline t))))))
-	;; 																	 (message "theme loaded")))
-	
-	;; (defun mark-it ()
-	;; 	"T."
-	;; 	(back-button-push-mark-local-and-global)
-	;; 	(consult-ripgrep-symbol-at-point))
-	
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -583,29 +563,6 @@
 
 (my/end-of-init)
 
-
-(defun my/goto-magit ()
-	"T."
-	(interactive)
-	(require 'consult)
-	(let* ((buffers (buffer-list))
-				 (projroot (my/root-project-dir))
-				 (projname (consult--project-name projroot))
-				 (magitbuffer nil)
-				 (projbuffername (concat "magit: " projname)))
-		(while buffers
-			(when (string-equal (buffer-name (car buffers)) projbuffername)
-				(setq magitbuffer (car buffers))
-				(setq buffers nil))
-			(setq buffers (cdr buffers))
-			(message "%s" magitbuffer)
-			)
-		(if magitbuffer
-				(switch-to-buffer magitbuffer)
-			(magit-status))
-		)
-	)
-
 (use-package magit
 	:straight t
 	:commands (magit-status)
@@ -733,3 +690,13 @@
 (use-package doom-themes
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
+
+(use-package highlight-current-line
+	:straight t
+	:config
+	(global-hl-line-mode -1)
+	(custom-set-variables
+	  '(highlight-current-line-globally t nil (highlight-current-line)))
+	(custom-set-faces
+	 '(highlight-current-line-face ((t (:box (:line-width (1 . 1) :color "grey75" :style flat-button))))))
+	(highlight-current-line-minor-mode))
