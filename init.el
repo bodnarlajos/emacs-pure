@@ -534,6 +534,7 @@
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-set-key (kbd "C-s") 'consult-line)
+	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
