@@ -674,6 +674,8 @@
 (use-package doom-modeline
 	:straight t
 	:config
+	(column-number-mode +1)
+	(size-indication-mode +1)
 	(setq doom-modeline-lsp t)
 	(setq doom-modeline-workspace-name t)
 	(setq doom-modeline-vcs-max-length 12)
