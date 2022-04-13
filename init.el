@@ -42,7 +42,6 @@
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
-(load (expand-file-name (concat user-emacs-directory "custom.new.el")))
 (require 'my-defun)
 (require 'my-keys)
 ;; (require 'my-layout)
@@ -496,11 +495,13 @@
 
 (require 'frontside-windowing)
 (frontside-windowing-mode +1)
-(eval-after-load 'org-mode
+(with-eval-after-load 'org-mode
 	(progn
+		(define-key org-mode-map [mouse-1] 'org-cycle)
 		(straight-use-package 'org-superstar)
 		(straight-use-package 'org-bullets)
 		(add-hook 'org-mode-hook (lambda ()
+															 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window)
 															 (org-bullets-mode +1)
 															 (org-superstar-mode +1)))
 		(setq org-todo-keywords
@@ -520,6 +521,8 @@
 
 (use-package emacs
 	:config
+	(when (file-exists-p custom-file)
+		(load custom-file))
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
@@ -530,6 +533,7 @@
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
+	(global-set-key (kbd "C-s") 'consult-line)
 	(global-unset-key (kbd "C-S-o"))
 	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
@@ -698,8 +702,8 @@
 	:config
 	(global-hl-line-mode -1)
 	(custom-set-variables
-	  '(highlight-current-line-whole-line nil)
-	  '(highlight-current-line-globally t nil (highlight-current-line)))
+	 '(highlight-current-line-whole-line nil)
+	 '(highlight-current-line-globally t nil (highlight-current-line)))
 	(custom-set-faces
 	 '(highlight-current-line-face ((t (:box (:line-width (1 . 1) :color "grey75" :style flat-button))))))
 	(highlight-current-line-minor-mode))
