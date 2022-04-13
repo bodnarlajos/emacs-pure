@@ -706,5 +706,5 @@
 	 '(highlight-current-line-whole-line nil)
 	 '(highlight-current-line-globally t nil (highlight-current-line)))
 	(custom-set-faces
-	 '(highlight-current-line-face ((t (:box (:line-width (1 . 1) :color "grey75" :style flat-button))))))
+	 '(highlight-current-line-face ((t (:box (:line-width (-1 . -1) :color "grey75" :style flat-button))))))
 	(highlight-current-line-minor-mode))
