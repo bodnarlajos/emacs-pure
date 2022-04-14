@@ -617,8 +617,7 @@
 																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
-	(custom-set-faces 
-	 '(magit-diff-hunk-heading ((t (:foreground "orange"))))))
+	(set-face-attribute 'magit-section-highlight nil :inherit nil))
 
 (use-package undo-fu
 	:straight t
