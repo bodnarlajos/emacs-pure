@@ -314,7 +314,8 @@
 (use-package corfu
 	:straight t
 	:config
-	(setq corfu-cycle t)
+	(setq corfu-cycle t
+				corfu-quit-at-boundary nil)
 	(corfu-global-mode +1))
 
 (use-package savehist
@@ -346,24 +347,8 @@
 	(add-to-list 'completion-at-point-functions #'cape-file)
 	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 	(setq cape-dabbrev-min-length 2)
-	;; (defun my/dabbrev-select-buffer ()
-	;; 	"T."
-	;; 	(let ((bl (buffer-list))
-	;; 				(result '()))
-	;; 		(while bl
-	;; 			(message "%s" (car bl))
-	;; 			(when (buffer-file-name (car bl))
-	;; 				(add-to-list 'result (car bl)))
-	;; 			(setq bl (cdr bl)))
-	;; 		result))
-
-	;; (setq dabbrev-friend-buffer-function #'my/dabbrev-select-buffer)
-	;; (setq dabbrev-select-buffers-function #'my/dabbrev-select-buffer)
-	;; (setq dabbrev-case-fold-search nil
-	;; 			dabbrev-case-replace nil)
 	:bind
 	("C-/" . cape-dabbrev))
-
 
 (straight-use-package '(kind-icon
 												:type git
@@ -381,7 +366,6 @@
 		(format "%s" default-directory)))
 
 (marginalia-mode +1)
-;; (mini-frame-mode +1)
 (global-undo-tree-mode +1)
 (diminish 'undo-tree-mode)
 (diminish 'anzu-mode)
@@ -565,7 +549,6 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
-(setq cursor-type 'bar)
 
 (my/start-modules)
 (my/end-of-init)
@@ -700,13 +683,13 @@
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
-(use-package highlight-current-line
+(use-package hl-line
 	:straight t
-	:config
-	(global-hl-line-mode -1)
-	(custom-set-variables
-	 '(highlight-current-line-whole-line nil)
-	 '(highlight-current-line-globally t nil (highlight-current-line)))
+	:init
+	(set-face-attribute 'hl-line nil :background nil)
 	(custom-set-faces
-	 '(highlight-current-line-face ((t (:box (:line-width (-1 . -1) :color "grey75" :style flat-button))))))
-	(highlight-current-line-minor-mode))
+	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "grey75" :style flat-button) :background nil)))))
+	:config
+	(global-hl-line-mode +1))
+
+(setq cursor-type 'bar)
