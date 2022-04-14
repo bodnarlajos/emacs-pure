@@ -537,6 +537,9 @@
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	(pixel-scroll-precision-mode +1)
+	(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+	(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+	(set-face-attribute 'ediff-even-diff-C nil :inherit nil)
 	:bind
 	(:map minibuffer-mode-map
 				("<C-tab>" . previous-line)))
@@ -618,8 +621,7 @@
 																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
-	(custom-set-faces 
-	 '(magit-diff-hunk-heading ((t (:foreground "orange"))))))
+	(set-face-attribute 'magit-section-highlight nil :inherit nil))
 
 (use-package undo-fu
 	:straight t
