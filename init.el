@@ -549,7 +549,6 @@
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
-(setq cursor-type 'bar)
 
 (my/end-of-init)
 
@@ -683,13 +682,13 @@
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
-(use-package highlight-current-line
+(use-package hl-line
 	:straight t
-	:config
-	(global-hl-line-mode -1)
-	(custom-set-variables
-	 '(highlight-current-line-whole-line nil)
-	 '(highlight-current-line-globally t nil (highlight-current-line)))
+	:init
+	(set-face-attribute 'hl-line nil :background nil)
 	(custom-set-faces
-	 '(highlight-current-line-face ((t (:box (:line-width (-1 . -1) :color "grey75" :style flat-button))))))
-	(highlight-current-line-minor-mode))
+	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "grey75" :style flat-button) :background nil)))))
+	:config
+	(global-hl-line-mode +1))
+
+(setq cursor-type 'bar)
