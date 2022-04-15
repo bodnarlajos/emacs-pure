@@ -510,10 +510,12 @@
 	:config
 	(when (file-exists-p custom-file)
 		(load custom-file))
+	(global-unset-key (kbd "M-w"))
+	(global-set-key (kbd "M-w") 'my/switch-to-buffer)
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
-	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
+	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
@@ -542,7 +544,9 @@
 	(pixel-scroll-precision-mode +1)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line)))
+				("<C-tab>" . previous-line)
+				("M-w" . previous-line)
+				("M-q" . exit-minibuffer)))
 
 (use-package recentf
 	:straight t
