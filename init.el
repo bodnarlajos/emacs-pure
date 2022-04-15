@@ -467,6 +467,9 @@
 (winner-mode +1)
 (with-eval-after-load 'ediff
 	;; add ediff configuration
+	(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+	(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+	(set-face-attribute 'ediff-even-diff-C nil :inherit nil)
 	(setq ediff-split-window-function 'split-window-horizontally)
 	(setq ediff-merge-split-window-function 'split-window-vertically)
 	(setq ediff-diff-options "-w")
@@ -537,9 +540,6 @@
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	(pixel-scroll-precision-mode +1)
-	(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
-	(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
-	(set-face-attribute 'ediff-even-diff-C nil :inherit nil)
 	:bind
 	(:map minibuffer-mode-map
 				("<C-tab>" . previous-line)))
@@ -620,7 +620,7 @@
 																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
 																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
-	(set-face-attribute 'magit-section-highlight nil :inherit nil))
+	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil))
 
 (use-package undo-fu
 	:straight t
@@ -680,7 +680,7 @@
 	:init
 	(doom-modeline-mode 1))
 
-(use-package doom-themes
+(use-package modus-themes
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
@@ -689,8 +689,7 @@
 	:init
 	(set-face-attribute 'hl-line nil :background nil)
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "grey75" :style flat-button) :background nil)))))
+	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "black" :style flat-button) :background nil :inherit nil)))))
 	:config
 	(global-hl-line-mode +1))
 
-(setq cursor-type 'bar)
