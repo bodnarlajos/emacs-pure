@@ -87,6 +87,9 @@
 (define-key my-prefix (kbd "M-]") 'hs-hide-all)
 (define-key my-prefix (kbd "]") 'hs-hide-block)
 
+(define-key my-prefix (kbd "o") 'find-file)
+(define-key my-prefix (kbd "S-o") 'project-find-file)
+
 (global-set-key (kbd "C-S-p") 'my/menu-base)
 
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
