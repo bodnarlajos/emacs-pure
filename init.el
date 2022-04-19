@@ -542,6 +542,10 @@
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
 	(pixel-scroll-precision-mode +1)
+	(with-eval-after-load 'ediff
+		(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+		(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+		(set-face-attribute 'ediff-even-diff-C nil :inherit nil))
 	:bind
 	(:map minibuffer-mode-map
 				("<C-tab>" . previous-line)
