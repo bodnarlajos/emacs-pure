@@ -284,7 +284,7 @@
 (use-package embark
 	:straight t
   :bind
-  (("C-;" . embark-act)         ;; pick some comfortable binding
+  (("C-h e" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -515,7 +515,7 @@
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
-	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
+	(global-set-key (kbd "<C-tab>") 'consult-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
@@ -544,8 +544,10 @@
 	(pixel-scroll-precision-mode +1)
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line)
+				("M-e" . embark-act)
 				("M-w" . previous-line)
+				("<C-tab>" . previous-line)
+				("C-q" . exit-minibuffer)
 				("M-q" . exit-minibuffer)))
 
 (use-package recentf
