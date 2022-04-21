@@ -1,5 +1,8 @@
 ;; -*- lexical-binding: t -*-
 
+(use-package lsp-java
+	:straight t)
+
 ;; helper functions for ide-mode
 (defun my/run-dev-hook ()
 	"T."
@@ -53,7 +56,7 @@
 		 '(eslint html-ls)))
 	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls)
 	;; 			 (typescript-mode . angular-ls))))
-	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
+	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-java lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
 	(setq lsp-headerline-breadcrumb-enable nil)
 	(setq lsp-completion-provider :none)
 	(setq lsp-enable-snippet nil)

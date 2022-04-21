@@ -284,7 +284,7 @@
 (use-package embark
 	:straight t
   :bind
-  (("C-;" . embark-act)         ;; pick some comfortable binding
+  (("C-h e" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -515,7 +515,7 @@
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
-	(global-set-key (kbd "<C-tab>") 'my/switch-to-buffer)
+	(global-set-key (kbd "<C-tab>") 'consult-buffer)
 	(global-set-key (kbd "<M-left>") 'windmove-left)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'windmove-right)
@@ -548,8 +548,10 @@
 		(set-face-attribute 'ediff-even-diff-C nil :inherit nil))
 	:bind
 	(:map minibuffer-mode-map
-				("<C-tab>" . previous-line)
+				("M-e" . embark-act)
 				("M-w" . previous-line)
+				("<C-tab>" . previous-line)
+				("C-q" . exit-minibuffer)
 				("M-q" . exit-minibuffer)))
 
 (use-package recentf
@@ -685,12 +687,14 @@
 	(setq doom-modeline-major-mode-icon t)
 	(setq doom-modeline-buffer-file-name-style 'auto)
 	(setq doom-modeline-project-detection 'auto)
-	(setq doom-modeline-height 25)
+	(setq doom-modeline-height 30)
 	:init
 	(doom-modeline-mode 1))
 
 (use-package modus-themes
-	:straight t
+	:straight t)
+
+(use-package doom-themes
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
 (use-package hl-line
@@ -698,7 +702,7 @@
 	:init
 	(set-face-attribute 'hl-line nil :background nil)
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "black" :style flat-button) :background nil :inherit nil)))))
+	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "gray" :style flat-button) :background nil :inherit nil)))))
 	:config
 	(global-hl-line-mode +1))
 
