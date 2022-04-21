@@ -686,12 +686,14 @@
 	(setq doom-modeline-major-mode-icon t)
 	(setq doom-modeline-buffer-file-name-style 'auto)
 	(setq doom-modeline-project-detection 'auto)
-	(setq doom-modeline-height 25)
+	(setq doom-modeline-height 30)
 	:init
 	(doom-modeline-mode 1))
 
 (use-package modus-themes
-	:straight t
+	:straight t)
+
+(use-package doom-themes
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
 (use-package hl-line
@@ -699,7 +701,7 @@
 	:init
 	(set-face-attribute 'hl-line nil :background nil)
 	(custom-set-faces
-	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "black" :style flat-button) :background nil :inherit nil)))))
+	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "gray" :style flat-button) :background nil :inherit nil)))))
 	:config
 	(global-hl-line-mode +1))
 
