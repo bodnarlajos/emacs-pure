@@ -610,6 +610,13 @@
 																			(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
 																			(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
 																			(remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-push-branch-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-diff-filter-header)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-merge-log)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-am-sequence)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-untracked-files)
+																			(remove-hook 'magit-status-sections-hook 'magit-insert-sequencer-sequence)
 																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
 																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
 																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
@@ -695,14 +702,21 @@
 	:straight t)
 
 (use-package doom-themes
+	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
 (use-package hl-line
 	:straight t
 	:init
 	(set-face-attribute 'hl-line nil :background nil)
+	(set-face-attribute 'diff-added nil :inherit nil)
 	(custom-set-faces
 	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "gray" :style flat-button) :background nil :inherit nil)))))
 	:config
-	(global-hl-line-mode +1))
+	(global-hl-line-mode -1)
+	(add-hook 'prog-mode-hook 'hl-line-mode))
+
+(use-package json-mode
+	:straight t
+  :ensure t)
 
