@@ -15,7 +15,7 @@
 	(interactive)
 	(let ((currDir default-directory))
 		(call-interactively 'cd)
-		(start-process "gitk" nil "gitk.exe")
+		(start-process "gitk" nil my/const/gitk-exe--path)
 		(cd currDir)))
 
 (defun my/change/dark-theme ()

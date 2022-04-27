@@ -6,7 +6,7 @@
 (defvar my/base-dir "/home/lbodnar/Projects")
 (defvar my/temp-dir "/home/lbodnar/Projects/temp")
 (defconst my/const/gitk-exe--path "/usr/bin/gitk")
-(defconst my/const/git-gui-exe--path "/usr/bin/git gui")
+(defconst my/const/git-gui-exe--path "/usr/bin/git")
 
 (defun my/start-modules ()
 	"Start these modules after init"
