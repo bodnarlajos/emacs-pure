@@ -2,6 +2,22 @@
 
 (require 'cl-lib)
 
+(defun my/start/git-gui ()
+	"T."
+	(interactive)
+	(let ((currDir default-directory))
+		(call-interactively 'cd)
+		(start-process "gitgui" nil "git.exe" "gui")
+		(cd currDir)))
+
+(defun my/start/gitk ()
+	"T."
+	(interactive)
+	(let ((currDir default-directory))
+		(call-interactively 'cd)
+		(start-process "gitk" nil "gitk.exe")
+		(cd currDir)))
+
 (defun my/change/dark-theme ()
 	"The dark theme"
 	(interactive)
@@ -214,8 +230,10 @@ Version 2017-11-01"
 				(magitemacs (my/menu-item-for-program "emacs Git"))
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
+				(gitk (my/menu-item-for-program "Start Git history"))
+				(gitgui (my/menu-item-for-program "Start git gui"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs neworgbuffer efar recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
@@ -223,6 +241,8 @@ Version 2017-11-01"
 				 ((string-equal res efar) (call-interactively 'efar))
 				 ((string-equal res initel) 'my/open-emacs-init)
 				 ((string-equal res magitemacs) 'my/open-emacs-git)
+				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
+				 ((string-equal res gitgui) (call-interactively 'my/start/git-gui))
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))

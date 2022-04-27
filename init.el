@@ -54,7 +54,6 @@
 (straight-use-package 'diminish)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
-(straight-use-package 'undo-tree)
 (straight-use-package 'anzu)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'transpose-frame)
@@ -316,7 +315,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(corfu-global-mode +1))
+	(global-corfu-mode +1))
 
 (use-package savehist
 	:straight t
@@ -366,8 +365,6 @@
 		(format "%s" default-directory)))
 
 (marginalia-mode +1)
-(global-undo-tree-mode +1)
-(diminish 'undo-tree-mode)
 (diminish 'anzu-mode)
 (global-anzu-mode +1)
 (show-paren-mode +1)
@@ -510,8 +507,6 @@
 	:config
 	(when (file-exists-p custom-file)
 		(load custom-file))
-	(global-unset-key (kbd "M-w"))
-	(global-set-key (kbd "M-w") 'my/switch-to-buffer)
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
@@ -524,8 +519,6 @@
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-set-key (kbd "C-s") 'consult-line)
 	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
-	(global-unset-key (kbd "C-S-o"))
-	(global-set-key (kbd "C-S-o") 'find-file)
 	(global-unset-key (kbd "C-o"))
 	(global-set-key (kbd "C-o") 'project-find-file)
 	(global-unset-key (kbd "M-k"))
@@ -549,10 +542,8 @@
 	:bind
 	(:map minibuffer-mode-map
 				("M-e" . embark-act)
-				("M-w" . previous-line)
 				("<C-tab>" . previous-line)
-				("C-q" . exit-minibuffer)
-				("M-q" . exit-minibuffer)))
+				("C-q" . exit-minibuffer)))
 
 (use-package recentf
 	:straight t
@@ -600,6 +591,7 @@
 			)
 		)
 	:config
+	(setq magit-diff-refine-hunk (quote all))
 	(add-hook 'magit-status-mode-hook (lambda ()
 																			(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
 																			(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
@@ -686,7 +678,6 @@
 	(setq doom-modeline-checker-simple-format t)
 	(setq doom-modeline-indent-info nil)
 	(setq doom-modeline-buffer-encoding t)
-	;; (setq doom-modeline-continuous-word-count-modes '(markdown-mode gfm-mode org-mode))
 	(setq doom-modeline-enable-word-count t)
 	(setq doom-modeline-buffer-name t)
 	(setq doom-modeline-buffer-modification-icon t)
@@ -701,22 +692,20 @@
 (use-package modus-themes
 	:straight t)
 
+(use-package atom-one-light
+	:straight (atom-one-light :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
+
 (use-package doom-themes
 	:straight t
 	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
 
 (use-package hl-line
 	:straight t
-	:init
-	(set-face-attribute 'hl-line nil :background nil)
-	(set-face-attribute 'diff-added nil :inherit nil)
-	(custom-set-faces
-	 '(hl-line ((t (:extend t :box (:line-width (-1 . -1) :color "gray" :style flat-button) :background nil :inherit nil)))))
 	:config
-	(global-hl-line-mode -1)
-	(add-hook 'prog-mode-hook 'hl-line-mode))
+	(global-hl-line-mode +1))
 
 (use-package json-mode
 	:straight t
   :ensure t)
+
 
