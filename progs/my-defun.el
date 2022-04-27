@@ -2,6 +2,16 @@
 
 (require 'cl-lib)
 
+(defun my/start/gitk ()
+	"Start gitk execute"
+	(interactive)
+	(async-shell-command my/const/gitk-exe-path))
+
+(defun my/start/git-gui ()
+	"Start git gui execute"
+	(interactive)
+	(async-shell-command my/const/git-gui-exe--path))
+
 (defun my/change/dark-theme ()
 	"The dark theme"
 	(interactive)
