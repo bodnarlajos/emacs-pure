@@ -2,6 +2,11 @@
 
 (require 'cl-lib)
 
+(defun my/start/emacs ()
+	"T."
+	(interactive)
+		(start-process "emacs" nil "C:/ProgramData/emacs-native/bin/runemacs.exe"))
+
 (defun my/start/git-gui ()
 	"T."
 	(interactive)
@@ -239,9 +244,10 @@ Version 2017-11-01"
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
 				(gitk (my/menu-item-for-program "Start Git history"))
+				(startemacs (my/menu-item-for-program "Start emacs"))
 				(gitgui (my/menu-item-for-program "Start git gui"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
@@ -250,6 +256,7 @@ Version 2017-11-01"
 				 ((string-equal res initel) 'my/open-emacs-init)
 				 ((string-equal res magitemacs) 'my/open-emacs-git)
 				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
+				 ((string-equal res startemacs) (call-interactively 'my/start/emacs))
 				 ((string-equal res gitgui) (call-interactively 'my/start/git-gui))
 				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
