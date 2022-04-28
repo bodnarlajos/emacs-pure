@@ -664,9 +664,6 @@
 (use-package git-timemachine
 	:straight t)
 
-(use-package remember-last-theme
-	:straight t)
-
 (use-package doom-modeline
 	:straight t
 	:config
@@ -689,16 +686,6 @@
 	:init
 	(doom-modeline-mode 1))
 
-(use-package modus-themes
-	:straight t)
-
-(use-package atom-one-light
-	:straight (atom-one-light :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
-
-(use-package doom-themes
-	:straight t
-	:config (progn (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")))
-
 (use-package hl-line
 	:straight t
 	:config
@@ -708,4 +695,15 @@
 	:straight t
   :ensure t)
 
+(use-package remember-last-theme
+	:straight t)
 
+(use-package modus-themes
+	:straight t)
+
+(use-package doom-themes
+	:straight t)
+
+(use-package atom-one-light-theme
+	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme")
+	:config (remember-last-theme-with-file-enable "~/.emacs.d/last-theme"))
