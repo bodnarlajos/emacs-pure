@@ -636,7 +636,7 @@
 	:straight t
 	:bind
 	("C-z" . undo-fu-only-undo)
-	("C-y" . undo-fu-only-redo))
+	("C-x C-z" . undo-fu-only-redo))
 
 (use-package crux
 	:straight t

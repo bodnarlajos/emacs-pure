@@ -1,10 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
-(defvar my/project-dir '("c:/Projects"))
-(defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/emacs-native/bin" "C:/Program Files/Git/mingw64/bin"))
-(defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
-(defvar my/base-dir "c:/Projects")
-(defvar my/temp-dir "c:/users/lbodnar/Box/temp")
+(defvar my/project-dir '("/home/lbodnar/Projects"))
+(defvar my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
+(defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
+(defvar my/base-dir "/home/lbodnar/Projects")
+(defvar my/temp-dir "/home/lbodnar/Projects/temp")
+(defconst my/const/gitk-exe--path "/usr/bin/gitk")
+(defconst my/const/git-gui-exe--path "/usr/bin/git")
 
 (defun my/start-modules ()
 	"Start these modules after init"
