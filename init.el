@@ -48,6 +48,7 @@
 
 (straight-use-package 'use-package)
 (use-package use-package
+	:straight t
 	:config
 	(setq use-package-always-ensure t))
 
@@ -112,14 +113,15 @@
    '((file reverse)
      (consult-grep buffer)
      (consult-location)
+		 (consult-xref buffer)
      (imenu buffer)
      (library reverse indexed)
      (org-roam-node reverse indexed)
      (t reverse)
      ))
   (vertico-multiform-commands
-   '(("flyspell-correct-*" grid reverse)
-     (org-refile grid reverse indexed)
+   '(("flyspell-correct-*" grid flat)
+     (org-refile grid flat indexed)
      (consult-yank-pop indexed)
      (consult-flycheck)
      (consult-lsp-diagnostics)
@@ -248,6 +250,8 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
+	(custom-set-variables
+	 '(xref-show-xrefs-function 'consult-xref))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -307,6 +311,9 @@
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
+	:init
+  (with-eval-after-load 'embark
+    (require 'embark-consult))
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
@@ -315,7 +322,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(global-corfu-mode +1))
+	(corfu-global-mode +1))
 
 (use-package savehist
 	:straight t
@@ -447,8 +454,6 @@
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 
-(add-hook 'nxml-mode-hook 'my/long-line)
-(add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
@@ -704,5 +709,9 @@
 	:straight t)
 
 (use-package atom-one-light-theme
-	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme")
-	:config (remember-last-theme-with-file-enable "~/.emacs.d/last-theme"))
+	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
+
+(use-package vscode-dark-plus-theme
+	:straight (vscode-dark-plus-theme :type git :host github :repo "ianyepan/vscode-dark-plus-emacs-theme"))
+
+(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")

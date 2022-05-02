@@ -40,7 +40,11 @@
 	"T."
 	(straight-use-package 'flycheck)
 	(flycheck-mode +1)
-	(straight-use-package 'lsp-mode)
+	(use-package lsp-mode
+		:straight t
+		:bind
+		("M-s l" . lsp-find-references)
+		("M-s p" . lsp-ui-peek-find-references))
 	(straight-use-package 'lsp-ui)
 	(lsp-ui-mode +1)
 	;; (setq lsp-log-io t)
