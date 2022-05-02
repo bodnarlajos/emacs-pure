@@ -48,6 +48,7 @@
 
 (straight-use-package 'use-package)
 (use-package use-package
+	:straight t
 	:config
 	(setq use-package-always-ensure t))
 
@@ -112,14 +113,15 @@
    '((file reverse)
      (consult-grep buffer)
      (consult-location)
+		 (consult-xref buffer)
      (imenu buffer)
      (library reverse indexed)
      (org-roam-node reverse indexed)
      (t reverse)
      ))
   (vertico-multiform-commands
-   '(("flyspell-correct-*" grid reverse)
-     (org-refile grid reverse indexed)
+   '(("flyspell-correct-*" grid flat)
+     (org-refile grid flat indexed)
      (consult-yank-pop indexed)
      (consult-flycheck)
      (consult-lsp-diagnostics)
@@ -248,6 +250,21 @@
 	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
+	(custom-set-variables
+	 '(xref-show-xrefs-function 'consult-xref))
+	(consult-customize
+	 ;; Disable preview for `consult-theme' completely.
+	 consult-theme :preview-key nil
+	 consult-buffer :preview-key nil
+	 consult-recent-file :preview-key nil
+	 ;; Set preview for `consult-buffer' to key `M-.'
+	 consult-buffer :preview-key (kbd "M-.")
+	 ;; For `consult-line' change the prompt and specify multiple preview
+	 ;; keybindings. Note that you should bind <S-up> and <S-down> in the
+	 ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
+	 ;; select the previous or next candidate.
+	 consult-line :prompt "Search: "
+	 :preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -307,6 +324,9 @@
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
+	:init
+  (with-eval-after-load 'embark
+    (require 'embark-consult))
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
@@ -315,7 +335,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(global-corfu-mode +1))
+	(corfu-global-mode +1))
 
 (use-package savehist
 	:straight t
@@ -447,8 +467,6 @@
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 
-(add-hook 'nxml-mode-hook 'my/long-line)
-(add-hook 'json-mode-hook 'my/long-line)
 (add-to-list 'auto-mode-alist '("\\.log.*\\'" . auto-revert-mode))
 (put 'list-timers 'disabled nil)
 
@@ -479,29 +497,30 @@
 
 (require 'frontside-windowing)
 (frontside-windowing-mode +1)
-(with-eval-after-load 'org-mode
-	(progn
-		(define-key org-mode-map [mouse-1] 'org-cycle)
-		(straight-use-package 'org-superstar)
-		(straight-use-package 'org-bullets)
-		(add-hook 'org-mode-hook (lambda ()
-															 (define-key org-mode-map (kbd "<C-tab>") 'my/select-window)
-															 (org-bullets-mode +1)
-															 (org-superstar-mode +1)))
-		(setq org-todo-keywords
-					'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
-					org-support-shift-select t
-					org-log-done t)
-		(custom-set-faces
-		 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
-		 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
-		 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
-		 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-		 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
-		 '(org-fontify-done-headline nil)
-     '(org-fontify-todo-headline t)
-     '(org-fontify-whole-heading-line t)
-     '(org-hide-leading-stars t))))
+
+(use-package org
+	:straight t
+	:config
+	(define-key org-mode-map [mouse-1] 'org-cycle)
+	(setq org-todo-keywords
+				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+				org-support-shift-select t
+				org-log-done t)
+	(custom-set-faces
+	 '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+	 '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+	 '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+	 '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+	 '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
+	 '(org-fontify-done-headline nil)
+   '(org-fontify-todo-headline t)
+   '(org-fontify-whole-heading-line t)
+   '(org-hide-leading-stars t)))
+
+(use-package org-superstar
+	:straight t
+	:config
+	(add-hook 'org-mode-hook 'org-superstar-mode))
 
 (use-package emacs
 	:config
@@ -705,5 +724,9 @@
 	:straight t)
 
 (use-package atom-one-light-theme
-	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme")
-	:config (remember-last-theme-with-file-enable "~/.emacs.d/last-theme"))
+	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
+
+(use-package vscode-dark-plus-theme
+	:straight (vscode-dark-plus-theme :type git :host github :repo "ianyepan/vscode-dark-plus-emacs-theme"))
+
+(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")

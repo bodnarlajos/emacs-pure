@@ -23,42 +23,6 @@
 		(start-process "gitk" nil my/const/gitk-exe--path)
 		(cd currDir)))
 
-(defun my/change/dark-theme ()
-	"The dark theme"
-	(interactive)
-	(my/change-theme my/dark-theme))
-
-(defun my/change/light-theme ()
-	"The dark theme"
-	(interactive)
-	(my/change-theme my/light-theme))
-
-(defun my/change-theme(theme)
-	"change the theme"
-	(interactive)
-	(mapcar #'disable-theme custom-enabled-themes)
-	(load-theme theme t))
-
-(defun o0 ()
-	"Go to main menu"
-	(interactive)
-	(my/menu-base))
-
-(defun my/org-screenshot-win ()
-  "Take a screenshot into a time stamped unique-named file in the
-same directory as the org-buffer and insert a link to this file."
-  (interactive)
-  (setq filename
-        (concat
-         (make-temp-name
-          (concat (buffer-file-name)
-                  "_"
-                  (format-time-string "%Y%m%d_%H%M%S_")) ) ".png"))
-  (shell-command "snippingtool /clip")
-  (shell-command (concat "powershell -command \"Add-Type -AssemblyName System.Windows.Forms;if ($([System.Windows.Forms.Clipboard]::ContainsImage())) {$image = [System.Windows.Forms.Clipboard]::GetImage();[System.Drawing.Bitmap]$image.Save('" filename "',[System.Drawing.Imaging.ImageFormat]::Png); Write-Output 'clipboard content saved as file'} else {Write-Output 'clipboard does not contain image data'}\""))
-  (insert (concat "[[file:" filename "]]"))
-  (org-display-inline-images))
-
 (defun my/switch-to-buffer ()
 	"Switch to the buffer or switch to buffer inside a project"
 	(interactive)
@@ -224,7 +188,7 @@ Version 2017-11-01"
 	(interactive)			
 	(let ((recentfiles (my/menu-item "Recent files"))
 				(restclient (my/menu-item-for-program "RestClient"))
-				(breakto8 (my/menu-item-for-program "Break lines to 8 chars..."))
+				(breaktofix (my/menu-item-for-program "Break lines to 120 chars..."))
 				(revertBuffer (my/menu-item "Revert buffer"))
 				(newbuffer (my/menu-item "New buffer"))
 				(neworgbuffer (my/menu-item "New org"))
@@ -239,18 +203,17 @@ Version 2017-11-01"
 				(startemacs (my/menu-item-for-program "Start emacs"))
 				(gitgui (my/menu-item-for-program "Start git gui"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breakto8 revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res efar) (call-interactively 'efar))
-				 ((string-equal res initel) 'my/open-emacs-init)
-				 ((string-equal res magitemacs) 'my/open-emacs-git)
+				 ((string-equal res initel) (call-interactively 'my/open-emacs-init))
 				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
 				 ((string-equal res startemacs) (call-interactively 'my/start/emacs))
 				 ((string-equal res gitgui) (call-interactively 'my/start/git-gui))
-				 ((string-equal res breakto8) (call-interactively 'my/long-line-to8))
+				 ((string-equal res breaktofix) (call-interactively 'my/long-line-wrap-fix))
 				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
 				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
 				 ((string-equal res neworgbuffer) (call-interactively 'my/xah-new-empty-buffer-org))
@@ -275,20 +238,6 @@ Version 2017-11-01"
 						'(menu-item "Open daily" my/open-note-daily :help "Open daily"))
 (define-key my-menu-bar-menu [my/goto-magit]
 						'(menu-item "Git" my/goto-magit :help "Open git"))
-
-;; (defvar notes-menu-bar-menu (make-sparse-keymap "Notes"))
-;; (define-key global-map [menu-bar notes-menu] (cons "Notes" notes-menu-bar-menu))
-;; (define-key notes-menu-bar-menu ["d"]
-;; 						'(menu-item "d.d" (lambda () (find-file (concat my/notes-dir "daily.org"))) :help "Open"))
-
-;; (let ((notesfiles (directory-files my/notes-dir)))
-;; 	(while notesfiles
-;; 		(let* ((currnote (car notesfiles))
-;; 					 (title "Note: "))
-;; 			(when (string-suffix-p ".org" currnote)
-;; 				(define-key notes-menu-bar-menu ["cj"]
-;; 										'(menu-item "cj" my/start/devenv :help "Open"))))
-;; 		(setq notesfiles nil)))
 
 (defun my/open-note-daily ()
 	"Open the daily notes"
@@ -323,7 +272,7 @@ Version 2017-11-01"
 		(when isreadonly
 			(read-only-mode +1))))
 
-(defun my/long-line-to8 ()
+(defun my/long-line-wrap-fix ()
 	"Wrap long lines to window-width char long string"
 	(interactive)
 	(save-excursion
@@ -420,15 +369,6 @@ Position the cursor at its beginning, according to the current mode."
 		(forward-line -1)
 		(indent-according-to-mode)))
 
-(defun kill-buffer-if-run (bufferName)
-	"T."							
-	(let ((bl (buffer-list)))
-		(while bl				
-			(when (string-equal (buffer-name (car bl)) bufferName)
-				(kill-buffer (car bl))
-				(setq bl nil))
-			(setq bl (cdr bl)))))
-
 (defun crux-smart-kill-line ()
 	"Kill to the end of the line and kill whole line on the next call."
 	(interactive)			
@@ -478,11 +418,6 @@ Position the cursor at its beginning, according to the current mode."
 (defun my/open-emacs-init ()
 	"Open the emacs.d/init.el file"
 	(interactive)
-	(find-file "~/.emacs.d/init.el"))
-
-(defun my/open-emacs-git ()
-	"Open the emacs.d/init.el file"
-	(interactive)
-	(magit-status "~/.emacs.d"))
+	(call-interactively (find-file "/home/lbodnar/.emacs.d/init.el")))
 
 (provide 'my-defun)	
