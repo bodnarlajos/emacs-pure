@@ -203,7 +203,7 @@ Version 2017-11-01"
 				(development (my/menu-item-for-program "Start development"))
 				(openNotes (my/menu-item-for-program "Notes"))
 				(magit (my/menu-item-for-program "Git"))
-				(initel (my/menu-item-for-program "init.el"))
+				(constel (my/menu-item-for-program "emacs config file"))
 				(magitemacs (my/menu-item-for-program "emacs Git"))
 				(longLines (my/menu-item-for-program "Long lines"))
 				(efar (my/menu-item-for-program "Far manager"))
@@ -211,13 +211,13 @@ Version 2017-11-01"
 				(startemacs (my/menu-item-for-program "Start emacs"))
 				(gitgui (my/menu-item-for-program "Start git gui"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles initel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles constel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
 				 ((string-equal res efar) (call-interactively 'efar))
-				 ((string-equal res initel) (call-interactively 'my/open-emacs-init))
+				 ((string-equal res constel) (call-interactively 'my/open-emacs-config))
 				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
 				 ((string-equal res startemacs) (call-interactively 'my/start/emacs))
 				 ((string-equal res gitgui) (call-interactively 'my/start/git-gui))
@@ -423,9 +423,9 @@ Position the cursor at its beginning, according to the current mode."
 				(my/view-file filepath)
 			(message "It's not a file: %s" filepath))))
 
-(defun my/open-emacs-init ()
-	"Open the emacs.d/init.el file"
+(defun my/open-emacs-config ()
+	"Open the emacs.d/progs/my-const.el file"
 	(interactive)
-	(call-interactively (find-file "/home/lbodnar/.emacs.d/init.el")))
+	(call-interactively (find-file (concat user-emacs-directory "progs/my-const.el"))))
 
 (provide 'my-defun)	
