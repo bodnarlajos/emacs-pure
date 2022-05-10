@@ -1,10 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(defvar my/project-dir '("c:/Projects"))
-(defvar my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/emacs-native/bin" "C:/Program Files/Git/mingw64/bin"))
-(defvar my/notes-dir "c:/users/lbodnar/Box/notes/")
-(defvar my/base-dir "c:/Projects")
-
+(defconst my/project-dir '("c:/Projects"))
+(defconst my/exec-dir '("C:/Program Files/Git/usr/bin/" "c:/ProgramData/chocolatey/bin" "c:/ProgramData/emacs-native/bin" "C:/Program Files/Git/mingw64/bin"))
+(defconst my/notes-dir "c:/users/lbodnar/Box/notes/")
+(defconst my/base-dir "c:/Projects")
 (defvar my/temp-dir "c:/temp")
 (defconst my/const/gitk-exe--path "c:/Program Files/Git/cmd/gitk.exe")
 (defconst my/const/git-gui-exe--path "c:/Program Files/Git/bin/git.exe")

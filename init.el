@@ -44,7 +44,6 @@
 
 (require 'my-defun)
 (require 'my-keys)
-;; (require 'my-layout)
 
 (straight-use-package 'use-package)
 (use-package use-package
@@ -193,24 +192,6 @@
 
 (use-package wgrep
 	:straight t)
-
-(use-package use-package
-	:straight t
-	:config
-	(setq use-package-ensure t))
-
-;; (use-package affe
-;; 	:straight t
-;; 	:bind
-;; 	("M-s s" . affe-grep)
-;; 	;; ("M-s f" . affe-find)
-;; 	:config
-;; 	(progn 
-;; 		(setq invocation-name "runemacs.exe")
-;; 		(defun affe-orderless-regexp-compiler (input _type)
-;; 			(setq input (orderless-pattern-compiler input))
-;; 			(cons input (lambda (str) (orderless--highlight input str))))
-;; 		(setq affe-regexp-compiler #'affe-orderless-regexp-compiler)))
 
 (use-package find-file-rg
 	:straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
@@ -369,20 +350,23 @@
 	:bind
 	("C-/" . cape-dabbrev))
 
-(straight-use-package '(kind-icon
-												:type git
-												:repo "jdtsmith/kind-icon"))
-(require 'kind-icon)
-(setq kind-icon-default-face 'corfu-default)
-(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+(use-package kind-icon
+	:straight '(kind-icon
+							:type git
+							:repo "jdtsmith/kind-icon")
+	:config
+	(setq kind-icon-default-face 'corfu-default)
+	(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-(with-eval-after-load 'project
+(use-package project
+	:straight t
+	:init
+	(defun my/root-project-dir ()
+		(if-let ((project (project-current)))
+				(car (project-roots project))
+			(format "%s" default-directory)))
+	:config
 	(setq consult-project-root-function #'my/root-project-dir))
-
-(defun my/root-project-dir ()
-	(if-let ((project (project-current)))
-			(car (project-roots project))
-		(format "%s" default-directory)))
 
 (marginalia-mode +1)
 (diminish 'anzu-mode)
@@ -612,32 +596,6 @@
 	:config
 	(setq magit-diff-refine-hunk (quote all))
 	(add-hook 'magit-status-mode-hook (lambda ()
-																			(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
-																			(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
-																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
-																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-notes)
-																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-tag)
-																			(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
-																			(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
-																			(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-push-branch-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-diff-filter-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-merge-log)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-am-sequence)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-untracked-files)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-sequencer-sequence)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
-																			(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
 																			(setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
 																			(setq magit--default-directory my/project-dir)  
 																			(setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))
