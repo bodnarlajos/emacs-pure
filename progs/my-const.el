@@ -1,10 +1,10 @@
 ;; -*- lexical-binding: t -*-
 
-(defvar my/project-dir '("/home/lbodnar/Projects"))
-(defvar my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
-(defvar my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
-(defvar my/base-dir "/home/lbodnar/Projects")
-(defvar my/temp-dir "/home/lbodnar/Projects/temp")
+(defconst my/project-dir '("/home/lbodnar/Projects"))
+(defconst my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
+(defconst my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
+(defconst my/base-dir "/home/lbodnar/Projects")
+(defconst my/temp-dir "/home/lbodnar/Projects/temp")
 (defconst my/const/gitk-exe--path "/usr/bin/gitk")
 (defconst my/const/git-gui-exe--path "/usr/bin/git")
 
