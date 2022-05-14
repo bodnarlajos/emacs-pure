@@ -316,7 +316,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(corfu-global-mode +1))
+	(global-corfu-mode +1))
 
 (use-package savehist
 	:straight t
@@ -669,6 +669,12 @@
 (use-package json-mode
 	:straight t
   :ensure t)
+
+(use-package auto-highlight-symbol
+	:straight t
+	:ensure t
+	:config
+	(global-auto-highlight-symbol-mode))
 
 (use-package remember-last-theme
 	:straight t)
