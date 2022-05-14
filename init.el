@@ -460,9 +460,6 @@
 (mapcar (lambda (cdir)
 					(setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
 
-;; (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
-;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-
 (winner-mode +1)
 (with-eval-after-load 'ediff
 	;; add ediff configuration
@@ -619,22 +616,6 @@
 	("<C-S-return>" . crux-smart-open-line-above)
 	("<S-return>" . 'crux-smart-open-line)
 	("C-k" . 'crux-smart-kill-line))
-
-(use-package ibuffer-sidebar
-	:straight t
-	:commands (ibuffer-sidebar-toggle-sidebar)
-	:bind
-	(("C-x C-b" . ibuffer-sidebar-toggle-sidebar)
-	 (:map my-prefix
-				 ("c b" . ibuffer-sidebar-toggle-sidebar)))
-	:config
-	(setq ibuffer-sidebar-use-custom-font t))
-
-(use-package command-frequency
-	:straight t
-	:config
-	(command-frequency-mode +1)
-	(command-frequency-autosave-mode +1))
 
 (use-package git-timemachine
 	:straight t)
