@@ -55,11 +55,14 @@
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
 (straight-use-package 'anzu)
-(straight-use-package 'markdown-mode)
-(straight-use-package 'transpose-frame)
-(straight-use-package 'dired-single)
-(straight-use-package 'which-key)
-(straight-use-package 'el-get)
+(use-package markdown-mode
+	:straight t)
+(use-package transpose-frame
+	:straight t)
+(use-package dired-single
+	:straight t)
+(use-package which-key
+	:straight t)
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -316,7 +319,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(global-corfu-mode +1))
+	(corfu-global-mode +1))
 
 (use-package savehist
 	:straight t
@@ -650,12 +653,6 @@
 (use-package json-mode
 	:straight t
   :ensure t)
-
-(use-package auto-highlight-symbol
-	:straight t
-	:ensure t
-	:config
-	(global-auto-highlight-symbol-mode))
 
 (use-package remember-last-theme
 	:straight t)
