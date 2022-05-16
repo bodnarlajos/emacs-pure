@@ -609,11 +609,10 @@
 																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
 	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil))
 
-(use-package undo-fu
+(use-package undo-tree
 	:straight t
-	:bind
-	("C-z" . undo-fu-only-undo)
-	("C-x C-z" . undo-fu-only-redo))
+	:config
+	(global-undo-tree-mode +1))
 
 (use-package crux
 	:straight t
