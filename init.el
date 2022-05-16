@@ -520,7 +520,7 @@
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
-	(global-set-key (kbd "C-s") 'consult-line)
+	(global-set-key (kbd "C-S-f") 'consult-line)
 	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
 	(global-unset-key (kbd "C-o"))
 	(global-set-key (kbd "C-o") 'project-find-file)
@@ -657,16 +657,7 @@
 (use-package remember-last-theme
 	:straight t)
 
-(use-package modus-themes
+(use-package solo-jazz-theme
 	:straight t)
-
-(use-package doom-themes
-	:straight t)
-
-(use-package atom-one-light-theme
-	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
-
-(use-package vscode-dark-plus-theme
-	:straight (vscode-dark-plus-theme :type git :host github :repo "ianyepan/vscode-dark-plus-emacs-theme"))
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
