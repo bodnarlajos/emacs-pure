@@ -55,11 +55,14 @@
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
 (straight-use-package 'anzu)
-(straight-use-package 'markdown-mode)
-(straight-use-package 'transpose-frame)
-(straight-use-package 'dired-single)
-(straight-use-package 'which-key)
-(straight-use-package 'el-get)
+(use-package markdown-mode
+	:straight t)
+(use-package transpose-frame
+	:straight t)
+(use-package dired-single
+	:straight t)
+(use-package which-key
+	:straight t)
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -316,7 +319,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(global-corfu-mode +1))
+	(corfu-global-mode +1))
 
 (use-package savehist
 	:straight t
@@ -460,9 +463,6 @@
 (mapcar (lambda (cdir)
 					(setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
 
-;; (setq find-ls-option '("-exec ls -ldh {} +" . "-ldh"))
-;; (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-
 (winner-mode +1)
 (with-eval-after-load 'ediff
 	;; add ediff configuration
@@ -520,7 +520,7 @@
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
-	(global-set-key (kbd "C-s") 'consult-line)
+	(global-set-key (kbd "C-S-f") 'consult-line)
 	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
 	(global-unset-key (kbd "C-o"))
 	(global-set-key (kbd "C-o") 'project-find-file)
@@ -621,22 +621,6 @@
 	("<S-return>" . 'crux-smart-open-line)
 	("C-k" . 'crux-smart-kill-line))
 
-(use-package ibuffer-sidebar
-	:straight t
-	:commands (ibuffer-sidebar-toggle-sidebar)
-	:bind
-	(("C-x C-b" . ibuffer-sidebar-toggle-sidebar)
-	 (:map my-prefix
-				 ("c b" . ibuffer-sidebar-toggle-sidebar)))
-	:config
-	(setq ibuffer-sidebar-use-custom-font t))
-
-(use-package command-frequency
-	:straight t
-	:config
-	(command-frequency-mode +1)
-	(command-frequency-autosave-mode +1))
-
 (use-package git-timemachine
 	:straight t)
 
@@ -671,25 +655,10 @@
 	:straight t
   :ensure t)
 
-(use-package auto-highlight-symbol
-	:straight t
-	:ensure t
-	:config
-	(global-auto-highlight-symbol-mode))
-
 (use-package remember-last-theme
 	:straight t)
 
-(use-package modus-themes
+(use-package solo-jazz-theme
 	:straight t)
-
-(use-package doom-themes
-	:straight t)
-
-(use-package atom-one-light-theme
-	:straight (atom-one-light-theme :type git :host github :repo "bodnarlajos/atom-one-light-theme"))
-
-(use-package vscode-dark-plus-theme
-	:straight (vscode-dark-plus-theme :type git :host github :repo "ianyepan/vscode-dark-plus-emacs-theme"))
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
