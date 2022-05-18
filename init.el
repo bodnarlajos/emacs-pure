@@ -175,12 +175,13 @@
 
 (use-package back-button
 	:straight t
+	:ensure t
 	:config
 	(back-button-mode +1)
 	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
 	:bind
 	("M-i" . back-button-global)
-	("C-i" . back-button-push-mark-local-and-global))
+	("M-S-i" . back-button-push-mark-local-and-global))
 
 (use-package recentf
 	:defer t)
@@ -321,7 +322,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(corfu-global-mode +1))
+	(global-corfu-mode +1))
 
 (use-package savehist
 	:straight t
