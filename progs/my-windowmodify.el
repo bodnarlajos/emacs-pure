@@ -1,13 +1,15 @@
+(defvar my/window-modify/font "Ubuntu Mono-8")
+(defvar my/window-modify/font-big "Ubuntu Mono-10")
+
 (defun my/set-bigger-font ()
 	"bigger font size"
 	(interactive)
-	(custom-set-faces
-	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 120 :width normal))))))
+	(set-frame-font my/window-modify/font-big))
+
 (defun my/set-normal-font ()
 	"bigger font size"
 	(interactive)
-	(custom-set-faces
-	 '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight regular :height 98 :width normal))))))
+	(set-frame-font my/window-modify/font))
 
 (defun my-windowmodify-mode ()
 	"This mode will change the font size, you need to resize the window"
