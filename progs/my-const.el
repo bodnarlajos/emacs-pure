@@ -15,7 +15,6 @@
 	(require 'my-dev)
 	(require 'my-haskell)
 	(require 'my-web)
-	(my-web-mode)
 	(require 'my-csharp))
 
 ;; end script of init

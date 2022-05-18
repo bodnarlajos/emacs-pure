@@ -51,6 +51,8 @@
 	:config
 	(setq use-package-always-ensure t))
 
+(use-package f
+	:straight t)
 (straight-use-package 'diminish)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
@@ -610,6 +612,10 @@
 
 (use-package undo-tree
 	:straight t
+	:init
+	(let ((undo-tree-temp-dir (f-join my/temp-dir "undo-tree")))
+		(message "%s" undo-tree-temp-dir)
+		(setq undo-tree-history-directory-alist `(".*" . undo-tree-temp-dir)))
 	:config
 	(global-undo-tree-mode +1))
 
@@ -630,7 +636,7 @@
 	(size-indication-mode +1)
 	(setq doom-modeline-lsp t)
 	(setq doom-modeline-workspace-name t)
-	(setq doom-modeline-vcs-max-length 12)
+	(setq doom-modeline-vcs-max-length 24)
 	(setq doom-modeline-checker-simple-format t)
 	(setq doom-modeline-indent-info nil)
 	(setq doom-modeline-buffer-encoding t)
