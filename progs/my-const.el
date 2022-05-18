@@ -42,9 +42,9 @@
 	;; (my-web-mode)
 	
 	;; set the font based on the monitor
-	;; (setq my/windowmodify/font "Ubuntu Mono-11")
-	;; (setq my/windowmodify/font-big "Ubuntu Mono-13")
-	;; (my-windowmodify-mode)
+	(setq my/windowmodify/font "Ubuntu Mono-11")
+	(setq my/windowmodify/font-big "Ubuntu Mono-13")
+	(my-windowmodify-mode)
 	
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))
