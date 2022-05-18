@@ -13,12 +13,11 @@
 	(interactive)
 	(require 'my-prog)
 	(require 'my-dev)
-	(require 'my-haskell)
+	;; (require 'my-haskell)
 	(require 'my-web)
-	(my-web-mode)
 	(require 'my-csharp)
 	(require 'my-windowmodify)
-	(my-windowmodify-mode))
+	)
 
 ;; end script of init
 (defun my/end-of-init ()
@@ -38,6 +37,14 @@
 			 '(ediff-diff3-program (concat my/git-bash-bin-path "diff3.exe"))
 			 '(ediff-custom-diff-program (concat my/git-bash-bin-path "diff3.exe")))
 			(setq find-program (concat my/git-bash-bin-path "find.exe"))))
+
+	;; start web-mode
+	;; (my-web-mode)
+	
+	;; set the font based on the monitor
+	;; (setq my/windowmodify/font "Ubuntu Mono-11")
+	;; (setq my/windowmodify/font-big "Ubuntu Mono-13")
+	;; (my-windowmodify-mode)
 	
 	;; fullscreen
 	(add-to-list 'default-frame-alist '(fullscreen . maximized))

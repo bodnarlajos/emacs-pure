@@ -51,6 +51,8 @@
 	:config
 	(setq use-package-always-ensure t))
 
+(use-package f
+	:straight t)
 (straight-use-package 'diminish)
 (straight-use-package 'orderless)
 (straight-use-package 'marginalia)
@@ -173,12 +175,13 @@
 
 (use-package back-button
 	:straight t
+	:ensure t
 	:config
 	(back-button-mode +1)
 	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
 	:bind
 	("M-i" . back-button-global)
-	("C-i" . back-button-push-mark-local-and-global))
+	("M-S-i" . back-button-push-mark-local-and-global))
 
 (use-package recentf
 	:defer t)
@@ -319,7 +322,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(corfu-global-mode +1))
+	(global-corfu-mode +1))
 
 (use-package savehist
 	:straight t
@@ -611,6 +614,10 @@
 
 (use-package undo-tree
 	:straight t
+	:init
+	(let ((undo-tree-temp-dir (f-join my/temp-dir "undo-tree")))
+		(message "%s" undo-tree-temp-dir)
+		(setq undo-tree-history-directory-alist `(".*" . undo-tree-temp-dir)))
 	:config
 	(global-undo-tree-mode +1))
 
@@ -631,7 +638,7 @@
 	(size-indication-mode +1)
 	(setq doom-modeline-lsp t)
 	(setq doom-modeline-workspace-name t)
-	(setq doom-modeline-vcs-max-length 12)
+	(setq doom-modeline-vcs-max-length 24)
 	(setq doom-modeline-checker-simple-format t)
 	(setq doom-modeline-indent-info nil)
 	(setq doom-modeline-buffer-encoding t)
