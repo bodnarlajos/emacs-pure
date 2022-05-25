@@ -206,17 +206,17 @@ Version 2017-11-01"
 				(constel (my/menu-item-for-program "emacs config file"))
 				(magitemacs (my/menu-item-for-program "emacs Git"))
 				(longLines (my/menu-item-for-program "Long lines"))
-				(efar (my/menu-item-for-program "Far manager"))
+				(agenda (my/menu-item-for-program "Agenda"))
 				(gitk (my/menu-item-for-program "Start Git history"))
 				(startemacs (my/menu-item-for-program "Start emacs"))
 				(gitgui (my/menu-item-for-program "Start git gui"))
 				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs startemacs neworgbuffer efar gitk gitgui recentfiles constel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
+		(let ((ido-list (list magitemacs startemacs neworgbuffer agenda gitk gitgui recentfiles constel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
 			(let ((res (completing-read "Action: " ido-list)))
 				(cond				
 				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
 				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
-				 ((string-equal res efar) (call-interactively 'efar))
+				 ((string-equal res agenda) (call-interactively 'my/open-note-daily))
 				 ((string-equal res constel) (call-interactively 'my/open-emacs-config))
 				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
 				 ((string-equal res startemacs) (call-interactively 'my/start/emacs))
@@ -250,8 +250,7 @@ Version 2017-11-01"
 (defun my/open-note-daily ()
 	"Open the daily notes"
 	(interactive)
-  (find-file (concat my/notes-dir "daily.org"))
-	(org-agenda nil "n"))
+	(org-agenda nil "a"))
 
 (defun my/open-notes ()
 	"Open file from the notes directory"
