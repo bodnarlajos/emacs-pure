@@ -1,13 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
-(use-package lsp-java
-	:straight t)
-
 ;; helper functions for ide-mode
 (defun my/run-dev-hook ()
 	"T."
 	(when (and (not my/dev-env) my/dev-hook)
-		(my/before-dev-hook)
 		(run-hooks 'my/dev-hook)
 		(setq my/dev-env t)))
 
@@ -21,7 +17,6 @@
 	"T."
 	(interactive)
 	(my/run-dev-hook)
-	(my/start/restclient)
 	(when (buffer-file-name)
 		(my/revert-current-buffer)))
 
@@ -38,32 +33,43 @@
 ;; beginning of the ide-mode customization
 (defun my/before-dev-hook ()
 	"T."
-	(straight-use-package 'flycheck)
-	(flycheck-mode +1)
+	(use-package flycheck
+		:straight t
+		:defer t
+		:config
+		(flycheck-mode +1))
+	
 	(use-package lsp-mode
 		:straight t
+		:defer t
 		:bind
 		("M-s l" . lsp-find-references)
-		("M-s p" . lsp-ui-peek-find-references))
-	(straight-use-package 'lsp-ui)
-	(lsp-ui-mode +1)
-	;; (setq lsp-log-io t)
-	(custom-set-variables
-	 '(lsp-ui-imenu-enable nil)
-	 '(lsp-ui-peek-enable nil)
-	 '(lsp-ui-sideline-ignore-duplicate t)
-	 '(lsp-ui-sideline-show-code-actions t)
-	 '(lsp-ui-sideline-show-hover t)
-	 '(lsp-ui-sideline-update-mode 'line))
-	(custom-set-variables
-	 '(lsp-disabled-clients
-		 '(eslint html-ls)))
-	;; 		 '((web-mode . angular-ls) (html-mode . angular-ls)
-	;; 			 (typescript-mode . angular-ls))))
-	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-java lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint))
-	(setq lsp-headerline-breadcrumb-enable nil)
-	(setq lsp-completion-provider :none)
-	(setq lsp-enable-snippet nil)
+		("M-s p" . lsp-ui-peek-find-references)
+		:config
+		(custom-set-variables
+		 '(lsp-disabled-clients
+			 '(eslint html-ls)))
+		(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-java lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint)
+					lsp-headerline-breadcrumb-enable nil
+					lsp-completion-provider :none
+					lsp-enable-snippet nil))
+	
+	(use-package lsp-java
+		:straight t
+		:defer t)
+	
+	(use-package lsp-ui
+		:straight t
+		:defer t
+		:init (lsp-ui-mode +1)
+		:config
+		;; (setq lsp-log-io t)
+		(lsp-ui-sideline-mode -1)
+		(custom-set-variables
+		 '(lsp-ui-imenu-enable nil)
+		 '(lsp-ui-peek-enable nil))
+		
+		)
 	
 	(add-hook 'lsp-mode-hook
 						(lambda ()
@@ -75,9 +81,10 @@
 	(add-hook 'lsp-completion-mode-hook
 						(lambda ()
 							(setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
-	(global-eldoc-mode -1)
-	
+	(global-eldoc-mode +1)
 	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp))
+
+(my/add-dev-hook 'my/before-dev-hook)
 
 (defun my/append-cape-to-capf ()
 	"T."
