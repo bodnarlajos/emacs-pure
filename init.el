@@ -12,6 +12,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
@@ -20,8 +21,12 @@
 (defvar my/dev-env nil)
 ;; the ide mode hook
 (defvar my/dev-hook '())
+(defvar my/font "Monospace-10")
 
 (require 'my-const)
+
+(set-frame-font my/font)
+(setq major-mode 'org-mode)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -605,12 +610,12 @@
 
 (use-package undo-tree
 	:straight t
-	:init
-	(let ((undo-tree-temp-dir (f-join my/temp-dir "undo-tree")))
-		(message "%s" undo-tree-temp-dir)
-		(setq undo-tree-history-directory-alist `(".*" . undo-tree-temp-dir)))
-	:config
-	(global-undo-tree-mode +1))
+	:defer t
+  :diminish undo-tree-mode
+  :init (global-undo-tree-mode)
+  :custom
+  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (undo-tree-visualizer-timestamps t))
 
 (use-package crux
 	:straight t

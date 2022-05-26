@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'cl-lib)
-
 (defun my/start/emacs ()
 	"T."
 	(interactive)
@@ -58,6 +56,7 @@
 	(interactive)
 	(straight-use-package 'restclient)
 	(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
+(my/add-dev-hook 'my/start/restclient)
 
 (defun my/make-frame-readonly ()
 	"Make the frame readnoly
