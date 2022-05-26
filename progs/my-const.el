@@ -33,9 +33,6 @@
 			 '(ediff-custom-diff-program (concat my/git-bash-bin-path "diff3.exe")))
 			(setq find-program (concat my/git-bash-bin-path "find.exe"))))
 
-	;; start web-mode
-	;; (my-web-mode)
-	
 	;; set the font based on the monitor
 	;; (setq my/windowmodify/font "Ubuntu Mono-11")
 	;; (setq my/windowmodify/font-big "Ubuntu Mono-13")
