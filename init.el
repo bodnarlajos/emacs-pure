@@ -246,17 +246,19 @@
 	 '(xref-show-xrefs-function 'consult-xref))
 	(consult-customize
 	 ;; Disable preview for `consult-theme' completely.
-	 consult-theme :preview-key nil
-	 consult-buffer :preview-key nil
-	 consult-recent-file :preview-key nil
-	 ;; Set preview for `consult-buffer' to key `M-.'
-	 consult-buffer :preview-key (kbd "M-.")
+	 ;; consult-theme :preview-key nil
+	 ;; consult-buffer :preview-key nil
+	 ;; consult-recent-file :preview-key nil
+	 ;; consult-ripgrep :preview-key nil 
+	 ;; consult-grep :preview-key nil 
+	 ;; ;; Set preview for `consult-buffer' to key `M-.'
+	 ;; consult-buffer :preview-key nil
 	 ;; For `consult-line' change the prompt and specify multiple preview
 	 ;; keybindings. Note that you should bind <S-up> and <S-down> in the
 	 ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
 	 ;; select the previous or next candidate.
-	 consult-line :prompt "Search: "
-	 :preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
+	 consult-line :prompt "Search: ")
+	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-.")))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
