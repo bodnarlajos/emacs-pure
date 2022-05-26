@@ -676,3 +676,5 @@
 	:straight t)
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
+
+(my/start/devenv)
