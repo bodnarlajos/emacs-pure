@@ -12,6 +12,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
@@ -20,8 +21,12 @@
 (defvar my/dev-env nil)
 ;; the ide mode hook
 (defvar my/dev-hook '())
+(defvar my/font "Monospace-10")
 
 (require 'my-const)
+
+(set-frame-font my/font)
+(setq major-mode 'org-mode)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -175,12 +180,13 @@
 
 (use-package back-button
 	:straight t
+	:ensure t
 	:config
 	(back-button-mode +1)
 	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
 	:bind
 	("M-i" . back-button-global)
-	("C-i" . back-button-push-mark-local-and-global))
+	("M-S-i" . back-button-push-mark-local-and-global))
 
 (use-package recentf
 	:defer t)
@@ -323,7 +329,7 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil)
-	(corfu-global-mode +1))
+	(global-corfu-mode +1))
 
 (use-package savehist
 	:straight t
@@ -518,9 +524,9 @@
 	(global-unset-key (kbd "C-x b"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<C-tab>") 'consult-buffer)
-	(global-set-key (kbd "<M-left>") 'windmove-left)
+	(global-set-key (kbd "<C-M-left>") 'rotate-frame)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
-	(global-set-key (kbd "<M-right>") 'windmove-right)
+	(global-set-key (kbd "<C-M-right>") 'other-window)
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
@@ -565,14 +571,14 @@
 
 (use-package magit
 	:straight t
-	:commands (magit-status)
+	:commands (magit-status-quick magit-status)
 	:init
 
 	(defun my/magit-status ()
 		"Open a magit directory."
 		(interactive)
 		(let ((current-prefix-arg '(4)))
-			(call-interactively #'magit-status)
+			(call-interactively #'magit-status-quick)
 			(delete-other-windows)))
 
 	(defun my/goto-magit ()
@@ -601,25 +607,17 @@
 	(add-hook 'magit-status-mode-hook (lambda ()
 																			(setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
 																			(setq magit--default-directory my/project-dir)  
-																			(setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))
-																			(define-key magit-stash-mode-map (kbd "a") (lambda ()
-																																									 (magit-stash-apply)
-																																									 (magit-log-bury-buffer)
-																																									 (magit-refresh)))
-																			(define-key magit-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
-																			(define-key magit-status-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
-																			(define-key magit-log-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)
-																			(define-key magit-revision-mode-map (kbd "<C-tab>") 'my/switch-to-buffer)))
+																			(setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))))
 	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil))
 
 (use-package undo-tree
 	:straight t
-	:init
-	(let ((undo-tree-temp-dir (f-join my/temp-dir "undo-tree")))
-		(message "%s" undo-tree-temp-dir)
-		(setq undo-tree-history-directory-alist `(".*" . undo-tree-temp-dir)))
-	:config
-	(global-undo-tree-mode +1))
+	:defer t
+  :diminish undo-tree-mode
+  :init (global-undo-tree-mode)
+  :custom
+  (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (undo-tree-visualizer-timestamps t))
 
 (use-package crux
 	:straight t
@@ -662,6 +660,16 @@
 	:straight t
   :ensure t)
 
+(use-package rainbow-mode
+	:straight t
+  :hook
+	(prog-mode-hook . rainbow-mode))
+
+(use-package rainbow-delimiters
+	:straight t
+	:hook
+	(prog-mode-hook . rainbow-delimiters-mode))
+
 (use-package remember-last-theme
 	:straight t)
 
@@ -669,3 +677,5 @@
 	:straight t)
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
+
+(my/start/devenv)
