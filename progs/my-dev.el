@@ -85,6 +85,7 @@
 	(add-hook 'emacs-lisp-mode-hook #'my/setup-elisp))
 
 (my/add-dev-hook 'my/before-dev-hook)
+(my/add-dev-hook 'my/start/restclient)
 
 (defun my/append-cape-to-capf ()
 	"T."
