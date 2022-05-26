@@ -7,6 +7,7 @@
 (defvar my/temp-dir "c:/temp")
 (defconst my/const/gitk-exe--path "c:/Program Files/Git/cmd/gitk.exe")
 (defconst my/const/git-gui-exe--path "c:/Program Files/Git/bin/git.exe")
+(setq my/font "Ubuntu Mono-12")
 
 (defun my/start-modules ()
 	"Start these modules after init"
@@ -38,12 +39,8 @@
 			 '(ediff-custom-diff-program (concat my/git-bash-bin-path "diff3.exe")))
 			(setq find-program (concat my/git-bash-bin-path "find.exe"))))
 
-	;; start web-mode
-	;; (my-web-mode)
-	
 	;; set the font based on the monitor
-	(setq my/windowmodify/font "Ubuntu Mono-11")
-	(setq my/windowmodify/font-big "Ubuntu Mono-13")
+	(setq my/windowmodify/font-big "Ubuntu Mono-14")
 	(my-windowmodify-mode)
 	
 	;; fullscreen
@@ -51,9 +48,9 @@
 	(use-package org
 		:config
 		(setq org-agenda-files (list
-														"~/Box/notes/daily.org")))
+														"~/Box/notes/")))
 	)
 
-(setq browse-url-generic-program "firefox")
+(setq browse-url-generic-program "C:/Program Files/Mozilla Firefox/firefox.exe")
 
 (provide 'my-const)
