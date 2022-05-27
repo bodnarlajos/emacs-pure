@@ -258,7 +258,7 @@
 	 ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
 	 ;; select the previous or next candidate.
 	 consult-line :prompt "Search: ")
-	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-.")))
+	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-t")))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -522,8 +522,10 @@
 		(load custom-file))
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
+	(global-unset-key (kbd "M-f"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<C-tab>") 'consult-buffer)
+	(global-set-key (kbd "M-f") 'consult-buffer)
 	(global-set-key (kbd "<C-M-left>") 'rotate-frame)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<C-M-right>") 'other-window)
@@ -556,6 +558,8 @@
 	(:map minibuffer-mode-map
 				("M-e" . embark-act)
 				("<C-tab>" . previous-line)
+				("M-f" . previous-line)
+				("M-q" . exit-minibuffer)
 				("C-q" . exit-minibuffer)))
 
 (use-package recentf
@@ -661,15 +665,10 @@
 	:straight t
   :ensure t)
 
-(use-package rainbow-mode
+(use-package popwin
 	:straight t
-  :hook
-	(prog-mode-hook . rainbow-mode))
-
-(use-package rainbow-delimiters
-	:straight t
-	:hook
-	(prog-mode-hook . rainbow-delimiters-mode))
+	:config
+	(popwin-mode 1))
 
 (use-package remember-last-theme
 	:straight t)

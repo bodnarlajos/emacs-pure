@@ -29,6 +29,7 @@
 (define-key my-prefix (kbd ")") 'kmacro-end-macro)
 (define-key my-prefix (kbd ">") 'kmacro-call-macro)
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
+(define-key my-prefix (kbd "d") 'duplicate-line)
 
 (define-key my-prefix (kbd "x") 'execute-extended-command)
 
@@ -69,7 +70,6 @@
 
 (define-key my-prefix (kbd "2") 'flycheck-list-errors)
 (define-key my-prefix (kbd "t") 'transpose-frame)
-(define-key my-prefix (kbd "b") 'consult-buffer)
 (define-key my-prefix (kbd "b") 'consult-buffer)
 (define-key my-prefix (kbd "c g") 'my/goto-magit)
 (define-key my-prefix (kbd "c p") 'project-find-file)

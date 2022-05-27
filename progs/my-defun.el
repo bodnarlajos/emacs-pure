@@ -39,6 +39,13 @@
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+(defun my/delete-this-file ()
+	"Delete the current buffer and the file"
+	(interactive)
+	(let ((buffername (buffer-file-name)))
+		(kill-buffer (current-buffer))
+		(delete-file buffername)))
+
 (defun my/check/start-with-in-list (str thelist)
 	"T."
 	(let ((inlist thelist)
