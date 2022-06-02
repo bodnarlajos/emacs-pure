@@ -258,7 +258,7 @@
 	 ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
 	 ;; select the previous or next candidate.
 	 consult-line :prompt "Search: ")
-	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-t")))
+	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -522,20 +522,22 @@
 		(load custom-file))
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
-	(global-unset-key (kbd "M-f"))
+	(global-unset-key (kbd "M-j"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<C-tab>") 'consult-buffer)
-	(global-set-key (kbd "M-f") 'consult-buffer)
+	(global-set-key (kbd "M-j") 'consult-buffer)
 	(global-set-key (kbd "<C-M-left>") 'rotate-frame)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
-	(global-set-key (kbd "<C-M-right>") 'other-window)
+	(global-set-key (kbd "<M-right>") 'other-window)
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-set-key (kbd "C-S-f") 'consult-line)
 	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
 	(global-unset-key (kbd "C-o"))
+	(global-unset-key (kbd "M-o"))
 	(global-set-key (kbd "C-o") 'project-find-file)
+	(global-set-key (kbd "M-o") 'project-find-file)
 	(global-unset-key (kbd "M-k"))
 	(define-prefix-command 'my-emacs-prefix)
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
@@ -558,8 +560,9 @@
 	(:map minibuffer-mode-map
 				("M-e" . embark-act)
 				("<C-tab>" . previous-line)
-				("M-f" . previous-line)
-				("M-q" . exit-minibuffer)
+				("M-j" . previous-line)
+				("M-l" . next-line)
+				("M-k" . exit-minibuffer)
 				("C-q" . exit-minibuffer)))
 
 (use-package recentf

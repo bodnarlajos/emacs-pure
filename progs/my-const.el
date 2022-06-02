@@ -13,9 +13,9 @@
 	(interactive)
 	(require 'my-prog)
 	(require 'my-dev)
-	;; (require 'my-haskell)
-	;; (require 'my-web)
-	;; (require 'my-csharp)
+	(require 'my-haskell)
+	(require 'my-web)
+	(require 'my-csharp)
 	;; (require 'my-windowmodify)
 	)
 
