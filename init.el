@@ -21,12 +21,11 @@
 (defvar my/dev-env nil)
 ;; the ide mode hook
 (defvar my/dev-hook '())
-(defvar my/font "Monospace-10")
+(defvar my/font "Ubuntu Mono-10")
 
 (require 'my-const)
 
-(set-frame-font my/font)
-(setq major-mode 'org-mode)
+(set-frame-font my/font nil t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -671,6 +670,54 @@
 	:straight t
 	:config
 	(popwin-mode 1))
+
+(use-package centaur-tabs
+	:straight t
+	:config
+	(defun centaur-tabs-hide-tab (x)
+		"Do no to show buffer X in tabs."
+		(let ((name (format "%s" x)))
+			(or
+			 ;; Buffer name not match below blacklist.
+			 (string-prefix-p "*epc" name)
+			 (string-prefix-p "*helm" name)
+			 (string-prefix-p "*Helm" name)
+			 (string-prefix-p "*Compile-Log*" name)
+			 (string-prefix-p "*lsp" name)
+			 (string-prefix-p "*company" name)
+			 (string-prefix-p "*Flycheck" name)
+			 (string-prefix-p "*tramp" name)
+			 (string-prefix-p " *Mini" name)
+			 (string-prefix-p "*help" name)
+			 (string-prefix-p "*straight" name)
+			 (string-prefix-p " *temp" name)
+			 (string-prefix-p "*Help" name)
+			 (string-prefix-p "*mybuf" name)
+			 (string-prefix-p "*Calc" name)
+
+			 ;; Is not magit buffer.
+			 (and (string-prefix-p "magit" name)
+						(not (file-name-extension name)))
+			 )))
+	(defun centaur-tabs-buffer-groups ()
+    "`centaur-tabs-buffer-groups' control buffers' group rules.
+
+    Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+    All buffer name start with * will group to \"Emacs\".
+    Other buffer group by `centaur-tabs-get-group-name' with project name."
+    (list
+		 (cond
+			((or (string-equal "*" (substring (buffer-name) 0 1))
+					 (memq major-mode '(magit-process-mode
+															)))
+			 "Emacs")
+			((not (or (string-equal "*" (substring (buffer-name) 0 1))
+								(memq major-mode '(magit-process-mode
+																	 ))))
+			 "All")
+			(t
+			 (centaur-tabs-get-group-name (current-buffer))))))
+	(centaur-tabs-mode))
 
 (use-package remember-last-theme
 	:straight t)
