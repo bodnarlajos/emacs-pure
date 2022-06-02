@@ -21,12 +21,11 @@
 (defvar my/dev-env nil)
 ;; the ide mode hook
 (defvar my/dev-hook '())
-(defvar my/font "Monospace-10")
+(defvar my/font "Ubuntu Mono-10")
 
 (require 'my-const)
 
-(set-frame-font my/font)
-(setq major-mode 'org-mode)
+(set-frame-font my/font nil t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -258,7 +257,7 @@
 	 ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
 	 ;; select the previous or next candidate.
 	 consult-line :prompt "Search: ")
-	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-t")))
+	(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
@@ -522,20 +521,22 @@
 		(load custom-file))
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
-	(global-unset-key (kbd "M-f"))
+	(global-unset-key (kbd "M-j"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<C-tab>") 'consult-buffer)
-	(global-set-key (kbd "M-f") 'consult-buffer)
+	(global-set-key (kbd "M-j") 'consult-buffer)
 	(global-set-key (kbd "<C-M-left>") 'rotate-frame)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
-	(global-set-key (kbd "<C-M-right>") 'other-window)
+	(global-set-key (kbd "<M-right>") 'other-window)
 	(global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
 	(global-set-key (kbd "C-.") 'repeat-complex-command)
 	(global-set-key (kbd "M-C-o") 'consult-recent-file)
 	(global-set-key (kbd "C-S-f") 'consult-line)
 	(global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
 	(global-unset-key (kbd "C-o"))
+	(global-unset-key (kbd "M-o"))
 	(global-set-key (kbd "C-o") 'project-find-file)
+	(global-set-key (kbd "M-o") 'project-find-file)
 	(global-unset-key (kbd "M-k"))
 	(define-prefix-command 'my-emacs-prefix)
 	(global-set-key (kbd "M-k") 'my-emacs-prefix)
@@ -558,8 +559,9 @@
 	(:map minibuffer-mode-map
 				("M-e" . embark-act)
 				("<C-tab>" . previous-line)
-				("M-f" . previous-line)
-				("M-q" . exit-minibuffer)
+				("M-j" . previous-line)
+				("M-l" . next-line)
+				("M-k" . exit-minibuffer)
 				("C-q" . exit-minibuffer)))
 
 (use-package recentf
@@ -669,6 +671,54 @@
 	:straight t
 	:config
 	(popwin-mode 1))
+
+(use-package centaur-tabs
+	:straight t
+	:config
+	(defun centaur-tabs-hide-tab (x)
+		"Do no to show buffer X in tabs."
+		(let ((name (format "%s" x)))
+			(or
+			 ;; Buffer name not match below blacklist.
+			 (string-prefix-p "*epc" name)
+			 (string-prefix-p "*helm" name)
+			 (string-prefix-p "*Helm" name)
+			 (string-prefix-p "*Compile-Log*" name)
+			 (string-prefix-p "*lsp" name)
+			 (string-prefix-p "*company" name)
+			 (string-prefix-p "*Flycheck" name)
+			 (string-prefix-p "*tramp" name)
+			 (string-prefix-p " *Mini" name)
+			 (string-prefix-p "*help" name)
+			 (string-prefix-p "*straight" name)
+			 (string-prefix-p " *temp" name)
+			 (string-prefix-p "*Help" name)
+			 (string-prefix-p "*mybuf" name)
+			 (string-prefix-p "*Calc" name)
+
+			 ;; Is not magit buffer.
+			 (and (string-prefix-p "magit" name)
+						(not (file-name-extension name)))
+			 )))
+	(defun centaur-tabs-buffer-groups ()
+    "`centaur-tabs-buffer-groups' control buffers' group rules.
+
+    Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+    All buffer name start with * will group to \"Emacs\".
+    Other buffer group by `centaur-tabs-get-group-name' with project name."
+    (list
+		 (cond
+			((or (string-equal "*" (substring (buffer-name) 0 1))
+					 (memq major-mode '(magit-process-mode
+															)))
+			 "Emacs")
+			((not (or (string-equal "*" (substring (buffer-name) 0 1))
+								(memq major-mode '(magit-process-mode
+																	 ))))
+			 "All")
+			(t
+			 (centaur-tabs-get-group-name (current-buffer))))))
+	(centaur-tabs-mode))
 
 (use-package remember-last-theme
 	:straight t)
