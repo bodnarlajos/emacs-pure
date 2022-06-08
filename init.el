@@ -707,13 +707,11 @@
     Other buffer group by `centaur-tabs-get-group-name' with project name."
     (list
 		 (cond
-			((or (string-equal "*" (substring (buffer-name) 0 1))
-					 (memq major-mode '(magit-process-mode
-															)))
+			((and (string-equal "*" (substring (buffer-name) 0 1))
+								(not (string-equal "*scratch*" (buffer-name))))
 			 "Emacs")
-			((not (or (string-equal "*" (substring (buffer-name) 0 1))
-								(memq major-mode '(magit-process-mode
-																	 ))))
+			((or (not (string-equal "*" (substring (buffer-name) 0 1)))
+					 (string-equal "*scratch*" (buffer-name)))
 			 "All")
 			(t
 			 (centaur-tabs-get-group-name (current-buffer))))))
