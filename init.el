@@ -211,7 +211,8 @@
 (use-package easy-kill
 	:straight t
 	:config
-	(global-set-key [remap kill-ring-save] 'easy-kill))
+	(global-set-key [remap kill-ring-save] 'easy-kill)
+	(global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package rg
 	:straight t
@@ -327,7 +328,8 @@
 	:straight t
 	:config
 	(setq corfu-cycle t
-				corfu-quit-at-boundary nil)
+				corfu-quit-at-boundary nil
+				corfu-auto t)
 	(global-corfu-mode +1))
 
 (use-package savehist
@@ -493,10 +495,12 @@
 
 (use-package org
 	:straight t
+	:defer t
 	:config
+	(add-hook 'org-mode-hook 'org-modern-mode)
 	(define-key org-mode-map [mouse-1] 'org-cycle)
 	(setq org-todo-keywords
-				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "FAILED"))
+				'((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
 				org-support-shift-select t
 				org-log-done t)
 	(custom-set-faces
@@ -510,10 +514,9 @@
    '(org-fontify-whole-heading-line t)
    '(org-hide-leading-stars t)))
 
-(use-package org-superstar
+(use-package org-modern
 	:straight t
-	:config
-	(add-hook 'org-mode-hook 'org-superstar-mode))
+	:defer t)
 
 (use-package emacs
 	:config
@@ -550,6 +553,7 @@
 	(setq global-auto-revert-non-file-buffers t)
 	(global-auto-revert-mode 1)
 	(global-visual-line-mode t)
+	(global-hi-lock-mode 1)
 	(pixel-scroll-precision-mode +1)
 	(with-eval-after-load 'ediff
 		(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
@@ -575,47 +579,6 @@
 
 (my/start-modules)
 (my/end-of-init)
-
-(use-package magit
-	:straight t
-	:commands (magit-status-quick magit-status)
-	:init
-
-	(defun my/magit-status ()
-		"Open a magit directory."
-		(interactive)
-		(let ((current-prefix-arg '(4)))
-			(call-interactively #'magit-status-quick)
-			(delete-other-windows)))
-
-	(defun my/goto-magit ()
-		"T."
-		(interactive)
-		(require 'consult)
-		(let* ((buffers (buffer-list))
-					 (projroot (my/root-project-dir))
-					 (projname (consult--project-name projroot))
-					 (magitbuffer nil)
-					 (projbuffername (concat "magit: " projname)))
-			(while buffers
-				(when (string-equal (buffer-name (car buffers)) projbuffername)
-					(setq magitbuffer (car buffers))
-					(setq buffers nil))
-				(setq buffers (cdr buffers))
-				(message "%s" magitbuffer)
-				)
-			(if magitbuffer
-					(switch-to-buffer magitbuffer)
-				(my/magit-status))
-			)
-		)
-	:config
-	(setq magit-diff-refine-hunk (quote all))
-	(add-hook 'magit-status-mode-hook (lambda ()
-																			(setq magit-log-margin '(t age-abbreviated magit-log-margin-width :author 11))
-																			(setq magit--default-directory my/project-dir)  
-																			(setq magit-section-initial-visibility-alist (quote ((untracked . hide) (stashes . hide))))))
-	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil))
 
 (use-package undo-tree
 	:straight t
@@ -657,11 +620,6 @@
 	(setq doom-modeline-height 30)
 	:init
 	(doom-modeline-mode 1))
-
-(use-package hl-line
-	:straight t
-	:config
-	(global-hl-line-mode +1))
 
 (use-package json-mode
 	:straight t
@@ -709,7 +667,7 @@
     (list
 		 (cond
 			((and (string-equal "*" (substring (buffer-name) 0 1))
-								(not (string-equal "*scratch*" (buffer-name))))
+						(not (string-equal "*scratch*" (buffer-name))))
 			 "Emacs")
 			((or (not (string-equal "*" (substring (buffer-name) 0 1)))
 					 (string-equal "*scratch*" (buffer-name)))
