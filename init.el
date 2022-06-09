@@ -632,6 +632,10 @@
 (use-package centaur-tabs
 	:straight t
 	:config
+	(setq centaur-tabs-height 32
+				centaur-tabs-set-icons t
+				centaur-tabs-set-bar 'left)
+	
 	(defun centaur-tabs-hide-tab (x)
 		"Do no to show buffer X in tabs."
 		(let ((name (format "%s" x)))
