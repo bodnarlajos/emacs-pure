@@ -527,7 +527,7 @@
 	(global-unset-key (kbd "M-j"))
 	(global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<C-tab>") 'consult-buffer)
-	(global-set-key (kbd "M-j") 'consult-buffer)
+	(global-set-key (kbd "M-j") 'my/switch-to-buffer)
 	(global-set-key (kbd "<C-M-left>") 'rotate-frame)
 	(global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
 	(global-set-key (kbd "<M-right>") 'other-window)
