@@ -72,10 +72,10 @@
 	:init (lsp-ui-mode +1)
 	:config
 	;; (setq lsp-log-io t)
-	(lsp-ui-sideline-mode -1)
+	(lsp-ui-sideline-mode +1)
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
-	 '(lsp-ui-sideline-enable nil)
+	 '(lsp-ui-sideline-enable t)
 	 '(lsp-ui-peek-enable nil)))
 
 (global-eldoc-mode +1)

@@ -177,18 +177,21 @@
                  cand)))
   )
 
-(use-package back-button
+(use-package backward-forward
 	:straight t
 	:ensure t
 	:config
-	(back-button-mode +1)
-	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
+	(backward-forward-mode +1)
+	(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 	:bind
-	("M-i" . back-button-global)
-	("M-S-i" . back-button-push-mark-local-and-global))
+	("M-i" . backward-forward-previous-location)
+	("M-S-i" . backward-forward-next-location))
 
 (use-package recentf
-	:defer t)
+	:straight t
+	:defer t
+	:config
+	(recentf-mode +1))
 
 (use-package move-text
 	:straight t
@@ -572,11 +575,6 @@
 				("M-k" . exit-minibuffer)
 				("C-q" . exit-minibuffer)))
 
-(use-package recentf
-	:straight t
-	:config
-	(recentf-mode))
-
 (cd my/base-dir)
 
 (blink-cursor-mode 0)
@@ -605,6 +603,10 @@
 (use-package json-mode
 	:straight t
   :ensure t)
+
+(use-package neotree
+	:straight t
+	:defer t)
 
 (use-package popwin
 	:straight t
