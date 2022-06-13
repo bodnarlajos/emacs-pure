@@ -522,6 +522,9 @@
 	:config
 	(when (file-exists-p custom-file)
 		(load custom-file))
+	(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+	(global-set-key (kbd "C-M-s") 'isearch-forward)
+	
 	(global-unset-key (kbd "C-x C-b"))
 	(global-unset-key (kbd "C-x b"))
 	(global-unset-key (kbd "M-j"))
@@ -555,6 +558,7 @@
 	(global-visual-line-mode t)
 	(global-hi-lock-mode 1)
 	(pixel-scroll-precision-mode +1)
+	
 	(with-eval-after-load 'ediff
 		(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
 		(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
@@ -599,28 +603,6 @@
 (use-package git-timemachine
 	:straight t)
 
-(use-package doom-modeline
-	:straight t
-	:config
-	(column-number-mode +1)
-	(size-indication-mode +1)
-	(setq doom-modeline-lsp t)
-	(setq doom-modeline-workspace-name t)
-	(setq doom-modeline-vcs-max-length 24)
-	(setq doom-modeline-checker-simple-format t)
-	(setq doom-modeline-indent-info nil)
-	(setq doom-modeline-buffer-encoding t)
-	(setq doom-modeline-enable-word-count t)
-	(setq doom-modeline-buffer-name t)
-	(setq doom-modeline-buffer-modification-icon t)
-	(setq doom-modeline-major-mode-color-icon t)
-	(setq doom-modeline-major-mode-icon t)
-	(setq doom-modeline-buffer-file-name-style 'auto)
-	(setq doom-modeline-project-detection 'auto)
-	(setq doom-modeline-height 30)
-	:init
-	(doom-modeline-mode 1))
-
 (use-package json-mode
 	:straight t
   :ensure t)
@@ -630,55 +612,11 @@
 	:config
 	(popwin-mode 1))
 
-(use-package centaur-tabs
+(use-package nano-modeline
 	:straight t
+	:ensure t
 	:config
-	(setq centaur-tabs-height 32
-				centaur-tabs-set-icons t
-				centaur-tabs-set-bar 'left)
-	
-	(defun centaur-tabs-hide-tab (x)
-		"Do no to show buffer X in tabs."
-		(let ((name (format "%s" x)))
-			(or
-			 ;; Buffer name not match below blacklist.
-			 (string-prefix-p "*epc" name)
-			 (string-prefix-p "*helm" name)
-			 (string-prefix-p "*Helm" name)
-			 (string-prefix-p "*Compile-Log*" name)
-			 (string-prefix-p "*lsp" name)
-			 (string-prefix-p "*company" name)
-			 (string-prefix-p "*Flycheck" name)
-			 (string-prefix-p "*tramp" name)
-			 (string-prefix-p " *Mini" name)
-			 (string-prefix-p "*help" name)
-			 (string-prefix-p "*straight" name)
-			 (string-prefix-p " *temp" name)
-			 (string-prefix-p "*Help" name)
-			 (string-prefix-p "*mybuf" name)
-			 (string-prefix-p "*Calc" name)
-
-			 ;; Is not magit buffer.
-			 (and (string-prefix-p "magit" name)
-						(not (file-name-extension name)))
-			 )))
-	(defun centaur-tabs-buffer-groups ()
-    "`centaur-tabs-buffer-groups' control buffers' group rules.
-
-    Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
-    All buffer name start with * will group to \"Emacs\".
-    Other buffer group by `centaur-tabs-get-group-name' with project name."
-    (list
-		 (cond
-			((and (string-equal "*" (substring (buffer-name) 0 1))
-						(not (string-equal "*scratch*" (buffer-name))))
-			 "Emacs")
-			((or (not (string-equal "*" (substring (buffer-name) 0 1)))
-					 (string-equal "*scratch*" (buffer-name)))
-			 "All")
-			(t
-			 (centaur-tabs-get-group-name (current-buffer))))))
-	(centaur-tabs-mode))
+	(nano-modeline-mode +1))
 
 (use-package remember-last-theme
 	:straight t)
