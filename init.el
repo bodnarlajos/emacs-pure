@@ -265,7 +265,6 @@
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -276,7 +275,6 @@
 	(defun consult-ripgrep-related-files ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -618,6 +616,11 @@
 	:ensure t
 	:config
 	(nano-modeline-mode +1))
+
+(use-package mini-frame
+	:straight t
+	:config
+	(mini-frame-mode +1))
 
 (use-package remember-last-theme
 	:straight t)
