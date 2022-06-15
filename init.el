@@ -21,7 +21,7 @@
 (defvar my/dev-env nil)
 ;; the ide mode hook
 (defvar my/dev-hook '())
-(defvar my/font "Ubuntu Mono-10")
+(defvar my/font "Ubuntu Mono-14")
 
 (require 'my-const)
 
@@ -40,9 +40,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq straight-check-for-modifications nil)
-
-(setq completion-ignore-case t
+(setq straight-check-for-modifications nil
+			straight-use-package-by-default t
+			use-package-always-defer t
+			completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
@@ -57,18 +58,14 @@
 
 (use-package f
 	:straight t)
-(straight-use-package 'diminish)
-(straight-use-package 'orderless)
-(straight-use-package 'marginalia)
-(straight-use-package 'anzu)
-(use-package markdown-mode
-	:straight t)
-(use-package transpose-frame
-	:straight t)
-(use-package dired-single
-	:straight t)
-(use-package which-key
-	:straight t)
+(use-package diminish)
+(use-package orderless)
+(use-package marginalia)
+(use-package anzu)
+(use-package markdown-mode)
+(use-package transpose-frame)
+(use-package dired-single)
+(use-package which-key)
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -611,22 +608,13 @@
 	:config
 	(popwin-mode 1))
 
-(use-package nano-modeline
-	:straight t
-	:ensure t
-	:config
-	(nano-modeline-mode +1))
-
-(use-package mini-frame
-	:straight t
-	:config
-	(mini-frame-mode +1))
-
 (use-package remember-last-theme
 	:straight t)
 
 (use-package solo-jazz-theme
 	:straight t)
+
+(use-package zerodark-theme)
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
