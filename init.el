@@ -56,10 +56,9 @@
 	:config
 	(setq use-package-always-ensure t))
 
-(use-package f
-	:straight t)
 (use-package diminish)
-(use-package orderless)
+(use-package orderless
+	:demand t)
 (use-package marginalia)
 (use-package anzu)
 (use-package markdown-mode)
@@ -191,17 +190,15 @@
 	(recentf-mode +1))
 
 (use-package move-text
-	:straight t
+	:demand t
 	:config
 	(move-text-default-bindings))
 
 (use-package visual-regexp
-	:straight t
 	:bind
 	("M-r" . vr/replace))
 
-(use-package wgrep
-	:straight t)
+(use-package wgrep)
 
 (use-package find-file-rg
 	:straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
@@ -209,13 +206,12 @@
 	("M-s f" . find-file-rg))
 
 (use-package easy-kill
-	:straight t
+	:demand t
 	:config
 	(global-set-key [remap kill-ring-save] 'easy-kill)
 	(global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package rg
-	:straight t
   :init
 	(defun my/project/rg ()
 		"T."
@@ -228,13 +224,12 @@
 	("M-s r" . my/project/rg))
 
 (use-package all-the-icons-completion
-	:straight t
+	:demand t
 	:config
 	(all-the-icons-completion-mode +1)
 	(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
 (use-package consult
-	:straight t
 	:bind
 	("M-s s" . consult-ripgrep-symbol-at-point)
 	("M-s g" . consult-ripgrep)
@@ -290,7 +285,6 @@
 			(user-error "Buffer is not visiting a file"))))
 
 (use-package embark
-	:straight t
   :bind
   (("C-h e" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
@@ -310,8 +304,6 @@
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
-  :ensure t
-	:straight t
   :after (embark consult)
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
@@ -323,7 +315,7 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-	:straight t
+	:demand t
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil
@@ -331,14 +323,14 @@
 	(global-corfu-mode +1))
 
 (use-package savehist
-	:straight t
+	:demand t
 	:config
 	(savehist-mode +1))
 
-(use-package multiple-cursors
-	:straight t)
+(use-package multiple-cursors)
 
 (use-package cape
+	:demand t
 	:straight (cape :type git :host github :repo "minad/cape")
 	:init
 	(defun my/ignore-elisp-keywords (cand)
@@ -371,7 +363,6 @@
 	(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package project
-	:straight t
 	:init
 	(defun my/root-project-dir ()
 		(if-let ((project (project-current)))
@@ -607,6 +598,11 @@
 	:straight t
 	:config
 	(popwin-mode 1))
+
+(use-package doom-modeline
+	:demand t
+	:config
+	(doom-modeline-mode +1))
 
 (use-package remember-last-theme
 	:straight t)
