@@ -1,27 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;; helper functions for ide-mode
-(defun my/run-dev-hook ()
-	"T."
-	(when (and (not my/dev-env) my/dev-hook)
-		(run-hooks 'my/dev-hook)
-		(setq my/dev-env t)))
-
-(defun my/add-dev-hook (fv)
-	"Add or run a function when dev mode is active or not"
-	(if my/dev-env
-			(funcall fv)
-		(add-hook 'my/dev-hook fv)))
-
-(defun my/start/devenv ()
-	"T."
-	(interactive)
-	(my/run-dev-hook)
-	(when (buffer-file-name)
-		(my/revert-current-buffer)))
-
-;; end of the helper functions of ide-mode
-
 (defun my/setup-lsp-capf ()
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
@@ -31,18 +9,23 @@
 							cape-dabbrev-min-length 2))
 
 (use-package flycheck
-	:straight t
-	:defer t
 	:config
+	(flycheck-add-mode 'javascript-eslint 'typescript-mode)
+	(flycheck-add-mode 'html-tidy 'web-mode)
+	(flycheck-add-mode 'javascript-eslint 'js2-mode)
 	(flycheck-mode +1))
 
+(use-package csharp-mode)
+
 (use-package lsp-mode
-	:straight t
 	:hook ((c-mode          ; clangd
           c++-mode        ; clangd
           c-or-c++-mode   ; clangd
           java-mode       ; eclipse-jdtls
           js-mode         ; ts-ls (tsserver wrapper)
+					haskell-mode
+					csharp-mode
+					mhtml-mode
           js-jsx-mode     ; ts-ls (tsserver wrapper)
           typescript-mode ; ts-ls (tsserver wrapper)
           python-mode     ; pyright
@@ -109,7 +92,7 @@
 (global-eldoc-mode +1)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(my/add-dev-hook 'my/start/restclient)
+(my/start/restclient)
 
 (defun my/append-cape-to-capf ()
 	"T."

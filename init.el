@@ -17,10 +17,6 @@
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
 
-;; the ide mode enabled or not
-(defvar my/dev-env nil)
-;; the ide mode hook
-(defvar my/dev-hook '())
 (defvar my/font "Ubuntu Mono-14")
 
 (require 'my-const)
@@ -558,8 +554,7 @@
 				("<C-tab>" . previous-line)
 				("M-j" . previous-line)
 				("M-l" . next-line)
-				("M-k" . exit-minibuffer)
-				("C-q" . exit-minibuffer)))
+				("M-k" . exit-minibuffer)))
 
 (cd my/base-dir)
 
@@ -602,7 +597,14 @@
 (use-package doom-modeline
 	:demand t
 	:config
-	(doom-modeline-mode +1))
+	(doom-modeline-mode +1)
+	(setq doom-modeline-height 1) ; optional
+	(custom-set-faces
+   '(mode-line ((t (:family "Noto Sans" :height 0.9))))
+   '(mode-line-inactive ((t (:family "Noto Sans" :height 0.9))))))
+
+(use-package magit
+	:commands magit-status)
 
 (use-package remember-last-theme
 	:straight t)
@@ -614,4 +616,3 @@
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
-(my/start/devenv)
