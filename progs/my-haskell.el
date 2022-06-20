@@ -14,15 +14,4 @@
 
 (setq haskell-stylish-on-save t)
 
-;; the hook function which going to run only once
-(defun my/haskell-dev-run ()
-	"haskell mode development"
-	(add-hook 'haskell-mode-hook (lambda ()
-																 (lsp)
-																 (flymake-mode -1)
-																 (flycheck-mode +1)
-																 (local-set-key (kbd "C-c h") 'haskell-hoogle-lookup-from-local))))
-
-(my/add-dev-hook #'my/haskell-dev-run)
-
 (provide 'my-haskell)

@@ -427,7 +427,7 @@ Position the cursor at its beginning, according to the current mode."
 (defun my-buffer-face-mode-minibuffer ()
   "Set font to a variable width (proportional) fonts in current buffer"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Consolas" :height 120 :weight bold))
+  (setq buffer-face-mode-face '(:family "Monospace" :height 130 :weight bold))
   (buffer-face-mode))
 
 (add-hook 'minibuffer-setup-hook 'my-buffer-face-mode-minibuffer)

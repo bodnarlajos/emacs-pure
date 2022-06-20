@@ -1,27 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;; helper functions for ide-mode
-(defun my/run-dev-hook ()
-	"T."
-	(when (and (not my/dev-env) my/dev-hook)
-		(run-hooks 'my/dev-hook)
-		(setq my/dev-env t)))
-
-(defun my/add-dev-hook (fv)
-	"Add or run a function when dev mode is active or not"
-	(if my/dev-env
-			(funcall fv)
-		(add-hook 'my/dev-hook fv)))
-
-(defun my/start/devenv ()
-	"T."
-	(interactive)
-	(my/run-dev-hook)
-	(when (buffer-file-name)
-		(my/revert-current-buffer)))
-
-;; end of the helper functions of ide-mode
-
 (defun my/setup-lsp-capf ()
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
@@ -31,19 +9,52 @@
 							cape-dabbrev-min-length 2))
 
 (use-package flycheck
-	:straight t
-	:defer t
 	:config
+	(flycheck-add-mode 'javascript-eslint 'typescript-mode)
+	(flycheck-add-mode 'html-tidy 'web-mode)
+	(flycheck-add-mode 'javascript-eslint 'js2-mode)
 	(flycheck-mode +1))
 
+(use-package csharp-mode)
+
 (use-package lsp-mode
-	:straight t
-	:defer t
+	:hook ((c-mode          ; clangd
+          c++-mode        ; clangd
+          c-or-c++-mode   ; clangd
+          java-mode       ; eclipse-jdtls
+          js-mode         ; ts-ls (tsserver wrapper)
+					haskell-mode
+					csharp-mode
+					mhtml-mode
+          js-jsx-mode     ; ts-ls (tsserver wrapper)
+          typescript-mode ; ts-ls (tsserver wrapper)
+          python-mode     ; pyright
+          web-mode        ; ts-ls/HTML/CSS
+          haskell-mode    ; haskell-language-server
+          ) . lsp-deferred)
+  :commands lsp
 	:bind
 	("M-s l" . lsp-find-references)
 	("M-s p" . lsp-ui-peek-find-references)
 	("M-s i" . lsp-find-implementation)
 	:config
+	(setq lsp-auto-guess-root t)
+  (setq lsp-log-io nil)
+  (setq lsp-restart 'auto-restart)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-signature-auto-activate nil)
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-modeline-code-actions-enable nil)
+  (setq lsp-modeline-diagnostics-enable nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-semantic-tokens-enable nil)
+  (setq lsp-enable-folding nil)
+  (setq lsp-enable-imenu nil)
+  (setq lsp-enable-snippet nil)
+  (setq read-process-output-max (* 1024 1024)) ;; 1MB
+  (setq lsp-idle-delay 0.5)
 	(custom-set-variables
 	 '(lsp-disabled-clients
 		 '(eslint html-ls)))
@@ -72,16 +83,16 @@
 	:init (lsp-ui-mode +1)
 	:config
 	;; (setq lsp-log-io t)
-	(lsp-ui-sideline-mode -1)
+	(lsp-ui-sideline-mode +1)
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
-	 '(lsp-ui-sideline-enable nil)
+	 '(lsp-ui-sideline-enable t)
 	 '(lsp-ui-peek-enable nil)))
 
 (global-eldoc-mode +1)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(my/add-dev-hook 'my/start/restclient)
+(my/start/restclient)
 
 (defun my/append-cape-to-capf ()
 	"T."

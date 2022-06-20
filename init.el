@@ -17,11 +17,7 @@
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
 
-;; the ide mode enabled or not
-(defvar my/dev-env nil)
-;; the ide mode hook
-(defvar my/dev-hook '())
-(defvar my/font "Ubuntu Mono-10")
+(defvar my/font "Ubuntu Mono-14")
 
 (require 'my-const)
 
@@ -40,9 +36,10 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq straight-check-for-modifications nil)
-
-(setq completion-ignore-case t
+(setq straight-check-for-modifications nil
+			straight-use-package-by-default t
+			use-package-always-defer t
+			completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
@@ -55,20 +52,15 @@
 	:config
 	(setq use-package-always-ensure t))
 
-(use-package f
-	:straight t)
-(straight-use-package 'diminish)
-(straight-use-package 'orderless)
-(straight-use-package 'marginalia)
-(straight-use-package 'anzu)
-(use-package markdown-mode
-	:straight t)
-(use-package transpose-frame
-	:straight t)
-(use-package dired-single
-	:straight t)
-(use-package which-key
-	:straight t)
+(use-package diminish)
+(use-package orderless
+	:demand t)
+(use-package marginalia)
+(use-package anzu)
+(use-package markdown-mode)
+(use-package transpose-frame)
+(use-package dired-single)
+(use-package which-key)
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -177,31 +169,32 @@
                  cand)))
   )
 
-(use-package back-button
+(use-package backward-forward
 	:straight t
 	:ensure t
 	:config
-	(back-button-mode +1)
-	(add-hook 'savehist-save-hook #'back-button-push-mark-local-and-global)
+	(backward-forward-mode +1)
+	(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 	:bind
-	("M-i" . back-button-global)
-	("M-S-i" . back-button-push-mark-local-and-global))
+	("M-i" . backward-forward-previous-location)
+	("M-S-i" . backward-forward-next-location))
 
 (use-package recentf
-	:defer t)
+	:straight t
+	:defer t
+	:config
+	(recentf-mode +1))
 
 (use-package move-text
-	:straight t
+	:demand t
 	:config
 	(move-text-default-bindings))
 
 (use-package visual-regexp
-	:straight t
 	:bind
 	("M-r" . vr/replace))
 
-(use-package wgrep
-	:straight t)
+(use-package wgrep)
 
 (use-package find-file-rg
 	:straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
@@ -209,13 +202,12 @@
 	("M-s f" . find-file-rg))
 
 (use-package easy-kill
-	:straight t
+	:demand t
 	:config
 	(global-set-key [remap kill-ring-save] 'easy-kill)
 	(global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package rg
-	:straight t
   :init
 	(defun my/project/rg ()
 		"T."
@@ -228,13 +220,12 @@
 	("M-s r" . my/project/rg))
 
 (use-package all-the-icons-completion
-	:straight t
+	:demand t
 	:config
 	(all-the-icons-completion-mode +1)
 	(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
 (use-package consult
-	:straight t
 	:bind
 	("M-s s" . consult-ripgrep-symbol-at-point)
 	("M-s g" . consult-ripgrep)
@@ -262,7 +253,6 @@
 	(defun consult-ripgrep-symbol-at-point ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -273,7 +263,6 @@
 	(defun consult-ripgrep-related-files ()
 		"Seearch in files whose base name is the same as the current file's."
 		(interactive)
-		(back-button-push-mark-local-and-global)
 		(minibuffer-with-setup-hook
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
@@ -292,7 +281,6 @@
 			(user-error "Buffer is not visiting a file"))))
 
 (use-package embark
-	:straight t
   :bind
   (("C-h e" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
@@ -312,8 +300,6 @@
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
-  :ensure t
-	:straight t
   :after (embark consult)
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
@@ -325,7 +311,7 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-	:straight t
+	:demand t
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil
@@ -333,14 +319,14 @@
 	(global-corfu-mode +1))
 
 (use-package savehist
-	:straight t
+	:demand t
 	:config
 	(savehist-mode +1))
 
-(use-package multiple-cursors
-	:straight t)
+(use-package multiple-cursors)
 
 (use-package cape
+	:demand t
 	:straight (cape :type git :host github :repo "minad/cape")
 	:init
 	(defun my/ignore-elisp-keywords (cand)
@@ -373,7 +359,6 @@
 	(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package project
-	:straight t
 	:init
 	(defun my/root-project-dir ()
 		(if-let ((project (project-current)))
@@ -569,13 +554,7 @@
 				("<C-tab>" . previous-line)
 				("M-j" . previous-line)
 				("M-l" . next-line)
-				("M-k" . exit-minibuffer)
-				("C-q" . exit-minibuffer)))
-
-(use-package recentf
-	:straight t
-	:config
-	(recentf-mode))
+				("M-k" . exit-minibuffer)))
 
 (cd my/base-dir)
 
@@ -607,16 +586,26 @@
 	:straight t
   :ensure t)
 
+(use-package neotree
+	:straight t
+	:defer t)
+
 (use-package popwin
 	:straight t
 	:config
 	(popwin-mode 1))
 
-(use-package nano-modeline
-	:straight t
-	:ensure t
+(use-package doom-modeline
+	:demand t
 	:config
-	(nano-modeline-mode +1))
+	(doom-modeline-mode +1)
+	(setq doom-modeline-height 1) ; optional
+	(custom-set-faces
+   '(mode-line ((t (:family "Noto Sans" :height 0.9))))
+   '(mode-line-inactive ((t (:family "Noto Sans" :height 0.9))))))
+
+(use-package magit
+	:commands magit-status)
 
 (use-package remember-last-theme
 	:straight t)
@@ -624,6 +613,7 @@
 (use-package solo-jazz-theme
 	:straight t)
 
+(use-package zerodark-theme)
+
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
-(my/start/devenv)
