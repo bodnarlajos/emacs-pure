@@ -607,6 +607,11 @@
 (use-package magit
 	:commands magit-status)
 
+(use-package ctrlf
+	:demand t
+	:config
+	(ctrlf-mode +1))
+
 (use-package remember-last-theme
 	:straight t)
 
