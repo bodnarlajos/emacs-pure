@@ -33,12 +33,6 @@
 
 (define-key my-prefix (kbd "x") 'execute-extended-command)
 
-(define-key my-prefix (kbd "m h") 'windmove-swap-states-left)
-(define-key my-prefix (kbd "m l") 'windmove-swap-states-right)
-(define-key my-prefix (kbd "m j") 'windmove-swap-states-up)
-(define-key my-prefix (kbd "m k") 'windmove-swap-states-down)
-(which-key-add-key-based-replacements "M-m m" "Swap window")
-
 (define-key my-prefix (kbd "g h") 'windmove-left)
 (define-key my-prefix (kbd "g l") 'windmove-right)
 (define-key my-prefix (kbd "g j") 'windmove-up)
@@ -51,8 +45,12 @@
 (define-key my-prefix (kbd "k k") 'windmove-delete-down)
 (which-key-add-key-based-replacements "M-m k" "Delete window")
 
-(define-key my-prefix (kbd "w j") 'split-window-vertically)
-(define-key my-prefix (kbd "w k") 'split-window-horizontally)
+(define-key my-prefix (kbd "w |") 'split-window-vertically)
+(define-key my-prefix (kbd "w -") 'split-window-horizontally)
+(define-key my-prefix (kbd "w h") 'windmove-swap-states-left)
+(define-key my-prefix (kbd "w l") 'windmove-swap-states-right)
+(define-key my-prefix (kbd "w j") 'windmove-swap-states-up)
+(define-key my-prefix (kbd "w k") 'windmove-swap-states-down)
 (which-key-add-key-based-replacements "M-m w" "Split window")
 
 (define-key my-prefix (kbd "r") 'async-shell-command)
