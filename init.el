@@ -598,10 +598,7 @@
 	:demand t
 	:config
 	(doom-modeline-mode +1)
-	(setq doom-modeline-height 1) ; optional
-	(custom-set-faces
-   '(mode-line ((t (:family "Noto Sans" :height 0.9))))
-   '(mode-line-inactive ((t (:family "Noto Sans" :height 0.9))))))
+	(setq doom-modeline-height 1))
 
 (use-package magit
 	:commands magit-status)
@@ -610,6 +607,61 @@
 	:demand t
 	:config
 	(ctrlf-mode +1))
+
+;;; Smerge
+(use-package smerge-mode
+  :bind (:map my-prefix
+							("m" . hydra-smerge/body))
+	
+	:init
+  (progn
+    (defun modi/enable-smerge-maybe ()
+      "Auto-enable `smerge-mode' when merge conflict is detected."
+      (save-excursion
+        (goto-char (point-min))
+        (when (re-search-forward "^<<<<<<< " nil :noerror)
+          (smerge-mode 1))))
+    (add-hook 'find-file-hook #'modi/enable-smerge-maybe :append))
+  :config
+	(which-key-add-key-based-replacements "M-m m" "Smerge")
+  (defalias 'smerge-keep-upper 'smerge-keep-mine)
+  (defalias 'smerge-keep-lower 'smerge-keep-other)
+  (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
+  (defalias 'smerge-diff-upper-lower 'smerge-diff-mine-other)
+  (defalias 'smerge-diff-base-lower 'smerge-diff-base-other)
+
+  (defhydra hydra-smerge (:color pink
+																 :hint nil
+																 :pre (smerge-mode 1)
+																 ;; Disable `smerge-mode' when quitting hydra if
+																 ;; no merge conflicts remain.
+																 :post (smerge-auto-leave))
+    "
+^Move^       ^Keep^               ^Diff^                 ^Other^
+^^-----------^^-------------------^^---------------------^^-------
+_n_ext       _b_ase               _<_: upper/base        _C_ombine
+_p_rev       _u_pper              _=_: upper/lower       _r_esolve
+^^           _l_ower              _>_: base/lower        _k_ill current
+^^           _a_ll                _R_efine
+^^           _RET_: current       _E_diff
+"
+    ("n" smerge-next)
+    ("p" smerge-prev)
+    ("b" smerge-keep-base)
+    ("u" smerge-keep-upper)
+    ("l" smerge-keep-lower)
+    ("a" smerge-keep-all)
+    ("RET" smerge-keep-current)
+    ("\C-m" smerge-keep-current)
+    ("<" smerge-diff-base-upper)
+    ("=" smerge-diff-upper-lower)
+    (">" smerge-diff-base-lower)
+    ("R" smerge-refine)
+    ("E" smerge-ediff)
+    ("C" smerge-combine-with-next)
+    ("r" smerge-resolve)
+    ("k" smerge-kill-current)
+    ("q" nil "cancel" :color blue)))
 
 (use-package remember-last-theme
 	:straight t)
