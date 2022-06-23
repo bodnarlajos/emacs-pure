@@ -603,7 +603,37 @@
 	(setq doom-modeline-height 1))
 
 (use-package magit
-	:commands magit-status)
+	:commands (magit-status-quick magit-status)
+	:init
+	(defun my/magit-status ()
+		"Open a magit directory."
+		(interactive)
+		(let ((current-prefix-arg '(4)))
+			(call-interactively #'magit-status-quick)
+			(delete-other-windows)))
+
+	(defun my/goto-magit ()
+		"T."
+		(interactive)
+		(require 'consult)
+		(let* ((buffers (buffer-list))
+					 (projroot (my/root-project-dir))
+					 (projname (consult--project-name projroot))
+					 (magitbuffer nil)
+					 (projbuffername (concat "magit: " projname)))
+			(while buffers
+				(when (string-equal (buffer-name (car buffers)) projbuffername)
+					(setq magitbuffer (car buffers))
+					(setq buffers nil))
+				(setq buffers (cdr buffers))
+				(message "%s" magitbuffer)
+				)
+			(if magitbuffer
+					(switch-to-buffer magitbuffer)
+				(my/magit-status))
+			)
+		)
+	)
 
 (use-package ctrlf
 	:demand t
@@ -626,11 +656,11 @@
     (add-hook 'find-file-hook #'modi/enable-smerge-maybe :append))
   :config
 	(which-key-add-key-based-replacements "M-m m" "Smerge")
-  (defalias 'smerge-keep-upper 'smerge-keep-mine)
-  (defalias 'smerge-keep-lower 'smerge-keep-other)
-  (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
-  (defalias 'smerge-diff-upper-lower 'smerge-diff-mine-other)
-  (defalias 'smerge-diff-base-lower 'smerge-diff-base-other)
+  ;; (defalias 'smerge-keep-upper 'smerge-keep-mine)
+  ;; (defalias 'smerge-keep-lower 'smerge-keep-other)
+  ;; (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
+  ;; (defalias 'smerge-diff-upper-lower 'smerge-diff-mine-other)
+  ;; (defalias 'smerge-diff-base-lower 'smerge-diff-base-other)
 
   (defhydra hydra-smerge (:color pink
 																 :hint nil
