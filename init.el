@@ -21,7 +21,7 @@
 
 (require 'my-const)
 
-(set-frame-font my/font nil t)
+(set-frame-font my/font t t nil)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
