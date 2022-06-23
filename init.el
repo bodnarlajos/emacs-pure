@@ -548,6 +548,8 @@
 		(set-face-attribute 'ediff-even-diff-A nil :inherit nil)
 		(set-face-attribute 'ediff-even-diff-B nil :inherit nil)
 		(set-face-attribute 'ediff-even-diff-C nil :inherit nil))
+
+	(add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
 	:bind
 	(:map minibuffer-mode-map
 				("M-e" . embark-act)
