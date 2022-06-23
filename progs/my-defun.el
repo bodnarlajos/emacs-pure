@@ -224,7 +224,7 @@ Version 2017-11-01"
 				 ((string-equal res neworgbuffer) (call-interactively 'my/xah-new-empty-buffer-org))
 				 ((string-equal res development) (call-interactively 'my/start/devenv))
 				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
-				 ((string-equal res magit) (call-interactively 'magit-status))
+				 ((string-equal res magit) (call-interactively 'my/goto-magit))
 				 ((string-equal res longLines) (call-interactively 'my/long-line-wrap))
 				 ((string-equal res findnamedired) (call-interactively 'find-file-rg)))))))
 
