@@ -110,14 +110,13 @@
   (vertico-grid-lookahead 50)
   (vertico-buffer-display-action '(display-buffer-reuse-window))
   (vertico-multiform-categories
-   '((file reverse)
-     (consult-grep buffer)
+   '((consult-grep buffer)
      (consult-location)
 		 (consult-xref buffer)
      (imenu buffer)
-     (library reverse indexed)
-     (org-roam-node reverse indexed)
-     (t reverse)
+     (library indexed)
+     (org-roam-node indexed)
+     (t)
      ))
   (vertico-multiform-commands
    '(("flyspell-correct-*" grid flat)
@@ -132,8 +131,8 @@
     (interactive)
     (vertico-multiform--display-toggle 'vertico-flat-mode)
     (if vertico-flat-mode
-        (vertico-multiform--temporary-mode 'vertico-reverse-mode -1)
-      (vertico-multiform--temporary-mode 'vertico-reverse-mode 1)))
+        (vertico-multiform--temporary-mode 'vertico-grid-mode -1)
+      (vertico-multiform--temporary-mode 'vertico-grid-mode 1)))
   (defun kb/vertico-quick-embark (&optional arg)
     "Embark on candidate using quick keys."
     (interactive)
@@ -168,6 +167,21 @@
                    "  ")
                  cand)))
   )
+
+
+(use-package vertico-posframe
+  :straight
+  '(vertico-posframe
+    :type git
+    :host github
+    :repo "tumashu/vertico-posframe")
+  :init
+  (vertico-posframe-mode t)
+  :config
+  (setq vertico-posframe-parameters
+				'((left-fringe . 8)
+					(right-fringe . 8))
+				vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-left-corner))
 
 (use-package backward-forward
 	:straight t
