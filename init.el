@@ -114,9 +114,9 @@
      (consult-location)
 		 (consult-xref buffer)
      (imenu buffer)
-     (library indexed)
-     (org-roam-node indexed)
-     (t)
+     (library reverse indexed)
+     (org-roam-node reverse indexed)
+     (t reverse)
      ))
   (vertico-multiform-commands
    '(("flyspell-correct-*" grid flat)
@@ -131,8 +131,8 @@
     (interactive)
     (vertico-multiform--display-toggle 'vertico-flat-mode)
     (if vertico-flat-mode
-        (vertico-multiform--temporary-mode 'vertico-grid-mode -1)
-      (vertico-multiform--temporary-mode 'vertico-grid-mode 1)))
+        (vertico-multiform--temporary-mode 'vertico-reverse-mode -1)
+      (vertico-multiform--temporary-mode 'vertico-reverse-mode 1)))
   (defun kb/vertico-quick-embark (&optional arg)
     "Embark on candidate using quick keys."
     (interactive)
@@ -169,19 +169,19 @@
   )
 
 
-(use-package vertico-posframe
-  :straight
-  '(vertico-posframe
-    :type git
-    :host github
-    :repo "tumashu/vertico-posframe")
-  :init
-  (vertico-posframe-mode t)
-  :config
-  (setq vertico-posframe-parameters
-				'((left-fringe . 8)
-					(right-fringe . 8))
-				vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-left-corner))
+;; (use-package vertico-posframe
+;;   :straight
+;;   '(vertico-posframe
+;;     :type git
+;;     :host github
+;;     :repo "tumashu/vertico-posframe")
+;;   :init
+;;   (vertico-posframe-mode t)
+;;   :config
+;;   (setq vertico-posframe-parameters
+;; 				'((left-fringe . 8)
+;; 					(right-fringe . 8))
+;; 				vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-left-corner))
 
 (use-package backward-forward
 	:straight t
@@ -293,6 +293,8 @@
 					(goto-char (point-max))
 					(insert " -- -g " (file-name-base file) "*.*"))
 			(user-error "Buffer is not visiting a file"))))
+
+(use-package consult-lsp)
 
 (use-package embark
   :bind
