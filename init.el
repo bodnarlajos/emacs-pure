@@ -168,30 +168,9 @@
                  cand)))
   )
 
-
-;; (use-package vertico-posframe
-;;   :straight
-;;   '(vertico-posframe
-;;     :type git
-;;     :host github
-;;     :repo "tumashu/vertico-posframe")
-;;   :init
-;;   (vertico-posframe-mode t)
-;;   :config
-;;   (setq vertico-posframe-parameters
-;; 				'((left-fringe . 8)
-;; 					(right-fringe . 8))
-;; 				vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-left-corner))
-
-(use-package backward-forward
-	:straight t
-	:ensure t
-	:config
-	(backward-forward-mode +1)
-	(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
-	:bind
-	("M-i" . backward-forward-previous-location)
-	("M-S-i" . backward-forward-next-location))
+(require 'my-backward-forward)
+(backward-forward-mode +1)
+(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 
 (use-package recentf
 	:straight t
@@ -244,7 +223,6 @@
 	("M-s s" . consult-ripgrep-symbol-at-point)
 	("M-s g" . consult-ripgrep)
 	("M-s M-g" . consult-git-grep)
-	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
 	(custom-set-variables
@@ -271,7 +249,7 @@
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((sap (symbol-at-point)))
-													 (format "%s" sap)
+													 (format "%s -- -g *" sap)
 												 (user-error "Buffer is not visiting a file")))))
 	
 	(defun consult-ripgrep-related-files ()
