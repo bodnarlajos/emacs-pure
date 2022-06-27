@@ -587,11 +587,6 @@
 	:straight t
 	:defer t)
 
-(use-package popwin
-	:straight t
-	:config
-	(popwin-mode 1))
-
 (use-package doom-modeline
 	:demand t
 	:config
@@ -600,6 +595,17 @@
 
 (use-package magit
 	:commands (magit-status-quick magit-status)
+	:config
+	(setq magit-process-popup-time 0)
+	(add-hook 'magit-pre-refresh-hook (lambda ()
+																			(auto-display-magit-process-buffer)))
+	(defun auto-display-magit-process-buffer (&rest args)
+		"Automatically display the process buffer when it is updated."
+		(let ((magit-display-buffer-noselect t))
+			(magit-process-buffer)))
+
+	(advice-add 'magit-process-set-mode-line-error-status :before
+							#'auto-display-magit-process-buffer)
 	:init
 	(defun my/magit-status ()
 		"Open a magit directory."
