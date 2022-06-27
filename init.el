@@ -114,9 +114,9 @@
      (consult-location)
 		 (consult-xref buffer)
      (imenu buffer)
-     (library indexed)
-     (org-roam-node indexed)
-     (t)
+     (library reverse indexed)
+     (org-roam-node reverse indexed)
+     (t reverse)
      ))
   (vertico-multiform-commands
    '(("flyspell-correct-*" grid flat)
@@ -131,8 +131,8 @@
     (interactive)
     (vertico-multiform--display-toggle 'vertico-flat-mode)
     (if vertico-flat-mode
-        (vertico-multiform--temporary-mode 'vertico-grid-mode -1)
-      (vertico-multiform--temporary-mode 'vertico-grid-mode 1)))
+        (vertico-multiform--temporary-mode 'vertico-reverse-mode -1)
+      (vertico-multiform--temporary-mode 'vertico-reverse-mode 1)))
   (defun kb/vertico-quick-embark (&optional arg)
     "Embark on candidate using quick keys."
     (interactive)
@@ -168,30 +168,9 @@
                  cand)))
   )
 
-
-(use-package vertico-posframe
-  :straight
-  '(vertico-posframe
-    :type git
-    :host github
-    :repo "tumashu/vertico-posframe")
-  :init
-  (vertico-posframe-mode t)
-  :config
-  (setq vertico-posframe-parameters
-				'((left-fringe . 8)
-					(right-fringe . 8))
-				vertico-posframe-poshandler #'posframe-poshandler-frame-bottom-left-corner))
-
-(use-package backward-forward
-	:straight t
-	:ensure t
-	:config
-	(backward-forward-mode +1)
-	(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
-	:bind
-	("M-i" . backward-forward-previous-location)
-	("M-S-i" . backward-forward-next-location))
+(require 'my-backward-forward)
+(backward-forward-mode +1)
+(add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 
 (use-package recentf
 	:straight t
@@ -244,7 +223,6 @@
 	("M-s s" . consult-ripgrep-symbol-at-point)
 	("M-s g" . consult-ripgrep)
 	("M-s M-g" . consult-git-grep)
-	("M-S-i" . consult-global-mark)
 	("M-s M-s" . consult-ripgrep-related-files)
 	:config
 	(custom-set-variables
@@ -271,7 +249,7 @@
 				(lambda () (goto-char (1+ (minibuffer-prompt-end))))
 			(consult-ripgrep (my/root-project-dir)
 											 (if-let ((sap (symbol-at-point)))
-													 (format "%s" sap)
+													 (format "%s -- -g *" sap)
 												 (user-error "Buffer is not visiting a file")))))
 	
 	(defun consult-ripgrep-related-files ()
@@ -293,6 +271,8 @@
 					(goto-char (point-max))
 					(insert " -- -g " (file-name-base file) "*.*"))
 			(user-error "Buffer is not visiting a file"))))
+
+(use-package consult-lsp)
 
 (use-package embark
   :bind
