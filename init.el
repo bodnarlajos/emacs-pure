@@ -309,7 +309,9 @@
 	:config
 	(setq corfu-cycle t
 				corfu-quit-at-boundary nil
-				corfu-auto t)
+				corfu-auto-prefix 2
+				corfu-auto t
+				corfu-quit-no-match t)
 	(global-corfu-mode +1))
 
 (use-package savehist
