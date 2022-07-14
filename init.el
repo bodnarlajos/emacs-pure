@@ -599,6 +599,22 @@
 	(setq magit-process-popup-time 0)
 	(add-hook 'magit-pre-refresh-hook (lambda ()
 																			(auto-display-magit-process-buffer)))
+	(add-hook 'magit-pre-command-hook (lambda ()
+																			(message "pre magit command")))
+
+	(defun my/check-magit-process-is-active ()
+		"T."
+		(interactive)
+		(let ((result nil)
+					(buffs (window-list)))
+			(while buffs
+				(when (string-prefix-p "magit-process:" (buffer-name (car buffs)))
+					(progn
+						(setq result t)
+						(setq buffs nil)))
+				(setq buffs (cdr buffs)))
+			result))
+	
 	(defun auto-display-magit-process-buffer (&rest args)
 		"Automatically display the process buffer when it is updated."
 		(let ((magit-display-buffer-noselect t))
