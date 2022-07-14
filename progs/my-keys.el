@@ -9,6 +9,12 @@
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'keyboard-quit)
+(global-unset-key (kbd "C-f"))
+(global-set-key (kbd "C-f") 'isearch-forward)
+(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+
+(global-unset-key (kbd "C-s"))
+(global-set-key (kbd "C-s") 'save-buffer)
 
 (with-eval-after-load 'dabbrev
   (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)

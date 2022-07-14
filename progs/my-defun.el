@@ -245,12 +245,10 @@ Version 2017-11-01"
 						'(menu-item "New buffer" my/xah-new-empty-buffer :help "New buffer"))
 (define-key my-menu-bar-menu [my/xah-new-empty-buffer-org]
 						'(menu-item "New org buffer" my/xah-new-empty-buffer-org :help "New org buffer"))
-(define-key my-menu-bar-menu [my/start/devenv]
-						'(menu-item "Start development environment" my/start/devenv :help "Start development environment"))
-(define-key my-menu-bar-menu [my/open-note-daily]
-						'(menu-item "Open daily" my/open-note-daily :help "Open daily"))
-(define-key my-menu-bar-menu [my/goto-magit]
-						'(menu-item "Git" my/goto-magit :help "Open git"))
+(define-key my-menu-bar-menu [my/start/git-gui]
+						'(menu-item "Git gui" my/start/git-gui :help "Open git gui"))
+(define-key my-menu-bar-menu [my/start/gitk]
+						'(menu-item "Git log" my/start/gitk :help "Open git log"))
 
 (defun my/open-note-daily ()
 	"Open the daily notes"
