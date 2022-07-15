@@ -1,17 +1,23 @@
 ;; -*- lexical-binding: t -*-
-(straight-use-package 'haskell-mode)
-(straight-use-package 'lsp-haskell)
 
-(with-eval-after-load 'haskell-mode
-  (add-hook 'haskell-mode-hook (lambda ()
-																 (local-set-key (kbd "C-c C-c") 'my/haskell-compile)))
-  (setq haskell-compile-cabal-build-command "stack build --fast")
-  (defun my/haskell-compile ()
+(require 'my-dev)
+
+(use-package haskell-mode
+	:straight t
+	:init
+	(defun my/haskell-compile ()
     "T."
     (interactive)
     (setq-local haskell-compile-cabal-build-command "stack build --fast --ghc-options=\"-j +RTS -A32M -RTS\"")
-    (haskell-compile "stack build --fast --ghc-options=\"-j +RTS -A32M -RTS\"")))
+    (haskell-compile "stack build --fast --ghc-options=\"-j +RTS -A32M -RTS\""))
+	:config
+	(setq haskell-stylish-on-save t)
+  (setq haskell-compile-cabal-build-command "stack build --fast")
+	:hook
+	(haskell-mode . (lambda ()
+										(eglot-ensure)
+										(local-set-key (kbd "C-c C-c") 'my/haskell-compile))))
 
-(setq haskell-stylish-on-save t)
+(use-package lsp-haskell)
 
 (provide 'my-haskell)
