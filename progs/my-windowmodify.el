@@ -11,7 +11,7 @@
 	(let ((dp (car (frame-position (selected-frame)))))
 		;; (message "%s" dp)
 		(if (< dp -20)
-				(set-face-attribute 'default :height my/windowmodify/big-font-size)
-			(set-face-attribute 'default :height my/windowmodify/big-font-size))))
+				(set-face-attribute 'default nil :height my/windowmodify/big-font-size)
+			(set-face-attribute 'default nil :height my/windowmodify/_original-size_))))
 
 (provide 'my-windowmodify)
