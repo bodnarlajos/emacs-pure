@@ -1,12 +1,8 @@
-;; You can set this prarmeter for a bigger font
-(copy-face 'default 'my/windowmodify/big)
-;; just to backup the default face
-;; Don't touch it!
-(copy-face 'default 'my/windowmodify/default)
+(defcustom my/windowmodify/big-font-size 140 "The biggest font size")
+(defvar my/windowmodify/_original-size_ (face-attribute 'default :height))
 
 (defun my-windowmodify-mode ()
 	"This mode will change the font size, you need to resize the window"
-	(set-frame-font my/windowmodify/font-big nil t nil)
 	(add-hook 'window-size-change-functions (lambda (a)
 																						(run-if-monitor))))
 
@@ -15,7 +11,7 @@
 	(let ((dp (car (frame-position (selected-frame)))))
 		;; (message "%s" dp)
 		(if (< dp -20)
-				(set-face-attribute 'default (face-attribute 'my/windowmodify/big :height))
-			(set-face-attribute 'default (face-attribute 'my/windowmodify/default :height)))))
+				(set-face-attribute 'default :height my/windowmodify/big-font-size)
+			(set-face-attribute 'default :height my/windowmodify/big-font-size))))
 
 (provide 'my-windowmodify)
