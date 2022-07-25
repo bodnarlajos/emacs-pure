@@ -1,4 +1,8 @@
-(defvar my/windowmodify/font-big "Ubuntu Mono-12")
+;; You can set this prarmeter for a bigger font
+(copy-face 'default 'my/windowmodify/big)
+;; just to backup the default face
+;; Don't touch it!
+(copy-face 'default 'my/windowmodify/default)
 
 (defun my-windowmodify-mode ()
 	"This mode will change the font size, you need to resize the window"
@@ -11,7 +15,7 @@
 	(let ((dp (car (frame-position (selected-frame)))))
 		;; (message "%s" dp)
 		(if (< dp -20)
-				(set-frame-font my/windowmodify/font-big nil nil nil)
-			(set-frame-font my/font nil nil nil))))
+				(set-face-attribute 'default (face-attribute 'my/windowmodify/big :height))
+			(set-face-attribute 'default (face-attribute 'my/windowmodify/default :height)))))
 
 (provide 'my-windowmodify)
