@@ -594,10 +594,6 @@
   :commands (magit-status-quick magit-status)
   :config
   (setq magit-process-popup-time 0)
-  (add-hook 'magit-pre-refresh-hook (lambda ()
-                                      (auto-display-magit-process-buffer)))
-  (add-hook 'magit-pre-command-hook (lambda ()
-                                      (message "pre magit command")))
 
   (defun my/check-magit-process-is-active ()
     "T."
