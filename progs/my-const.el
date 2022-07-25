@@ -1,22 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
-(defconst my/project-dir '("/home/lbodnar/Projects"))
-(defconst my/exec-dir '("/home/lbodnar/.local/bin" "/home/lbodnar/.ghcup/bin"))
-(defconst my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/")
-(defconst my/base-dir "/home/lbodnar/Projects")
-(defconst my/temp-dir "/home/lbodnar/Projects/temp")
-(defconst my/const/gitk-exe--path "/usr/bin/gitk")
-(defconst my/const/git-gui-exe--path "/usr/bin/git")
-
-(defun my/start-modules ()
-	"Start these modules after init"
-	(interactive)
-	(require 'my-prog)
-	(require 'my-dev)
-	(require 'my-haskell)
-	(require 'my-web)
-	;; (require 'my-windowmodify)
-	)
+(defcustom my/project-dir "/home/lbodnar/Projects" "")
+(defcustom my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/" "")
+(defcustom my/temp-dir "/home/lbodnar/Projects/temp" "")
+(defcustom my/const/gitk-exe--path "/usr/bin/gitk" "")
+(defcustom my/const/git-gui-exe--path "/usr/bin/git" "")
+(defcustom my/modules '(my-prog my-dev my-haskell my-web) "The modules, what you use")
 
 ;; end script of init
 (defun my/end-of-init ()
@@ -37,16 +26,7 @@
 	;; (setq my/windowmodify/font-big "Ubuntu Mono-13")
 	;; (my-windowmodify-mode)
 	
-	
-	(my/start-modules)
-	;; fullscreen
-	(add-to-list 'default-frame-alist '(fullscreen . maximized))
-	(use-package org
-		:config
-		(setq org-agenda-files (list
-														"~/Box/notes/daily.org")))
-	)
-
-(setq browse-url-generic-program "firefox")
-
+		;; fullscreen
+	(add-to-list 'default-frame-alist '(fullscreen . maximized)))
+ 
 (provide 'my-const)

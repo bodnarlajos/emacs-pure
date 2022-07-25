@@ -33,9 +33,9 @@
   (load bootstrap-file nil 'nomessage))
 
 (setq straight-check-for-modifications nil
-                        straight-use-package-by-default t
-                        use-package-always-defer t
-                        completion-ignore-case t
+      straight-use-package-by-default t
+      use-package-always-defer t
+      completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
@@ -44,13 +44,13 @@
 
 (straight-use-package 'use-package)
 (use-package use-package
-        :straight t
-        :config
-        (setq use-package-always-ensure t))
+  :straight t
+  :config
+  (setq use-package-always-ensure t))
 
 (use-package diminish)
 (use-package orderless
-        :demand t)
+  :demand t)
 (use-package marginalia)
 (use-package anzu)
 (use-package markdown-mode)
@@ -108,7 +108,7 @@
   (vertico-multiform-categories
    '((consult-grep buffer)
      (consult-location)
-                 (consult-xref buffer)
+     (consult-xref buffer)
      (imenu buffer)
      (library reverse indexed)
      (org-roam-node reverse indexed)
@@ -170,104 +170,104 @@
 (add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 
 (use-package recentf
-        :straight t
-        :defer t
-        :config
-        (recentf-mode +1))
+  :straight t
+  :defer t
+  :config
+  (recentf-mode +1))
 
 (use-package move-text
-        :demand t
-        :config
-        (move-text-default-bindings))
+  :demand t
+  :config
+  (move-text-default-bindings))
 
 (use-package visual-regexp
-        :bind
-        ("M-r" . vr/replace))
+  :bind
+  ("M-r" . vr/replace))
 
 (use-package wgrep)
 
 (use-package find-file-rg
-        :straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
-        :bind
-        ("M-s f" . find-file-rg))
+  :straight (find-file-rg :type git :host github :repo "muffinmad/emacs-find-file-rg")
+  :bind
+  ("M-s f" . find-file-rg))
 
 (use-package easy-kill
-        :demand t
-        :config
-        (global-set-key [remap kill-ring-save] 'easy-kill)
-        (global-set-key [remap mark-sexp] 'easy-mark))
+  :demand t
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill)
+  (global-set-key [remap mark-sexp] 'easy-mark))
 
 (use-package rg
   :init
-        (defun my/project/rg ()
-                "T."
-                (interactive)
-                (let ((currProject (project-current)))
-                        (if currProject
-                                        (call-interactively 'rg-project)
-                                (call-interactively 'rg))))
-        :bind
-        ("M-s r" . my/project/rg))
+  (defun my/project/rg ()
+    "T."
+    (interactive)
+    (let ((currProject (project-current)))
+      (if currProject
+          (call-interactively 'rg-project)
+        (call-interactively 'rg))))
+  :bind
+  ("M-s r" . my/project/rg))
 
 (use-package all-the-icons-completion
-        :demand t
-        :config
-        (all-the-icons-completion-mode +1)
-        (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
+  :demand t
+  :config
+  (all-the-icons-completion-mode +1)
+  (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
 (use-package consult
-        :bind
-        ("M-s s" . consult-ripgrep-symbol-at-point)
-        ("M-s g" . consult-ripgrep)
-        ("M-s M-g" . consult-git-grep)
-        ("M-s M-s" . consult-ripgrep-related-files)
-        :config
-        (custom-set-variables
-         '(xref-show-xrefs-function 'consult-xref))
-        (consult-customize
-         ;; Disable preview for `consult-theme' completely.
-         ;; consult-theme :preview-key nil
-         ;; consult-buffer :preview-key nil
-         ;; consult-recent-file :preview-key nil
-         ;; consult-ripgrep :preview-key nil
-         ;; consult-grep :preview-key nil
-         ;; ;; Set preview for `consult-buffer' to key `M-.'
-         ;; consult-buffer :preview-key nil
-         ;; For `consult-line' change the prompt and specify multiple preview
-         ;; keybindings. Note that you should bind <S-up> and <S-down> in the
-         ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
-         ;; select the previous or next candidate.
-         consult-line :prompt "Search: ")
-        (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
-        (defun consult-ripgrep-symbol-at-point ()
-                "Seearch in files whose base name is the same as the current file's."
-                (interactive)
-                (minibuffer-with-setup-hook
-                                (lambda () (goto-char (1+ (minibuffer-prompt-end))))
-                        (consult-ripgrep (my/root-project-dir)
-                                                                                         (if-let ((sap (symbol-at-point)))
-                                                                                                         (format "%s -- -g *" sap)
-                                                                                                 (user-error "Buffer is not visiting a file")))))
+  :bind
+  ("M-s s" . consult-ripgrep-symbol-at-point)
+  ("M-s g" . consult-ripgrep)
+  ("M-s M-g" . consult-git-grep)
+  ("M-s M-s" . consult-ripgrep-related-files)
+  :config
+  (custom-set-variables
+   '(xref-show-xrefs-function 'consult-xref))
+  (consult-customize
+   ;; Disable preview for `consult-theme' completely.
+   ;; consult-theme :preview-key nil
+   ;; consult-buffer :preview-key nil
+   ;; consult-recent-file :preview-key nil
+   ;; consult-ripgrep :preview-key nil
+   ;; consult-grep :preview-key nil
+   ;; ;; Set preview for `consult-buffer' to key `M-.'
+   ;; consult-buffer :preview-key nil
+   ;; For `consult-line' change the prompt and specify multiple preview
+   ;; keybindings. Note that you should bind <S-up> and <S-down> in the
+   ;; `minibuffer-local-completion-map' or `vertico-map' to the commands which
+   ;; select the previous or next candidate.
+   consult-line :prompt "Search: ")
+  (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
+  (defun consult-ripgrep-symbol-at-point ()
+    "Seearch in files whose base name is the same as the current file's."
+    (interactive)
+    (minibuffer-with-setup-hook
+        (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+      (consult-ripgrep (my/root-project-dir)
+                       (if-let ((sap (symbol-at-point)))
+                           (format "%s -- -g *" sap)
+                         (user-error "Buffer is not visiting a file")))))
 
-        (defun consult-ripgrep-related-files ()
-                "Seearch in files whose base name is the same as the current file's."
-                (interactive)
-                (minibuffer-with-setup-hook
-                                (lambda () (goto-char (1+ (minibuffer-prompt-end))))
-                        (consult-ripgrep (my/root-project-dir)
-                                                                                         (if-let ((file (buffer-file-name)))
-                                                                                                         (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
-                                                                                                 (user-error "Buffer is not visiting a file")))))
+  (defun consult-ripgrep-related-files ()
+    "Seearch in files whose base name is the same as the current file's."
+    (interactive)
+    (minibuffer-with-setup-hook
+        (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+      (consult-ripgrep (my/root-project-dir)
+                       (if-let ((file (buffer-file-name)))
+                           (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
+                         (user-error "Buffer is not visiting a file")))))
 
-        (defun restrict-to-current-file ()
-                (interactive)
-                (if-let ((file (with-minibuffer-selected-window
-                                                                                 (buffer-file-name))))
-                                ;; (message "file: %s" file)
-                                (save-excursion
-                                        (goto-char (point-max))
-                                        (insert " -- -g " (file-name-base file) "*.*"))
-                        (user-error "Buffer is not visiting a file"))))
+  (defun restrict-to-current-file ()
+    (interactive)
+    (if-let ((file (with-minibuffer-selected-window
+                     (buffer-file-name))))
+        ;; (message "file: %s" file)
+        (save-excursion
+          (goto-char (point-max))
+          (insert " -- -g " (file-name-base file) "*.*"))
+      (user-error "Buffer is not visiting a file"))))
 
 (use-package consult-lsp)
 
@@ -279,14 +279,14 @@
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
-        (define-key embark-buffer-map (kbd "C-S-p") 'my/menu-base)
+  (define-key embark-buffer-map (kbd "C-S-p") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                                                                 (display-buffer-reuse-window display-buffer-in-side-window)
-                                                                 (window-height . 0.20)
-                                                                 (side . left)
-                                                                 (slot . 4)
+                 (display-buffer-reuse-window display-buffer-in-side-window)
+                 (window-height . 0.20)
+                 (side . left)
+                 (slot . 4)
                  (window-parameters (mode-line-format . none)))))
 
 ;; Consult users will also want the embark-consult package.
@@ -295,74 +295,74 @@
   :demand t ; only necessary if you have the hook below
   ;; if you want to have consult previews as you move around an
   ;; auto-updating embark collect buffer
-        :init
+  :init
   (with-eval-after-load 'embark
     (require 'embark-consult))
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-        :demand t
-        :config
-        (setq corfu-cycle t
-                                corfu-quit-at-boundary nil
-                                corfu-auto-prefix 2
-                                corfu-auto t
-                                corfu-quit-no-match t)
-        (global-corfu-mode +1))
+  :demand t
+  :config
+  (setq corfu-cycle t
+        corfu-quit-at-boundary nil
+        corfu-auto-prefix 2
+        corfu-auto t
+        corfu-quit-no-match t)
+  (global-corfu-mode +1))
 
 (use-package corfu-doc
 	:init
 	(add-to-list 'corfu-mode-hook #'corfu-doc-mode))
 
 (use-package savehist
-        :demand t
-        :config
-        (savehist-mode +1))
+  :demand t
+  :config
+  (savehist-mode +1))
 
 (use-package multiple-cursors)
 
 (use-package cape
-        :demand t
-        :straight (cape :type git :host github :repo "minad/cape")
-        :init
-        (defun my/ignore-elisp-keywords (cand)
-                (or (not (keywordp cand))
-                                (eq (char-after (car completion-in-region--data)) ?:)))
+  :demand t
+  :straight (cape :type git :host github :repo "minad/cape")
+  :init
+  (defun my/ignore-elisp-keywords (cand)
+    (or (not (keywordp cand))
+        (eq (char-after (car completion-in-region--data)) ?:)))
 
-        (defun my/setup-elisp ()
-                (setq-local completion-at-point-functions
-                                                                '(elisp-completion-at-point
-                                                                        cape-dabbrev
-                                                                        cape-file)
-                                                                cape-dabbrev-min-length 2))
-        :config
-        (setq completion-at-point-functions '(cape-line))
-        (add-to-list 'completion-at-point-functions #'cape-symbol)
-        (add-to-list 'completion-at-point-functions #'cape-keyword)
-        (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-        (add-to-list 'completion-at-point-functions #'cape-file)
-        (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
-        (setq cape-dabbrev-min-length 2)
-        :bind
-        ("C-/" . cape-dabbrev))
+  (defun my/setup-elisp ()
+    (setq-local completion-at-point-functions
+                '(elisp-completion-at-point
+                  cape-dabbrev
+                  cape-file)
+                cape-dabbrev-min-length 2))
+  :config
+  (setq completion-at-point-functions '(cape-line))
+  (add-to-list 'completion-at-point-functions #'cape-symbol)
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+  (setq cape-dabbrev-min-length 2)
+  :bind
+  ("C-/" . cape-dabbrev))
 
 (use-package kind-icon
-        :straight '(kind-icon
-                                                        :type git
-                                                        :repo "jdtsmith/kind-icon")
-        :config
-        (setq kind-icon-default-face 'corfu-default)
-        (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  :straight '(kind-icon
+              :type git
+              :repo "jdtsmith/kind-icon")
+  :config
+  (setq kind-icon-default-face 'corfu-default)
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package project
-        :init
-        (defun my/root-project-dir ()
-                (if-let ((project (project-current)))
-                                (car (project-roots project))
-                        (format "%s" default-directory)))
-        :config
-        (setq consult-project-root-function #'my/root-project-dir))
+  :init
+  (defun my/root-project-dir ()
+    (if-let ((project (project-current)))
+        (car (project-roots project))
+      (format "%s" default-directory)))
+  :config
+  (setq consult-project-root-function #'my/root-project-dir))
 
 (marginalia-mode +1)
 (diminish 'anzu-mode)
@@ -417,14 +417,14 @@
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's
    loaded."
-        (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
+  (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory)
   ;; <add other stuff here>
   (define-key dired-mode-map [remap dired-find-file]
-                                                        'dired-single-buffer)
+              'dired-single-buffer)
   (define-key dired-mode-map [remap dired-mouse-find-file-other-window]
-                                                        'dired-single-buffer-mouse)
+              'dired-single-buffer-mouse)
   (define-key dired-mode-map [remap dired-up-directory]
-                                                        'dired-single-up-directory))
+              'dired-single-up-directory))
 
 ;; if dired's already loaded, then the keymap will be bound
 (if (boundp 'dired-mode-map)
@@ -452,116 +452,113 @@
 
 ;; add exec-path
 (mapcar (lambda (cdir)
-                                        (add-to-list 'exec-path cdir)) my/exec-dir)
-(mapcar (lambda (cdir)
-                                        (setenv "PATH" (concat cdir ":" (getenv "PATH")))) my/exec-dir)
+          (setenv "PATH" (concat cdir ":" (getenv "PATH")))) exec-path)
 
 (winner-mode +1)
 (with-eval-after-load 'ediff
-        ;; add ediff configuration
-        (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
-        (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
-        (set-face-attribute 'ediff-even-diff-C nil :inherit nil)
-        (setq ediff-split-window-function 'split-window-horizontally)
-        (setq ediff-merge-split-window-function 'split-window-vertically)
-        (setq ediff-diff-options "-w")
-        (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
-        (setq ediff-window-setup-function #'ediff-setup-windows-plain))
+  ;; add ediff configuration
+  (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+  (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+  (set-face-attribute 'ediff-even-diff-C nil :inherit nil)
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-merge-split-window-function 'split-window-vertically)
+  (setq ediff-diff-options "-w")
+  (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (add-hook 'so-long-mode-hook (lambda ()
-                                                                                                                         (require 'longlines)
-                                                                                                                         (longlines-mode)))
+                               (require 'longlines)
+                               (longlines-mode)))
 
 (require 'frontside-windowing)
 (frontside-windowing-mode +1)
 
 (use-package org
-        :straight t
-        :defer t
-        :config
-        (add-hook 'org-mode-hook 'org-modern-mode)
-        (define-key org-mode-map [mouse-1] 'org-cycle)
-        (setq org-todo-keywords
-                                '((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
-                                org-support-shift-select t
-                                org-log-done t)
-        (custom-set-faces
-         '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
-         '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
-         '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
-         '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
-         '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
-         '(org-fontify-done-headline nil)
+  :straight t
+  :defer t
+  :config
+  (add-hook 'org-mode-hook 'org-modern-mode)
+  (define-key org-mode-map [mouse-1] 'org-cycle)
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
+        org-support-shift-select t
+        org-log-done t)
+  (custom-set-faces
+   '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
+   '(org-level-2 ((t (:inherit outline-2 :height 1.3 :box nil))))
+   '(org-level-3 ((t (:inherit outline-3 :height 1.2 :box nil))))
+   '(org-level-4 ((t (:inherit outline-4 :height 1.1 :box nil))))
+   '(org-level-5 ((t (:inherit outline-5 :height 1.0 :box nil))))
+   '(org-fontify-done-headline nil)
    '(org-fontify-todo-headline t)
    '(org-fontify-whole-heading-line t)
    '(org-hide-leading-stars t)))
 
 (use-package org-modern
-        :straight t
-        :defer t)
+  :straight t
+  :defer t)
 
 (use-package emacs
-        :config
-        (when (file-exists-p custom-file)
-                (load custom-file))
+  :config
+  (when (file-exists-p custom-file)
+    (load custom-file))
 
-        (global-unset-key (kbd "C-x C-b"))
-        (global-unset-key (kbd "C-x b"))
-        (global-unset-key (kbd "M-l"))
-        (global-set-key (kbd "C-x b") 'switch-to-buffer)
-        (global-set-key (kbd "<C-tab>") 'consult-buffer)
-        (global-set-key (kbd "M-l") 'my/switch-to-buffer)
-        (global-set-key (kbd "<C-M-left>") 'rotate-frame)
-        (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
-        (global-set-key (kbd "<M-right>") 'other-window)
-        (global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
-        (global-set-key (kbd "C-.") 'repeat-complex-command)
-        (global-set-key (kbd "M-C-o") 'consult-recent-file)
-        (global-set-key (kbd "C-S-f") 'consult-line)
-        (global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
-        (global-unset-key (kbd "C-o"))
-        (global-unset-key (kbd "M-o"))
-        (global-set-key (kbd "C-o") 'project-find-file)
-        (global-set-key (kbd "M-o") 'project-find-file)
-        (global-unset-key (kbd "M-k"))
-        (define-prefix-command 'my-emacs-prefix)
-        (global-set-key (kbd "M-k") 'my-emacs-prefix)
-        (define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
-        (define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
-        (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
-        (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
-        (setq standard-indent 2)
-        (save-place-mode +1)
-        (setq use-dialog-box nil)
-        (setq global-auto-revert-non-file-buffers t)
-        (global-auto-revert-mode 1)
-        (global-visual-line-mode t)
-        (global-hi-lock-mode 1)
-        (pixel-scroll-precision-mode +1)
+  (global-unset-key (kbd "C-x C-b"))
+  (global-unset-key (kbd "C-x b"))
+  (global-unset-key (kbd "M-l"))
+  (global-set-key (kbd "C-x b") 'switch-to-buffer)
+  (global-set-key (kbd "<C-tab>") 'consult-buffer)
+  (global-set-key (kbd "M-l") 'my/switch-to-buffer)
+  (global-set-key (kbd "<C-M-left>") 'rotate-frame)
+  (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
+  (global-set-key (kbd "<M-right>") 'other-window)
+  (global-set-key (kbd "<M-S-right>") 'windmove-swap-states-right)
+  (global-set-key (kbd "C-.") 'repeat-complex-command)
+  (global-set-key (kbd "M-C-o") 'consult-recent-file)
+  (global-set-key (kbd "C-S-f") 'consult-line)
+  (global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
+  (global-unset-key (kbd "C-o"))
+  (global-unset-key (kbd "M-o"))
+  (global-set-key (kbd "C-o") 'project-find-file)
+  (global-set-key (kbd "M-o") 'project-find-file)
+  (global-unset-key (kbd "M-k"))
+  (define-prefix-command 'my-emacs-prefix)
+  (global-set-key (kbd "M-k") 'my-emacs-prefix)
+  (define-key 'my-emacs-prefix (kbd "k") 'kill-sentence)
+  (define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
+  (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
+  (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+  (setq standard-indent 2)
+  (save-place-mode +1)
+  (setq use-dialog-box nil)
+  (setq global-auto-revert-non-file-buffers t)
+  (global-auto-revert-mode 1)
+  (global-visual-line-mode t)
+  (global-hi-lock-mode 1)
+  (pixel-scroll-precision-mode +1)
 
-        (with-eval-after-load 'ediff
-                (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
-                (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
-                (set-face-attribute 'ediff-even-diff-C nil :inherit nil))
+  (with-eval-after-load 'ediff
+    (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+    (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+    (set-face-attribute 'ediff-even-diff-C nil :inherit nil))
 
-        (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
-        :bind
-        (:map minibuffer-mode-map
-                                ("M-e" . embark-act)
-                                ("<C-tab>" . previous-line)
-                                ("M-l" . previous-line)
-                                ("M-j" . next-line)
-                                ("M-k" . exit-minibuffer)))
+  (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
+  :bind
+  (:map minibuffer-mode-map
+        ("M-e" . embark-act)
+        ("<C-tab>" . previous-line)
+        ("M-l" . previous-line)
+        ("M-j" . next-line)
+        ("M-k" . exit-minibuffer)))
 
-(cd my/base-dir)
-
+(cd my/project-dir)
 (blink-cursor-mode 0)
 
 (my/end-of-init)
 
 (use-package undo-tree
-        :straight t
-        :defer t
+  :straight t
+  :defer t
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
   :custom
@@ -569,101 +566,101 @@
   (undo-tree-visualizer-timestamps t))
 
 (use-package crux
-        :straight t
-        :bind
-        ("<C-S-return>" . crux-smart-open-line-above)
-        ("<S-return>" . 'crux-smart-open-line)
-        ("C-k" . 'crux-smart-kill-line))
+  :straight t
+  :bind
+  ("<C-S-return>" . crux-smart-open-line-above)
+  ("<S-return>" . 'crux-smart-open-line)
+  ("C-k" . 'crux-smart-kill-line))
 
 (use-package git-timemachine
-        :ensure t
-        :demand t)
+  :ensure t
+  :demand t)
 
 (use-package json-mode
-        :straight t
+  :straight t
   :ensure t)
 
 (use-package neotree
-        :straight t
-        :defer t)
+  :straight t
+  :defer t)
 
 (use-package doom-modeline
-        :demand t
-        :config
-        (doom-modeline-mode +1)
-        (setq doom-modeline-height 1))
+  :demand t
+  :config
+  (doom-modeline-mode +1)
+  (setq doom-modeline-height 1))
 
 (use-package magit
-        :commands (magit-status-quick magit-status)
-        :config
-        (setq magit-process-popup-time 0)
-        (add-hook 'magit-pre-refresh-hook (lambda ()
-                                                                                                                                                        (auto-display-magit-process-buffer)))
-        (add-hook 'magit-pre-command-hook (lambda ()
-                                                                                                                                                        (message "pre magit command")))
+  :commands (magit-status-quick magit-status)
+  :config
+  (setq magit-process-popup-time 0)
+  (add-hook 'magit-pre-refresh-hook (lambda ()
+                                      (auto-display-magit-process-buffer)))
+  (add-hook 'magit-pre-command-hook (lambda ()
+                                      (message "pre magit command")))
 
-        (defun my/check-magit-process-is-active ()
-                "T."
-                (interactive)
-                (let ((result nil)
-                                        (buffs (window-list)))
-                        (while buffs
-                                (when (string-prefix-p "magit-process:" (buffer-name (car buffs)))
-                                        (progn
-                                                (setq result t)
-                                                (setq buffs nil)))
-                                (setq buffs (cdr buffs)))
-                        result))
+  (defun my/check-magit-process-is-active ()
+    "T."
+    (interactive)
+    (let ((result nil)
+          (buffs (window-list)))
+      (while buffs
+        (when (string-prefix-p "magit-process:" (buffer-name (car buffs)))
+          (progn
+            (setq result t)
+            (setq buffs nil)))
+        (setq buffs (cdr buffs)))
+      result))
 
-        (defun auto-display-magit-process-buffer (&rest args)
-                "Automatically display the process buffer when it is updated."
-                (let ((magit-display-buffer-noselect t))
-                        (magit-process-buffer)))
+  (defun auto-display-magit-process-buffer (&rest args)
+    "Automatically display the process buffer when it is updated."
+    (let ((magit-display-buffer-noselect t))
+      (magit-process-buffer)))
 
-        (advice-add 'magit-process-set-mode-line-error-status :before
-                                                        #'auto-display-magit-process-buffer)
-        :init
-        (defun my/magit-status ()
-                "Open a magit directory."
-                (interactive)
-                (let ((current-prefix-arg '(4)))
-                        (call-interactively #'magit-status-quick)
-                        (delete-other-windows)))
+  (advice-add 'magit-process-set-mode-line-error-status :before
+              #'auto-display-magit-process-buffer)
+  :init
+  (defun my/magit-status ()
+    "Open a magit directory."
+    (interactive)
+    (let ((current-prefix-arg '(4)))
+      (call-interactively #'magit-status-quick)
+      (delete-other-windows)))
 
-        (defun my/goto-magit ()
-                "T."
-                (interactive)
-                (require 'consult)
-                (let* ((buffers (buffer-list))
-                                         (projroot (my/root-project-dir))
-                                         (projname (consult--project-name projroot))
-                                         (magitbuffer nil)
-                                         (projbuffername (concat "magit: " projname)))
-                        (while buffers
-                                (when (string-equal (buffer-name (car buffers)) projbuffername)
-                                        (setq magitbuffer (car buffers))
-                                        (setq buffers nil))
-                                (setq buffers (cdr buffers))
-                                (message "%s" magitbuffer)
-                                )
-                        (if magitbuffer
-                                        (switch-to-buffer magitbuffer)
-                                (my/magit-status))
-                        )
-                )
+  (defun my/goto-magit ()
+    "T."
+    (interactive)
+    (require 'consult)
+    (let* ((buffers (buffer-list))
+           (projroot (my/root-project-dir))
+           (projname (consult--project-name projroot))
+           (magitbuffer nil)
+           (projbuffername (concat "magit: " projname)))
+      (while buffers
+        (when (string-equal (buffer-name (car buffers)) projbuffername)
+          (setq magitbuffer (car buffers))
+          (setq buffers nil))
+        (setq buffers (cdr buffers))
+        (message "%s" magitbuffer)
         )
+      (if magitbuffer
+          (switch-to-buffer magitbuffer)
+        (my/magit-status))
+      )
+    )
+  )
 
 (use-package ctrlf
-        :demand t
-        :config
-        (ctrlf-mode +1))
+  :demand t
+  :config
+  (ctrlf-mode +1))
 
 ;;; Smerge
 (use-package smerge-mode
   :bind (:map my-prefix
-                                                        ("m" . hydra-smerge/body))
+              ("m" . hydra-smerge/body))
 
-        :init
+  :init
   (progn
     (defun modi/enable-smerge-maybe ()
       "Auto-enable `smerge-mode' when merge conflict is detected."
@@ -673,7 +670,7 @@
           (smerge-mode 1))))
     (add-hook 'find-file-hook #'modi/enable-smerge-maybe :append))
   :config
-        (which-key-add-key-based-replacements "M-m m" "Smerge")
+  (which-key-add-key-based-replacements "M-m m" "Smerge")
   ;; (defalias 'smerge-keep-upper 'smerge-keep-mine)
   ;; (defalias 'smerge-keep-lower 'smerge-keep-other)
   ;; (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
@@ -681,11 +678,11 @@
   ;; (defalias 'smerge-diff-base-lower 'smerge-diff-base-other)
 
   (defhydra hydra-smerge (:color pink
-                                                                                                                                 :hint nil
-                                                                                                                                 :pre (smerge-mode 1)
-                                                                                                                                 ;; Disable `smerge-mode' when quitting hydra if
-                                                                                                                                 ;; no merge conflicts remain.
-                                                                                                                                 :post (smerge-auto-leave))
+                                 :hint nil
+                                 :pre (smerge-mode 1)
+                                 ;; Disable `smerge-mode' when quitting hydra if
+                                 ;; no merge conflicts remain.
+                                 :post (smerge-auto-leave))
     "
 ^Move^       ^Keep^               ^Diff^                 ^Other^
 ^^-----------^^-------------------^^---------------------^^-------
@@ -714,11 +711,18 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
     ("q" nil "cancel" :color blue)))
 
 (use-package remember-last-theme
-        :straight t)
+  :straight t)
 
 (use-package solo-jazz-theme
-        :straight t)
+  :straight t)
 
 (use-package zerodark-theme)
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
+
+(let ((modules_ my/modules))
+  (while modules_
+    (let ((m (car modules_)))
+      (message "%s" m)
+      (require m)
+      (setq modules_ (cdr modules_)))))
