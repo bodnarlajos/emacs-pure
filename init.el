@@ -17,11 +17,7 @@
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
 
-(defvar my/font "Ubuntu Mono-14")
-
 (require 'my-const)
-
-(set-frame-font my/font t t nil)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -315,6 +311,10 @@
                                 corfu-quit-no-match t)
         (global-corfu-mode +1))
 
+(use-package corfu-doc
+	:init
+	(add-to-list 'corfu-mode-hook #'corfu-doc-mode))
+
 (use-package savehist
         :demand t
         :config
@@ -504,15 +504,13 @@
         :config
         (when (file-exists-p custom-file)
                 (load custom-file))
-        (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-        (global-set-key (kbd "C-M-s") 'isearch-forward)
 
         (global-unset-key (kbd "C-x C-b"))
         (global-unset-key (kbd "C-x b"))
-        (global-unset-key (kbd "M-j"))
+        (global-unset-key (kbd "M-l"))
         (global-set-key (kbd "C-x b") 'switch-to-buffer)
         (global-set-key (kbd "<C-tab>") 'consult-buffer)
-        (global-set-key (kbd "M-j") 'my/switch-to-buffer)
+        (global-set-key (kbd "M-l") 'my/switch-to-buffer)
         (global-set-key (kbd "<C-M-left>") 'rotate-frame)
         (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
         (global-set-key (kbd "<M-right>") 'other-window)
@@ -551,8 +549,8 @@
         (:map minibuffer-mode-map
                                 ("M-e" . embark-act)
                                 ("<C-tab>" . previous-line)
-                                ("M-j" . previous-line)
-                                ("M-l" . next-line)
+                                ("M-l" . previous-line)
+                                ("M-j" . next-line)
                                 ("M-k" . exit-minibuffer)))
 
 (cd my/base-dir)
