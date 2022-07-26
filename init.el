@@ -172,7 +172,7 @@
 (use-package recentf
   :straight t
   :defer t
-  :config
+  :init
   (recentf-mode +1))
 
 (use-package move-text
