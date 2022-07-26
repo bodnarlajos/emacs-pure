@@ -1,11 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
-(defcustom my/project-dir "/home/lbodnar/Projects" "")
-(defcustom my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/" "")
-(defcustom my/temp-dir "/home/lbodnar/Projects/temp" "")
-(defcustom my/const/gitk-exe--path "/usr/bin/gitk" "")
-(defcustom my/const/git-gui-exe--path "/usr/bin/git" "")
-(defcustom my/modules '(my-prog my-dev my-haskell my-web) "The modules, what you use")
+(defgroup my/configs nil "My configurations")
+(defcustom my/font-family "Ubuntu Mono" "The font family" :type 'string :group 'my/configs)
+(defcustom my/font-size 140 "The font size" :type 'integer :group 'my/configs)
+(defcustom my/font-weight 'normal "The font weight" :type 'symbol :group 'my/configs)
+(defcustom my/project-dir "/home/lbodnar/Projects" "" :type 'string :group 'my/configs)
+(defcustom my/notes-dir "/home/lbodnar/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/" "" :type 'string :group 'my/configs)
+(defcustom my/temp-dir "/home/lbodnar/Projects/temp" "" :type 'string :group 'my/configs)
+(defcustom my/const/gitk-exe--path "/usr/bin/gitk" "" :type 'string :group 'my/configs)
+(defcustom my/const/git-gui-exe--path "/usr/bin/git" "" :type 'string :group 'my/configs)
+(defcustom my/modules '(my-prog my-dev my-haskell my-web) "The modules, what you use" :type (list 'symbol) :group 'my/configs)
 
 ;; end script of init
 (defun my/end-of-init ()

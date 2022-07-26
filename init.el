@@ -714,3 +714,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
       (message "%s" m)
       (require m)
       (setq modules_ (cdr modules_)))))
+
+(set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)

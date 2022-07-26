@@ -1,5 +1,4 @@
-(defcustom my/windowmodify/big-font-size 140 "The biggest font size")
-(defvar my/windowmodify/_original-size_ (face-attribute 'default :height))
+(defcustom my/windowmodify/big-font-size 140 "The biggest font size" :type 'integer :group 'my/configs)
 
 (defun my-windowmodify-mode ()
 	"This mode will change the font size, you need to resize the window"
@@ -12,6 +11,9 @@
 		;; (message "%s" dp)
 		(if (< dp -20)
 				(set-face-attribute 'default nil :height my/windowmodify/big-font-size)
-			(set-face-attribute 'default nil :height my/windowmodify/_original-size_))))
+			(set-face-attribute 'default nil :height my/font-size))))
+
+;; autostart itself
+(my-windowmodify-mode)
 
 (provide 'my-windowmodify)
