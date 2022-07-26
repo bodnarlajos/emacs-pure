@@ -708,6 +708,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
+(use-package tab-bar
+	:init
+	(tab-bar-mode +1))
+
 (let ((modules_ my/modules))
   (while modules_
     (let ((m (car modules_)))
