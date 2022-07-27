@@ -720,3 +720,15 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
       (setq modules_ (cdr modules_)))))
 
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
+
+(use-package dwim-shell-command
+	:straight t
+  :bind
+  ("M-!" . dwim-shell-command))
+
+(use-package dired
+	:straight (:type built-in)
+  :bind (:map dired-mode-map
+              ([remap dired-do-async-shell-command] . dwim-shell-command)
+              ([remap dired-do-shell-command] . dwim-shell-command)
+              ([remap dired-smart-shell-command] . dwim-shell-command)))
