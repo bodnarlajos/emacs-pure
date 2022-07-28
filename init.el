@@ -548,7 +548,6 @@
         ("M-j" . next-line)
         ("M-k" . exit-minibuffer)))
 
-(cd my/project-dir)
 (blink-cursor-mode 0)
 
 (my/end-of-init)
@@ -709,6 +708,16 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:init
 	(tab-bar-mode +1))
 
+(use-package dired
+	:straight (:type built-in)
+  :bind (:map dired-mode-map
+              ([remap dired-do-async-shell-command] . dwim-shell-command)
+              ([remap dired-do-shell-command] . dwim-shell-command)
+              ([remap dired-smart-shell-command] . dwim-shell-command)))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (let ((modules_ my/modules))
   (while modules_
     (let ((m (car modules_)))
@@ -716,22 +725,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
       (require m)
       (setq modules_ (cdr modules_)))))
 
+(cd my/project-dir)
+
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-
-(when (file-exists-p custom-file)
-  (load custom-file))
-
 
 (setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
 
-(use-package dwim-shell-command
-	:straight t
-  :bind
-  ("M-!" . dwim-shell-command))
-
-(use-package dired
-	:straight (:type built-in)
-  :bind (:map dired-mode-map
-              ([remap dired-do-async-shell-command] . dwim-shell-command)
-              ([remap dired-do-shell-command] . dwim-shell-command)
-              ([remap dired-smart-shell-command] . dwim-shell-command)))
