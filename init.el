@@ -709,6 +709,11 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:init
 	(tab-bar-mode +1))
 
+(use-package tab-line-mode
+	:straight (:type built-in)
+	:init
+	(global-tab-line-mode +1))
+
 (let ((modules_ my/modules))
   (while modules_
     (let ((m (car modules_)))
@@ -735,3 +740,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
               ([remap dired-do-async-shell-command] . dwim-shell-command)
               ([remap dired-do-shell-command] . dwim-shell-command)
               ([remap dired-smart-shell-command] . dwim-shell-command)))
+
+(use-package cycle-buffer
+	:bind
+	("<C-tab>" . cycle-buffer))
