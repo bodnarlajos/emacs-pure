@@ -500,9 +500,6 @@
 
 (use-package emacs
   :config
-  (when (file-exists-p custom-file)
-    (load custom-file))
-
   (global-unset-key (kbd "C-x C-b"))
   (global-unset-key (kbd "C-x b"))
   (global-unset-key (kbd "M-l"))
@@ -720,6 +717,12 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
       (setq modules_ (cdr modules_)))))
 
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
+
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+
+(setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
 
 (use-package dwim-shell-command
 	:straight t
