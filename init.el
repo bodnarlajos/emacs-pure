@@ -706,8 +706,12 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
 (use-package tab-bar
+	:straight (:type built-in)
 	:init
-	(tab-bar-mode +1))
+	(tab-bar-mode +1)
+	:bind
+	("M-m t t" . tab-bar-new-tab)
+	("M-m t x" . tab-bar-close-tab))
 
 (use-package tab-line-mode
 	:straight (:type built-in)

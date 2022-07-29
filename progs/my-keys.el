@@ -73,7 +73,7 @@
 (which-key-add-key-based-replacements "M-m s" "Select functions")
 
 (define-key my-prefix (kbd "2") 'flycheck-list-errors)
-(define-key my-prefix (kbd "t") 'transpose-frame)
+(define-key my-prefix (kbd "T") 'transpose-frame)
 (define-key my-prefix (kbd "b") 'consult-buffer)
 (define-key my-prefix (kbd "c g") 'my/goto-magit)
 (define-key my-prefix (kbd "c p") 'project-find-file)
