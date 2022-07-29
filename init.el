@@ -714,18 +714,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:bind
 	("<C-tab>" . cycle-buffer))
 
-(use-package dired
-	:straight (:type built-in)
-  :bind (:map dired-mode-map
-              ([remap dired-do-async-shell-command] . dwim-shell-command)
-              ([remap dired-do-shell-command] . dwim-shell-command)
-              ([remap dired-smart-shell-command] . dwim-shell-command)))
-
-(use-package dwim-shell-command
-	:straight t
-  :bind
-  ("M-!" . dwim-shell-command))
-
 (when (file-exists-p custom-file)
   (load custom-file))
 
