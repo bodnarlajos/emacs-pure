@@ -695,18 +695,20 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
     ("q" nil "cancel" :color blue)))
 
 (use-package remember-last-theme
-  :straight t)
+	:init
+	(remember-last-theme-with-file-enable "~/.emacs.d/last-theme"))
 
-(use-package solo-jazz-theme
-  :straight t)
+(use-package solo-jazz-theme)
 
 (use-package zerodark-theme)
-
-(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
 (use-package tab-bar
 	:init
 	(tab-bar-mode +1))
+
+(use-package cycle-buffer
+	:bind
+	("<C-tab>" . cycle-buffer))
 
 (use-package dired
 	:straight (:type built-in)
@@ -715,19 +717,25 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
               ([remap dired-do-shell-command] . dwim-shell-command)
               ([remap dired-smart-shell-command] . dwim-shell-command)))
 
+(use-package dwim-shell-command
+	:straight t
+  :bind
+  ("M-!" . dwim-shell-command))
+
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(let ((modules_ my/modules))
-  (while modules_
-    (let ((m (car modules_)))
-      (message "%s" m)
-      (require m)
-      (setq modules_ (cdr modules_)))))
+(use-package tab-line-mode
+	:straight (:type built-in)
+	:init
+	(global-tab-line-mode +1))
+
+;; last init , dont touch it
+(mapc (lambda (m)
+				(message "%s" m)
+				(require m)) my/modules)
 
 (cd my/project-dir)
-
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-
 (setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
 
