@@ -714,27 +714,79 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:bind
 	("<C-tab>" . cycle-buffer))
 
-(use-package dired
-	:straight (:type built-in)
-  :bind (:map dired-mode-map
-              ([remap dired-do-async-shell-command] . dwim-shell-command)
-              ([remap dired-do-shell-command] . dwim-shell-command)
-              ([remap dired-smart-shell-command] . dwim-shell-command)))
+;; (use-package dired
+;; 	:straight (:type built-in)
+;;   :bind (:map dired-mode-map
+;;               ([remap dired-do-async-shell-command] . dwim-shell-command)
+;;               ([remap dired-do-shell-command] . dwim-shell-command)
+;;               ([remap dired-smart-shell-command] . dwim-shell-command)))
 
-(use-package dwim-shell-command
-	:straight t
-  :bind
-  ("M-!" . dwim-shell-command))
-
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; (use-package dwim-shell-command
+;; 	:straight t
+;;   :bind
+;;   ("M-!" . dwim-shell-command))
 
 (use-package tab-line-mode
 	:straight (:type built-in)
+	:config
+	(setq tab-line-new-button
+				(propertize " + "
+										'display `(image :type xpm
+																		 :file ,(image-search-load-path
+																						 "new@2x.xpm")
+																		 :margin (2 . 0)
+																		 :ascent center
+																		 :scale 0.5)
+										'keymap tab-line-add-map
+										'mouse-face 'tab-line-highlight
+										'help-echo "Click to add tab"))
+
+	(setq tab-line-close-button
+				(propertize " x"
+										'display `(image :type xpm
+																		 :file ,(image-search-load-path
+																						 "close@2x.xpm")
+																		 :margin (2 . 0)
+																		 :ascent center
+																		 :scale 0.5)
+										'keymap tab-line-tab-close-map
+										'mouse-face 'tab-line-close-highlight
+										'help-echo "Click to close tab"))
+
+	(setq tab-line-left-button
+				(propertize " <"
+										'display `(image :type xpm
+																		 :file ,(image-search-load-path
+																						 "left-arrow@2x.xpm")
+																		 :margin (2 . 0)
+																		 :ascent center
+																		 :scale 0.5)
+										'keymap tab-line-left-map
+										'mouse-face 'tab-line-highlight
+										'help-echo "Click to scroll left"))
+
+	(setq tab-line-right-button
+				(propertize "> "
+										'display `(image :type xpm
+																		 :file ,(image-search-load-path
+																						 "right-arrow@2x.xpm")
+																		 :margin (2 . 0)
+																		 :ascent center
+																		 :scale 0.5)
+										'keymap tab-line-right-map
+										'mouse-face 'tab-line-highlight
+										'help-echo "Click to scroll right"))
+	(setq tab-line-tab-name-function
+				(lambda (buffer &optional _)
+					(format "| %s |" (buffer-name buffer))))
 	:init
+	(push "~/.emacs.d/etc/images/" image-load-path)
 	(global-tab-line-mode +1))
 
 ;; last init , dont touch it
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (mapc (lambda (m)
 				(message "%s" m)
 				(require m)) my/modules)
