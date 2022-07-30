@@ -702,6 +702,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	(tab-bar-mode +1)
 	:bind
 	("M-m t t" . tab-bar-new-tab)
+	("M-m t n" . tab-bar-switch-to-next-tab)
 	("M-m t x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
