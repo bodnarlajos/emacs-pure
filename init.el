@@ -413,6 +413,8 @@
  ls-lisp-use-insert-directory-program nil
  mark-ring-max 32)
 
+(require 'my-themes)
+
 ;; dired
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's
@@ -695,16 +697,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
     ("k" smerge-kill-current)
     ("q" nil "cancel" :color blue)))
 
-(use-package remember-last-theme
-  :straight t)
-
-(use-package solo-jazz-theme
-  :straight t)
-
-(use-package zerodark-theme)
-
-(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
-
 (use-package tab-bar
 	:straight (:type built-in)
 	:init
@@ -718,6 +710,12 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:init
 	(global-tab-line-mode +1))
 
+(use-package cycle-buffer
+	:bind
+	("<C-tab>" . cycle-buffer))
+
+;; end of init
+
 (let ((modules_ my/modules))
   (while modules_
     (let ((m (car modules_)))
@@ -730,21 +728,4 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (when (file-exists-p custom-file)
   (load custom-file))
 
-
 (setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
-
-(use-package dwim-shell-command
-	:straight t
-  :bind
-  ("M-!" . dwim-shell-command))
-
-(use-package dired
-	:straight (:type built-in)
-  :bind (:map dired-mode-map
-              ([remap dired-do-async-shell-command] . dwim-shell-command)
-              ([remap dired-do-shell-command] . dwim-shell-command)
-              ([remap dired-smart-shell-command] . dwim-shell-command)))
-
-(use-package cycle-buffer
-	:bind
-	("<C-tab>" . cycle-buffer))
