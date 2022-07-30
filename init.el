@@ -550,7 +550,6 @@
         ("M-j" . next-line)
         ("M-k" . exit-minibuffer)))
 
-(cd my/project-dir)
 (blink-cursor-mode 0)
 
 (my/end-of-init)
@@ -705,6 +704,13 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	("M-m t t" . tab-bar-new-tab)
 	("M-m t x" . tab-bar-close-tab))
 
+(use-package cycle-buffer
+	:bind
+	("<C-tab>" . cycle-buffer))
+
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 (use-package tab-line-mode
 	:straight (:type built-in)
 	:init
@@ -716,16 +722,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 ;; end of init
 
-(let ((modules_ my/modules))
-  (while modules_
-    (let ((m (car modules_)))
-      (message "%s" m)
-      (require m)
-      (setq modules_ (cdr modules_)))))
+(mapc (lambda (m)
+				(message "%s" m)
+				(require m)) my/modules)
 
+(cd my/project-dir)
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-
-(when (file-exists-p custom-file)
-  (load custom-file))
-
 (setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
