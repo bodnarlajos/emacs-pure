@@ -59,7 +59,8 @@
 (define-key my-prefix (kbd "w k") 'windmove-swap-states-down)
 (which-key-add-key-based-replacements "M-m w" "Split window")
 
-(define-key my-prefix (kbd "r") 'async-shell-command)
+(define-key my-prefix (kbd "a") 'async-shell-command)
+(define-key my-prefix (kbd "A") 'project-async-shell-command)
 (define-key my-prefix (kbd "i") 'indent-buffer)
 
 ;; frames
@@ -75,12 +76,6 @@
 (define-key my-prefix (kbd "2") 'flycheck-list-errors)
 (define-key my-prefix (kbd "T") 'transpose-frame)
 (define-key my-prefix (kbd "b") 'consult-buffer)
-(define-key my-prefix (kbd "c g") 'my/goto-magit)
-(define-key my-prefix (kbd "c p") 'project-find-file)
-(define-key my-prefix (kbd "c f") 'rg)
-(define-key my-prefix (kbd "c m") 'my/menu-base)
-(define-key my-prefix (kbd "c a") 'org-agenda)
-(which-key-add-key-based-replacements "M-m c" "Commands")
 
 (define-key my-prefix (kbd "e d") 'duplicate-line)
 (define-key my-prefix (kbd "e r") 'vr/replace)
@@ -104,7 +99,7 @@
 (define-key my-prefix (kbd "o") 'find-file)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
 
-(global-set-key (kbd "C-S-p") 'my/menu-base)
+(global-set-key (kbd "C-S-p") 'my/start/menu)
 
 (global-set-key (kbd "<f1>") 'window-toggle-side-windows)
 (global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)

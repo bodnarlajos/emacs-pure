@@ -1,9 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
+(defun my/open/my-config ()
+	"Open my-config group configuration"
+	(interactive)
+	(tab-bar-new-tab)
+	(customize-group 'my/configs))
+
 (defun my/start/emacs ()
 	"T."
 	(interactive)
-		(start-process "emacs" nil "C:/ProgramData/emacs-native/bin/runemacs.exe"))
+	(start-process "emacs" nil "C:/ProgramData/emacs-native/bin/runemacs.exe"))
 
 (defun my/start/git-gui ()
 	"T."
@@ -196,59 +202,22 @@ Version 2017-11-01"
 	"."
 	(my/menu-item-formatter itemName "!"))
 
-(defun my/menu-base ()
-	"Base menu"				
-	(interactive)			
-	(let ((recentfiles (my/menu-item "Recent files"))
-				(restclient (my/menu-item-for-program "RestClient"))
-				(breaktofix (my/menu-item-for-program "Break lines to 120 chars..."))
-				(revertBuffer (my/menu-item "Revert buffer"))
-				(newbuffer (my/menu-item "New buffer"))
-				(neworgbuffer (my/menu-item "New org"))
-				(development (my/menu-item-for-program "Start development"))
-				(openNotes (my/menu-item-for-program "Notes"))
-				(magit (my/menu-item-for-program "Git"))
-				(constel (my/menu-item-for-program "emacs config file"))
-				(magitemacs (my/menu-item-for-program "emacs Git"))
-				(longLines (my/menu-item-for-program "Long lines"))
-				(agenda (my/menu-item-for-program "Agenda"))
-				(gitk (my/menu-item-for-program "Start Git history"))
-				(startemacs (my/menu-item-for-program "Start emacs"))
-				(gitgui (my/menu-item-for-program "Start git gui"))
-				(findnamedired (my/menu-item-for-program "Find in directory")))
-		(let ((ido-list (list magitemacs startemacs neworgbuffer agenda gitk gitgui recentfiles constel restclient breaktofix revertBuffer newbuffer development openNotes magit longLines findnamedired)))
-			(let ((res (completing-read "Action: " ido-list)))
-				(cond				
-				 ((string-equal res recentfiles) (call-interactively 'consult-recent-file))
-				 ((string-equal res restclient) (call-interactively 'my/start/restclient))
-				 ((string-equal res agenda) (call-interactively 'my/open-note-daily))
-				 ((string-equal res constel) (call-interactively 'my/open-emacs-config))
-				 ((string-equal res gitk) (call-interactively 'my/start/gitk))
-				 ((string-equal res startemacs) (call-interactively 'my/start/emacs))
-				 ((string-equal res gitgui) (call-interactively 'my/start/git-gui))
-				 ((string-equal res breaktofix) (call-interactively 'my/long-line-wrap-fix))
-				 ((string-equal res revertBuffer) (call-interactively 'revert-buffer))
-				 ((string-equal res newbuffer) (call-interactively 'my/xah-new-empty-buffer))
-				 ((string-equal res neworgbuffer) (call-interactively 'my/xah-new-empty-buffer-org))
-				 ((string-equal res development) (call-interactively 'my/start/devenv))
-				 ((string-equal res openNotes) (call-interactively 'my/open-notes))
-				 ((string-equal res magit) (call-interactively 'my/goto-magit))
-				 ((string-equal res longLines) (call-interactively 'my/long-line-wrap))
-				 ((string-equal res findnamedired) (call-interactively 'find-file-rg)))))))
+;; (defvar my-menu-bar-menu (make-sparse-keymap "Mine"))
+;; (define-key global-map [menu-bar my-menu] (cons "Mine" my-menu-bar-menu))
 
-(defvar my-menu-bar-menu (make-sparse-keymap "Mine"))
-(define-key global-map [menu-bar my-menu] (cons "Mine" my-menu-bar-menu))
+;; (mapcar (lambda (i)
+;; 					(define-key my-menu-bar-menu [(cdr i)]
+;; 											'(menu-item (car i) (cdr i) :help (car i)))
+;; 					) my/menu-items)
 
-(define-key my-menu-bar-menu [consult-recent-file]
-						'(menu-item "Recent files" consult-recent-file :help "Recent files"))
-(define-key my-menu-bar-menu [my/xah-new-empty-buffer]
-						'(menu-item "New buffer" my/xah-new-empty-buffer :help "New buffer"))
-(define-key my-menu-bar-menu [my/xah-new-empty-buffer-org]
-						'(menu-item "New org buffer" my/xah-new-empty-buffer-org :help "New org buffer"))
-(define-key my-menu-bar-menu [my/start/git-gui]
-						'(menu-item "Git gui" my/start/git-gui :help "Open git gui"))
-(define-key my-menu-bar-menu [my/start/gitk]
-						'(menu-item "Git log" my/start/gitk :help "Open git log"))
+(defun my/start/menu ()
+	"Open my/menu-items"
+	(interactive)
+	(message "start edebug")
+	(let ((menulist (mapcar 'car my/menu-items)))
+		(let ((result (completing-read "Menu: " menulist)))
+			(message "result: %s" result)
+			(call-interactively (cdr (assoc result my/menu-items))))))
 
 (defun my/open-note-daily ()
 	"Open the daily notes"

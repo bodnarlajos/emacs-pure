@@ -9,7 +9,8 @@
 (defcustom my/temp-dir "/home/lbodnar/Projects/temp" "" :type 'string :group 'my/configs)
 (defcustom my/const/gitk-exe--path "/usr/bin/gitk" "" :type 'string :group 'my/configs)
 (defcustom my/const/git-gui-exe--path "/usr/bin/git" "" :type 'string :group 'my/configs)
-(defcustom my/modules '(my-custom my-prog my-dev my-haskell my-web) "The modules, what you use" :type (list 'symbol) :group 'my/configs)
+(defcustom my/modules '(my-custom my-prog my-dev my-haskell my-web) "The modules, what you use" :type '(list symbol) :group 'my/configs)
+(defcustom my/menu-items '(("My-config" . my/open/my-config) ("Notes" . my/open-notes)) "My-config menu items" :type '(alist :key-type string :value-type function) :group 'my/configs)
 
 ;; end script of init
 (defun my/end-of-init ()
