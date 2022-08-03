@@ -222,6 +222,18 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
+	(defvar consult--source-tab-line-buffer
+  `(:name     "Tab Buffer"
+    :narrow   ?b
+    :category buffer
+    :face     consult-buffer
+    :history  buffer-name-history
+    :state    ,#'consult--buffer-state
+    :default  t
+    :items
+    ,(lambda () (mapcar 'buffer-name (tab-line-tabs-window-buffers))))
+  "Tab-line Buffer candidate source for `consult-buffer'.")
+
   (custom-set-variables
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
@@ -507,7 +519,7 @@
   (global-unset-key (kbd "M-l"))
   (global-set-key (kbd "C-x b") 'switch-to-buffer)
   (global-set-key (kbd "<C-tab>") 'consult-buffer)
-  (global-set-key (kbd "M-l") 'my/switch-to-buffer)
+  (global-set-key (kbd "M-l") 'consult-buffer)
   (global-set-key (kbd "<C-M-left>") 'rotate-frame)
   (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
   (global-set-key (kbd "<M-right>") 'other-window)
