@@ -482,7 +482,7 @@
   (add-hook 'org-mode-hook 'org-modern-mode)
   (define-key org-mode-map [mouse-1] 'org-cycle)
   (setq org-todo-keywords
-        '((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
+        '((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "BUSINESS TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
         org-support-shift-select t
         org-log-done t)
   (custom-set-faces
@@ -516,6 +516,7 @@
   (global-set-key (kbd "M-C-o") 'consult-recent-file)
   (global-set-key (kbd "C-S-f") 'consult-line)
   (global-set-key (kbd "M-s C-SPC") 'my/xah-select-line)
+	(global-set-key (kbd "C-M-.") 'repeat)
   (global-unset-key (kbd "C-o"))
   (global-unset-key (kbd "M-o"))
   (global-set-key (kbd "C-o") 'project-find-file)
@@ -578,10 +579,6 @@
   :straight t
   :ensure t)
 
-(use-package neotree
-  :straight t
-  :defer t)
-
 (use-package doom-modeline
   :demand t
   :config
@@ -590,7 +587,32 @@
 
 (use-package magit
   :commands (magit-status-quick magit-status)
+	:init
+	(defun my/faster-magit ()
+		"Magit without things"
+		;; ;; revision
+		(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-notes)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-tag)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
+		(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
+		(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
   :config
+	(my/faster-magit)
   (setq magit-process-popup-time 0)
 
   (defun my/check-magit-process-is-active ()
@@ -720,6 +742,13 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package cycle-buffer
 	:bind
 	("<C-tab>" . cycle-buffer))
+
+(use-package desktop
+	:straight (:type built-in)
+	:hook
+	(after-init . desktop-save-mode)
+	:config
+	(desktop-change-dir "~/.emacs.d/desktop/"))
 
 ;; end of init
 

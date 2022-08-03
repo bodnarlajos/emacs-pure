@@ -397,6 +397,6 @@ Position the cursor at its beginning, according to the current mode."
 (defun my/open-emacs-config ()
 	"Open the emacs.d/progs/my-const.el file"
 	(interactive)
-	(call-interactively (find-file (concat user-emacs-directory "progs/my-const.el"))))
+	(find-file (concat user-emacs-directory "progs/init.el")))
 
 (provide 'my-defun)	
