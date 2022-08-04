@@ -222,7 +222,21 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
+	(defvar consult--source-tab-line-buffer
+		`(:name     "Tab Buffer"
+					      :narrow   ?b
+                :category buffer
+                :face     consult-buffer
+                :history  buffer-name-history
+                :state    ,#'consult--buffer-state
+                :default  t
+                :items
+                ,(lambda () (mapcar 'buffer-name (tab-line-tabs-window-buffers))))
+    "Tab-line Buffer candidate source for `consult-buffer'.")
+
   (custom-set-variables
+   '(consult-buffer-sources
+     '(consult--source-tab-line-buffer consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-recent-file consult--source-bookmark consult--source-project-buffer consult--source-project-recent-file))
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
@@ -312,8 +326,8 @@
   (global-corfu-mode +1))
 
 (use-package corfu-doc
-	:init
-	(add-to-list 'corfu-mode-hook #'corfu-doc-mode))
+  :init
+  (add-to-list 'corfu-mode-hook #'corfu-doc-mode))
 
 (use-package savehist
   :demand t
@@ -507,7 +521,7 @@
   (global-unset-key (kbd "M-l"))
   (global-set-key (kbd "C-x b") 'switch-to-buffer)
   (global-set-key (kbd "<C-tab>") 'consult-buffer)
-  (global-set-key (kbd "M-l") 'my/switch-to-buffer)
+  (global-set-key (kbd "M-l") 'consult-buffer)
   (global-set-key (kbd "<C-M-left>") 'rotate-frame)
   (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
   (global-set-key (kbd "<M-right>") 'other-window)
@@ -536,6 +550,7 @@
   (global-visual-line-mode t)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
+  (setq indent-tabs-mode nil)
 
   (with-eval-after-load 'ediff
     (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
@@ -612,6 +627,7 @@
 		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
   :config
+	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil)
 	(my/faster-magit)
   (setq magit-process-popup-time 0)
 
@@ -631,6 +647,7 @@
   (defun my/magit-status ()
     "Open a magit directory."
     (interactive)
+		(tab-bar-new-tab)
     (let ((current-prefix-arg '(4)))
       (call-interactively #'magit-status-quick)
       (delete-other-windows)))
@@ -739,16 +756,25 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:init
 	(global-tab-line-mode +1))
 
-(use-package cycle-buffer
-	:bind
-	("<C-tab>" . cycle-buffer))
-
 (use-package desktop
 	:straight (:type built-in)
 	:hook
 	(after-init . desktop-save-mode)
 	:config
 	(desktop-change-dir "~/.emacs.d/desktop/"))
+
+(use-package hl-line+
+  :hook
+  (window-scroll-functions . hl-line-flash)
+  (focus-in . hl-line-flash)
+  (post-command . hl-line-flash)
+
+  :custom
+  (global-hl-line-mode nil)
+  (hl-line-flash-show-period 0.5)
+  (hl-line-inhibit-highlighting-for-modes '(dired-mode))
+  (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
+  )
 
 ;; end of init
 

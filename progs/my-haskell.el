@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'my-dev)
-
 (use-package haskell-mode
 	:straight t
 	:init
@@ -15,7 +13,7 @@
   (setq haskell-compile-cabal-build-command "stack build --fast")
 	:hook
 	(haskell-mode . (lambda ()
-										(eglot-ensure)
+										(lsp)
 										(local-set-key (kbd "C-c C-c") 'my/haskell-compile))))
 
 (use-package lsp-haskell)
