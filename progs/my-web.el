@@ -1,17 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'my-dev)
-
 (use-package js2-mode)
 (use-package typescript-mode
 	:init
-	(add-hook 'typescript-mode-hook #'eglot-ensure))
+	(add-hook 'typescript-mode-hook #'lsp))
 (use-package css-mode)
 (use-package less-css-mode)
 (use-package scss-mode)
 (use-package web-mode
 	:init
-	(add-hook 'web-mode-hook #'eglot-ensure)
+	(add-hook 'web-mode-hook #'lsp)
 	:config
 	(add-hook 'html-mode-hook 'web-mode)
 	(add-hook 'web-mode-hook (lambda ()
