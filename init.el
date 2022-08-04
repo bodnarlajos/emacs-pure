@@ -629,8 +629,6 @@
   :config
 	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil)
 	(my/faster-magit)
-  (setq magit-process-popup-time 0)
-
   (defun my/check-magit-process-is-active ()
     "T."
     (interactive)
