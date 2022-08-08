@@ -39,6 +39,9 @@
 	("M-s l" . lsp-find-references)
 	("M-s p" . lsp-ui-peek-find-references)
 	("M-s i" . lsp-find-implementation)
+	("M-s c" . lsp-execute-code-action)
+	("M-s p" . lsp-ui-doc-show)
+	("<M-left>" . lsp-ui-doc-show)
 	:config
 	(setq lsp-auto-guess-root t)
   (setq lsp-restart 'auto-restart)
@@ -73,12 +76,11 @@
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
 	 '(lsp-ui-sideline-enable t)
+	 '(lsp-ui-sideline-show-symbol t)
 	 '(lsp-ui-peek-enable nil)))
 
 (global-eldoc-mode +1)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
-
-(my/start/restclient)
 
 (defun my/append-cape-to-capf ()
 	"T."

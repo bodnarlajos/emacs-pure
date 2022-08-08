@@ -14,7 +14,6 @@
  '(standard-indent 2)
  '(tab-bar-close-button-show nil)
  '(tab-bar-new-button-show nil)
- '(tab-bar-new-tab-choice t)
  '(tab-line-close-button-show nil)
  '(tab-line-new-button-show nil)
  '(tool-bar-mode nil)

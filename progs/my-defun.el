@@ -64,12 +64,6 @@
 			(setq inlist (cdr inlist)))
 		result))
 
-(defun my/start/restclient ()
-	"Start restclient"
-	(interactive)
-	(straight-use-package 'restclient)
-	(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
-
 (defun my/make-frame-readonly ()
 	"Make the frame readnoly
   It means that you can't switch the buffer"

@@ -645,7 +645,6 @@
   (defun my/magit-status ()
     "Open a magit directory."
     (interactive)
-		(tab-bar-new-tab)
     (let ((current-prefix-arg '(4)))
       (call-interactively #'magit-status-quick)
       (delete-other-windows)))
@@ -737,8 +736,15 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:straight (:type built-in)
 	:init
 	(tab-bar-mode +1)
+	(defun my/open/new-tab-with-file ()
+		"Open the file in new tab"
+		(interactive)
+		(tab-bar-new-tab)
+		(my/start/menu)
+		(tab-line-switch-to-prev-tab)
+		(bury-buffer))
 	:bind
-	("M-m t t" . tab-bar-new-tab)
+	("M-m t t" . my/open/new-tab-with-file)
 	("M-m t n" . tab-bar-switch-to-next-tab)
 	("M-m t x" . tab-bar-close-tab))
 
@@ -773,6 +779,17 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   (hl-line-inhibit-highlighting-for-modes '(dired-mode))
   (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
   )
+
+(use-package plz
+	:init
+	(defun my/plz-response (body)
+		"Open a plzX buffer and write the response in to it"
+		(let ((b (get-buffer-create "plz-response")))
+			(switch-to-buffer b)
+			(insert (format-time-string "%Y_%m_%d_%H_%M_%S"))
+			(insert "\n\n")
+			(insert body)
+			(insert "\n\n"))))
 
 ;; end of init
 
