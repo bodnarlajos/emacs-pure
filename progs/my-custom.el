@@ -17,9 +17,11 @@
  '(tab-line-close-button-show nil)
  '(tab-line-new-button-show nil)
  '(tool-bar-mode nil)
+ '(magit-diff-refine-hunk 'all)
  '(standard-indent 2))
 
 (custom-set-faces
+ '(magit-section-highlight ((nil :inherit nil :background nil)))
  '(tab-bar ((t (:inherit mode-line))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button)))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))

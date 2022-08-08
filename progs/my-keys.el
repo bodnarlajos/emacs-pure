@@ -101,8 +101,12 @@
 
 (global-set-key (kbd "C-S-p") 'my/start/menu)
 
-(global-set-key (kbd "<f1>") 'window-toggle-side-windows)
-(global-set-key (kbd "<S-f1>") 'my/toggle-size-side-window-bottom)
+(global-set-key (kbd "<f1>") 'my/start/menu)
+(global-set-key (kbd "<S-f1>") 'my/open/new-tab-with-file)
+(global-set-key (kbd "<f2>") 'tab-line-switch-to-prev-tab)
+(global-set-key (kbd "<f3>") 'tab-line-switch-to-next-tab)
+(global-set-key (kbd "<f4>") 'bury-buffer)
+(global-set-key (kbd "<S-f4>") 'tab-bar-close-tab)
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)

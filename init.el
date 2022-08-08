@@ -628,20 +628,19 @@
 		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
 		(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
 		(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
 		;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+		;; (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
   :config
-	(set-face-attribute 'magit-section-highlight nil :inherit nil :background nil)
 	(my/faster-magit)
   (defun my/check-magit-process-is-active ()
     "T."
@@ -749,6 +748,12 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package tab-bar
 	:straight (:type built-in)
 	:init
+	(defun my/tab-bar-tab-name ()
+		"T."
+		(let ((count (length (frame-parameter (window-frame) 'tabs)))
+					(name (window-buffer (minibuffer-selected-window))))
+			(format "| %s |" name)))
+	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
@@ -772,14 +777,20 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package tab-line-mode
 	:straight (:type built-in)
 	:init
+	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
+		(format "|  %s  |" (buffer-name buffer)))
+	(setq tab-line-separator "")
+	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
 	(global-tab-line-mode +1))
 
 (use-package desktop
 	:straight (:type built-in)
 	:hook
 	(after-init . desktop-save-mode)
-	:config
-	(desktop-change-dir "~/.emacs.d/desktop/"))
+	:init
+	(defun my/open/desktop ()
+		"Open the saved destkop"
+		(desktop-change-dir "~/.emacs.d/desktop/")))
 
 (use-package hl-line+
   :hook

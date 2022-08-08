@@ -3,7 +3,6 @@
 (defun my/open/my-config ()
 	"Open my-config group configuration"
 	(interactive)
-	(tab-bar-new-tab)
 	(customize-group 'my/configs))
 
 (defun my/start/emacs ()
@@ -254,7 +253,7 @@ Version 2017-11-01"
 (defun my/kill-buffer-close-window ()
 	"Kill the current buffer and close the window"
 	(interactive)
-	(kill-buffer)
+	(bury-buffer)
 	(delete-window))
 
 (defun indent-buffer ()
