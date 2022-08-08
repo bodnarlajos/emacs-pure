@@ -21,11 +21,11 @@
 
 (custom-set-faces
  '(tab-bar ((t (:inherit mode-line))))
- '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style released-button)))))
+ '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button)))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
  '(tab-line ((t (:inherit mode-line))))
  '(tab-line-tab ((t (:inherit tab-line))))
- '(tab-line-tab-current ((t (:inherit tab-line-tab :box (:line-width (2 . 2) :style released-button)))))
+ '(tab-line-tab-current ((t (:inherit tab-line-tab :box (:line-width (2 . 2) :style flat-button)))))
  '(tab-line-tab-inactive ((t (:inherit mode-line-inactive))))
  '(fixed-pitch ((t (:inherit default))))
  '(fixed-pitch-serif ((t (:inherit default)))))

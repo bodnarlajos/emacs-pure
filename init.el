@@ -570,6 +570,20 @@
 
 (my/end-of-init)
 
+(use-package log-view
+	:straight (:type built-in)
+	:config
+	(define-key log-view-mode-map (kbd "<M-up>") 'log-view-msg-prev)
+	(define-key log-view-mode-map (kbd "<M-down>") 'log-view-msg-next)
+	(define-key log-view-mode-map (kbd "<S-left>") 'log-view-diff))
+
+(use-package vc-git
+	:straight (:type built-in)
+	:config
+	(define-key vc-git-log-view-mode-map (kbd "<M-up>") 'log-view-msg-prev)
+	(define-key vc-git-log-view-mode-map (kbd "<M-down>") 'log-view-msg-next)
+	(define-key vc-git-log-view-mode-map (kbd "<M-left>") 'log-view-diff))
+
 (use-package undo-tree
   :straight t
   :defer t
