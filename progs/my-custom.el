@@ -22,13 +22,14 @@
 
 (custom-set-faces
  '(magit-section-highlight ((nil :inherit nil :background nil)))
- '(tab-bar ((t (:inherit mode-line))))
- '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button)))))
+ '(tab-bar ((t (:inherit mode-line :overline t))))
+ '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button) :overline t :underline nil :weight bold))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
- '(tab-line ((t (:inherit mode-line))))
+ '(tab-line ((t (:inherit mode-line :box nil :overline t :underline t))))
  '(tab-line-tab ((t (:inherit tab-line))))
- '(tab-line-tab-current ((t (:inherit tab-line-tab :box (:line-width (2 . 2) :style flat-button)))))
+ '(tab-line-tab-current ((t (:inherit tab-line-tab :box (:line-width (2 . 2) :style flat-button) :overline t :underline nil :weight bold))))
  '(tab-line-tab-inactive ((t (:inherit mode-line-inactive))))
+ '(tab-line-tab-special ((t nil)))
  '(fixed-pitch ((t (:inherit default))))
  '(fixed-pitch-serif ((t (:inherit default)))))
 
