@@ -197,8 +197,40 @@
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
 
+(defun my/show-all ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-show-all))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-show-all)))
+
+(defun my/hide-all ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-hide-body))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-hide-all)))
+
+(defun my/hide-entry ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-hide-entry))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-hide-block)))
+
+(defun my/show-entry ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-show-entry))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-show-block)))
+
 (use-package rg
-  :init
+	:init
   (defun my/project/rg ()
     "T."
     (interactive)
@@ -206,6 +238,10 @@
       (if currProject
           (call-interactively 'rg-project)
         (call-interactively 'rg))))
+	:config
+	(add-hook 'rg-mode-hook (lambda ()
+																		 (setq-local outline-regexp "File:.+")
+																		 (outline-minor-mode +1)))
   :bind
   ("M-s r" . my/project/rg))
 
@@ -753,7 +789,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		"T."
 		(let ((count (length (frame-parameter (window-frame) 'tabs)))
 					(name (window-buffer (minibuffer-selected-window))))
-			(format "| %s |" name)))
+			(format "   %s |" name)))
 	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
@@ -779,7 +815,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:straight (:type built-in)
 	:init
 	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
-		(format "|  %s  |" (buffer-name buffer)))
+		(format "  %s /" (buffer-name buffer)))
 	(setq tab-line-separator "")
 	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
 	(global-tab-line-mode +1))
@@ -791,6 +827,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:init
 	(defun my/open/desktop ()
 		"Open the saved destkop"
+		(interactive)
 		(desktop-change-dir "~/.emacs.d/desktop/")))
 
 (use-package hl-line+
