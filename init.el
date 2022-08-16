@@ -788,8 +788,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	(defun my/tab-bar-tab-name ()
 		"T."
 		(let ((count (length (frame-parameter (window-frame) 'tabs)))
-					(name (window-buffer (minibuffer-selected-window))))
-			(format "   %s |" name)))
+					(name (buffer-name (window-buffer (minibuffer-selected-window)))))
+			(if (> (length name) 12)
+					(format " %s:  %s |" count (substring name 0 11))
+				(format " %s:  %s |" count name))))
 	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
