@@ -92,9 +92,10 @@
 (define-key my-prefix (kbd "p k") 'cape-keyword)
 (which-key-add-key-based-replacements "M-m p" "Complete functions")
 
-(define-key my-prefix (kbd "M-[") 'hs-show-all)
-(define-key my-prefix (kbd "M-]") 'hs-hide-all)
-(define-key my-prefix (kbd "]") 'hs-toggle-hiding)
+(define-key my-prefix (kbd "M-[") 'my/show-all)
+(define-key my-prefix (kbd "M-]") 'my/hide-all)
+(define-key my-prefix (kbd "]") 'my/hide-entry)
+(define-key my-prefix (kbd "[") 'my/show-entry)
 
 (define-key my-prefix (kbd "o") 'find-file)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
