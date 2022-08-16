@@ -612,7 +612,8 @@
   :demand t
   :config
   (doom-modeline-mode +1)
-  (setq doom-modeline-height 1))
+  (setq doom-modeline-height 42)
+	(setq doom-modeline-vcs-max-length 24))
 
 (use-package magit
   :commands (magit-status-quick magit-status)
@@ -763,9 +764,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		(tab-line-switch-to-prev-tab)
 		(bury-buffer))
 	:bind
-	("M-m t t" . my/open/new-tab-with-file)
-	("M-m t n" . tab-bar-switch-to-next-tab)
-	("M-m t x" . tab-bar-close-tab))
+	("M-RET t" . my/open/new-tab-with-file)
+	("M-RET n" . tab-bar-switch-to-next-tab)
+	("M-RET x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
 	:bind
@@ -811,10 +812,22 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		"Open a plzX buffer and write the response in to it"
 		(let ((b (get-buffer-create "plz-response")))
 			(switch-to-buffer b)
-			(insert (format-time-string "%Y_%m_%d_%H_%M_%S"))
+			(insert (format-time-string "%Y_%m_%d-%H_%M_%S"))
 			(insert "\n\n")
 			(insert body)
 			(insert "\n\n"))))
+
+(use-package go-translate
+	:commands gts-do-translate
+	:bind
+	("M-m M-o" . gts-do-translate)
+	:config
+	(setq gts-translate-list '(("en" "hu")))
+	(setq gts-default-translator
+				(gts-translator
+				 :picker (gts-prompt-picker)
+				 :engines (list (gts-bing-engine) (gts-google-engine))
+				 :render (gts-buffer-render))))
 
 ;; end of init
 
