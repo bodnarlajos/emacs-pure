@@ -392,4 +392,9 @@ Position the cursor at its beginning, according to the current mode."
 	(interactive)
 	(find-file (concat user-emacs-directory "init.el")))
 
+(defun my/open/scratch ()
+	"Open the scratch buffer"
+	(interactive)
+	(switch-to-buffer "*scratch*"))
+
 (provide 'my-defun)	

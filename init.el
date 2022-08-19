@@ -240,8 +240,8 @@
         (call-interactively 'rg))))
 	:config
 	(add-hook 'rg-mode-hook (lambda ()
-																		 (setq-local outline-regexp "File:.+")
-																		 (outline-minor-mode +1)))
+														(setq-local outline-regexp "File:.+")
+														(outline-minor-mode +1)))
   :bind
   ("M-s r" . my/project/rg))
 
@@ -258,21 +258,7 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
-	(defvar consult--source-tab-line-buffer
-		`(:name     "Tab Buffer"
-					      :narrow   ?b
-                :category buffer
-                :face     consult-buffer
-                :history  buffer-name-history
-                :state    ,#'consult--buffer-state
-                :default  t
-                :items
-                ,(lambda () (mapcar 'buffer-name (tab-line-tabs-window-buffers))))
-    "Tab-line Buffer candidate source for `consult-buffer'.")
-
   (custom-set-variables
-   '(consult-buffer-sources
-     '(consult--source-tab-line-buffer consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-recent-file consult--source-bookmark consult--source-project-buffer consult--source-project-recent-file))
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
@@ -789,22 +775,19 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		"T."
 		(let ((count (length (frame-parameter (window-frame) 'tabs)))
 					(name (buffer-name (window-buffer (minibuffer-selected-window)))))
-			(if (> (length name) 12)
-					(format " %s:  %s |" count (substring name 0 11))
-				(format " %s:  %s |" count name))))
+			(let ((newname (if (> (length name) 12) (substring name 0 11) name)))
+				(format "| %s:  %s |" count newname))))
 	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
 		(interactive)
 		(tab-bar-new-tab)
-		(my/start/menu)
-		(tab-line-switch-to-prev-tab)
-		(bury-buffer))
+		(my/start/menu))
 	:bind
-	("M-RET t" . my/open/new-tab-with-file)
-	("M-RET n" . tab-bar-switch-to-next-tab)
-	("M-RET x" . tab-bar-close-tab))
+	("M-RET" . my/open/new-tab-with-file)
+	("M-m t n" . tab-bar-switch-to-next-tab)
+	("M-m t x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
 	:bind
@@ -813,14 +796,14 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(use-package tab-line-mode
-	:straight (:type built-in)
-	:init
-	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
-		(format "  %s /" (buffer-name buffer)))
-	(setq tab-line-separator "")
-	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
-	(global-tab-line-mode +1))
+;; (use-package tab-line-mode
+;; 	:straight (:type built-in)
+;; 	:init
+;; 	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
+;; 		(format "  %s /" (buffer-name buffer)))
+;; 	(setq tab-line-separator "")
+;; 	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
+;; 	(global-tab-line-mode +1))
 
 (use-package desktop
 	:straight (:type built-in)
