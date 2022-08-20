@@ -37,7 +37,6 @@
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
 (define-key my-prefix (kbd "d") 'duplicate-line)
 
-(define-key my-prefix (kbd "x") 'execute-extended-command)
 
 (define-key my-prefix (kbd "g h") 'windmove-left)
 (define-key my-prefix (kbd "g l") 'windmove-right)
@@ -100,7 +99,7 @@
 (define-key my-prefix (kbd "o") 'find-file)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
 
-(global-set-key (kbd "C-S-p") 'my/start/menu)
+(global-set-key (kbd "M-RET") 'my/start/menu)
 
 (global-set-key (kbd "<f1>") 'my/start/menu)
 (global-set-key (kbd "<S-f1>") 'my/open/new-tab-with-file)

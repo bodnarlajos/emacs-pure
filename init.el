@@ -240,8 +240,8 @@
         (call-interactively 'rg))))
 	:config
 	(add-hook 'rg-mode-hook (lambda ()
-																		 (setq-local outline-regexp "File:.+")
-																		 (outline-minor-mode +1)))
+														(setq-local outline-regexp "File:.+")
+														(outline-minor-mode +1)))
   :bind
   ("M-s r" . my/project/rg))
 
@@ -329,7 +329,7 @@
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
-  (define-key embark-buffer-map (kbd "C-S-p") 'my/menu-base)
+  (define-key embark-buffer-map (kbd "M-RET") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -784,12 +784,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package tab-bar
 	:straight (:type built-in)
 	:init
-	(defun my/tab-bar-tab-name ()
-		"T."
-		(let ((count (length (frame-parameter (window-frame) 'tabs)))
-					(name (window-buffer (minibuffer-selected-window))))
-			(format "   %s |" name)))
-	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
+	(setq tab-bar-separator "   "
+				tab-bar-tab-hints t
+				tab-bar-tab-name-function 'tab-bar-tab-name-truncated
+				tab-bar-tab-name-truncated-max 24)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
@@ -799,9 +797,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		(tab-line-switch-to-prev-tab)
 		(bury-buffer))
 	:bind
-	("M-m t t" . my/open/new-tab-with-file)
-	("M-m t n" . tab-bar-switch-to-next-tab)
-	("M-m t x" . tab-bar-close-tab))
+	("M-m RET" . my/open/new-tab-with-file)
+	("M-m n" . tab-bar-switch-to-next-tab)
+	("M-m x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
 	:bind
