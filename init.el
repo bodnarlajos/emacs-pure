@@ -87,7 +87,7 @@
          ("RET" . vertico-directory-enter)
          ("C-i" . vertico-quick-insert)
          ("C-o" . vertico-quick-exit)
-         ("M-o" . kb/vertico-quick-embark)
+         ("M-m" . kb/vertico-quick-embark)
          ("M-G" . vertico-multiform-grid)
          ("M-F" . vertico-multiform-flat)
          ("M-R" . vertico-multiform-reverse)
@@ -258,21 +258,7 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
-	(defvar consult--source-tab-line-buffer
-		`(:name     "Tab Buffer"
-					      :narrow   ?b
-                :category buffer
-                :face     consult-buffer
-                :history  buffer-name-history
-                :state    ,#'consult--buffer-state
-                :default  t
-                :items
-                ,(lambda () (mapcar 'buffer-name (tab-line-tabs-window-buffers))))
-    "Tab-line Buffer candidate source for `consult-buffer'.")
-
-  (custom-set-variables
-   '(consult-buffer-sources
-     '(consult--source-tab-line-buffer consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-recent-file consult--source-bookmark consult--source-project-buffer consult--source-project-recent-file))
+	(custom-set-variables
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
@@ -323,7 +309,7 @@
 
 (use-package embark
   :bind
-  (("C-h e" . embark-act)         ;; pick some comfortable binding
+  (("M-m" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
@@ -596,7 +582,7 @@
   (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
   :bind
   (:map minibuffer-mode-map
-        ("M-e" . embark-act)
+        ("M-m" . embark-act)
         ("<C-tab>" . previous-line)
         ("M-l" . previous-line)
         ("M-j" . next-line)
@@ -741,7 +727,7 @@
           (smerge-mode 1))))
     (add-hook 'find-file-hook #'modi/enable-smerge-maybe :append))
   :config
-  (which-key-add-key-based-replacements "M-m m" "Smerge")
+  (which-key-add-key-based-replacements "M-j m" "Smerge")
   ;; (defalias 'smerge-keep-upper 'smerge-keep-mine)
   ;; (defalias 'smerge-keep-lower 'smerge-keep-other)
   ;; (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
@@ -793,13 +779,11 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		"Open the file in new tab"
 		(interactive)
 		(tab-bar-new-tab)
-		(my/start/menu)
-		(tab-line-switch-to-prev-tab)
-		(bury-buffer))
+		(my/start/menu))
 	:bind
-	("M-m RET" . my/open/new-tab-with-file)
-	("M-m n" . tab-bar-switch-to-next-tab)
-	("M-m x" . tab-bar-close-tab))
+	("M-j RET" . my/open/new-tab-with-file)
+	("M-j n" . tab-bar-switch-to-next-tab)
+	("M-j x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
 	:bind
@@ -807,15 +791,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (when (file-exists-p custom-file)
   (load custom-file))
-
-(use-package tab-line-mode
-	:straight (:type built-in)
-	:init
-	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
-		(format "  %s /" (buffer-name buffer)))
-	(setq tab-line-separator "")
-	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
-	(global-tab-line-mode +1))
 
 (use-package desktop
 	:straight (:type built-in)
