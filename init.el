@@ -564,6 +564,7 @@
   (define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
   (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
   (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+  (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
   (setq standard-indent 2)
   (save-place-mode +1)
   (setq use-dialog-box nil)
@@ -634,7 +635,8 @@
   :demand t
   :config
   (doom-modeline-mode +1)
-  (setq doom-modeline-height 1))
+  (setq doom-modeline-height 42)
+	(setq doom-modeline-vcs-max-length 24))
 
 (use-package magit
   :commands (magit-status-quick magit-status)
@@ -821,10 +823,21 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		"Open a plzX buffer and write the response in to it"
 		(let ((b (get-buffer-create "plz-response")))
 			(switch-to-buffer b)
-			(insert (format-time-string "%Y_%m_%d_%H_%M_%S"))
+			(insert (format-time-string "%Y_%m_%d-%H_%M_%S"))
 			(insert "\n\n")
 			(insert body)
 			(insert "\n\n"))))
+
+(use-package go-translate
+	:commands gts-do-translate
+	:config
+	(define-key my-prefix (kbd "M-o") 'gts-do-translate)
+	(setq gts-translate-list '(("en" "hu")))
+	(setq gts-default-translator
+				(gts-translator
+				 :picker (gts-prompt-picker)
+				 :engines (list (gts-bing-engine) (gts-google-engine))
+				 :render (gts-buffer-render))))
 
 ;; end of init
 

@@ -96,21 +96,21 @@
 (define-key my-prefix (kbd "]") 'my/hide-entry)
 (define-key my-prefix (kbd "[") 'my/show-entry)
 
+(define-key my-prefix (kbd "M-j") 'execute-extended-command)
+
 (define-key my-prefix (kbd "o") 'find-file)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
 
 (global-set-key (kbd "M-RET") 'my/start/menu)
 
 (global-set-key (kbd "<f1>") 'my/start/menu)
-(global-set-key (kbd "<S-f1>") 'my/open/new-tab-with-file)
-(global-set-key (kbd "<f2>") 'tab-line-switch-to-prev-tab)
-(global-set-key (kbd "<f3>") 'tab-line-switch-to-next-tab)
-(global-set-key (kbd "<f4>") 'bury-buffer)
-(global-set-key (kbd "<S-f4>") 'tab-bar-close-tab)
+(global-unset-key (kbd "<f2>"))
+(define-key key-translation-map (kbd "<f2>") (kbd "M-k"))
+(global-set-key (kbd "<f3>") 'my/open/new-tab-with-file)
+(global-set-key (kbd "<f4>") 'tab-bar-close-tab)
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (define-key project-prefix-map (kbd "C-c C-c") 'project-compile)

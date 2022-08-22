@@ -116,7 +116,7 @@
 		(setq buffer-offer-save t)
 		(org-mode)
 		(auto-save-mode +1)
-		(let ((datestr (format-time-string "%Y_%m_%d_%H_%M_%S")))
+		(let ((datestr (format-time-string "%Y%m%d_%H%M%S")))
 			(write-file (concat my/temp-dir "/" (buffer-name) "." datestr ".org")))
 		$buf
 		))
@@ -131,7 +131,7 @@
 		(setq buffer-offer-save t)
 		$buf
 		(auto-save-mode +1)
-		(let ((datestr (format-time-string "%Y_%m_%d_%H_%M_%S")))
+		(let ((datestr (format-time-string "%Y%m%d_%H%M%S")))
 			(write-file (concat my/temp-dir "/" (buffer-name) "." datestr ".txt")))
 		))
 
