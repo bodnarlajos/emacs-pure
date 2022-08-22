@@ -87,7 +87,7 @@
          ("RET" . vertico-directory-enter)
          ("C-i" . vertico-quick-insert)
          ("C-o" . vertico-quick-exit)
-         ("M-o" . kb/vertico-quick-embark)
+         ("M-m" . kb/vertico-quick-embark)
          ("M-G" . vertico-multiform-grid)
          ("M-F" . vertico-multiform-flat)
          ("M-R" . vertico-multiform-reverse)
@@ -309,13 +309,13 @@
 
 (use-package embark
   :bind
-  (("C-h e" . embark-act)         ;; pick some comfortable binding
+  (("M-m" . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
   :init
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
-  (define-key embark-buffer-map (kbd "C-S-p") 'my/menu-base)
+  (define-key embark-buffer-map (kbd "M-RET") 'my/menu-base)
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -564,6 +564,7 @@
   (define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
   (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
   (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
+  (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
   (setq standard-indent 2)
   (save-place-mode +1)
   (setq use-dialog-box nil)
@@ -582,7 +583,7 @@
   (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
   :bind
   (:map minibuffer-mode-map
-        ("M-e" . embark-act)
+        ("M-m" . embark-act)
         ("<C-tab>" . previous-line)
         ("M-l" . previous-line)
         ("M-j" . next-line)
@@ -728,7 +729,7 @@
           (smerge-mode 1))))
     (add-hook 'find-file-hook #'modi/enable-smerge-maybe :append))
   :config
-  (which-key-add-key-based-replacements "M-m m" "Smerge")
+  (which-key-add-key-based-replacements "M-j m" "Smerge")
   ;; (defalias 'smerge-keep-upper 'smerge-keep-mine)
   ;; (defalias 'smerge-keep-lower 'smerge-keep-other)
   ;; (defalias 'smerge-diff-base-upper 'smerge-diff-base-mine)
@@ -771,13 +772,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package tab-bar
 	:straight (:type built-in)
 	:init
-	(defun my/tab-bar-tab-name ()
-		"T."
-		(let ((count (length (frame-parameter (window-frame) 'tabs)))
-					(name (buffer-name (window-buffer (minibuffer-selected-window)))))
-			(let ((newname (if (> (length name) 12) (substring name 0 11) name)))
-				(format "| %s:  %s |" count newname))))
-	(setq tab-bar-tab-name-function 'my/tab-bar-tab-name)
+	(setq tab-bar-separator "   "
+				tab-bar-tab-hints t
+				tab-bar-tab-name-function 'tab-bar-tab-name-truncated
+				tab-bar-tab-name-truncated-max 24)
 	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
@@ -785,9 +783,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 		(tab-bar-new-tab)
 		(my/start/menu))
 	:bind
-	("M-RET" . my/open/new-tab-with-file)
-	("M-m t n" . tab-bar-switch-to-next-tab)
-	("M-m t x" . tab-bar-close-tab))
+	("M-j RET" . my/open/new-tab-with-file)
+	("M-j n" . tab-bar-switch-to-next-tab)
+	("M-j x" . tab-bar-close-tab))
 
 (use-package cycle-buffer
 	:bind
@@ -795,15 +793,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (when (file-exists-p custom-file)
   (load custom-file))
-
-;; (use-package tab-line-mode
-;; 	:straight (:type built-in)
-;; 	:init
-;; 	(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
-;; 		(format "  %s /" (buffer-name buffer)))
-;; 	(setq tab-line-separator "")
-;; 	(setq tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
-;; 	(global-tab-line-mode +1))
 
 (use-package desktop
 	:straight (:type built-in)
@@ -841,9 +830,8 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package go-translate
 	:commands gts-do-translate
-	:bind
-	("M-m M-o" . gts-do-translate)
 	:config
+	(define-key my-prefix (kbd "M-o") 'gts-do-translate)
 	(setq gts-translate-list '(("en" "hu")))
 	(setq gts-default-translator
 				(gts-translator

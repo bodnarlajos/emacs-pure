@@ -13,8 +13,8 @@
 	:config
 	(add-hook 'html-mode-hook 'web-mode)
 	(add-hook 'web-mode-hook (lambda ()
-														 (message "M-m ]")
-														 (local-set-key (kbd "M-m ]") 'web-mode-fold-or-unfold))))
+														 (message "M-j ]")
+														 (local-set-key (kbd "M-j ]") 'web-mode-fold-or-unfold))))
 
 (add-to-list 'auto-mode-alist '("\\.julius\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.hamlet\\'" . web-mode))

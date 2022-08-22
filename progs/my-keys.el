@@ -30,26 +30,25 @@
   )
 
 (define-prefix-command 'my-prefix)
-(global-set-key (kbd "M-m") 'my-prefix)
+(global-set-key (kbd "M-j") 'my-prefix)
 (define-key my-prefix (kbd "(") 'kmacro-start-macro)
 (define-key my-prefix (kbd ")") 'kmacro-end-macro)
 (define-key my-prefix (kbd ">") 'kmacro-call-macro)
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
 (define-key my-prefix (kbd "d") 'duplicate-line)
 
-(define-key my-prefix (kbd "x") 'execute-extended-command)
 
 (define-key my-prefix (kbd "g h") 'windmove-left)
 (define-key my-prefix (kbd "g l") 'windmove-right)
 (define-key my-prefix (kbd "g j") 'windmove-up)
 (define-key my-prefix (kbd "g k") 'windmove-down)
-(which-key-add-key-based-replacements "M-m g" "Move window")
+(which-key-add-key-based-replacements "M-j g" "Move window")
 
 (define-key my-prefix (kbd "k h") 'windmove-delete-left)
 (define-key my-prefix (kbd "k l") 'windmove-delete-right)
 (define-key my-prefix (kbd "k j") 'windmove-delete-up)
 (define-key my-prefix (kbd "k k") 'windmove-delete-down)
-(which-key-add-key-based-replacements "M-m k" "Delete window")
+(which-key-add-key-based-replacements "M-j k" "Delete window")
 
 (define-key my-prefix (kbd "w |") 'split-window-vertically)
 (define-key my-prefix (kbd "w -") 'split-window-horizontally)
@@ -57,7 +56,7 @@
 (define-key my-prefix (kbd "w l") 'windmove-swap-states-right)
 (define-key my-prefix (kbd "w j") 'windmove-swap-states-up)
 (define-key my-prefix (kbd "w k") 'windmove-swap-states-down)
-(which-key-add-key-based-replacements "M-m w" "Split window")
+(which-key-add-key-based-replacements "M-j w" "Split window")
 
 (define-key my-prefix (kbd "a") 'async-shell-command)
 (define-key my-prefix (kbd "A") 'project-async-shell-command)
@@ -67,11 +66,11 @@
 (define-key my-prefix (kbd "f k") 'delete-frame)
 (define-key my-prefix (kbd "f c") 'make-frame)
 (define-key my-prefix (kbd "f r") 'my/make-frame-readonly)
-(which-key-add-key-based-replacements "M-m f" "Frame functions")
+(which-key-add-key-based-replacements "M-j f" "Frame functions")
 
 (define-key my-prefix (kbd "s l") 'my/xah-select-line)
 (define-key my-prefix (kbd "s c") 'my/copy-line)
-(which-key-add-key-based-replacements "M-m s" "Select functions")
+(which-key-add-key-based-replacements "M-j s" "Select functions")
 
 (define-key my-prefix (kbd "2") 'flycheck-list-errors)
 (define-key my-prefix (kbd "T") 'transpose-frame)
@@ -83,35 +82,35 @@
 (define-key my-prefix (kbd "e c") 'consult-register-store)
 (define-key my-prefix (kbd "e r") 'consult-register-load)
 (define-key my-prefix (kbd "e f") 'isearch-forward)
-(which-key-add-key-based-replacements "M-m e" "Edit functions")
+(which-key-add-key-based-replacements "M-j e" "Edit functions")
 
 (define-key my-prefix (kbd "p f") 'cape-file)
 (define-key my-prefix (kbd "p d") 'cape-dabbrev)
 (define-key my-prefix (kbd "p l") 'cape-line)
 (define-key my-prefix (kbd "p s") 'cape-symbol)
 (define-key my-prefix (kbd "p k") 'cape-keyword)
-(which-key-add-key-based-replacements "M-m p" "Complete functions")
+(which-key-add-key-based-replacements "M-j p" "Complete functions")
 
 (define-key my-prefix (kbd "M-[") 'my/show-all)
 (define-key my-prefix (kbd "M-]") 'my/hide-all)
 (define-key my-prefix (kbd "]") 'my/hide-entry)
 (define-key my-prefix (kbd "[") 'my/show-entry)
 
+(define-key my-prefix (kbd "M-j") 'execute-extended-command)
+
 (define-key my-prefix (kbd "o") 'find-file)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
 
-(global-set-key (kbd "C-S-p") 'my/start/menu)
+(global-set-key (kbd "M-RET") 'my/start/menu)
 
 (global-set-key (kbd "<f1>") 'my/start/menu)
-(global-set-key (kbd "<S-f1>") 'my/open/new-tab-with-file)
-(global-set-key (kbd "<f2>") 'tab-line-switch-to-prev-tab)
-(global-set-key (kbd "<f3>") 'tab-line-switch-to-next-tab)
-(global-set-key (kbd "<f4>") 'bury-buffer)
-(global-set-key (kbd "<S-f4>") 'tab-bar-close-tab)
+(global-unset-key (kbd "<f2>"))
+(define-key key-translation-map (kbd "<f2>") (kbd "M-k"))
+(global-set-key (kbd "<f3>") 'my/open/new-tab-with-file)
+(global-set-key (kbd "<f4>") 'tab-bar-close-tab)
 
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "C-S-k") 'my/kill-buffer-close-window)
 (global-set-key (kbd "C-S-o") 'project-find-file)
 (global-set-key (kbd "M-;") 'my/comment-uncomment-line)
 (define-key project-prefix-map (kbd "C-c C-c") 'project-compile)
