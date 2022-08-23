@@ -258,7 +258,7 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
-	(custom-set-variables
+  (custom-set-variables
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
@@ -542,7 +542,7 @@
   (global-unset-key (kbd "C-x b"))
   (global-unset-key (kbd "M-l"))
   (global-set-key (kbd "C-x b") 'switch-to-buffer)
-  (global-set-key (kbd "<C-tab>") 'consult-buffer)
+  (global-set-key (kbd "<C-tab>") 'other-window)
   (global-set-key (kbd "M-l") 'consult-buffer)
   (global-set-key (kbd "<C-M-left>") 'rotate-frame)
   (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
@@ -636,7 +636,7 @@
   :config
   (doom-modeline-mode +1)
   (setq doom-modeline-height 42)
-	(setq doom-modeline-vcs-max-length 24))
+	(setq doom-modeline-vcs-max-length 32)) ;; because the "feature/" is there everywhere :)
 
 (use-package magit
   :commands (magit-status-quick magit-status)
@@ -787,17 +787,11 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	("M-j n" . tab-bar-switch-to-next-tab)
 	("M-j x" . tab-bar-close-tab))
 
-(use-package cycle-buffer
-	:bind
-	("<C-tab>" . cycle-buffer))
-
 (when (file-exists-p custom-file)
   (load custom-file))
 
 (use-package desktop
 	:straight (:type built-in)
-	:hook
-	(after-init . desktop-save-mode)
 	:init
 	(defun my/open/desktop ()
 		"Open the saved destkop"
@@ -838,6 +832,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :picker (gts-prompt-picker)
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
+
+(use-package zoom
+	:init
+	(zoom-mode +1))
 
 ;; end of init
 

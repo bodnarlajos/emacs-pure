@@ -20,12 +20,17 @@
  '(magit-diff-refine-hunk 'all)
  '(standard-indent 2))
 
+
 (custom-set-faces
  '(magit-section-highlight ((nil :inherit nil :background nil)))
- '(tab-bar ((t (:inherit mode-line :overline t))))
+ '(tab-bar ((t (:inherit mode-line-inactive :overline t))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button) :overline t :underline nil :weight bold))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
  '(fixed-pitch ((t (:inherit default))))
  '(fixed-pitch-serif ((t (:inherit default)))))
+
+;; (defvar my/foreground (face-attribute 'default :foreground))
+;; (set-face-attribute 'tab-bar nil :foreground my/foreground)
+;; (set-face-attribute 'tab-line nil :foreground my/foreground)
 
 (provide 'my-custom)
