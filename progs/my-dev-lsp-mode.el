@@ -47,13 +47,6 @@
   (setq lsp-restart 'auto-restart)
   (setq read-process-output-max (* 1024 1024)) ;; 1MB
   (setq lsp-idle-delay 0.5)
-	(custom-set-variables
-	 '(lsp-disabled-clients
-		 '(eslint html-ls)))
-	(setq lsp-client-packages '(lsp-angular lsp-javascript lsp-eslint lsp-css lsp-xml lsp-java lsp-json lsp-haskell lsp-csharp lsp-html lsp-javascript lsp-eslint)
-				lsp-headerline-breadcrumb-enable nil
-				lsp-completion-provider :none
-				lsp-enable-snippet nil)
 	(add-hook 'lsp-mode-hook
 						(lambda ()
 							(display-line-numbers-mode +1)
