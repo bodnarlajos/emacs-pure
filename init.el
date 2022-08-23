@@ -57,6 +57,8 @@
 (use-package transpose-frame)
 (use-package dired-single)
 (use-package which-key)
+(use-package hydra)
+(use-package pretty-hydra)
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
