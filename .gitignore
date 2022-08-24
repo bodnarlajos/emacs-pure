@@ -1,4 +1,14 @@
 eln*
+url
+custom.new*
+last-theme
+places
+history
+*#
+*.eld
+.dap-breakpoints
+eclipse.jdt*
+.mc*
 omnisharp
 elpa
 auto-save-list
