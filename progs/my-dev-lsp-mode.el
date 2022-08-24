@@ -106,6 +106,7 @@
 	 '(lsp-ui-imenu-enable nil)
 	 '(lsp-ui-sideline-enable t)
 	 '(lsp-ui-sideline-show-symbol t)
+	 '(lsp-headerline-breadcrumb-enable nil)
 	 '(lsp-ui-peek-enable nil)))
 
 (global-eldoc-mode +1)
