@@ -241,6 +241,7 @@
           (call-interactively 'rg-project)
         (call-interactively 'rg))))
 	:config
+	(setq rg-ignore-case nil)
 	(add-hook 'rg-mode-hook (lambda ()
 														(setq-local outline-regexp "File:.+")
 														(outline-minor-mode +1)))
@@ -522,6 +523,9 @@
   (setq org-todo-keywords
         '((sequence "TODO" "IN-PROGRESS" "INFO-NEEDED" "TESTING" "BUSINESS TESTING" "|" "DONE" "DELEGATED" "CANCELED"))
         org-support-shift-select t
+				org-adapt-indentation 'headline-data
+				org-hide-emphasis-markers t
+				org-startup-indented t
         org-log-done t)
   (custom-set-faces
    '(org-level-1 ((t (:inherit outline-1 :height 1.5 :box nil))))
@@ -834,6 +838,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :picker (gts-prompt-picker)
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
+
+(use-package zoom
+	:init
+	(zoom-mode t))
 
 ;; end of init
 
