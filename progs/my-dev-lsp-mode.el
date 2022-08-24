@@ -1,5 +1,41 @@
 ;; -*- lexical-binding: t -*-
 
+(defvar my/dap/working-directory "" "")
+(defvar my/dap/entry-point "" "")
+(defvar my/dap/name "" "")
+
+(defun my/dap/haskell-reg-auto ()
+	"T."
+	(interactive)
+	(message "my/dap/working-directory: %s" my/dap/working-directory )
+	(message "my/dap/entry-point: %s" my/dap/entry-point )
+	(message "my/dap/name: %s" my/dap/name )
+	(my/dap/haskell-reg my/dap/working-directory (concat my/dap/working-directory my/dap/entry-point) my/dap/name))
+
+(defun my/dap/haskell-reg (workdir entrypoint name)
+	"Register dap template based on my/dap/... variables"
+
+	(dap-register-debug-template name
+															 (list :type "hda"
+																		 :request "launch"
+																		 :name name
+																		 :internalConsoleOptions "openOnSessionStart"
+																		 ;; :workspace (lsp-find-session-folder (lsp-session) (buffer-file-name))
+																		 :workspace workdir
+																		 :startup entrypoint
+																		 :startupFunc ""
+																		 :startupArgs ""
+																		 :stopOnEntry t
+																		 :mainArgs ""
+																		 :ghciPrompt "H>>= "
+																		 :ghciInitialPrompt "Prelude>"
+																		 :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"
+																		 :ghciEnv (list :dummy "")
+																		 :logFile (concat workdir "debug.log")
+																		 :logLevel "WARNING"
+																		 :forceInspect nil))
+	)
+
 (defun my/setup-lsp-capf ()
 	(message "setup-lsp")
   (setq-local completion-at-point-functions
@@ -84,5 +120,17 @@
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-keyword)))
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-symbol)))
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-line)))))
+
+(use-package dap-mode
+	:init
+	(require 'dap-utils)
+	(dap-register-debug-provider
+	 "hda"
+	 (lambda (conf)
+		 (plist-put conf :dap-server-path (list "haskell-debug-adapter" "--hackage-version=0.0.35.0"))
+		 conf))
+	:config
+	(add-hook 'dap-stopped-hook
+          (lambda (arg) (call-interactively #'dap-hydra))))
 
 (provide 'my-dev-lsp-mode)
