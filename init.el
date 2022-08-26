@@ -843,10 +843,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
 
-(use-package zoom
-	:init
-	(zoom-mode t))
-
 ;; end of init
 
 (mapc (lambda (m)
