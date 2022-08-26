@@ -103,12 +103,6 @@
 
 (global-set-key (kbd "M-RET") 'my/start/menu)
 
-(global-set-key (kbd "<f1>") 'my/start/menu)
-(global-unset-key (kbd "<f2>"))
-(define-key key-translation-map (kbd "<f2>") (kbd "M-k"))
-(global-set-key (kbd "<f3>") 'my/open/new-tab-with-file)
-(global-set-key (kbd "<f4>") 'tab-bar-close-tab)
-
 (global-unset-key (kbd "C-a"))
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "C-S-o") 'project-find-file)
