@@ -22,6 +22,10 @@
 
 
 (custom-set-faces
+ '(header-line ((t (:inherit mode-line :height 0.5))))
+ '(org-fontify-todo-headline t)
+ '(org-fontify-whole-heading-line t)
+ '(org-hide-leading-stars t)
  '(magit-section-highlight ((nil :inherit nil :background nil)))
  '(tab-bar ((t (:inherit mode-line-inactive :overline t))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button) :overline t :underline nil :weight bold))))

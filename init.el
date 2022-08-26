@@ -546,13 +546,13 @@
   :config
   (global-unset-key (kbd "C-x C-b"))
   (global-unset-key (kbd "C-x b"))
-  (global-unset-key (kbd "M-l"))
+  (global-unset-key (kbd "M-RET"))
   (global-set-key (kbd "C-x b") 'switch-to-buffer)
 	(global-set-key (kbd "<f1>") 'my/start/menu)
 	(global-set-key (kbd "<f3>") 'my/open/new-tab-with-file)
 	(global-set-key (kbd "<f4>") 'tab-bar-close-tab)
   (global-set-key (kbd "<f2>") 'other-window)
-  (global-set-key (kbd "M-l") 'consult-buffer)
+  (global-set-key (kbd "M-RET") 'consult-buffer)
   (global-set-key (kbd "<C-M-left>") 'rotate-frame)
   (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
   (global-set-key (kbd "<M-right>") 'other-window)
@@ -593,11 +593,7 @@
   (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
   :bind
   (:map minibuffer-mode-map
-        ("M-m" . embark-act)
-        ("<C-tab>" . previous-line)
-        ("M-l" . previous-line)
-        ("M-j" . next-line)
-        ("M-k" . exit-minibuffer)))
+        ("M-m" . embark-act)))
 
 (blink-cursor-mode 0)
 
