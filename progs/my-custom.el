@@ -23,6 +23,9 @@
 
 (custom-set-faces
  '(header-line ((t (:inherit mode-line :height 0.5))))
+ '(org-fontify-todo-headline t)
+ '(org-fontify-whole-heading-line t)
+ '(org-hide-leading-stars t)
  '(magit-section-highlight ((nil :inherit nil :background nil)))
  '(tab-bar ((t (:inherit mode-line-inactive :overline t))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (2 . 2) :style flat-button) :overline t :underline nil :weight bold))))
@@ -33,5 +36,29 @@
 ;; (defvar my/foreground (face-attribute 'default :foreground))
 ;; (set-face-attribute 'tab-bar nil :foreground my/foreground)
 ;; (set-face-attribute 'tab-line nil :foreground my/foreground)
+
+(defun my/tab-bar-tab-name-truncated ()
+  "Generate tab name from the buffer of the selected window.
+Truncate it to the length specified by `tab-bar-tab-name-truncated-max'.
+Append ellipsis `tab-bar-tab-name-ellipsis' in this case."
+  (let ((tab-name (buffer-name (window-buffer (minibuffer-selected-window)))))
+    (if (< (length tab-name) tab-bar-tab-name-truncated-max)
+        tab-name
+      (propertize (truncate-string-to-width
+                   tab-name tab-bar-tab-name-truncated-max nil nil
+                   tab-bar-tab-name-ellipsis)
+                  'help-echo tab-name))))
+
+(defun my/tab-bar-tab-name-format-default (tab i)
+  (let ((current-p (eq (car tab) 'current-tab)))
+    (propertize
+     (concat (if tab-bar-tab-hints (format " -[%d]- " i) "")
+             (alist-get 'name tab)
+             (or (and tab-bar-close-button-show
+                      (not (eq tab-bar-close-button-show
+                               (if current-p 'non-selected 'selected)))
+                      tab-bar-close-button)
+                 ""))
+     'face (funcall tab-bar-tab-face-function tab))))
 
 (provide 'my-custom)
