@@ -12,7 +12,6 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-
 (let ((my-load-file
        (expand-file-name (concat user-emacs-directory "progs"))))
   (add-to-list 'load-path my-load-file))
@@ -573,6 +572,7 @@
   (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
   (setq standard-indent 2)
   (save-place-mode +1)
+	(setq-default header-line-format "")
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
   (global-auto-revert-mode 1)
