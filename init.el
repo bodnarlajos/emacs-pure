@@ -808,8 +808,16 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :hook
   (window-scroll-functions . hl-line-flash)
   (focus-in . hl-line-flash)
-  (post-command . hl-line-flash)
-
+  ;; (post-command . hl-line-flash)
+	:bind
+	("<M-f2>" . hl-line-flash)
+	:init
+	(defun my/flash-and-quit ()
+		"T."
+		(hl-line-flash)
+		(keyboard-quit))
+	:config
+	(global-set-key [escape] 'my/flash-and-quit)
   :custom
   (global-hl-line-mode nil)
   (hl-line-flash-show-period 0.5)
@@ -830,15 +838,18 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package go-translate
 	:commands gts-do-translate
+	:bind
+	("<M-f1>" . gts-do-translate)
 	:config
 	(define-key my-prefix (kbd "M-o") 'gts-do-translate)
 	(setq gts-translate-list '(("en" "hu")))
+	;; habkker
 	(setq gts-default-translator
 				(gts-translator
 				 :picker (gts-prompt-picker)
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
-
+(use-package ef-themes)
 ;; end of init
 
 (mapc (lambda (m)
