@@ -839,6 +839,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
 
+
+(use-package ef-themes
+  :straight (ef-themes :type git :host github :repo "protesilaos/ef-themes"))
+
 ;; end of init
 
 (mapc (lambda (m)
