@@ -11,6 +11,7 @@
 (defcustom my/const/git-gui-exe--path "/usr/bin/git" "" :type 'string :group 'my/configs)
 (defcustom my/modules '(my-custom my-prog my-dev my-haskell my-web) "The modules, what you use" :type '(list symbol) :group 'my/configs)
 (defcustom my/menu-items '(("My-config" . my/open/my-config) ("Open desktop" . my/open/desktop) ("*Scratch*" . (switch-to-buffer "*scratch*")) ("Notes" . my/open-notes) ("VC" . vc-dir) ("Git" . my/goto-magit) ("Files" . project-find-file) ("Ripgrep" . rg) ("Open file" . find-file) ("Buffers" . consult-buffer)) "My-config menu items" :type '(alist :key-type string :value-type function) :group 'my/configs)
+(defcustom my/bloated-hook '() "The bloated modes, functions" :type '(repeat function) :group 'my/configs)
 
 ;; end script of init
 (defun my/end-of-init ()
