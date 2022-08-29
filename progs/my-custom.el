@@ -22,7 +22,7 @@
 
 
 (custom-set-faces
- '(header-line ((t (:inherit mode-line :height 0.5))))
+ '(header-line ((t (:inherit mode-line :height 0.8))))
  '(org-fontify-todo-headline t)
  '(org-fontify-whole-heading-line t)
  '(org-hide-leading-stars t)

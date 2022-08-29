@@ -12,6 +12,14 @@
 	(message "my/dap/name: %s" my/dap/name )
 	(my/dap/haskell-reg my/dap/working-directory (concat my/dap/working-directory my/dap/entry-point) my/dap/name))
 
+(defun my/dap/haskell-reg-auto-with-entry (name entry-point)
+	"T."
+	(interactive "sName: \nsEntry point: ")
+	(message "my/dap/working-directory: %s" my/dap/working-directory )
+	(message "my/dap/entry-point: %s" entry-point )
+	(message "my/dap/name: %s" name )
+	(my/dap/haskell-reg my/dap/working-directory (concat my/dap/working-directory entry-point) name))
+
 (defun my/dap/haskell-reg (workdir entrypoint name)
 	"Register dap template based on my/dap/... variables"
 
