@@ -570,6 +570,7 @@
   (setq standard-indent 2)
   (save-place-mode +1)
 	(setq-default header-line-format "")
+	(setq-default auto-save-interval 30)
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
 	(setq-default header-line-format "")
