@@ -61,8 +61,6 @@
 	(flycheck-add-mode 'javascript-eslint 'js2-mode)
 	(flycheck-mode +1))
 
-(use-package csharp-mode)
-
 (use-package lsp-mode
 	:hook ((c-mode          ; clangd
           c++-mode        ; clangd
@@ -81,7 +79,6 @@
   :commands lsp
 	:bind
 	("M-s l" . lsp-find-references)
-	("M-s p" . lsp-ui-peek-find-references)
 	("M-s i" . lsp-find-implementation)
 	("M-s c" . lsp-execute-code-action)
 	("M-s p" . lsp-ui-doc-show)
@@ -109,6 +106,9 @@
 	:hook
 	(lsp-mode . lsp-ui-mode)
 	:config
+	(custom-set-faces
+	 '(lsp-ui-doc-background ((t (:inherit mode-line))))
+	 '(lsp-ui-doc-header ((t (:inherit lsp-ui-doc-background)))))
 	;; (setq lsp-log-io t)
 	(custom-set-variables
 	 '(lsp-ui-imenu-enable nil)
@@ -119,6 +119,20 @@
 
 (global-eldoc-mode +1)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
+
+(use-package lsp-haskell
+	:init
+	(add-hook 'haskell-mode-hook (lambda ()
+																 (lsp)
+																 (local-set-key (kbd "C-c C-c") 'my/haskell-compile))))
+
+(use-package typescript-mode
+	:init
+	(add-hook 'typescript-mode-hook #'lsp))
+
+(use-package web-mode
+	:init
+	(add-hook 'web-mode-hook #'lsp))
 
 (defun my/append-cape-to-capf ()
 	"T."
@@ -140,6 +154,6 @@
 		 conf))
 	:config
 	(add-hook 'dap-stopped-hook
-          (lambda (arg) (call-interactively #'dap-hydra))))
+						(lambda (arg) (call-interactively #'dap-hydra))))
 
 (provide 'my-dev-lsp-mode)

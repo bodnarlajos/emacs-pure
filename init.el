@@ -167,8 +167,8 @@
   )
 
 (require 'my-backward-forward)
-(backward-forward-mode +1)
 (add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
+(backward-forward-mode +1)
 
 (use-package recentf
   :straight t
@@ -180,10 +180,6 @@
   :demand t
   :config
   (move-text-default-bindings))
-
-(use-package visual-regexp
-  :bind
-  ("M-r" . vr/replace))
 
 (use-package wgrep)
 
@@ -451,8 +447,6 @@
  ls-lisp-use-insert-directory-program nil
  mark-ring-max 32)
 
-(require 'my-themes)
-
 ;; dired
 (defun my-dired-init ()
   "Bunch of stuff to run for dired, either immediately or when it's
@@ -579,6 +573,8 @@
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
 	(setq-default header-line-format "")
+	(set-fringe-mode 15)
+	(setq shell-command-switch "-ic")
   (global-auto-revert-mode 1)
   (global-visual-line-mode t)
   (global-hi-lock-mode 1)
@@ -849,9 +845,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :picker (gts-prompt-picker)
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
-
-(use-package ef-themes
-  :straight (ef-themes :type git :host github :repo "protesilaos/ef-themes"))
 
 ;; end of init
 

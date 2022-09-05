@@ -6,6 +6,8 @@
 	:straight t)
 (use-package yaml-mode
 	:straight t)
+(use-package csharp-mode)
+
 (setq compilation-auto-jump-to-first-error nil)
 (setq compilation-ask-about-save nil)
 (setq compilation-scroll-output 'next-error)
