@@ -785,10 +785,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				tab-bar-tab-hints t
 				tab-bar-tab-name-function 'tab-bar-tab-name-truncated
 				tab-bar-tab-name-truncated-max 24)
-	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
 		(interactive)
+		(tab-bar-mode +1)
 		(tab-bar-new-tab)
 		(my/start/menu))
 	:bind
