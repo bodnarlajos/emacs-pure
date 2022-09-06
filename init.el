@@ -228,6 +228,11 @@
 
 (use-package rg
 	:init
+	(defun my/run/rg ()
+		"Run rg without -ic parameter"
+		(interactive)
+		(setq-local shell-command-switch "")
+		(call-interactively 'rg))
   (defun my/project/rg ()
     "T."
     (interactive)
