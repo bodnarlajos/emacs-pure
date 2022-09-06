@@ -515,6 +515,9 @@
 (use-package org
   :straight t
   :defer t
+	:bind
+	(:map org-mode-map
+				("M-RET" . consult-buffer))
   :config
   (add-hook 'org-mode-hook 'org-modern-mode)
   (define-key org-mode-map [mouse-1] 'org-cycle)
