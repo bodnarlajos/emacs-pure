@@ -228,6 +228,11 @@
 
 (use-package rg
 	:init
+	(defun my/run/rg ()
+		"Run rg without -ic parameter"
+		(interactive)
+		(setq-local shell-command-switch "")
+		(call-interactively 'rg))
   (defun my/project/rg ()
     "T."
     (interactive)
@@ -779,10 +784,10 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				tab-bar-tab-hints t
 				tab-bar-tab-name-function 'tab-bar-tab-name-truncated
 				tab-bar-tab-name-truncated-max 24)
-	(tab-bar-mode +1)
 	(defun my/open/new-tab-with-file ()
 		"Open the file in new tab"
 		(interactive)
+		(tab-bar-mode +1)
 		(tab-bar-new-tab)
 		(my/start/menu))
 	:bind
