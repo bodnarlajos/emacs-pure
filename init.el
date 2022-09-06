@@ -580,6 +580,7 @@
   (global-visual-line-mode t)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
+	(setq current-language-environment "UTF-8")
   (setq indent-tabs-mode nil)
 
   (with-eval-after-load 'ediff
