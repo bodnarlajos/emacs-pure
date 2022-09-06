@@ -569,7 +569,6 @@
   (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
   (setq standard-indent 2)
   (save-place-mode +1)
-	(setq-default header-line-format "")
 	(setq-default auto-save-interval 30)
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
@@ -806,17 +805,13 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :hook
   (window-scroll-functions . hl-line-flash)
   (focus-in . hl-line-flash)
-  ;; (post-command . hl-line-flash)
-	:bind
-	("<M-f2>" . hl-line-flash)
+  (post-command . hl-line-flash)
 	:init
 	(defun my/flash-and-quit ()
 		"T."
 		(hl-line-flash)
 		(keyboard-quit))
-	:config
-	(global-set-key [escape] 'my/flash-and-quit)
-  :custom
+	:custom
   (global-hl-line-mode nil)
   (hl-line-flash-show-period 0.5)
   (hl-line-inhibit-highlighting-for-modes '(dired-mode))
