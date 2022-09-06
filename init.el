@@ -589,6 +589,10 @@
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
 	(setq current-language-environment "UTF-8")
+	(prefer-coding-system 'utf-8)
+	(set-default-coding-systems 'utf-8)
+	(set-language-environment 'utf-8)
+	(set-selection-coding-system 'utf-8)
   (setq indent-tabs-mode nil)
 
   (with-eval-after-load 'ediff
