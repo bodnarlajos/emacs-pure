@@ -857,4 +857,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (cd my/project-dir)
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-(setenv "PATH" (concat (string-join exec-path ";") ";" (getenv "PATH")))
+(let ((pathseparator (if my/is-mswindows ";" ":")))
+	(setenv "PATH" (concat (string-join exec-path pathseparator) pathseparator (getenv "PATH"))))
