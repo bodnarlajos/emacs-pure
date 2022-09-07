@@ -515,6 +515,9 @@
 (use-package org
   :straight t
   :defer t
+	:bind
+	(:map org-mode-map
+				("M-RET" . consult-buffer))
   :config
   (add-hook 'org-mode-hook 'org-modern-mode)
   (define-key org-mode-map [mouse-1] 'org-cycle)
@@ -579,12 +582,15 @@
   (setq global-auto-revert-non-file-buffers t)
 	(setq-default header-line-format "")
 	(set-fringe-mode 15)
-	(setq shell-command-switch "-ic")
   (global-auto-revert-mode 1)
   (global-visual-line-mode t)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
 	(setq current-language-environment "UTF-8")
+	(prefer-coding-system 'utf-8)
+	(set-default-coding-systems 'utf-8)
+	(set-language-environment 'utf-8)
+	(set-selection-coding-system 'utf-8)
   (setq indent-tabs-mode nil)
 
   (with-eval-after-load 'ediff
@@ -856,4 +862,4 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (cd my/project-dir)
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-(setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
+(setenv "PATH" (concat (string-join exec-path ";") ";" (getenv "PATH")))
