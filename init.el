@@ -583,7 +583,6 @@
   (setq global-auto-revert-non-file-buffers t)
 	(setq-default header-line-format "")
 	(set-fringe-mode 15)
-	(setq shell-command-switch "-ic")
   (global-auto-revert-mode 1)
   (global-visual-line-mode t)
   (global-hi-lock-mode 1)
@@ -868,4 +867,4 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (cd my/project-dir)
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-(setenv "PATH" (concat (string-join exec-path ":") ":" (getenv "PATH")))
+(setenv "PATH" (concat (string-join exec-path ";") ";" (getenv "PATH")))

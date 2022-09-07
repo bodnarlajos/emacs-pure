@@ -38,7 +38,13 @@
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
 (define-key my-prefix (kbd "d") 'duplicate-line)
 
-(define-key my-prefix (kbd "a") 'async-shell-command)
+(defun my/run/shell-command ()
+	"Run a shell command"
+	(interactive)
+	(setq-local shell-command-switch "-ic")
+	(call-interactively async-shell-command))
+
+(define-key my-prefix (kbd "a") 'my/run/shell-command)
 (define-key my-prefix (kbd "A") 'project-async-shell-command)
 (define-key my-prefix (kbd "i") 'indent-buffer)
 
