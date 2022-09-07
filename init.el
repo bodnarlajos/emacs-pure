@@ -817,16 +817,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :hook
   (window-scroll-functions . hl-line-flash)
   (focus-in . hl-line-flash)
-  ;; (post-command . hl-line-flash)
-	:bind
-	("<M-f2>" . hl-line-flash)
-	:init
-	(defun my/flash-and-quit ()
-		"T."
-		(hl-line-flash)
-		(keyboard-quit))
-	:config
-	(global-set-key [escape] 'my/flash-and-quit)
+  (post-command . hl-line-flash)
   :custom
   (global-hl-line-mode nil)
   (hl-line-flash-show-period 0.5)
