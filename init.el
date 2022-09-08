@@ -25,7 +25,7 @@
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/bodnarlajos/straight.el/master/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -577,7 +577,6 @@
   (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
   (setq standard-indent 2)
   (save-place-mode +1)
-	(setq-default header-line-format "")
 	(setq-default auto-save-interval 30)
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
@@ -858,4 +857,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (cd my/project-dir)
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
-(setenv "PATH" (concat (string-join exec-path ";") ";" (getenv "PATH")))
+(let ((pathseparator (if my/is-mswindows ";" ":")))
+	(setenv "PATH" (concat (string-join exec-path pathseparator) pathseparator (getenv "PATH"))))
