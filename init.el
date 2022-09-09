@@ -502,7 +502,6 @@
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-vertically)
   (setq ediff-diff-options "-w")
-  (add-hook 'ediff-after-quit-hook-internal 'winner-undo)
   (setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (add-hook 'so-long-mode-hook (lambda ()
