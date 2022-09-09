@@ -554,6 +554,7 @@
 	(global-set-key (kbd "<f4>") 'tab-bar-close-tab)
   (global-set-key (kbd "<f2>") 'other-window)
   (global-set-key (kbd "M-RET") 'consult-buffer)
+  (global-set-key (kbd "M-r") 'query-replace-regexp)
   (global-set-key (kbd "<C-M-left>") 'rotate-frame)
   (global-set-key (kbd "<M-S-left>") 'windmove-swap-states-left)
   (global-set-key (kbd "<M-right>") 'other-window)
