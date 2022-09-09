@@ -838,9 +838,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package go-translate
 	:commands gts-do-translate
 	:bind
-	("<M-f1>" . gts-do-translate)
+	("<f1>" . gts-do-translate)
+	("M-j M-o" . gts-do-translate)
 	:config
-	(define-key my-prefix (kbd "M-o") 'gts-do-translate)
 	(setq gts-translate-list '(("en" "hu")))
 	;; habkker
 	(setq gts-default-translator
