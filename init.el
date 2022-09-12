@@ -101,7 +101,7 @@
   :custom
   (vertico-count 13)
   (vertico-resize t)
-  (vertico-cycle t)
+  (vertico-cycle nil)
   ;; Extensions
   (vertico-grid-separator "       ")
   (vertico-grid-lookahead 50)
@@ -343,7 +343,7 @@
 (use-package corfu
   :demand t
   :config
-  (setq corfu-cycle t
+  (setq corfu-cycle nil
         corfu-quit-at-boundary nil
         corfu-auto-prefix 2
         corfu-auto t
@@ -600,8 +600,9 @@
 
   (add-to-list 'auto-mode-alist '("\\.dtsx\\'" . fundamental-mode))
   :bind
-  (:map minibuffer-mode-map
-        ("M-m" . embark-act)))
+	(("<C-tab>" . other-window)
+   (:map minibuffer-mode-map
+         ("M-m" . embark-act))))
 
 (blink-cursor-mode 0)
 
@@ -654,52 +655,18 @@
 
 (use-package magit
   :commands (magit-status-quick magit-status)
+	:bind
+	((:map magit-mode-map ("<C-tab>" . other-window))
+	 (:map magit-status-mode-map ("<C-tab>" . other-window))
+	 (:map magit-log-mode-map ("<C-tab>" . other-window))
+	 (:map magit-revision-mode-map ("<C-tab>" . other-window)))
 	:init
-	(defun my/faster-magit ()
-		"Magit without things"
-		;; ;; revision
-		(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
-		(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
-		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
-		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-notes)
-		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-tag)
-		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
-		(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
-		(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-stashes)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-error-header)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
-		;; (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
-  :config
-	(my/faster-magit)
-  (defun my/check-magit-process-is-active ()
-    "T."
-    (interactive)
-    (let ((result nil)
-          (buffs (window-list)))
-      (while buffs
-        (when (string-prefix-p "magit-process:" (buffer-name (car buffs)))
-          (progn
-            (setq result t)
-            (setq buffs nil)))
-        (setq buffs (cdr buffs)))
-      result))
-  :init
-  (defun my/magit-status ()
+	(defun my/magit-status ()
     "Open a magit directory."
     (interactive)
     (let ((current-prefix-arg '(4)))
       (call-interactively #'magit-status-quick)
       (delete-other-windows)))
-
   (defun my/goto-magit ()
     "T."
     (interactive)
@@ -721,6 +688,37 @@
         (my/magit-status))
       )
     )
+	(defun my/faster-magit ()
+		"Magit without things"
+		;; ;; revision
+		(remove-hook 'magit-diff-sections-hook 'magit-insert-xref-buttons)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-xref-buttons)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-headers)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-notes)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-tag)
+		(remove-hook 'magit-revision-sections-hook 'magit-insert-revision-message)
+		(remove-hook 'magit-section-highlight-hook 'magit-diff-highlight)
+		(remove-hook 'magit-section-movement-hook 'magit-log-maybe-update-revision-buffer)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-rest)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-output)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
+  :config
+	(my/faster-magit)
+  (defun my/check-magit-process-is-active ()
+    "T."
+    (interactive)
+    (let ((result nil)
+          (buffs (window-list)))
+      (while buffs
+        (when (string-prefix-p "magit-process:" (buffer-name (car buffs)))
+          (progn
+            (setq result t)
+            (setq buffs nil)))
+        (setq buffs (cdr buffs)))
+      result))
   )
 
 (use-package ctrlf
