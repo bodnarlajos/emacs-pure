@@ -835,11 +835,24 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 			(insert body)
 			(insert "\n\n"))))
 
+(use-package dired+
+	:init
+	(defun my/start/dired-current-file ()
+		"Start the current file with default application"
+		(interactive)
+		(diredp-copy-abs-filenames-as-kill)
+		(async-shell-command (concat "start " (car kill-ring-yank-pointer)))))
+
 (use-package go-translate
 	:commands gts-do-translate
 	:bind
 	("<f1>" . gts-do-translate)
 	("M-j M-o" . gts-do-translate)
+	:init
+	(defun disable-y-or-n-p (orig-fun &rest args)
+		(cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
+			(apply orig-fun args)))
+	(advice-add 'ediff-quit :around #'disable-y-or-n-p)
 	:config
 	(setq gts-translate-list '(("en" "hu")))
 	;; habkker
