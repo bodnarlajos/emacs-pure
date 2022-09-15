@@ -575,6 +575,7 @@
   (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
   (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
   (define-key 'my-emacs-prefix (kbd "w") 'delete-window)
+  (define-key 'my-emacs-prefix (kbd "b") 'kill-current-buffer)
   (setq standard-indent 2)
   (save-place-mode +1)
 	(setq-default auto-save-interval 30)
