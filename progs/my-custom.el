@@ -6,7 +6,7 @@
  '(column-number-mode t)
  '(css-indent-offset 2)
  '(doom-modeline-buffer-file-name-style 'truncate-upto-project)
- '(doom-modeline-height 36)
+ '(doom-modeline-height 22)
  '(doom-modeline-mode t)
  '(highlight-current-line-globally t)
  '(highlight-current-line-whole-line t)
