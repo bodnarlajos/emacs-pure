@@ -11,6 +11,7 @@
 (global-set-key [escape] 'keyboard-quit)
 
 (global-set-key (kbd "<C-escape>") 'my/start/menu)
+(global-set-key (kbd "<C-f1>") 'my/start/menu)
 
 (global-unset-key (kbd "C-f"))
 (global-set-key (kbd "C-f") 'isearch-forward)
@@ -44,7 +45,7 @@
 	"Run a shell command"
 	(interactive)
 	(setq-local shell-command-switch "-ic")
-	(call-interactively async-shell-command))
+	(call-interactively 'async-shell-command))
 
 (define-key my-prefix (kbd "a") 'my/run/shell-command)
 (define-key my-prefix (kbd "A") 'project-async-shell-command)

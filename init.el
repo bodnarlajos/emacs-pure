@@ -574,7 +574,7 @@
   (define-key 'my-emacs-prefix (kbd "p") 'kill-paragraph)
   (define-key 'my-emacs-prefix (kbd "o") 'delete-other-windows)
   (define-key 'my-emacs-prefix (kbd "l") 'kill-line)
-  (define-key 'my-emacs-prefix (kbd "w") 'my/kill-buffer-close-window)
+  (define-key 'my-emacs-prefix (kbd "w") 'delete-window)
   (setq standard-indent 2)
   (save-place-mode +1)
 	(setq-default auto-save-interval 30)
