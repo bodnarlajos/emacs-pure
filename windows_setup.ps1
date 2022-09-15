@@ -11,25 +11,23 @@ if (!(Get-Command 'git' -ErrorAction SilentlyContinue))
 
 scoop bucket add extras
 scoop bucket add misc https://github.com/kiennq/scoop-misc
+# scoop bucket add misc2 https://github.com/bodnarlajos/scoop
 
 # boostrap all the dotfiles
-Push-Location ~
+# Push-Location ~
 
-git clone https://github.com/bodnarlajos/emacs-pure.git
+# git clone https://github.com/bodnarlajos/emacs-pure.git
 
-Pop-Location
+# Pop-Location
 
 scoop update
 scoop reset git
 
 # install additional packages
 scoop install aria2 gsudo-x
-
-scoop install ripgrep pwsh-x 7zip zstd fzf winrar
+scoop install ripgrep pwsh-x 7zip zstd fzf winrar keepassxc
 scoop install emacs-k diffutils findutils
 
 gsudo cache on
-# These packages change $env:PATH
-gsudo scoop install cascadiacode-pl -g
 
 gsudo -k

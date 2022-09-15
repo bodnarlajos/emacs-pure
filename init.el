@@ -704,7 +704,15 @@
 		(remove-hook 'magit-status-sections-hook 'magit-insert-bisect-log)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-upstream-branch-header)
 		(remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
-		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent))
+		(remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
+		(remove-hook 'magit-switch-hook 'magit-commit-diff)
+		(remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
+		(setq magit-diff-highlight-indentation nil
+					magit-diff-highlight-trailing nil
+					magit-diff-paint-whitespace nil
+					magit-diff-highlight-hunk-body nil
+					magit-diff-refine-hunk nil
+					magit-revision-insert-related-refs nil))
   :config
 	(my/faster-magit)
   (defun my/check-magit-process-is-active ()
@@ -859,6 +867,13 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 				 :picker (gts-prompt-picker)
 				 :engines (list (gts-bing-engine) (gts-google-engine))
 				 :render (gts-buffer-render))))
+
+(use-package centered-window-mode
+	:config
+	(setq cwm-centered-window-width 220))
+
+(use-package powershell-mode
+	:demand t)
 
 ;; end of init
 
