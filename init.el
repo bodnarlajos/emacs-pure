@@ -44,17 +44,29 @@
 
 (require 'my-core)
 
-;; end of init
+(require 'server)
+(when (not (server-running-p))
+	(server-start)
+	(when my/is-mswindows
+		(find-file (expand-file-name "/daily.org" my/notes-dir))))
 
+;; end of init
+;; set browser up
+(setq browse-url-generic-program my/browser)
+;; run custom init script
+(my/end-of-init)
+;; load custom file
 (when (file-exists-p custom-file)
   (load custom-file))
-
+;; load modules
 (mapc (lambda (m)
 				(message "%s" m)
 				(require m)) my/modules)
-
+;; set the default directory
 (cd my/project-dir)
+;; set font up
 (set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
+;; set the path env. up
 (let ((pathseparator (if my/is-mswindows ";" ":")))
 	(setenv "PATH" (concat (string-join exec-path pathseparator) pathseparator (getenv "PATH"))))
 

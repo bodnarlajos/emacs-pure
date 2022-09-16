@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defgroup my/configs nil "My configurations")
+(defcustom my/browser "firefox" "The browser" :type 'string :group 'my/configs)
 (defcustom my/font-family "Ubuntu Mono" "The font family" :type 'string :group 'my/configs)
 (defcustom my/font-size 140 "The font size" :type 'integer :group 'my/configs)
 (defcustom my/font-weight 'normal "The font weight" :type 'symbol :group 'my/configs)

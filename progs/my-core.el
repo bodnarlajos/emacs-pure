@@ -51,7 +51,8 @@
          )
   :custom
   (vertico-count 13)
-  (vertico-resize t)
+  (vertico-resize nil)
+	(vertico--resize-window 13)
   (vertico-cycle nil)
   ;; Extensions
   (vertico-grid-separator "       ")
@@ -59,12 +60,12 @@
   (vertico-buffer-display-action '(display-buffer-reuse-window))
   (vertico-multiform-categories
    '((consult-grep buffer)
-     (consult-location)
+     (consult-location buffer)
      (consult-xref buffer)
      (imenu buffer)
-     (library reverse indexed)
-     (org-roam-node reverse indexed)
-     (t reverse)
+     ;; (library reverse indexed)
+     ;; (org-roam-node reverse indexed)
+     (t)
      ))
   (vertico-multiform-commands
    '(("flyspell-correct-*" grid flat)
@@ -207,7 +208,6 @@
                        (if-let ((sap (symbol-at-point)))
                            (format "%s -- -g *" sap)
                          (user-error "Buffer is not visiting a file")))))
-
   (defun consult-ripgrep-related-files ()
     "Seearch in files whose base name is the same as the current file's."
     (interactive)
@@ -217,7 +217,12 @@
                        (if-let ((file (buffer-file-name)))
                            (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
                          (user-error "Buffer is not visiting a file")))))
-
+	(defun consult-ripgrep-files-in-directory (dir)
+    "Seearch in files whose base name is the same as the current file's."
+    (interactive "DDirectory: ")
+    (minibuffer-with-setup-hook
+        (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+      (consult-ripgrep dir " -- -g *.*")))
   (defun restrict-to-current-file ()
     (interactive)
     (if-let ((file (with-minibuffer-selected-window

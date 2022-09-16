@@ -121,6 +121,7 @@
   :demand t)
 
 (use-package magit
+	:demand t
   :commands (magit-status-quick magit-status)
 	:bind
 	((:map magit-mode-map ("<C-tab>" . other-window))
