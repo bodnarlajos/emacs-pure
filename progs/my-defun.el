@@ -397,4 +397,11 @@ Position the cursor at its beginning, according to the current mode."
 	(interactive)
 	(switch-to-buffer "*scratch*"))
 
+(defun my/run/bloated-hook ()
+	"Run the development environment"
+	(interactive)
+	(mapc (lambda (m)
+					(require m)) my/bloated-hook)
+	(revert-buffer nil t))
+
 (provide 'my-defun)	

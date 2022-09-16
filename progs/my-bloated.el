@@ -1,8 +1,40 @@
+;; -*- lexical-binding: t -*-
+
 (use-package recentf
   :straight t
   :defer t
   :init
   (recentf-mode +1))
+
+(use-package multiple-cursors)
+(use-package markdown-mode
+	:demand t)
+(use-package json-mode
+	:demand t)
+(use-package powershell-mode
+	:demand t)
+
+(use-package rg
+	:init
+	(defun my/run/rg ()
+		"Run rg without -ic parameter"
+		(interactive)
+		(setq-local shell-command-switch "")
+		(call-interactively 'rg))
+  (defun my/project/rg ()
+    "T."
+    (interactive)
+    (let ((currProject (project-current)))
+      (if currProject
+          (call-interactively 'rg-project)
+        (call-interactively 'rg))))
+	:config
+	(setq rg-ignore-case nil)
+	(add-hook 'rg-mode-hook (lambda ()
+														(setq-local outline-regexp "File:.+")
+														(outline-minor-mode +1)))
+  :bind
+  ("M-s r" . my/project/rg))
 
 (use-package hydra)
 (use-package wgrep)
@@ -286,7 +318,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package centered-window-mode
 	:config
 	(setq cwm-centered-window-width 220))
-
-(message "my-bloated loaded")
 
 (provide 'my-bloated)
