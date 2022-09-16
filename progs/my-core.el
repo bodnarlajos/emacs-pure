@@ -182,7 +182,20 @@
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
+	(defvar consult--source-my-menu
+		`(:name     "My MENU"
+								:narrow   ?b
+								:category 'menu
+								:face     'font-lock-keyword-face
+								:state    ,#'consult--buffer-state
+								:default  t
+								:action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
+								:items (lambda () (mapcar #'car my/menu-items)))
+		"My menu items for `consult-buffer'.")
+	
   (custom-set-variables
+	 '(consult-buffer-sources
+     '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-my-menu consult--source-project-recent-file consult--source-recent-file consult--source-bookmark))
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
