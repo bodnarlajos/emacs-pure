@@ -29,7 +29,7 @@
 (defun my/switch-to-buffer ()
 	"Switch to the buffer or switch to buffer inside a project"
 	(interactive)
-	(let ((currProject (project-current)))
+	(let ((currProject (project-root (project-current))))
 		(if currProject
 				(call-interactively 'project-switch-to-buffer)
 			(call-interactively 'switch-to-buffer))))
