@@ -164,12 +164,6 @@
 (add-hook 'savehist-save-hook #'backward-forward-push-mark-wrapper)
 (backward-forward-mode +1)
 
-(use-package recentf
-  :straight t
-  :defer t
-  :init
-  (recentf-mode +1))
-
 (use-package move-text
   :demand t
   :config

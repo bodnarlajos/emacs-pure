@@ -1,3 +1,9 @@
+(use-package recentf
+  :straight t
+  :defer t
+  :init
+  (recentf-mode +1))
+
 (use-package hydra)
 (use-package wgrep)
 (use-package find-file-rg
