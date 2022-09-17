@@ -401,7 +401,6 @@ Position the cursor at its beginning, according to the current mode."
 	"Run the development environment"
 	(interactive)
 	(mapc (lambda (m)
-					(require m)) my/bloated-hook)
-	(revert-buffer nil t))
+					(require m)) my/bloated-hook))
 
 (provide 'my-defun)	

@@ -184,10 +184,9 @@
   :config
 	(defvar consult--source-my-menu
 		`(:name     "My MENU"
-								:narrow   ?b
-								:category 'menu
+								:narrow   ?f
+								:category 'function
 								:face     'font-lock-keyword-face
-								:state    ,#'consult--buffer-state
 								:default  t
 								:action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
 								:items (lambda () (mapcar #'car my/menu-items)))
@@ -475,16 +474,17 @@
   :config
   (ctrlf-mode +1))
 
-(use-package hl-line+
-  :hook
-  (window-scroll-functions . hl-line-flash)
-  (focus-in . hl-line-flash)
-  (post-command . hl-line-flash)
-  :custom
-  (global-hl-line-mode nil)
-  (hl-line-flash-show-period 0.5)
-  (hl-line-inhibit-highlighting-for-modes '(dired-mode))
-  (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
-  )
+(global-hl-line-mode t)
+;; (use-package hl-line+
+;;   :hook
+;;   (window-scroll-functions . hl-line-flash)
+;;   (focus-in . hl-line-flash)
+;;   (post-command . hl-line-flash)
+;;   :custom
+;;   (global-hl-line-mode nil)
+;;   (hl-line-flash-show-period 0.5)
+;;   (hl-line-inhibit-highlighting-for-modes '(dired-mode))
+;;   (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
+;;   )
 
 (provide 'my-core)
