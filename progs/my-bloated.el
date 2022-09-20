@@ -1,5 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
+(use-package shell-mode
+	:straight (:type built-in)
+	:bind
+	(:map shell-mode-map
+				("M-RET" . consult-buffer)))
+
 (use-package recentf
   :straight t
   :defer t

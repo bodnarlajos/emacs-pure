@@ -403,4 +403,36 @@ Position the cursor at its beginning, according to the current mode."
 	(mapc (lambda (m)
 					(require m)) my/bloated-hook))
 
+(defun my/show-all ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-show-all))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-show-all)))
+
+(defun my/hide-all ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-hide-body))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-hide-all)))
+
+(defun my/hide-entry ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-hide-entry))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-hide-block)))
+
+(defun my/show-entry ()
+	"T."
+	(interactive)
+	(when (bound-and-true-p outline-minor-mode)
+		(outline-show-entry))
+	(when (bound-and-true-p hs-minor-mode)
+		(hs-show-block)))
+
 (provide 'my-defun)	

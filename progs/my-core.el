@@ -1,14 +1,24 @@
 ;; -*- lexical-binding: t -*-
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+(cua-mode +1)
 
-(use-package diminish)
+(use-package diminish
+	:config
+	(diminish 'anzu-mode))
+
 (use-package orderless
   :demand t)
+
 (use-package marginalia
-	:demand t)
+	:demand t
+	:init
+	(marginalia-mode +1))
+
 (use-package anzu
-	:demand t)
+	:demand t
+	:init
+	(global-anzu-mode +1))
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -127,8 +137,8 @@
   :config
   (move-text-default-bindings))
 
-(use-package transpose-frame)
 (use-package dired-single)
+
 (use-package which-key)
 
 (use-package easy-kill
@@ -136,38 +146,6 @@
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill)
   (global-set-key [remap mark-sexp] 'easy-mark))
-
-(defun my/show-all ()
-	"T."
-	(interactive)
-	(when (bound-and-true-p outline-minor-mode)
-		(outline-show-all))
-	(when (bound-and-true-p hs-minor-mode)
-		(hs-show-all)))
-
-(defun my/hide-all ()
-	"T."
-	(interactive)
-	(when (bound-and-true-p outline-minor-mode)
-		(outline-hide-body))
-	(when (bound-and-true-p hs-minor-mode)
-		(hs-hide-all)))
-
-(defun my/hide-entry ()
-	"T."
-	(interactive)
-	(when (bound-and-true-p outline-minor-mode)
-		(outline-hide-entry))
-	(when (bound-and-true-p hs-minor-mode)
-		(hs-hide-block)))
-
-(defun my/show-entry ()
-	"T."
-	(interactive)
-	(when (bound-and-true-p outline-minor-mode)
-		(outline-show-entry))
-	(when (bound-and-true-p hs-minor-mode)
-		(hs-show-block)))
 
 (use-package all-the-icons-completion
   :demand t
@@ -336,11 +314,6 @@
   :config
   (setq consult-project-root-function #'my/root-project-dir))
 
-(marginalia-mode +1)
-(diminish 'anzu-mode)
-(global-anzu-mode +1)
-(cua-mode +1)
-
 ;; set defaults
 (setq-default
  dired-dwim-target t
@@ -395,7 +368,10 @@
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 
-(winner-mode +1)
+(use-package winner
+	:init
+	(winner-mode +1))
+
 (with-eval-after-load 'ediff
   ;; add ediff configuration
   (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
@@ -461,13 +437,6 @@
   ("<C-S-return>" . crux-smart-open-line-above)
   ("<S-return>" . 'crux-smart-open-line)
   ("C-k" . 'crux-smart-kill-line))
-
-(use-package doom-modeline
-  :demand t
-  :config
-  (doom-modeline-mode +1)
-  (setq doom-modeline-height 42)
-	(setq doom-modeline-vcs-max-length 32)) ;; because the "feature/" is there everywhere :)
 
 (use-package ctrlf
   :demand t
