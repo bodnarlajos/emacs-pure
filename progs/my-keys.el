@@ -127,4 +127,8 @@
 (define-key 'my-emacs-prefix (kbd "w") 'delete-window)
 (define-key 'my-emacs-prefix (kbd "b") 'kill-current-buffer)
 
+(repeat-mode)
+(repeatize 'my-prefix)
+(repeatize 'my-emacs-prefix)
+
 (provide 'my-keys)
