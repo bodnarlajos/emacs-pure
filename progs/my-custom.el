@@ -22,6 +22,7 @@
  '(header-line ((t (:inherit default :background nil :height 0.8))))
  '(org-fontify-todo-headline t)
  '(org-fontify-whole-heading-line t)
+ '(mode-line ((t (:box (:line-width (1 . 1) :color "black" :style released-button)))))
  '(org-hide-leading-stars t)
  '(fringe ((t (:inherit default))))
  '(magit-section-highlight ((nil :inherit nil :background nil)))
