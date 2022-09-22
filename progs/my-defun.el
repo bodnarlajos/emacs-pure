@@ -401,7 +401,9 @@ Position the cursor at its beginning, according to the current mode."
 	"Run the development environment"
 	(interactive)
 	(mapc (lambda (m)
-					(require m)) my/bloated-hook))
+					(require m)) my/bloated-hook)
+	(when (buffer-file-name)
+		(revert-buffer)))
 
 (defun my/show-all ()
 	"T."
@@ -434,5 +436,13 @@ Position the cursor at its beginning, according to the current mode."
 		(outline-show-entry))
 	(when (bound-and-true-p hs-minor-mode)
 		(hs-show-block)))
+
+(defun repeatize (keymap)
+  "Add `repeat-mode' support to a KEYMAP."
+  (map-keymap
+   (lambda (_key cmd)
+     (when (symbolp cmd)
+       (put cmd 'repeat-map keymap)))
+   (symbol-value keymap)))
 
 (provide 'my-defun)	
