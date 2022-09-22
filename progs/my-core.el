@@ -261,7 +261,7 @@
   (setq corfu-cycle nil
         corfu-quit-at-boundary nil
         corfu-auto-prefix 2
-        corfu-auto t
+        corfu-auto nil
         corfu-quit-no-match t)
   (global-corfu-mode +1))
 
@@ -406,11 +406,13 @@
   (pixel-scroll-precision-mode +1)
 	(setq current-language-environment "UTF-8")
 	(prefer-coding-system 'utf-8)
+	(blink-cursor-mode 0)
+	(global-visual-line-mode t)
 	(set-default-coding-systems 'utf-8)
 	(set-language-environment 'utf-8)
 	(set-selection-coding-system 'utf-8)
   (setq indent-tabs-mode nil)
-
+	
   (with-eval-after-load 'ediff
     (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
     (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
@@ -420,16 +422,10 @@
   :bind
 	(("<C-tab>" . other-window)
    (:map minibuffer-mode-map
-         ("M-m" . embark-act))))
-
-(blink-cursor-mode 0)
-
-(use-package visual-line-mode
-	:straight (:type built-in)
-	:init
-	(global-visual-line-mode t)
-	:config
-	(diminish 'visual-line-mode))
+         ("M-m" . embark-act)))
+  :delight
+  (auto-fill-function " AF")
+  (visual-line-mode))
 
 (use-package undo-tree
   :straight t

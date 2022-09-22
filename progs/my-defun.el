@@ -445,4 +445,10 @@ Position the cursor at its beginning, according to the current mode."
        (put cmd 'repeat-map keymap)))
    (symbol-value keymap)))
 
+(defun my/open/folder (folder)
+	"Open a folder with explorer or nautilus"
+	(interactive "DDirectory: ")
+	(let ((prog (if (eq system-type 'windows-nt) "start" "xdg-open")))
+		(shell-command (concat prog " " (expand-file-name folder)) nil nil)))
+
 (provide 'my-defun)	
