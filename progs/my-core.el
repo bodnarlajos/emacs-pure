@@ -2,10 +2,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (cua-mode +1)
-
-(use-package diminish
-	:config
-	(diminish 'anzu-mode))
+(use-package diminish)
 
 (use-package orderless
   :demand t)
@@ -18,7 +15,9 @@
 (use-package anzu
 	:demand t
 	:init
-	(global-anzu-mode +1))
+	(global-anzu-mode +1)
+	:config
+	(diminish 'anzu-mode))
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -139,7 +138,10 @@
 
 (use-package dired-single)
 
-(use-package which-key)
+(use-package which-key
+	:init
+	(which-key-mode +1)
+	(diminish 'which-key-mode))
 
 (use-package easy-kill
   :demand t
@@ -444,16 +446,5 @@
   (ctrlf-mode +1))
 
 (global-hl-line-mode t)
-;; (use-package hl-line+
-;;   :hook
-;;   (window-scroll-functions . hl-line-flash)
-;;   (focus-in . hl-line-flash)
-;;   (post-command . hl-line-flash)
-;;   :custom
-;;   (global-hl-line-mode nil)
-;;   (hl-line-flash-show-period 0.5)
-;;   (hl-line-inhibit-highlighting-for-modes '(dired-mode))
-;;   (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
-;;   )
 
 (provide 'my-core)
