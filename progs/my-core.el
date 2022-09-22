@@ -2,10 +2,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (cua-mode +1)
-
-(use-package diminish
-	:config
-	(diminish 'anzu-mode))
+(use-package diminish)
 
 (use-package orderless
   :demand t)
@@ -18,7 +15,9 @@
 (use-package anzu
 	:demand t
 	:init
-	(global-anzu-mode +1))
+	(global-anzu-mode +1)
+	:config
+	(diminish 'anzu-mode))
 
 (use-package vertico
   :demand t                             ; Otherwise won't get loaded immediately
@@ -139,7 +138,10 @@
 
 (use-package dired-single)
 
-(use-package which-key)
+(use-package which-key
+	:init
+	(which-key-mode +1)
+	(diminish 'which-key-mode))
 
 (use-package easy-kill
   :demand t
@@ -259,7 +261,7 @@
   (setq corfu-cycle nil
         corfu-quit-at-boundary nil
         corfu-auto-prefix 2
-        corfu-auto t
+        corfu-auto nil
         corfu-quit-no-match t)
   (global-corfu-mode +1))
 
@@ -268,6 +270,7 @@
   (add-to-list 'corfu-mode-hook #'corfu-doc-mode))
 
 (use-package savehist
+	:straight (:type built-in)
   :demand t
   :config
   (savehist-mode +1))
@@ -399,16 +402,17 @@
 	(setq-default header-line-format "")
 	(set-fringe-mode 15)
   (global-auto-revert-mode 1)
-  (global-visual-line-mode t)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
 	(setq current-language-environment "UTF-8")
 	(prefer-coding-system 'utf-8)
+	(blink-cursor-mode 0)
+	(global-visual-line-mode t)
 	(set-default-coding-systems 'utf-8)
 	(set-language-environment 'utf-8)
 	(set-selection-coding-system 'utf-8)
   (setq indent-tabs-mode nil)
-
+	
   (with-eval-after-load 'ediff
     (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
     (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
@@ -418,9 +422,10 @@
   :bind
 	(("<C-tab>" . other-window)
    (:map minibuffer-mode-map
-         ("M-m" . embark-act))))
-
-(blink-cursor-mode 0)
+         ("M-m" . embark-act)))
+  :delight
+  (auto-fill-function " AF")
+  (visual-line-mode))
 
 (use-package undo-tree
   :straight t
@@ -444,16 +449,5 @@
   (ctrlf-mode +1))
 
 (global-hl-line-mode t)
-;; (use-package hl-line+
-;;   :hook
-;;   (window-scroll-functions . hl-line-flash)
-;;   (focus-in . hl-line-flash)
-;;   (post-command . hl-line-flash)
-;;   :custom
-;;   (global-hl-line-mode nil)
-;;   (hl-line-flash-show-period 0.5)
-;;   (hl-line-inhibit-highlighting-for-modes '(dired-mode))
-;;   (hl-line-overlay-priority -100) ;; sadly, seems not observed by diredfl
-;;   )
 
 (provide 'my-core)

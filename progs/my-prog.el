@@ -8,6 +8,10 @@
 	:straight t)
 (use-package csharp-mode)
 
+(use-package hs-minor-mode
+	:straight (:type built-in)
+	:diminish 'hs-minor-mode)
+
 (setq compilation-auto-jump-to-first-error nil)
 (setq compilation-ask-about-save nil)
 (setq compilation-scroll-output 'next-error)
