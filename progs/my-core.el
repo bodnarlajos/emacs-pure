@@ -270,6 +270,7 @@
   (add-to-list 'corfu-mode-hook #'corfu-doc-mode))
 
 (use-package savehist
+	:straight (:type built-in)
   :demand t
   :config
   (savehist-mode +1))
@@ -401,7 +402,6 @@
 	(setq-default header-line-format "")
 	(set-fringe-mode 15)
   (global-auto-revert-mode 1)
-  (global-visual-line-mode t)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
 	(setq current-language-environment "UTF-8")
@@ -423,6 +423,13 @@
          ("M-m" . embark-act))))
 
 (blink-cursor-mode 0)
+
+(use-package visual-line-mode
+	:straight (:type built-in)
+	:init
+	(global-visual-line-mode t)
+	:config
+	(diminish 'visual-line-mode))
 
 (use-package undo-tree
   :straight t
