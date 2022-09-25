@@ -261,7 +261,7 @@
   (setq corfu-cycle nil
         corfu-quit-at-boundary nil
         corfu-auto-prefix 2
-        corfu-auto nil
+        corfu-auto t
         corfu-quit-no-match t)
   (global-corfu-mode +1))
 
@@ -449,5 +449,31 @@
   (ctrlf-mode +1))
 
 (global-hl-line-mode t)
+
+(use-package popper
+  :bind* ("C-c :" . popper-toggle-latest)
+  :bind (("C-`"   . popper-toggle-latest)
+         ("C-\\"  . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :hook (prog-mode . popper-mode)
+  :config
+  (popper-mode +1)
+  (popper-echo-mode +1)
+  :custom
+  (popper-window-height 24)
+  (popper-reference-buffers '("\\*Messages\\*"
+                              "Output\\*$"
+                              "\\*Async Shell Command\\*"
+                              "\\*compilation\\*"
+                              help-mode
+                              "magit:.\*"
+                              "\\*eldoc.\*"
+                              "\\*xref\\*"
+                              "\\*org-roam\\*"
+                              "\\*direnv\\*"
+                              "\\*Warnings\\*"
+                              "\\*Bookmark List\\*"
+                              haskell-compilation-mode
+                              compilation-mode)))
 
 (provide 'my-core)

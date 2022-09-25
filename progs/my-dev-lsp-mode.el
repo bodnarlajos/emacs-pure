@@ -53,9 +53,8 @@
 							cape-dabbrev-min-length 2))
 
 (use-package flycheck
-	:hook
-	(flycheck-mode . flymake-mode)
 	:config
+	(add-hook 'flycheck-mode-hook (lambda () (flymake-mode -1)))
 	(flycheck-add-mode 'javascript-eslint 'typescript-mode)
 	(flycheck-add-mode 'html-tidy 'web-mode)
 	(flycheck-add-mode 'javascript-eslint 'js2-mode)
@@ -152,6 +151,10 @@
 	 (lambda (conf)
 		 (plist-put conf :dap-server-path (list "haskell-debug-adapter" "--hackage-version=0.0.35.0"))
 		 conf))
+	:bind
+	("M-s b" . dap-breakpoint-toggle)
+	("M-s d" . dap-debug)
+	("M-s D" . my/dap-haskell-reg-auto)
 	:config
 	(add-hook 'dap-stopped-hook
 						(lambda (arg) (call-interactively #'dap-hydra))))
