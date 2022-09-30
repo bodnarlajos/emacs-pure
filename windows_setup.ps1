@@ -26,6 +26,7 @@ scoop reset git
 # install additional packages
 scoop install aria2 gsudo-x
 scoop install ripgrep pwsh-x 7zip zstd fzf winrar keepassxc
+scoop install JetBrains-Mono
 scoop install emacs-k diffutils findutils
 
 gsudo cache on
