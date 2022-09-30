@@ -84,6 +84,7 @@
 	(:map org-mode-map
 				("M-RET" . consult-buffer))
   :config
+	(add-hook 'org-mode-hook (lambda () (define-key org-mode-map (kbd "S-M-RET") 'org-insert-heading)))
   (add-hook 'org-mode-hook 'org-modern-mode)
   (define-key org-mode-map [mouse-1] 'org-cycle)
   (setq org-todo-keywords
