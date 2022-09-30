@@ -433,6 +433,7 @@
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
   :custom
+	(
   (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (undo-tree-visualizer-timestamps t))
 
@@ -443,10 +444,10 @@
   ("<S-return>" . 'crux-smart-open-line)
   ("C-k" . 'crux-smart-kill-line))
 
-(use-package ctrlf
-  :demand t
-  :config
-  (ctrlf-mode +1))
+;; (use-package ctrlf
+;;   :demand t
+;;   :config
+;;   (ctrlf-mode +1))
 
 (use-package visual-regexp
 	:bind
