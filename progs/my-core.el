@@ -174,7 +174,7 @@
 	
   (custom-set-variables
 	 '(consult-buffer-sources
-     '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-my-menu consult--source-project-recent-file consult--source-recent-file consult--source-bookmark))
+     '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
    '(xref-show-xrefs-function 'consult-xref))
   (consult-customize
    ;; Disable preview for `consult-theme' completely.
@@ -261,7 +261,7 @@
   (setq corfu-cycle nil
         corfu-quit-at-boundary nil
         corfu-auto-prefix 2
-        corfu-auto t
+        corfu-auto nil
         corfu-quit-no-match t)
   (global-corfu-mode +1))
 
@@ -448,12 +448,17 @@
   :config
   (ctrlf-mode +1))
 
+(use-package visual-regexp
+	:bind
+	("M-r" . vr/replace))
+
 (global-hl-line-mode t)
 
 (use-package popper
   :bind* ("C-c :" . popper-toggle-latest)
   :bind (("C-`"   . popper-toggle-latest)
          ("C-\\"  . popper-cycle)
+         ("M-\\"  . popper-cycle)
          ("C-M-`" . popper-toggle-type))
   :hook (prog-mode . popper-mode)
   :config
@@ -468,6 +473,8 @@
                               help-mode
                               "magit:.\*"
                               "\\*eldoc.\*"
+                              "\\*shell\\*"
+                              "\\*eshell\\*"
                               "\\*xref\\*"
                               "\\*org-roam\\*"
                               "\\*direnv\\*"
