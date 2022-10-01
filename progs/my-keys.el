@@ -14,7 +14,7 @@
 (global-set-key (kbd "<C-f1>") 'my/start/menu)
 
 (global-unset-key (kbd "C-f"))
-(global-set-key (kbd "C-f") 'ctrlf-forward-fuzzy-regexp)
+(global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 
 (global-unset-key (kbd "C-s"))

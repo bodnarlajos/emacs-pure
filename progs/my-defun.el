@@ -451,4 +451,25 @@ Position the cursor at its beginning, according to the current mode."
 	(let ((prog (if (eq system-type 'windows-nt) "start" "xdg-open")))
 		(shell-command (concat prog " " (expand-file-name folder)) nil nil)))
 
+(defun my/run/my-config ()
+	"ReActivate My-Config settings"
+	(interactive)
+	;; set browser up
+	(setq browse-url-generic-program my/browser)
+	;; load custom file
+	(when (file-exists-p custom-file)
+		(load custom-file))
+	;; load modules
+	(mapc (lambda (m)
+					(message "%s" m)
+					(require m)) my/modules)
+	;; set the default directory
+	(cd my/project-dir)
+	;; set font up
+	(set-face-attribute 'default nil :family my/font-family :height my/font-size :weight my/font-weight)
+	;; set the path env. up
+	(let ((pathseparator (if my/is-mswindows ";" ":")))
+		(setenv "PATH" (concat (string-join exec-path pathseparator) pathseparator (getenv "PATH"))))
+	)
+
 (provide 'my-defun)	

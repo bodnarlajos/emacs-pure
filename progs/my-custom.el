@@ -32,9 +32,8 @@
  '(fixed-pitch ((t (:inherit default))))
  '(fixed-pitch-serif ((t (:inherit default)))))
 
-;; (defvar my/foreground (face-attribute 'default :foreground))
-;; (set-face-attribute 'tab-bar nil :foreground my/foreground)
-;; (set-face-attribute 'tab-line nil :foreground my/foreground)
+;; (defvar my/background (face-attribute 'default :background))
+;; (set-face-attribute 'org-hide nil :foreground my/background :background my/background)
 
 (defun my/tab-bar-tab-name-truncated ()
   "Generate tab name from the buffer of the selected window.
