@@ -143,12 +143,6 @@
 	(which-key-mode +1)
 	(diminish 'which-key-mode))
 
-(use-package easy-kill
-  :demand t
-  :config
-  (global-set-key [remap kill-ring-save] 'easy-kill)
-  (global-set-key [remap mark-sexp] 'easy-mark))
-
 (use-package all-the-icons-completion
   :demand t
   :config
@@ -433,7 +427,6 @@
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
   :custom
-	(
   (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   (undo-tree-visualizer-timestamps t))
 
