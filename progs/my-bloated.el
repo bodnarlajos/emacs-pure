@@ -135,6 +135,9 @@
 	 (:map magit-log-mode-map ("<C-tab>" . other-window))
 	 (:map magit-revision-mode-map ("<C-tab>" . other-window)))
 	:init
+	(when my/is-libgit2
+		(add-to-list 'load-path my/const/libgit-path)
+		(require 'libgit))
 	(defun my/magit-status ()
     "Open a magit directory."
     (interactive)
