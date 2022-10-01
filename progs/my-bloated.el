@@ -193,6 +193,8 @@
 					magit-revision-insert-related-refs nil))
   :config
 	(my/faster-magit)
+	(with-eval-after-load
+			(setq magit-diff-refine-hunk 'all))
   (defun my/check-magit-process-is-active ()
     "T."
     (interactive)
