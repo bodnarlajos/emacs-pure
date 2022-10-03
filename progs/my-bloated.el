@@ -107,7 +107,10 @@
 
 (use-package org-modern
   :straight t
-  :defer t)
+  :defer t
+	:init
+	(custom-set-variables
+	 '(org-modern-star ["●" "○" "•" "-" "-"])))
 
 (use-package log-view
 	:straight (:type built-in)
