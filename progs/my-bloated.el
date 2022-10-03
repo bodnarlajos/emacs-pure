@@ -313,7 +313,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 	:commands gts-do-translate
 	:bind
 	("<f1>" . gts-do-translate)
-	("M-j M-o" . gts-do-translate)
 	:init
 	(defun disable-y-or-n-p (orig-fun &rest args)
 		(cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))

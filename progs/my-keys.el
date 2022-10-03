@@ -68,7 +68,12 @@
 (define-key my-prefix (kbd "M-j") 'execute-extended-command)
 
 (define-key my-prefix (kbd "o") 'find-file)
+(define-key my-prefix (kbd "M-o") 'find-file-other-window)
 (define-key my-prefix (kbd "S-o") 'project-find-file)
+(define-key my-prefix (kbd "M-b") 'switch-to-buffer-other-window)
+(define-key my-prefix (kbd "b") 'consult-buffer)
+(define-key my-prefix (kbd "M-b") 'consult-buffer-other-window)
+(define-key my-prefix (kbd "S-b") 'consult-project-buffer)
 
 (global-set-key (kbd "M-RET") 'my/start/menu)
 
