@@ -146,8 +146,7 @@
     "Open a magit directory."
     (interactive)
     (let ((current-prefix-arg '(4)))
-      (call-interactively #'magit-status-quick)
-      (delete-other-windows)))
+      (call-interactively #'magit-status-quick)))
   (defun my/goto-magit ()
     "T."
     (interactive)
