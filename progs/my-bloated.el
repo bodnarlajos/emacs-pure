@@ -107,7 +107,10 @@
 
 (use-package org-modern
   :straight t
-  :defer t)
+  :defer t
+	:init
+	(custom-set-variables
+	 '(org-modern-star ["●" "○" "•" "-" "-"])))
 
 (use-package log-view
 	:straight (:type built-in)
@@ -143,8 +146,7 @@
     "Open a magit directory."
     (interactive)
     (let ((current-prefix-arg '(4)))
-      (call-interactively #'magit-status-quick)
-      (delete-other-windows)))
+      (call-interactively #'magit-status-quick)))
   (defun my/goto-magit ()
     "T."
     (interactive)
