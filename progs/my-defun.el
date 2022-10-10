@@ -290,7 +290,7 @@ Version 2017-11-01"
 (defun my/select-all ()
 	"T."
 	(interactive)
-	(cua-exchange-point-and-mark nil)
+	(exchange-point-and-mark-no-activate)
 	(mark-whole-buffer))
 
 (defun parent-directory (dir)

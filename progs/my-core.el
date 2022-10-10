@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(cua-mode +1)
+;; (cua-mode +1)
 (use-package diminish)
 
 (use-package orderless
@@ -173,8 +173,8 @@
                 cape-dabbrev-min-length 2))
   :config
   (setq completion-at-point-functions '(cape-line))
-  (add-to-list 'completion-at-point-functions #'cape-symbol)
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;; (add-to-list 'completion-at-point-functions #'cape-symbol)
+  ;; (add-to-list 'completion-at-point-functions #'cape-keyword)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
@@ -282,7 +282,7 @@
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
 	(setq-default header-line-format "")
-	(set-fringe-mode 15)
+	(set-fringe-mode 10)
   (global-auto-revert-mode 1)
   (global-hi-lock-mode 1)
   (pixel-scroll-precision-mode +1)
