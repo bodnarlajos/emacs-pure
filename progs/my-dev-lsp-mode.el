@@ -80,13 +80,24 @@
 	("M-s l" . lsp-find-references)
 	("M-s i" . lsp-find-implementation)
 	("M-s c" . lsp-execute-code-action)
-	("M-s p" . lsp-ui-doc-show)
-	("<M-left>" . lsp-ui-doc-show)
 	:config
 	(setq lsp-auto-guess-root t)
   (setq lsp-restart 'auto-restart)
   (setq read-process-output-max (* 1024 1024)) ;; 1MB
   (setq lsp-idle-delay 0.5)
+  (setq lsp-log-io nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-signature-auto-activate nil)
+  (setq lsp-signature-render-documentation nil)
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-modeline-code-actions-enable nil)
+  (setq lsp-modeline-diagnostics-enable nil)
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-semantic-tokens-enable nil)
+  (setq lsp-enable-folding nil)
+  (setq lsp-enable-imenu nil)
+  (setq lsp-enable-snippet nil)
 	(add-hook 'lsp-mode-hook
 						(lambda ()
 							(display-line-numbers-mode +1)
@@ -104,6 +115,9 @@
 (use-package lsp-ui
 	:hook
 	(lsp-mode . lsp-ui-mode)
+	:bind
+	("M-s p" . lsp-ui-doc-show)
+	("<M-left>" . lsp-ui-doc-show)
 	:config
 	(custom-set-faces
 	 '(lsp-ui-doc-background ((t (:inherit mode-line))))
@@ -113,6 +127,8 @@
 	 '(lsp-ui-imenu-enable nil)
 	 '(lsp-ui-sideline-enable t)
 	 '(lsp-ui-sideline-show-symbol t)
+	 '(lsp-ui-doc-show-with-mouse nil)
+	 '(lsp-ui-doc-show-with-cursor nil)
 	 '(lsp-headerline-breadcrumb-enable nil)
 	 '(lsp-ui-peek-enable nil)))
 
@@ -154,7 +170,7 @@
 	:bind
 	("M-s b" . dap-breakpoint-toggle)
 	("M-s d" . dap-debug)
-	("M-s D" . my/dap-haskell-reg-auto)
+	("M-s D" . my/dap/haskell-reg-auto)
 	:config
 	(add-hook 'dap-stopped-hook
 						(lambda (arg) (call-interactively #'dap-hydra))))

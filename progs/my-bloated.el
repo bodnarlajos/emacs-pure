@@ -126,7 +126,7 @@
 	(define-key vc-git-log-view-mode-map (kbd "<M-down>") 'log-view-msg-next)
 	(define-key vc-git-log-view-mode-map (kbd "<M-left>") 'log-view-diff))
 
-(use-package git-timemachine
+(use-package git-time-machine
   :ensure t
   :demand t)
 
