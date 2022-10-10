@@ -53,6 +53,8 @@
   :bind
   ("M-s s" . consult-ripgrep-symbol-at-point)
   ("M-s g" . consult-ripgrep)
+	("M-s S-n" . consult-ripgrep-search-in-notes)
+	("M-s M-n" . consult-ripgrep-search-in-temp-dir)
   ("M-s M-g" . consult-git-grep)
   ("M-s M-s" . consult-ripgrep-related-files)
   :config
@@ -97,6 +99,14 @@
     (minibuffer-with-setup-hook
         (lambda () (goto-char (1+ (minibuffer-prompt-end))))
       (consult-ripgrep dir " -- -g *.*")))
+	(defun consult-ripgrep-search-in-notes ()
+		"Search in notes"
+		(interactive)
+		(consult-ripgrep-files-in-directory my/notes-dir))
+	(defun consult-ripgrep-search-in-temp-dir ()
+		"Search in temp notes"
+		(interactive)
+		(consult-ripgrep-files-in-directory my/temp-dir))
   (defun restrict-to-current-file ()
     (interactive)
     (if-let ((file (with-minibuffer-selected-window
