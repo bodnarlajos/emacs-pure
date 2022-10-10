@@ -33,7 +33,7 @@
   (define-key corfu-map (kbd "M-/") 'corfu-next)
   )
 
-(global-set-key (kbd "C-a") 'mark-whole-buffer)
+(global-set-key (kbd "C-x h") 'my/select-all)
 
 (define-prefix-command 'my-prefix)
 (global-set-key (kbd "M-j") 'my-prefix)

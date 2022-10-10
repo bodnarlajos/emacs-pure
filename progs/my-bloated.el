@@ -84,7 +84,8 @@
 	(:map org-mode-map
 				("M-RET" . consult-buffer))
   :config
-	(add-hook 'org-mode-hook (lambda () (define-key org-mode-map (kbd "S-M-RET") 'org-insert-heading)))
+	(add-hook 'org-mode-hook (lambda ()
+														 (define-key org-mode-map (kbd "S-M-<return>") 'org-insert-heading)))
   (add-hook 'org-mode-hook 'org-modern-mode)
   (define-key org-mode-map [mouse-1] 'org-cycle)
   (setq org-todo-keywords
@@ -110,7 +111,7 @@
   :defer t
 	:init
 	(custom-set-variables
-	 '(org-modern-star ["●" "○" "•" "-" "-"])))
+	 '(org-modern-star ["●" "●" "●" "-" "-"])))
 
 (use-package log-view
 	:straight (:type built-in)
