@@ -281,7 +281,7 @@
 	(setq-default auto-save-interval 30)
   (setq use-dialog-box nil)
   (setq global-auto-revert-non-file-buffers t)
-	(setq-default header-line-format "")
+	(setq-default header-line-format nil)
 	(set-fringe-mode 10)
   (global-auto-revert-mode 1)
   (global-hi-lock-mode 1)
