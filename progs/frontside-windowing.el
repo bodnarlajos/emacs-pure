@@ -34,6 +34,7 @@
          (define-key keymap [remap split-window-below] #'frontside-windowing--vsplit-last-buffer)
          (define-key keymap [remap split-window-right] #'frontside-windowing--hsplit-last-buffer)
          keymap)
+	(add-to-list 'default-frame-alist '(fullscreen . maximized))
 	(my/set-side-windows)
   (if frontside-windowing-mode
       (frontside-windowing-on)

@@ -47,11 +47,7 @@
 (require 'server)
 (when (not (server-running-p))
 	(server-start)
-	(when my/is-mswindows
-		(find-file (expand-file-name "/daily.org" my/notes-dir))))
+	(message "Server mode started"))
 
-;; end of init
-;; run custom init script
-(my/end-of-init)
 ;; activate config
 (my/run/my-config)

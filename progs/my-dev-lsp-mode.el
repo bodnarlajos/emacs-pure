@@ -86,18 +86,6 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1MB
   (setq lsp-idle-delay 0.5)
   (setq lsp-log-io nil)
-  (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-signature-auto-activate nil)
-  (setq lsp-signature-render-documentation nil)
-  (setq lsp-eldoc-hook nil)
-  (setq lsp-modeline-code-actions-enable nil)
-  (setq lsp-modeline-diagnostics-enable nil)
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-semantic-tokens-enable nil)
-  (setq lsp-enable-folding nil)
-  (setq lsp-enable-imenu nil)
-  (setq lsp-enable-snippet nil)
 	(add-hook 'lsp-mode-hook
 						(lambda ()
 							(display-line-numbers-mode +1)
@@ -154,10 +142,7 @@
 	(interactive)
 	(when (not (member 'cape-file completion-at-point-functions))
 		(setq completion-at-point-functions (append completion-at-point-functions '(cape-file)))
-		(setq completion-at-point-functions (append completion-at-point-functions '(cape-dabbrev)))
-		(setq completion-at-point-functions (append completion-at-point-functions '(cape-keyword)))
-		(setq completion-at-point-functions (append completion-at-point-functions '(cape-symbol)))
-		(setq completion-at-point-functions (append completion-at-point-functions '(cape-line)))))
+		(setq completion-at-point-functions (append completion-at-point-functions '(cape-dabbrev)))))
 
 (use-package dap-mode
 	:init
