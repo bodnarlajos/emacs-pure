@@ -304,6 +304,8 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package dired+
 	:init
+	(require 'dired+)
+	:config
 	(defun my/start/dired-current-file ()
 		"Start the current file with default application"
 		(interactive)
