@@ -43,6 +43,9 @@
 (define-key my-prefix (kbd "<SPC>") 'back-button-push-mark-local-and-global)
 (define-key my-prefix (kbd "d") 'duplicate-line)
 
+(with-eval-after-load 'eshell
+	(define-key eshell-mode-map (kbd "M-<return>") 'consult-buffer))
+
 (defun my/run/shell-command ()
 	"Run a shell command"
 	(interactive)
