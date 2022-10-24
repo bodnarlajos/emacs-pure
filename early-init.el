@@ -1,10 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(defconst my/start-time (current-time))
-(defconst my/autostart-dev-env nil)
-
 (defvar file-name-handler-alist-old file-name-handler-alist)
-(defconst is-lbodnar (string-equal system-name "debla"))
 
 (setq file-name-handler-alist nil
       message-log-max 16384
@@ -17,8 +13,7 @@
                    gc-cons-threshold (* 100 1024 1024)
                    gc-cons-percentage 0.1)
              (garbage-collect)
-             (message "Load time %.06f"
-                      (float-time (time-since my/start-time)))) t)
+             (message "Load time %s" (emacs-uptime))) t)
 
 (tool-bar-mode   -1)
 (menu-bar-mode   +1)
