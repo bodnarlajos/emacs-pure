@@ -5,10 +5,7 @@
       visible-bell t)
 (customize-set-variable 'completion-cycle-threshold 3)
 (customize-set-variable 'tab-always-indent 'complete)
-(customize-set-variable 'completion-category-overrides
-                        '((file (styles . (partial-completion)))))
 (customize-set-variable 'completions-detailed t)
-(fido-vertical-mode 1)               ; fido-vertical-mode is
 (electric-pair-mode 1) ; auto-insert matching bracket
 (show-paren-mode 1)    ; turn on paren match highlighting
 (winner-mode 1)
@@ -53,8 +50,6 @@
 (savehist-mode t)
 (save-place-mode t)
 
-(load-theme 'tango t)
-
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'extra-packages)
 
@@ -63,6 +58,16 @@
  '(next-error-recenter '(4))
  '(org-adapt-indentation 'headline-data)
  '(org-startup-indented t))
+
+(with-eval-after-load 'ediff
+  ;; add ediff configuration
+  (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
+  (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
+  (set-face-attribute 'ediff-even-diff-C nil :inherit nil)
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-merge-split-window-function 'split-window-vertically)
+  (setq ediff-diff-options "-w")
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (defvar my/notes-path "")
 (setq custom-file (expand-file-name (concat "~/.emacs.d/lisp/custom-" (system-name) ".el")))
