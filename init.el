@@ -59,17 +59,24 @@
 (require 'extra-packages)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4))
  '(org-adapt-indentation 'headline-data)
  '(org-startup-indented t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "JB" :family "JetBrains Mono")))))
+
+(defvar my/notes-path "")
+(setq custom-file (expand-file-name (concat "~/.emacs.d/lisp/custom-" (system-name) ".el")))
+(message "Custom file path: %s" custom-file)
+(load custom-file)
+
+(defun my/open-notes ()
+  "Open file from the notes directory"
+  (interactive)			
+  (if (find-file (concat my/notes-path (completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-path))))))
+      (message "Opening note...")
+    (message "Aborting")))
+
+(defun indent-buffer ()
+  (interactive)			
+  (save-excursion		
+    (indent-region (point-min) (point-max) nil)))
