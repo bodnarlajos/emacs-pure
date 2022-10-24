@@ -216,6 +216,7 @@
  package-check-signature nil
  custom-file (concat user-emacs-directory "custom.new.el")
  inhibit-startup-screen t
+ visible-bell t
  tab-width 2
  split-height-threshold 0
  split-width-threshold nil

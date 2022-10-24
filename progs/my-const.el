@@ -10,7 +10,7 @@
 (defcustom my/temp-dir "/home/lbodnar/Projects/temp" "" :type 'string :group 'my/configs)
 (defcustom my/const/gitk-exe--path "/usr/bin/gitk" "" :type 'string :group 'my/configs)
 (defcustom my/const/git-gui-exe--path "/usr/bin/git" "" :type 'string :group 'my/configs)
-(defcustom my/is-libgit2 t "Enable the libgit2 binding" :type 'boolean :group 'my/configs)
+(defcustom my/is-libgit2 nil "Enable the libgit2 binding" :type 'boolean :group 'my/configs)
 (defcustom my/const/libgit-path "/home/lbodnar/Projects/libegit2" "Libgit2 repository" :type 'string :group 'my/configs)
 (defcustom my/modules '(my-bloated my-custom my-prog my-haskell my-web my-themes) "The modules, what you use" :type '(list symbol) :group 'my/configs)
 (defcustom my/menu-items '(("IDE" . my/run/bloated-hook)

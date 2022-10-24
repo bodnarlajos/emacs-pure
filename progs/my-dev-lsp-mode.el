@@ -100,25 +100,25 @@
 (use-package lsp-java
 	:defer t)
 
-(use-package lsp-ui
-	:hook
-	(lsp-mode . lsp-ui-mode)
-	:bind
-	("M-s p" . lsp-ui-doc-show)
-	("<M-left>" . lsp-ui-doc-show)
-	:config
-	(custom-set-faces
-	 '(lsp-ui-doc-background ((t (:inherit mode-line))))
-	 '(lsp-ui-doc-header ((t (:inherit lsp-ui-doc-background)))))
-	;; (setq lsp-log-io t)
-	(custom-set-variables
-	 '(lsp-ui-imenu-enable nil)
-	 '(lsp-ui-sideline-enable t)
-	 '(lsp-ui-sideline-show-symbol t)
-	 '(lsp-ui-doc-show-with-mouse nil)
-	 '(lsp-ui-doc-show-with-cursor nil)
-	 '(lsp-headerline-breadcrumb-enable nil)
-	 '(lsp-ui-peek-enable nil)))
+;; (use-package lsp-ui
+;; 	:hook
+;; 	(lsp-mode . lsp-ui-mode)
+;; 	:bind
+;; 	("M-s p" . lsp-ui-doc-show)
+;; 	("<M-left>" . lsp-ui-doc-show)
+;; 	:config
+;; 	(custom-set-faces
+;; 	 '(lsp-ui-doc-background ((t (:inherit mode-line))))
+;; 	 '(lsp-ui-doc-header ((t (:inherit lsp-ui-doc-background)))))
+;; 	;; (setq lsp-log-io t)
+;; 	(custom-set-variables
+;; 	 '(lsp-ui-imenu-enable nil)
+;; 	 '(lsp-ui-sideline-enable t)
+;; 	 '(lsp-ui-sideline-show-symbol t)
+;; 	 '(lsp-ui-doc-show-with-mouse nil)
+;; 	 '(lsp-ui-doc-show-with-cursor t)
+;; 	 '(lsp-headerline-breadcrumb-enable nil)
+;; 	 '(lsp-ui-peek-enable nil)))
 
 (global-eldoc-mode +1)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
