@@ -11,15 +11,14 @@
 (winner-mode 1)
 
 (add-to-list 'display-buffer-alist
-             '("\\*Help\\*"
+             '("\\*\\(Completions\\|Help\\)\\*"
                (display-buffer-reuse-window display-buffer-pop-up-window)
-               (inhibit-same-window . t)))
+               (window-height . 30)
+               (side . bottom)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*Completions\\*"
-               (display-buffer-reuse-window display-buffer-pop-up-window)
-               (inhibit-same-window . t)
-               (window-height . 10)))
+             '("\\*Compile-Log\\*"
+               (display-buffer-no-window)))
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
@@ -29,8 +28,12 @@
 (global-set-key [remap list-buffers] #'ibuffer-list-buffers)
 (customize-set-variable 'global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
+(global-display-line-numbers-mode +1)
 (delete-selection-mode)
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              delete-old-versions t
+              create-lockfiles nil
+              column-number-mode t)
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)
   (advice-add 'yes-or-no-p :override #'y-or-n-p))
@@ -49,12 +52,14 @@
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 (savehist-mode t)
 (save-place-mode t)
+;; (add-hook 'save-place-after-find-file-hook (lambda ()
+;;                                              (timer-set-function 1 (call-interactively 'recenter-top-bottom))))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'extra-packages)
 
 (custom-set-variables
- '(completion-styles '(substring basic partial-completion emacs22))
+;;  '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4))
  '(org-adapt-indentation 'headline-data)
  '(org-startup-indented t))
@@ -85,3 +90,10 @@
   (interactive)			
   (save-excursion		
     (indent-region (point-min) (point-max) nil)))
+
+(defvar my/path-separator ":")
+(when (eq system-type 'windows-nt)
+  (setq my/path-separator ";"))
+
+(add-hook 'after-init-hook
+          (lambda () (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))))

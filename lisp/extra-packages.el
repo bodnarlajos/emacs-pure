@@ -24,6 +24,7 @@
 ;; utils
 (straight-use-package 'rg)
 (straight-use-package 'consult)
+(straight-use-package 'which-key)
 
 ;; completion
 (straight-use-package 'diminish)
@@ -33,10 +34,24 @@
 (straight-use-package 'vertico)
 (straight-use-package 'cape)
 (straight-use-package 'kind-icon)
+;; programming packages
+(straight-use-package 'csharp-mode)
+(straight-use-package 'powershell-mode)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'angular-mode)
+(straight-use-package 'typescript-mode)
+(straight-use-package 'js2-mode)
+(straight-use-package 'web-mode)
 
-(marginalia-mode +1)
+;; lsp mode
+(straight-use-package 'lsp-mode)
+
+;; package configurations
+(require 'consult)
 (vertico-mode +1)
+(marginalia-mode +1)
 (global-corfu-mode +1)
+(which-key-mode +1)
 
 (setq corfu-cycle nil
       corfu-quit-at-boundary nil
@@ -46,7 +61,7 @@
       vertico-count 13
       vertico-cycle t
       kind-icon-default-face 'corfu-default
-      completion-styles '(orderless)
+      completion-styles '(substring orderless)
       cape-dabbrev-min-length 2
       vertico-resize t)
 
@@ -63,18 +78,28 @@
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
+(with-eval-after-load 'lsp-mode
+  (setq lsp-headerline-breadcrumb-enable nil)
+  (add-to-list 'lsp-file-watch-ignored-directories "bin"))
+
+;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
+(global-set-key (kbd "C-z") 'undo-only)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'keyboard-quit)
+(global-set-key (kbd "M-RET") 'consult-buffer)
+(global-set-key (kbd "M-o") 'my/open-file)
 
-;; programming packages
-(straight-use-package 'csharp-mode)
-(straight-use-package 'powershell-mode)
-(straight-use-package 'haskell-mode)
-(straight-use-package 'angular-mode)
-(straight-use-package 'typescript-mode)
-(straight-use-package 'js2-mode)
-(straight-use-package 'web-mode)
 
-;; lsp mode
-(straight-use-package 'lsp-mode)
+(defun my/open-file ()
+  "Open project files if it is a project, otherwise find-file"
+  (interactive)
+  (if (consult--project-root)
+      (call-interactively 'project-find-file)
+    (call-interactively 'find-file)))
 
 (provide 'extra-packages)
