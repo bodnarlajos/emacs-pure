@@ -63,15 +63,19 @@
  ;;  '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4)))
 
+(defun my/org-new-line ()
+  "..."
+  (interactive)
+  (org-end-of-line)
+  (org-meta-return))
+
 (with-eval-after-load 'org
   (message "org mode started")
   (custom-set-variables
    '(org-adapt-indentation 'headline-data)
    '(org-support-shift-select t)
    '(org-startup-indented t))
-  (define-key org-mode-map (kbd "S-<return>") (lambda ()
-                                                (org-end-of-line)
-                                                (org-meta-return)))
+  (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
   (define-key org-mode-map (kbd "M-RET") 'consult-buffer))
 
 (with-eval-after-load 'ediff
