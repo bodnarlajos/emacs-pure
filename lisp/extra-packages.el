@@ -25,6 +25,7 @@
 (straight-use-package 'rg)
 (straight-use-package 'consult)
 (straight-use-package 'which-key)
+(straight-use-package 'crux)
 
 ;; completion
 (straight-use-package 'diminish)
@@ -93,7 +94,11 @@
 (global-set-key [escape] 'keyboard-quit)
 (global-set-key (kbd "M-RET") 'consult-buffer)
 (global-set-key (kbd "M-o") 'my/open-file)
-
+(global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
+(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+(global-set-key (kbd "S-RET") 'crux-smart-open-line)
+(global-set-key (kbd "C-<return>") 'crux-smart-open-line-above)
+(global-set-key (kbd "M-;") 'comment-line)
 
 (defun my/open-file ()
   "Open project files if it is a project, otherwise find-file"

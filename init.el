@@ -17,8 +17,9 @@
                (side . bottom)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*Compile-Log\\*"
-               (display-buffer-no-window)))
+             '("\\*\\(Compile-Log\\|Async-native-compile-log\\)\\*"
+               (display-buffer-no-window)
+               (allow-no-window t)))
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
@@ -59,10 +60,19 @@
 (require 'extra-packages)
 
 (custom-set-variables
-;;  '(completion-styles '(substring basic partial-completion emacs22))
- '(next-error-recenter '(4))
- '(org-adapt-indentation 'headline-data)
- '(org-startup-indented t))
+ ;;  '(completion-styles '(substring basic partial-completion emacs22))
+ '(next-error-recenter '(4)))
+
+(with-eval-after-load 'org
+  (message "org mode started")
+  (custom-set-variables
+   '(org-adapt-indentation 'headline-data)
+   '(org-support-shift-select t)
+   '(org-startup-indented t))
+  (define-key org-mode-map (kbd "S-<return>") (lambda ()
+                                                (org-end-of-line)
+                                                (org-meta-return)))
+  (define-key org-mode-map (kbd "M-RET") 'consult-buffer))
 
 (with-eval-after-load 'ediff
   ;; add ediff configuration
