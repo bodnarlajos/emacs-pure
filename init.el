@@ -66,7 +66,7 @@
 (require 'keys)
 
 (custom-set-variables
- ;;  '(completion-styles '(substring basic partial-completion emacs22))
+ ;; '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4)))
 
 (defun my/org-new-line ()
@@ -119,3 +119,8 @@
           (lambda ()
             (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
             (require 'extra-lsp)))
+
+(defun my/start-powershell ()
+  "..."
+  (interactive)
+  (async-shell-command "powershell.exe"))
