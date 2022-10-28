@@ -12,12 +12,15 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(consult-preview-key [S-up])
+ '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
-   '("/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
+   '("/home/lbodnar/node_modules/.bin" "/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
  '(global-display-line-numbers-mode t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
+ '(lsp-eldoc-render-all t)
+ '(lsp-enable-dap-auto-configure nil)
  '(next-error-recenter '(4))
  '(tool-bar-mode nil)
  '(xref-show-definitions-function 'consult-xref)
