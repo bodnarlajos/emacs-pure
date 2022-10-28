@@ -44,9 +44,6 @@
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
 
-;; lsp mode
-(straight-use-package 'lsp-mode)
-
 ;; package configurations
 (require 'consult)
 (vertico-mode +1)
