@@ -61,7 +61,9 @@
 ;;                                              (timer-set-function 1 (call-interactively 'recenter-top-bottom))))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(require 'defuns)
 (require 'extra-packages)
+(require 'keys)
 
 (custom-set-variables
  ;;  '(completion-styles '(substring basic partial-completion emacs22))
