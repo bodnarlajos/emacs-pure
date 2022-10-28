@@ -1,5 +1,22 @@
 ;; -*- lexical-binding: t -*-
 
+(defun my/open-file ()
+  "Open project files if it is a project, otherwise find-file"
+  (interactive)
+  (if (consult--project-root)
+      (call-interactively 'project-find-file)
+    (call-interactively 'find-file)))
+
+(defun my/org-new-line ()
+  "..."
+  (interactive)
+  (org-end-of-line)
+  (org-meta-return))
+
+(defun my/start-powershell ()
+  "..."
+  (interactive)
+  (async-shell-command "powershell.exe"))
 
 (defun my/open-notes ()
   "Open file from the notes directory"

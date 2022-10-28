@@ -69,12 +69,6 @@
  ;; '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4)))
 
-(defun my/org-new-line ()
-  "..."
-  (interactive)
-  (org-end-of-line)
-  (org-meta-return))
-
 (with-eval-after-load 'org
   (message "org mode started")
   (custom-set-variables
@@ -99,18 +93,6 @@
 (message "Custom file path: %s" custom-file)
 (load custom-file)
 
-(defun my/open-notes ()
-  "Open file from the notes directory"
-  (interactive)			
-  (if (find-file (concat my/notes-path (completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-path))))))
-      (message "Opening note...")
-    (message "Aborting")))
-
-(defun indent-buffer ()
-  (interactive)			
-  (save-excursion		
-    (indent-region (point-min) (point-max) nil)))
-
 (defvar my/path-separator ":")
 (when (eq system-type 'windows-nt)
   (setq my/path-separator ";"))
@@ -120,7 +102,3 @@
             (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
             (require 'extra-lsp)))
 
-(defun my/start-powershell ()
-  "..."
-  (interactive)
-  (async-shell-command "powershell.exe"))
