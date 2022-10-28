@@ -62,7 +62,7 @@
       vertico-count 13
       vertico-cycle t
       kind-icon-default-face 'corfu-default
-      completion-styles '(substring orderless)
+      completion-styles '(orderless)
       cape-dabbrev-min-length 2
       vertico-resize t)
 

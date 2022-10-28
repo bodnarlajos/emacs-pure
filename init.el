@@ -60,7 +60,7 @@
 (require 'extra-packages)
 
 (custom-set-variables
- ;;  '(completion-styles '(substring basic partial-completion emacs22))
+ ;; '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4)))
 
 (defun my/org-new-line ()
@@ -111,3 +111,8 @@
 
 (add-hook 'after-init-hook
           (lambda () (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))))
+
+(defun my/start-powershell ()
+  "..."
+  (interactive)
+  (async-shell-command "powershell.exe"))
