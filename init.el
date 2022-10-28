@@ -17,13 +17,13 @@
                (side . bottom)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(Compile-Log\\|Async-native-compile-log\\)\\*"
+             '("\\*\\(Compile-Log\\|Async-native-compile-log\\|Warnings\\)\\*"
                (display-buffer-no-window)
                (allow-no-window t)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(vc-dir\\|vc-diff\\|Async Shell Command\\)\\*")
-             (display-buffer-full-frame))
+             '("\\*\\(vc-dir\\|vc-diff\\|Async Shell Command\\)\\*"
+             (display-buffer-full-frame)))
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
