@@ -33,11 +33,12 @@
 (global-set-key [remap list-buffers] #'ibuffer-list-buffers)
 (customize-set-variable 'global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
-(global-display-line-numbers-mode +1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (delete-selection-mode)
 (setq-default indent-tabs-mode nil
               delete-old-versions t
               create-lockfiles nil
+              left-fringe-width 15
               column-number-mode t)
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)

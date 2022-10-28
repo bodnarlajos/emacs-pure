@@ -18,5 +18,6 @@
 (global-set-key (kbd "S-RET") 'crux-smart-open-line)
 (global-set-key (kbd "C-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-;") 'comment-line)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
 
 (provide 'keys)
