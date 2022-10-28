@@ -21,6 +21,10 @@
                (display-buffer-no-window)
                (allow-no-window t)))
 
+(add-to-list 'display-buffer-alist
+             '("\\*\\(vc-dir\\|vc-diff\\|Async Shell Command\\)\\*")
+             (display-buffer-full-frame))
+
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
 (repeat-mode 1)
@@ -110,4 +114,6 @@
   (setq my/path-separator ";"))
 
 (add-hook 'after-init-hook
-          (lambda () (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))))
+          (lambda ()
+            (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
+            (require 'extra-lsp)))
