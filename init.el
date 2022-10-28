@@ -11,7 +11,7 @@
 (winner-mode 1)
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(Completions\\|Help\\)\\*"
+             '("\\*\\(Completions\\|Help\\|eldoc.+\\)\\*"
                (display-buffer-reuse-window display-buffer-pop-up-window)
                (window-height . 30)
                (side . bottom)))
@@ -36,6 +36,7 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (delete-selection-mode)
 (setq-default indent-tabs-mode nil
+              standard-indent 2
               delete-old-versions t
               create-lockfiles nil
               left-fringe-width 15
@@ -103,4 +104,4 @@
 (add-hook 'after-init-hook
           (lambda ()
             (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
-            (require 'extra-lsp)))
+            (require 'eglot-lsp)))
