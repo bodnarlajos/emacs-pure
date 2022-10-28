@@ -20,4 +20,10 @@
 (global-set-key (kbd "M-;") 'comment-line)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 
+(with-eval-after-load 'org
+  (define-key org-mode-map [mouse-1] 'org-cycle)
+
+  (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
+  (define-key org-mode-ma (kbd "M-RET") 'consult-buffer))
+
 (provide 'keys)

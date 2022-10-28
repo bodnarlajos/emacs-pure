@@ -23,7 +23,7 @@
 
 (add-to-list 'display-buffer-alist
              '("\\*\\(vc-dir\\|vc-diff\\|Async Shell Command\\)\\*"
-             (display-buffer-full-frame)))
+               (display-buffer-full-frame)))
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
@@ -71,13 +71,10 @@
  '(next-error-recenter '(4)))
 
 (with-eval-after-load 'org
-  (message "org mode started")
   (custom-set-variables
    '(org-adapt-indentation 'headline-data)
    '(org-support-shift-select t)
-   '(org-startup-indented t))
-  (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
-  (define-key org-mode-map (kbd "M-RET") 'consult-buffer))
+   '(org-startup-indented t)))
 
 (with-eval-after-load 'ediff
   ;; add ediff configuration
@@ -88,6 +85,11 @@
   (setq ediff-merge-split-window-function 'split-window-vertically)
   (setq ediff-diff-options "-w")
   (setq ediff-window-setup-function #'ediff-setup-windows-plain))
+
+(setq vc-handled-backends '(Git))
+;; unload after crux
+(when (featurep 'tramp)
+  (unload-feature 'tramp t))
 
 (defvar my/notes-path "")
 (setq custom-file (expand-file-name (concat "~/.emacs.d/lisp/custom-" (system-name) ".el")))
@@ -102,4 +104,3 @@
           (lambda ()
             (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
             (require 'extra-lsp)))
-

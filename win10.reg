@@ -6,13 +6,13 @@ Windows Registry Editor Version 5.00
 ;; Open file in existing frame
 [HKEY_CURRENT_USER\Software\Classes\*\shell\emacsopencurrentframe]
 @="&Emacs: Edit in existing window"
-"icon"="C:\\ProgramData\\emacs-native\\bin\\emacsclientw.exe"
+"icon"="C:\\Users\LBODNAR\\scoop\\shims\\emacsclientw.exe"
 [HKEY_CURRENT_USER\Software\Classes\*\shell\emacsopencurrentframe\command]
-@="C:\\ProgramData\\emacs-native\\bin\\emacsclientw.exe -n --alternate-editor=\"C:\\ProgramData\\emacs-native\\bin\\runemacs.exe\" \"%1\""
+@="C:\\Users\LBODNAR\\scoop\\shims\\emacsclientw.exe -n --alternate-editor=\"C:\\Users\LBODNAR\\scoop\\shims\\runemacs.exe\" \"%1\""
 
 ;; Open file in new frame
 [HKEY_CURRENT_USER\Software\Classes\*\shell\emacsopennewframe]
 @="&Emacs: Edit in new window"
-"icon"="C:\\ProgramData\\emacs-native\\bin\\emacsclientw.exe"
+"icon"="C:\\Users\LBODNAR\\scoop\\shims\\emacsclientw.exe"
 [HKEY_CURRENT_USER\Software\Classes\*\shell\emacsopennewframe\command]
-@="C:\\ProgramData\\emacs-native\\bin\\emacsclientw.exe -n --alternate-editor=\"C:\\ProgramData\\emacs-native\\bin\\runemacs.exe\" -c \"%1\""
+@="C:\\Users\LBODNAR\\scoop\\shims\\emacsclientw.exe -n --alternate-editor=\"C:\\Users\LBODNAR\\scoop\\shims\\runemacs.exe\" -c \"%1\""
