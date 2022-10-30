@@ -22,7 +22,7 @@
                (allow-no-window t)))
 
 (add-to-list 'display-buffer-alist
-             '("\\*\\(vc-dir\\|vc-diff\\|Async Shell Command\\)\\*"
+             '("\\*\\(vc-dir\\|vc-diff\\|vc-change-log\\|Async Shell Command\\)\\*"
                (display-buffer-full-frame)))
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
