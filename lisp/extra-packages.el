@@ -26,6 +26,7 @@
 (straight-use-package 'consult)
 (straight-use-package 'which-key)
 (straight-use-package 'crux)
+(straight-use-package 'easy-kill)
 
 ;; completion
 (straight-use-package 'diminish)

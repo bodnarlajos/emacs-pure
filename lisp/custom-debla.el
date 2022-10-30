@@ -27,3 +27,4 @@
  '(xref-show-xrefs-function 'consult-xref))
 
 (setq my/notes-path (expand-file-name "~/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/"))
+(add-to-list 'my/menu-items '("Format document" . indent-buffer))

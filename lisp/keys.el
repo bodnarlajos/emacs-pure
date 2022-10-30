@@ -46,4 +46,6 @@
   (global-set-key (kbd "M-s M-g") 'consult-git-grep)
   (global-set-key (kbd "M-s M-s") 'consult-ripgrep-related-files))
 
+(global-set-key [remap kill-ring-save] 'easy-kill)
+
 (provide 'keys)
