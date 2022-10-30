@@ -28,3 +28,5 @@
 
 (setq my/notes-path (expand-file-name "~/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/"))
 (add-to-list 'my/menu-items '("Format document" . indent-buffer))
+(add-to-list 'my/menu-items '("Duplicate line" . duplicate-line))
+(add-to-list 'my/menu-items '("Terminal" . 'my/start-term))

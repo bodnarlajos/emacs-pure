@@ -44,6 +44,7 @@
 (straight-use-package 'typescript-mode)
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
+(straight-use-package 'yaml-mode)
 
 ;; package configurations
 (require 'consult)
