@@ -33,8 +33,11 @@
   (define-key shell-mode-map (kbd "M-<return>") 'consult-buffer))
 
 (with-eval-after-load 'markdown-mode
-  (message "markdown loaded")
   (define-key markdown-mode-map (kbd "M-<return>") 'consult-buffer))
+
+(with-eval-after-load 'diff-mode
+  (message "diff loaded")
+  (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer))
 
 ;; consult
 (with-eval-after-load 'consult
@@ -47,5 +50,6 @@
   (global-set-key (kbd "M-s M-s") 'consult-ripgrep-related-files))
 
 (global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (provide 'keys)

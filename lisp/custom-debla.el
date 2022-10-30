@@ -30,3 +30,4 @@
 (add-to-list 'my/menu-items '("Format document" . indent-buffer))
 (add-to-list 'my/menu-items '("Duplicate line" . duplicate-line))
 (add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
+(global-hl-line-mode +1)
