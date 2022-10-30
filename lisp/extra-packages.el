@@ -80,4 +80,27 @@
   (setq lsp-headerline-breadcrumb-enable nil)
   (add-to-list 'lsp-file-watch-ignored-directories "bin"))
 
+(defvar consult--source-my-menu
+  `(:name     "My MENU"
+	      :narrow   ?f
+	      :category 'function
+	      :face     'font-lock-keyword-face
+	      :default  t
+	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
+	      :items (lambda () (mapcar #'car my/menu-items)))
+  "My menu items for `consult-buffer'.")
+
+(custom-set-variables
+ '(consult-buffer-sources
+   '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
+ '(xref-show-xrefs-function 'consult-xref))
+
+(defcustom my/menu-items '(("Notes" . my/open-notes)
+		           ("Git" . vc-dir)
+                           ("Powershell" . my/start-powershell)
+                           ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
+
+(consult-customize
+ consult-line :prompt "Search: ")
+
 (provide 'extra-packages)

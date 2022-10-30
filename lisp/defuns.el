@@ -13,6 +13,13 @@
   (org-end-of-line)
   (org-meta-return))
 
+(defun my/start-term ()
+  "Start terminal"
+  (interactive)
+  (if (eq system-type 'windows-nt)
+      (my/start-powershell)
+    (ansi-term "/bin/zsh")))
+
 (defun my/start-powershell ()
   "..."
   (interactive)
@@ -29,5 +36,47 @@
   (interactive)			
   (save-excursion		
     (indent-region (point-min) (point-max) nil)))
+
+(defun consult-ripgrep-symbol-at-point ()
+  "Seearch in files whose base name is the same as the current file's."
+  (interactive)
+  (minibuffer-with-setup-hook
+      (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+    (consult-ripgrep (my/root-project-dir)
+                     (if-let ((sap (symbol-at-point)))
+                         (format "%s -- -g *" sap)
+                       (user-error "Buffer is not visiting a file")))))
+(defun consult-ripgrep-related-files ()
+  "Seearch in files whose base name is the same as the current file's."
+  (interactive)
+  (minibuffer-with-setup-hook
+      (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+    (consult-ripgrep (my/root-project-dir)
+                     (if-let ((file (buffer-file-name)))
+                         (format "%s -- -g %s*.*" (symbol-at-point) (file-name-base file))
+                       (user-error "Buffer is not visiting a file")))))
+(defun consult-ripgrep-files-in-directory (dir)
+  "Seearch in files whose base name is the same as the current file's."
+  (interactive "DDirectory: ")
+  (minibuffer-with-setup-hook
+      (lambda () (goto-char (1+ (minibuffer-prompt-end))))
+    (consult-ripgrep dir " -- -g *.*")))
+(defun consult-ripgrep-search-in-notes ()
+  "Search in notes"
+  (interactive)
+  (consult-ripgrep-files-in-directory my/notes-dir))
+(defun consult-ripgrep-search-in-temp-dir ()
+  "Search in temp notes"
+  (interactive)
+  (consult-ripgrep-files-in-directory my/temp-dir))
+(defun restrict-to-current-file ()
+  (interactive)
+  (if-let ((file (with-minibuffer-selected-window
+                   (buffer-file-name))))
+      ;; (message "file: %s" file)
+      (save-excursion
+        (goto-char (point-max))
+        (insert " -- -g " (file-name-base file) "*.*"))
+    (user-error "Buffer is not visiting a file")))
 
 (provide 'defuns)

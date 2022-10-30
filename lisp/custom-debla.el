@@ -26,3 +26,4 @@
  '(xref-show-definitions-function 'consult-xref)
  '(xref-show-xrefs-function 'consult-xref))
 
+(setq my/notes-path (expand-file-name "~/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/"))
