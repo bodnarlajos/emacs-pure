@@ -39,6 +39,9 @@
   (message "diff loaded")
   (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer))
 
+(with-eval-after-load 'vertico
+  (define-key vertico-map (kbd "M-RET") #'vertico-next))
+
 ;; consult
 (with-eval-after-load 'consult
   (global-set-key (kbd "M-RET") 'consult-buffer)

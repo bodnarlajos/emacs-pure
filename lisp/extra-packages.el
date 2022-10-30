@@ -100,6 +100,9 @@
 (defcustom my/menu-items '(("Notes" . my/open-notes)
 		           ("Git" . vc-dir)
                            ("Powershell" . my/start-powershell)
+                           ("Back" . 'consult-mark)
+                           ("Eval region" . eval-region)
+                           ("BackGlobal" . consult-global-mark)
                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
 
 (consult-customize
