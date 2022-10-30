@@ -11,6 +11,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(consult-buffer-sources
+   '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
  '(consult-preview-key [S-up])
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path

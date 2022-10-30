@@ -87,7 +87,9 @@
   (setq ediff-diff-options "-w")
   (setq ediff-window-setup-function #'ediff-setup-windows-plain))
 
-(setq vc-handled-backends '(Git))
+(setq vc-handled-backends '(Git)
+      vc-git-show-stash 3)
+
 ;; unload after crux
 (when (featurep 'tramp)
   (unload-feature 'tramp t))

@@ -47,6 +47,7 @@
   (global-set-key (kbd "M-s S-n") 'consult-ripgrep-search-in-notes)
   (global-set-key (kbd "M-s M-n") 'consult-ripgrep-search-in-temp-dir)
   (global-set-key (kbd "M-s M-g") 'consult-git-grep)
+  (global-set-key (kbd "M-s l") 'consult-line)
   (global-set-key (kbd "M-s M-s") 'consult-ripgrep-related-files))
 
 (global-set-key [remap kill-ring-save] 'easy-kill)
