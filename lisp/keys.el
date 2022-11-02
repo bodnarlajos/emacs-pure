@@ -19,18 +19,21 @@
 (global-set-key (kbd "M-;") 'comment-line)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 
-(with-eval-after-load 'dabbrev
-  (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
-  (global-set-key (kbd "C-M-/") 'dabbrev-expand))
-(global-set-key (kbd "M-/") 'completion-at-point)
+;; (with-eval-after-load 'dabbrev
+;;   (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
+;;   (global-set-key (kbd "C-M-/") 'dabbrev-expand))
+;; (global-set-key (kbd "M-/") 'completion-at-point)
 
-(with-eval-after-load 'corfu
-  (define-key corfu-map (kbd "TAB") 'corfu-next)
-  (define-key corfu-map [tab] 'corfu-next)
-  (define-key corfu-map [backtab] 'corfu-previous)
-  (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
-  (define-key corfu-map (kbd "M-/") 'corfu-next)
-  )
+(with-eval-after-load 'csharp-mode
+  (define-key csharp-mode-map (kbd "<tab>") 'completion-at-point))
+
+;; (with-eval-after-load 'corfu
+;;   (define-key corfu-map (kbd "TAB") 'corfu-next)
+;;   (define-key corfu-map [tab] 'corfu-next)
+;;   (define-key corfu-map [backtab] 'corfu-previous)
+;;   (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
+;;   (define-key corfu-map (kbd "M-/") 'corfu-next)
+;;   )
 
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)

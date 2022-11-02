@@ -35,7 +35,7 @@
 (straight-use-package 'corfu)
 (straight-use-package 'vertico)
 (straight-use-package 'cape)
-(straight-use-package 'kind-icon)
+
 ;; programming packages
 (straight-use-package 'csharp-mode)
 (straight-use-package 'powershell-mode)
@@ -61,7 +61,6 @@
       corfu-quit-no-match t
       vertico-count 13
       vertico-cycle t
-      kind-icon-default-face 'corfu-default
       completion-styles '(orderless)
       cape-dabbrev-min-length 2
       vertico-resize t)
@@ -77,7 +76,6 @@
 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
-(add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
 
 (with-eval-after-load 'lsp-mode
   (setq lsp-headerline-breadcrumb-enable nil)

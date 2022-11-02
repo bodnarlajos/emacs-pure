@@ -24,3 +24,4 @@
  '(xref-show-xrefs-function 'consult-xref))
 
 (setq my/notes-path (expand-file-name "~/Box/notes/"))
+(cd "c:/Projects")

@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-;; (straight-use-package 'flycheck)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-java)
 (straight-use-package 'consult-lsp)
