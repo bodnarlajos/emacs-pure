@@ -35,8 +35,12 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1MB
 (setq lsp-idle-delay 0.5)
 (setq lsp-log-io nil)
+(add-to-list 'lsp-file-watch-ignored-directories "bin")
 (add-hook 'lsp-mode-hook
 	  (lambda ()
+            (custom-set-variables
+             '(lsp-completion-provider :none)
+             '(lsp-headerline-breadcrumb-enable nil))
 	    (display-line-numbers-mode +1)
 	    (setf (caadr ;; Pad before lsp modeline error info
 		   (assq 'global-mode-string mode-line-misc-info))

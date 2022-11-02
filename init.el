@@ -85,7 +85,11 @@
   (setq ediff-split-window-function 'split-window-horizontally)
   (setq ediff-merge-split-window-function 'split-window-vertically)
   (setq ediff-diff-options "-w")
-  (setq ediff-window-setup-function #'ediff-setup-windows-plain))
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain)
+  (defun disable-y-or-n-p (orig-fun &rest args)
+    (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
+      (apply orig-fun args)))
+  (advice-add 'ediff-quit :around #'disable-y-or-n-p))
 
 (setq vc-handled-backends '(Git)
       vc-git-show-stash 3)

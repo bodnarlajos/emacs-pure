@@ -45,6 +45,7 @@
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'go-translate)
 
 ;; package configurations
 (require 'consult)
@@ -100,9 +101,18 @@
 (defcustom my/menu-items '(("Notes" . my/open-notes)
 		           ("Git" . vc-dir)
                            ("Powershell" . my/start-powershell)
+                           ("Translate" . gts-do-translate)
                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
 
 (consult-customize
  consult-line :prompt "Search: ")
+
+(require 'go-translate)
+(setq gts-translate-list '(("en" "hu")))
+(setq gts-default-translator
+      (gts-translator
+       :picker (gts-prompt-picker)
+       :engines (list (gts-bing-engine) (gts-google-engine))
+       :render (gts-buffer-render)))
 
 (provide 'extra-packages)
