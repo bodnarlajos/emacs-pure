@@ -14,7 +14,7 @@
  '(consult-buffer-sources
    '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
  '(consult-preview-key [S-up])
- '(corfu-auto t)
+ '(corfu-auto nil)
  '(diff-command "c:/Users/lbodnar/scoop/shims/sdiff.exe")
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-completion-provider :none)

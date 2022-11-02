@@ -107,6 +107,10 @@
 (when (eq system-type 'windows-nt)
   (setq my/path-separator ";"))
 
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 (add-hook 'after-init-hook
           (lambda ()
             (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
