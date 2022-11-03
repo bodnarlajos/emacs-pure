@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 128 :width normal :foundry "JB" :family "JetBrains Mono")))))
+ '(default ((t (:slant normal :weight regular :height 128 :width normal :foundry "JB" :family "JetBrains Mono")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -14,15 +14,18 @@
  '(consult-buffer-sources
    '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
  '(consult-preview-key [S-up])
+ '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
-   '("/home/lbodnar/node_modules/.bin" "/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
+   '("/home/lbodnar/Projects/netcoredbg" "/home/lbodnar/node_modules/.bin" "/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
  '(global-display-line-numbers-mode t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
+ '(lsp-completion-provider :none)
+ '(lsp-disabled-clients '(csharp-ls))
  '(lsp-eldoc-render-all t)
- '(lsp-enable-dap-auto-configure nil)
+ '(lsp-headerline-breadcrumb-enable nil)
  '(next-error-recenter '(4))
  '(tool-bar-mode nil)
  '(xref-show-definitions-function 'consult-xref)

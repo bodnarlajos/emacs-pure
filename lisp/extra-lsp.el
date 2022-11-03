@@ -14,7 +14,20 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1MB
 (setq lsp-idle-delay 0.5)
 (setq lsp-log-io nil)
-(add-to-list 'lsp-file-watch-ignored-directories "bin")
+
+(defun my/dap/check-mode-and-load-dap ()
+  "Check the major mode and load the necessary dap module"
+  (message "Check dap module")
+  (when (eq major-mode 'csharp-mode)
+    (require 'dap-netcore)))
+
+(with-eval-after-load 'dap-mode
+  (setq dap-auto-configure-features '(locals controls tooltip))
+  (add-hook 'dap-stopped-hook
+            (lambda (arg) (call-interactively #'dap-hydra)))
+  (add-hook 'dap-mode-hook #'my/dap/check-mode-and-load-dap))
+
+
 (add-hook 'lsp-mode-hook
 	  (lambda ()
             (custom-set-variables
@@ -30,11 +43,13 @@
 	    (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
 
 (defun my/setup-lsp-capf ()
-  (message "setup-lsp")
   (setq-local completion-at-point-functions
 	      '(lsp-completion-at-point
 		cape-dabbrev
 		cape-file)
 	      cape-dabbrev-min-length 2))
+
+(with-eval-after-load 'lsp-mode
+  (setq lsp-headerline-breadcrumb-enable nil))
 
 (provide 'extra-lsp)
