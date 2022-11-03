@@ -83,7 +83,7 @@
 (define-key my-keys (kbd "L") 'lsp)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
-(define-key my-keys (kbd "<up>") 'winner-undo)
+;; (define-key my-keys (kbd "<up>") 'winner-undo)
 (define-key my-keys (kbd "<right>") 'next-buffer)
 
 (repeat-mode)

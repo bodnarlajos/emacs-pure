@@ -27,6 +27,7 @@
 (straight-use-package 'which-key)
 (straight-use-package 'crux)
 (straight-use-package 'easy-kill)
+(straight-use-package 'diff-hl)
 
 ;; completion
 (straight-use-package 'diminish)
@@ -55,6 +56,7 @@
 (which-key-mode +1)
 
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-hook 'prog-mode-hook 'diff-hl-mode)
 
 (setq corfu-cycle nil
       corfu-quit-at-boundary nil
