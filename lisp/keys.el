@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (cua-mode +1)
+(cua-mode +1)
 
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
@@ -76,15 +77,16 @@
 (define-key my-keys (kbd "k") 'previous-line)
 (define-key my-keys (kbd "h") 'backward-char)
 (define-key my-keys (kbd "l") 'forward-char)
-(define-key my-keys (kbd "J") 'forward-paragraph)
-(define-key my-keys (kbd "K") 'backward-paragraph)
+(define-key my-keys (kbd "]") 'forward-paragraph)
+(define-key my-keys (kbd "[") 'backward-paragraph)
 (define-key my-keys (kbd "c") 'compile)
 (define-key my-keys (kbd "D") 'dap-debug)
 (define-key my-keys (kbd "L") 'lsp)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
-;; (define-key my-keys (kbd "<up>") 'winner-undo)
-(define-key my-keys (kbd "<right>") 'next-buffer)
+(define-key my-keys (kbd ";") 'winner-undo)
+(define-key my-keys (kbd ":") 'winner-redo)
+(define-key my-keys (kbd "<tab>") 'next-buffer)
 
 (repeat-mode)
 (repeatize 'my-keys)
