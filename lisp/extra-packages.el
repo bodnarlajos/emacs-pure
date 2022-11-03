@@ -53,6 +53,8 @@
 (global-corfu-mode +1)
 (which-key-mode +1)
 
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
 (setq corfu-cycle nil
       corfu-quit-at-boundary nil
       corfu-auto-prefix 2
@@ -61,7 +63,7 @@
       vertico-count 13
       vertico-cycle t
       kind-icon-default-face 'corfu-default
-      completion-styles '(orderless)
+      completion-styles '(orderless flex)
       cape-dabbrev-min-length 2
       vertico-resize t)
 
@@ -83,18 +85,21 @@
   (add-to-list 'lsp-file-watch-ignored-directories "bin"))
 
 (defvar consult--source-my-menu
-  `(:name     "My MENU"
+  `(:name     "Quick menu item"
 	      :narrow   ?f
-	      :category 'function
+	      :category 'buffer
 	      :face     'font-lock-keyword-face
 	      :default  t
 	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
 	      :items (lambda () (mapcar #'car my/menu-items)))
   "My menu items for `consult-buffer'.")
 
+(add-to-list 'consult-buffer-sources 'consult--source-my-menu)
+
+(consult-customize
+ consult-line :prompt "Search: ")
+
 (custom-set-variables
- '(consult-buffer-sources
-   '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
  '(xref-show-xrefs-function 'consult-xref))
 
 (defcustom my/menu-items '(("Notes" . my/open-notes)
@@ -102,10 +107,8 @@
                            ("Powershell" . my/start-powershell)
                            ("Back" . 'consult-mark)
                            ("Eval region" . eval-region)
+                           ("Magit start" . my/start-magit)
                            ("BackGlobal" . consult-global-mark)
                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
-
-(consult-customize
- consult-line :prompt "Search: ")
 
 (provide 'extra-packages)

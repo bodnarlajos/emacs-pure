@@ -17,7 +17,9 @@
 (global-set-key (kbd "S-RET") 'crux-smart-open-line)
 (global-set-key (kbd "C-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-;") 'comment-line)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-f") 'isearch-forward-regexp)
+(define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
+(global-set-key (kbd "C-s") 'save-buffer)
 
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
@@ -36,7 +38,6 @@
   (define-key markdown-mode-map (kbd "M-<return>") 'consult-buffer))
 
 (with-eval-after-load 'diff-mode
-  (message "diff loaded")
   (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer))
 
 (with-eval-after-load 'vertico

@@ -47,7 +47,6 @@
 	    (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
 
 (defun my/setup-lsp-capf ()
-  (message "setup-lsp")
   (setq-local completion-at-point-functions
 	      '(lsp-completion-at-point
 		cape-dabbrev
