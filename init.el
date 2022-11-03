@@ -112,6 +112,7 @@
 
 (require 'server)
 (unless (server-running-p)
+  (setq frame-title-format "Server [%b]")
   (server-start))
 
 (add-hook 'after-init-hook
