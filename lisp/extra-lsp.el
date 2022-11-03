@@ -14,7 +14,7 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1MB
 (setq lsp-idle-delay 0.5)
 (setq lsp-log-io nil)
-(add-to-list 'lsp-file-watch-ignored-directories "bin")
+
 (add-hook 'lsp-mode-hook
 	  (lambda ()
             (custom-set-variables
@@ -35,5 +35,8 @@
 		cape-dabbrev
 		cape-file)
 	      cape-dabbrev-min-length 2))
+
+(with-eval-after-load 'lsp-mode
+  (setq lsp-headerline-breadcrumb-enable nil))
 
 (provide 'extra-lsp)

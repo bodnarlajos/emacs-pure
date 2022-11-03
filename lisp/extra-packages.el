@@ -79,10 +79,6 @@
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(with-eval-after-load 'lsp-mode
-  (setq lsp-headerline-breadcrumb-enable nil)
-  (add-to-list 'lsp-file-watch-ignored-directories "bin"))
-
 (defvar consult--source-my-menu
   `(:name     "Quick menu item"
 	      :narrow   ?f
