@@ -82,6 +82,8 @@
 (define-key my-keys (kbd "c") 'compile)
 (define-key my-keys (kbd "D") 'dap-debug)
 (define-key my-keys (kbd "L") 'lsp)
+(define-key my-keys (kbd "o") 'other-window)
+(define-key my-keys (kbd "X") 'delete-other-windows)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
 (define-key my-keys (kbd ";") 'winner-undo)
