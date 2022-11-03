@@ -22,7 +22,7 @@
     (require 'dap-netcore)))
 
 (with-eval-after-load 'dap-mode
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (setq dap-auto-configure-features '(locals controls tooltip))
   (add-hook 'dap-stopped-hook
             (lambda (arg) (call-interactively #'dap-hydra)))
   (add-hook 'dap-mode-hook #'my/dap/check-mode-and-load-dap))
