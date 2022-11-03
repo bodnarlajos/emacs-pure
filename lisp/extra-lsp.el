@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (straight-use-package 'lsp-mode)
+(straight-use-package 'dap-mode)
 (straight-use-package 'lsp-java)
 (straight-use-package 'consult-lsp)
 

@@ -43,6 +43,7 @@
 	      standard-indent 2
 	      delete-old-versions t
 	      create-lockfiles nil
+              dired-kill-when-opening-new-dired-buffer t
 	      left-fringe-width 15
 	      column-number-mode t)
 (if (boundp 'use-short-answers)

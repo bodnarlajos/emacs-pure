@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(straight-use-package 'general)
+(cua-mode +1)
 
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
@@ -65,6 +65,9 @@
   (define-key eww-mode-map (kbd "M-<return>") 'consult-buffer)
   (define-key eww-mode-map (kbd "M-RET") 'consult-buffer))
 
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory))
+
 (define-prefix-command 'my-keys)
 (global-set-key (kbd "M-l") 'my-keys)
 
@@ -78,6 +81,10 @@
 (define-key my-keys (kbd "c") 'compile)
 (define-key my-keys (kbd "D") 'dap-debug)
 (define-key my-keys (kbd "L") 'lsp)
+(define-key my-keys (kbd "i") 'ibuffer)
+(define-key my-keys (kbd "K") 'my/kill-buffer)
+(define-key my-keys (kbd "<up>") 'winner-undo)
+(define-key my-keys (kbd "<right>") 'next-buffer)
 
 (repeat-mode)
 (repeatize 'my-keys)

@@ -96,6 +96,11 @@
   (straight-use-package 'magit)
   (call-interactively 'magit-status))
 
+(defun my/kill-buffer ()
+  "Kill the current buffer"
+  (interactive)
+  (kill-buffer (buffer-name (current-buffer))))
+
 (defun repeatize (keymap)
   "Add `repeat-mode' support to a KEYMAP."
   (map-keymap
