@@ -21,21 +21,8 @@
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-s") 'save-buffer)
 
-;; (with-eval-after-load 'dabbrev
-;;   (global-set-key (kbd "C-M-S-/") 'dabbrev-completion)
-;;   (global-set-key (kbd "C-M-/") 'dabbrev-expand))
-;; (global-set-key (kbd "M-/") 'completion-at-point)
-
 (with-eval-after-load 'csharp-mode
   (define-key csharp-mode-map (kbd "<tab>") 'completion-at-point))
-
-;; (with-eval-after-load 'corfu
-;;   (define-key corfu-map (kbd "TAB") 'corfu-next)
-;;   (define-key corfu-map [tab] 'corfu-next)
-;;   (define-key corfu-map [backtab] 'corfu-previous)
-;;   (define-key corfu-map (kbd "S-TAB") 'corfu-previous)
-;;   (define-key corfu-map (kbd "M-/") 'corfu-next)
-;;   )
 
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
@@ -77,5 +64,22 @@
   (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
   (define-key eww-mode-map (kbd "M-<return>") 'consult-buffer)
   (define-key eww-mode-map (kbd "M-RET") 'consult-buffer))
+
+(define-prefix-command 'my-keys)
+(global-set-key (kbd "M-l") 'my-keys)
+
+(define-key my-keys (kbd "d") 'duplicate-line)
+(define-key my-keys (kbd "j") 'next-line)
+(define-key my-keys (kbd "k") 'previous-line)
+(define-key my-keys (kbd "h") 'backward-char)
+(define-key my-keys (kbd "l") 'forward-char)
+(define-key my-keys (kbd "J") 'forward-paragraph)
+(define-key my-keys (kbd "K") 'backward-paragraph)
+(define-key my-keys (kbd "c") 'compile)
+(define-key my-keys (kbd "D") 'dap-debug)
+(define-key my-keys (kbd "L") 'lsp)
+
+(repeat-mode)
+(repeatize 'my-keys)
 
 (provide 'keys)

@@ -118,4 +118,7 @@
        :engines (list (gts-bing-engine) (gts-google-engine))
        :render (gts-buffer-render)))
 
+(add-hook 'csharp-mode-hook (lambda ()
+                              (setq compile-command "dotnet build")))
+
 (provide 'extra-packages)

@@ -96,4 +96,12 @@
   (straight-use-package 'magit)
   (call-interactively 'magit-status))
 
+(defun repeatize (keymap)
+  "Add `repeat-mode' support to a KEYMAP."
+  (map-keymap
+   (lambda (_key cmd)
+     (when (symbolp cmd)
+       (put cmd 'repeat-map keymap)))
+   (symbol-value keymap)))
+
 (provide 'defuns)
