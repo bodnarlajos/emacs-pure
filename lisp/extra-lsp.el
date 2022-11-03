@@ -15,6 +15,19 @@
 (setq lsp-idle-delay 0.5)
 (setq lsp-log-io nil)
 
+(defun my/dap/check-mode-and-load-dap ()
+  "Check the major mode and load the necessary dap module"
+  (message "Check dap module")
+  (when (eq major-mode 'csharp-mode)
+    (require 'dap-netcore)))
+
+(with-eval-after-load 'dap-mode
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (add-hook 'dap-stopped-hook
+            (lambda (arg) (call-interactively #'dap-hydra)))
+  (add-hook 'dap-mode-hook #'my/dap/check-mode-and-load-dap))
+
+
 (add-hook 'lsp-mode-hook
 	  (lambda ()
             (custom-set-variables
