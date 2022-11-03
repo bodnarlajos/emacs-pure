@@ -3,7 +3,7 @@
 (defun my/open-file ()
   "Open project files if it is a project, otherwise find-file"
   (interactive)
-  (if (consult--project-root)
+  (if (vc-root-dir)
       (call-interactively 'project-find-file)
     (call-interactively 'find-file)))
 
@@ -37,6 +37,14 @@
   (save-excursion		
     (indent-region (point-min) (point-max) nil)))
 
+(defun my/root-project-dir ()
+  "Return with the project's dir or current dir or default dir"
+  (if (vc-root-dir)
+      (vc-root-dir)
+    (if buffer-file-name
+        (file-name-directory (buffer-file-name))
+      default-directory)))
+  
 (defun consult-ripgrep-symbol-at-point ()
   "Seearch in files whose base name is the same as the current file's."
   (interactive)
@@ -61,14 +69,17 @@
   (minibuffer-with-setup-hook
       (lambda () (goto-char (1+ (minibuffer-prompt-end))))
     (consult-ripgrep dir " -- -g *.*")))
+
 (defun consult-ripgrep-search-in-notes ()
   "Search in notes"
   (interactive)
   (consult-ripgrep-files-in-directory my/notes-dir))
+
 (defun consult-ripgrep-search-in-temp-dir ()
   "Search in temp notes"
   (interactive)
   (consult-ripgrep-files-in-directory my/temp-dir))
+
 (defun restrict-to-current-file ()
   (interactive)
   (if-let ((file (with-minibuffer-selected-window
@@ -78,5 +89,11 @@
         (goto-char (point-max))
         (insert " -- -g " (file-name-base file) "*.*"))
     (user-error "Buffer is not visiting a file")))
+
+(defun my/start-magit ()
+  "Deploy and start magit"
+  (interactive)
+  (straight-use-package 'magit)
+  (call-interactively 'magit-status))
 
 (provide 'defuns)
