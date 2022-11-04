@@ -49,6 +49,11 @@
 (straight-use-package 'go-translate)
 
 ;; package configurations
+
+;; remove tramp after crux
+(when (featurep 'tramp)
+  (unload-feature 'tramp t))
+
 (require 'consult)
 (vertico-mode +1)
 (marginalia-mode +1)

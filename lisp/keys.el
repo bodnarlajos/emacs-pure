@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
 (cua-mode +1)
-(cua-mode +1)
 
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
