@@ -79,6 +79,8 @@
 (define-key my-keys (kbd "l") 'forward-char)
 (define-key my-keys (kbd "]") 'forward-paragraph)
 (define-key my-keys (kbd "[") 'backward-paragraph)
+(define-key my-keys (kbd "o") 'other-window)
+(define-key my-keys (kbd "X") 'delete-other-windows)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
 (define-key my-keys (kbd ";") 'winner-undo)
