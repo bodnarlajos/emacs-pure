@@ -10,6 +10,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(backup-directory-alist '((".+" . "~/.emacs.d/undo")))
  '(column-number-mode t)
  '(consult-buffer-sources
    '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
@@ -18,7 +19,6 @@
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
    '("/home/lbodnar/Projects/netcoredbg" "/home/lbodnar/node_modules/.bin" "/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
- '(global-display-line-numbers-mode t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
@@ -26,6 +26,8 @@
  '(lsp-disabled-clients '(csharp-ls))
  '(lsp-eldoc-render-all t)
  '(lsp-headerline-breadcrumb-enable nil)
+ '(lsp-ui-imenu-enable nil)
+ '(lsp-ui-peek-enable nil)
  '(next-error-recenter '(4))
  '(tool-bar-mode nil)
  '(xref-show-definitions-function 'consult-xref)
@@ -36,3 +38,5 @@
 (add-to-list 'my/menu-items '("Duplicate line" . duplicate-line))
 (add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
 (global-hl-line-mode +1)
+
+(load-theme 'leuven-dark t nil)
