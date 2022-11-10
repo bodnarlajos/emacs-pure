@@ -41,7 +41,8 @@
   (define-key markdown-mode-map (kbd "M-<return>") 'consult-buffer))
 
 (with-eval-after-load 'diff-mode
-  (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer))
+  (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer)
+  (define-key diff-mode-map (kbd "M-o") 'my/open-file))
 
 (with-eval-after-load 'vertico
   (define-key vertico-map (kbd "M-RET") #'vertico-next))
@@ -72,12 +73,8 @@
 (global-set-key (kbd "M-l") 'my-keys)
 
 (define-key my-keys (kbd "d") 'duplicate-line)
-(define-key my-keys (kbd "j") 'next-line)
-(define-key my-keys (kbd "k") 'previous-line)
-(define-key my-keys (kbd "h") 'backward-char)
-(define-key my-keys (kbd "l") 'forward-char)
-(define-key my-keys (kbd "]") 'forward-paragraph)
-(define-key my-keys (kbd "[") 'backward-paragraph)
+(define-key my-keys (kbd "]") 'backward-paragraph)
+(define-key my-keys (kbd "[") 'forward-paragraph)
 (define-key my-keys (kbd "o") 'other-window)
 (define-key my-keys (kbd "X") 'delete-other-windows)
 (define-key my-keys (kbd "i") 'ibuffer)
@@ -86,6 +83,7 @@
 (define-key my-keys (kbd ":") 'winner-redo)
 (define-key my-keys (kbd "<tab>") 'next-buffer)
 (define-key my-keys (kbd "b") 'my-lsp-keys)
+(define-key my-keys (kbd "q") 'font-lock-mode)
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)

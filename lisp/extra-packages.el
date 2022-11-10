@@ -28,6 +28,8 @@
 (straight-use-package 'crux)
 (straight-use-package 'easy-kill)
 (straight-use-package 'diff-hl)
+(straight-use-package 'tree-sitter)
+(straight-use-package 'tree-sitter-langs)
 
 ;; completion
 (straight-use-package 'diminish)
@@ -51,9 +53,13 @@
 ;; package configurations
 
 ;; remove tramp after crux
-(when (featurep 'tramp)
-  (unload-feature 'tramp t))
+(with-eval-after-load 'crux
+  (when (featurep 'tramp)
+    (tramp-unload-tramp)))
 
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(global-tree-sitter-mode +1)
 (require 'consult)
 (vertico-mode +1)
 (marginalia-mode +1)
