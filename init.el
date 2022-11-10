@@ -39,10 +39,12 @@
 (customize-set-variable 'global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 (delete-selection-mode)
 (setq-default indent-tabs-mode nil
 	      standard-indent 2
 	      delete-old-versions t
+              display-line-numbers-width 4
 	      create-lockfiles nil
               dired-kill-when-opening-new-dired-buffer t
 	      left-fringe-width 15

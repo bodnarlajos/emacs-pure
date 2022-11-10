@@ -16,6 +16,11 @@
 (setq lsp-idle-delay 0.5)
 (setq lsp-log-io nil)
 
+(add-hook 'csharp-mode-hook 'lsp-deferred)
+(add-hook 'js2-mode-hook 'lsp-deferred)
+(add-hook 'typescript-mode-hook 'lsp-deferred)
+(add-hook 'web-mode-hook 'lsp-deferred)
+
 (defun my/dap/check-mode-and-load-dap ()
   "Check the major mode and load the necessary dap module"
   (message "Check dap module")
@@ -34,7 +39,6 @@
             (custom-set-variables
              '(lsp-completion-provider :none)
              '(lsp-headerline-breadcrumb-enable nil))
-	    (display-line-numbers-mode +1)
 	    (setf (caadr ;; Pad before lsp modeline error info
 		   (assq 'global-mode-string mode-line-misc-info))
 		  " ")))
