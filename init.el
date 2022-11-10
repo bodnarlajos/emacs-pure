@@ -9,6 +9,7 @@
 (electric-pair-mode 1) ; auto-insert matching bracket
 (show-paren-mode 1)    ; turn on paren match highlighting
 (winner-mode 1)
+(global-visual-line-mode 1)
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Completions\\|Help\\|eldoc.+\\)\\*"
