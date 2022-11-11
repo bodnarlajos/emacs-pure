@@ -109,6 +109,8 @@
 (message "Custom file path: %s" custom-file)
 (load custom-file)
 
+(pixel-scroll-precision-mode +1)
+
 (defvar my/path-separator ":")
 (when (eq system-type 'windows-nt)
   (setq my/path-separator ";"))
