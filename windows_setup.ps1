@@ -18,6 +18,7 @@ scoop reset git
 
 # install additional packages
 scoop install process-explorer ctrl2cap debugview desktops du handle listdlls portmon procmon pskill pslist tcpview
+scoop install git-credential-manager
 scoop install aria2
 scoop install ripgrep 7zip zstd fzf winrar keepassxc
 scoop install doublecmd
