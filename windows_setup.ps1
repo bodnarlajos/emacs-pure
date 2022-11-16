@@ -11,24 +11,16 @@ if (!(Get-Command 'git' -ErrorAction SilentlyContinue))
 
 scoop bucket add extras
 scoop bucket add misc https://github.com/kiennq/scoop-misc
-# scoop bucket add misc2 https://github.com/bodnarlajos/scoop
-
-# boostrap all the dotfiles
-# Push-Location ~
-
-# git clone https://github.com/bodnarlajos/emacs-pure.git
-
-# Pop-Location
+scoop bucket add sysinternals https://github.com/niheaven/scoop-sysinternals
 
 scoop update
 scoop reset git
 
 # install additional packages
-scoop install aria2 gsudo-x
-scoop install ripgrep pwsh-x 7zip zstd fzf winrar keepassxc
+scoop install process-explorer ctrl2cap debugview desktops du handle listdlls portmon procmon pskill pslist tcpview
+scoop install aria2
+scoop install ripgrep 7zip zstd fzf winrar keepassxc
+scoop install doublecmd
 scoop install JetBrains-Mono
+scoop install gitui
 scoop install emacs-k diffutils findutils
-
-gsudo cache on
-
-gsudo -k
