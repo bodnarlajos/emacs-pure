@@ -122,5 +122,4 @@
 
 (add-hook 'after-init-hook
 	  (lambda ()
-	    (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
-	    (require 'extra-lsp)))
+	    (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))))

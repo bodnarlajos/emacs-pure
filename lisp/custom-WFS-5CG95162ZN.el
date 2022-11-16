@@ -23,6 +23,7 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-completion-provider :none)
  '(lsp-headerline-breadcrumb-enable nil)
+ '(magit-diff-refine-hunk 'all)
  '(next-error-recenter '(4))
  '(org-adapt-indentation 'headline-data)
  '(org-startup-indented t)

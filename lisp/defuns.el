@@ -20,6 +20,18 @@
       (my/start-powershell)
     (ansi-term "/bin/zsh")))
 
+(defun my/open/folder (folder)
+  "Open a folder with explorer or nautilus"
+  (interactive "DDirectory: ")
+  (let ((prog (if (eq system-type 'windows-nt) "start" "xdg-open")))
+    (shell-command (concat prog " " (expand-file-name folder)) nil nil)))
+
+(defun my/open/terminal (folder)
+  "Open a folder with explorer or nautilus"
+  (interactive "DDirectory: ")
+  (let ((prog (if (eq system-type 'windows-nt) "c:/users/lbodnar/scoop/shims/alacritty.exe" "qterminal")))
+    (shell-command (concat prog " " (expand-file-name folder)) nil nil)))
+
 (defun my/start-powershell ()
   "..."
   (interactive)
@@ -44,7 +56,7 @@
     (if buffer-file-name
         (file-name-directory (buffer-file-name))
       default-directory)))
-  
+
 (defun consult-ripgrep-symbol-at-point ()
   "Seearch in files whose base name is the same as the current file's."
   (interactive)
@@ -108,5 +120,22 @@
      (when (symbolp cmd)
        (put cmd 'repeat-map keymap)))
    (symbol-value keymap)))
+
+(defvar my/is-start-lsp nil "The lsp server was enabled")
+(defun my/start-lsp ()
+  "Start lsp server"
+  (interactive)
+  (unless my/is-start-lsp
+    (setq my/is-start-lsp t)
+    (require 'extra-lsp))
+  (lsp))
+
+(defvar my/is-enable-tree-sitter nil "Ide feature was enabled") 
+(defun my/enable-tree-sitter ()
+  "Enable ide feature for a mode"
+  (unless my/is-enable-tree-sitter
+    (require 'tree-sitter)
+    (require 'tree-sitter-langs))
+  (tree-sitter-mode +1))
 
 (provide 'defuns)

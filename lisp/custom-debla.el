@@ -39,4 +39,4 @@
 (add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
 (global-hl-line-mode +1)
 
-(load-theme 'leuven-dark t nil)
+(load-theme 'leuven t nil)
