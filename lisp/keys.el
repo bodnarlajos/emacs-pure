@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "S-<return>") 'crux-smart-open-line)
-(global-set-key (kbd "C-u S-<return>") 'crux-smart-open-line-above)
+(global-set-key (kbd "C-S-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-;") 'comment-line)
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
