@@ -16,7 +16,7 @@
              (message "Load time %s" (emacs-uptime))) t)
 
 (tool-bar-mode   -1)
-(menu-bar-mode   +1)
+(menu-bar-mode   -1)
 (scroll-bar-mode +1)
 (tooltip-mode    -1) ;; Tool tip in the echo
 (flymake-mode -1)

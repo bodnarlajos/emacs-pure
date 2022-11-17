@@ -68,10 +68,9 @@
 (add-hook 'json-mode-hook #'my/enable-tree-sitter)
 (add-hook 'jsonc-mode-hook #'my/enable-tree-sitter)
 
-;; (require 'tree-sitter)
-;; (require 'tree-sitter-langs)
-;; (global-tree-sitter-mode +1)
 (require 'consult)
+(add-hook 'xref-backend-functions #'consult-ripgrep-symbol-at-point)
+
 (vertico-mode +1)
 (marginalia-mode +1)
 (global-corfu-mode +1)
