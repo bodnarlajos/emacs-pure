@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 128 :width normal :foundry "JB" :family "JetBrains Mono")))))
+ '(default ((t (:slant normal :weight regular :height 128 :width normal :foundry "SAJA" :family "Cascadia Code")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -14,7 +14,8 @@
  '(column-number-mode t)
  '(consult-buffer-sources
    '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
- '(consult-preview-key [S-up])
+ '(consult-preview-key [right])
+ '(cua-mode t)
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
@@ -28,6 +29,7 @@
  '(lsp-headerline-breadcrumb-enable nil)
  '(lsp-ui-imenu-enable nil)
  '(lsp-ui-peek-enable nil)
+ '(menu-bar-mode nil)
  '(next-error-recenter '(4))
  '(tool-bar-mode nil)
  '(xref-show-definitions-function 'consult-xref)
@@ -39,4 +41,4 @@
 (add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
 (global-hl-line-mode +1)
 
-(load-theme 'my-dark t nil)
+;; (load-theme 'default t nil)

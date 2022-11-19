@@ -135,7 +135,7 @@
  consult-line :prompt "Search: ")
 
 (require 'go-translate)
-(setq gts-translate-list '(("en" "hu")))
+(setq gts-translate-list '(("de" "hu") ("en" "hu")))
 (setq gts-default-translator
       (gts-translator
        :picker (gts-prompt-picker)

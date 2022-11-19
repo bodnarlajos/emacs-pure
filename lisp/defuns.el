@@ -138,4 +138,24 @@
     (require 'tree-sitter-langs))
   (tree-sitter-mode +1))
 
+(defun my/xah-select-line ()
+  "Select current line. If region is active, extend selection downward by line.
+URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
+Version 2017-11-01"
+  (interactive)
+  (if (region-active-p)
+      (progn
+	(forward-line 1)
+	(end-of-line))
+    (progn
+      (end-of-line)
+      (set-mark (line-beginning-position)))))
+
+(defun my/translate-current-line ()
+  "Translate current line"
+  (interactive)
+  (my/xah-select-line)
+  (gts-do-translate)
+  (keyboard-quit))
+
 (provide 'defuns)

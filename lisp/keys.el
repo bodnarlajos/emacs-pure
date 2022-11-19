@@ -61,7 +61,7 @@
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
-(with-eval-after-load 'eww-mode-map
+(with-eval-after-load 'eww
   (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
   (define-key eww-mode-map (kbd "M-<return>") 'consult-buffer)
   (define-key eww-mode-map (kbd "M-RET") 'consult-buffer))
