@@ -105,6 +105,7 @@
 (defun my/start-magit ()
   "Deploy and start magit"
   (interactive)
+  (straight-use-package 'hydra)
   (straight-use-package 'magit)
   (call-interactively 'magit-status))
 
@@ -130,14 +131,6 @@
     (require 'extra-lsp))
   (lsp))
 
-(defvar my/is-enable-tree-sitter nil "Ide feature was enabled") 
-(defun my/enable-tree-sitter ()
-  "Enable ide feature for a mode"
-  (unless my/is-enable-tree-sitter
-    (require 'tree-sitter)
-    (require 'tree-sitter-langs))
-  (tree-sitter-mode +1))
-
 (defun my/xah-select-line ()
   "Select current line. If region is active, extend selection downward by line.
 URL `http://ergoemacs.org/emacs/modernization_mark-word.html'
@@ -157,5 +150,10 @@ Version 2017-11-01"
   (my/xah-select-line)
   (gts-do-translate)
   (keyboard-quit))
+
+(defun my/select-all ()
+  "Select all"
+  (push-global-mark)
+  (mark-whole-buffer))
 
 (provide 'defuns)

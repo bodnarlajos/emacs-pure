@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
+(defvar my/is-commercial-version )
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t
       visible-bell t)
@@ -47,7 +48,7 @@
               display-line-numbers-width 4
 	      create-lockfiles nil
               dired-kill-when-opening-new-dired-buffer t
-	      left-fringe-width 15
+	      left-fringe-width 10
 	      column-number-mode t)
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)
@@ -63,7 +64,11 @@
 (customize-set-variable 'scroll-preserve-screen-position t)
 (setq-default bidi-paragraph-direction 'left-to-right)
 (setq-default bidi-inhibit-bpa t)
-(global-so-long-mode 1)
+
+(when (not (string-match "Commercial Emacs" (emacs-version)))
+  (message "Not Commercial Emacs")
+  (global-so-long-mode 1))
+
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 (savehist-mode t)
 (save-place-mode t)
@@ -109,7 +114,7 @@
 (message "Custom file path: %s" custom-file)
 (load custom-file)
 
-(pixel-scroll-precision-mode +1)
+;; (pixel-scroll-precision-mode +1)
 
 (defvar my/path-separator ":")
 (when (eq system-type 'windows-nt)
@@ -118,8 +123,11 @@
 (require 'server)
 (unless (server-running-p)
   (setq frame-title-format "Server [%b]")
-  (server-start))
+  (server-start)
+  (message "server-mode started"))
 
 (add-hook 'after-init-hook
 	  (lambda ()
-	    (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))))
+	    (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
+            (message "exec-path -> $PATH")))
+

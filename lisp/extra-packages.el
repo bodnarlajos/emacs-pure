@@ -28,8 +28,9 @@
 (straight-use-package 'crux)
 (straight-use-package 'easy-kill)
 (straight-use-package 'diff-hl)
-(straight-use-package 'tree-sitter)
-(straight-use-package 'tree-sitter-langs)
+
+;; themes
+(straight-use-package 'doom-themes)
 
 ;; completion
 (straight-use-package 'diminish)
@@ -56,17 +57,6 @@
 (with-eval-after-load 'crux
   (when (featurep 'tramp)
     (tramp-unload-tramp)))
-
-(add-hook 'csharp-mode-hook #'my/enable-tree-sitter)
-(add-hook 'typescript-mode-hook #'my/enable-tree-sitter)
-(add-hook 'javascript-mode-hook #'my/enable-tree-sitter)
-(add-hook 'js2-mode-hook #'my/enable-tree-sitter)
-(add-hook 'mhtml-mode-hook #'my/enable-tree-sitter)
-(add-hook 'html-mode-hook #'my/enable-tree-sitter)
-(add-hook 'css-mode-hook #'my/enable-tree-sitter)
-(add-hook 'haskell-mode-hook #'my/enable-tree-sitter)
-(add-hook 'json-mode-hook #'my/enable-tree-sitter)
-(add-hook 'jsonc-mode-hook #'my/enable-tree-sitter)
 
 (require 'consult)
 (add-hook 'xref-backend-functions #'consult-ripgrep-symbol-at-point)
