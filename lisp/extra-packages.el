@@ -105,7 +105,9 @@
 (add-to-list 'consult-buffer-sources 'consult--source-my-menu)
 
 (consult-customize
- consult-line :prompt "Search: ")
+ consult-line :prompt "Search: "
+ consult-global-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n"))
+ consult-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n")))
 
 (custom-set-variables
  '(xref-show-xrefs-function 'consult-xref))
@@ -120,9 +122,6 @@
                            ("Lsp" . my/start-lsp)
                            ("Translate" . gts-do-translate)
                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
-
-(consult-customize
- consult-line :prompt "Search: ")
 
 (require 'go-translate)
 (setq gts-translate-list '(("de" "hu") ("en" "hu")))

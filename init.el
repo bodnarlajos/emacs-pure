@@ -8,7 +8,7 @@
 (customize-set-variable 'tab-always-indent 'complete)
 (customize-set-variable 'completions-detailed t)
 (electric-pair-mode 1) ; auto-insert matching bracket
-(show-paren-mode 1)    ; turn on paren match highlighting
+(show-paren-mode +1)    ; turn on paren match highlighting
 (winner-mode 1)
 (global-visual-line-mode 1)
 

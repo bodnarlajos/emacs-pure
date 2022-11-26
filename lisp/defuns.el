@@ -1,5 +1,24 @@
 ;; -*- lexical-binding: t -*-
 
+(defvar terminal-in-windows "c:/users/lbodnar/scoop/shims/alacritty.exe")
+(defvar terminal-in-linux "/home/lbodnar/.cargo/bin/alacritty")
+(defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
+(defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
+
+(defun my/get-terminal ()
+  "Get the system terminal path"
+  (if (eq system-type 'windows-nt) terminal-in-windows terminal-in-linux))
+
+(defun my/get-lazygit ()
+  "Get the system's lazygit path"
+  (if (eq system-type 'windows-nt) lazygit-in-windows lazygit-in-linux))
+
+(defun my/eval-region ()
+  "Eval a region and deactivate mark"
+  (interactive)
+  (eval-region (region-beginning) (region-end))
+  (deactivate-mark))
+
 (defun my/open-file ()
   "Open project files if it is a project, otherwise find-file"
   (interactive)
@@ -19,6 +38,14 @@
   (if (eq system-type 'windows-nt)
       (my/start-powershell)
     (ansi-term "/bin/zsh")))
+
+(defun my/start-lazygit ()
+  "Start terminal"
+  (interactive)
+  (let ((term-exe (my/get-terminal))
+        (lazygit-exe (my/get-lazygit))
+        (proj-root-dir (my/root-project-dir)))
+    (shell-command (concat term-exe " -e " lazygit-exe " --working-directory " proj-root-dir))))
 
 (defun my/open/folder (folder)
   "Open a folder with explorer or nautilus"

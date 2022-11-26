@@ -7,6 +7,7 @@
 
 (global-set-key (kbd "M-s l") 'lsp-find-references)
 (global-set-key (kbd "M-s i") 'lsp-find-implementation)
+(global-set-key (kbd "M-s t") 'lsp-find-type-definition)
 (global-set-key (kbd "M-s c") 'lsp-execute-code-action)
 (setq lsp-auto-guess-root t)
 (setq lsp-restart 'auto-restart)

@@ -78,6 +78,7 @@
   :commands lsp
 	:bind
 	("M-s l" . lsp-find-references)
+        ("M-s t" . lsp-find-type-definition)
 	("M-s i" . lsp-find-implementation)
 	("M-s c" . lsp-execute-code-action)
 	:config

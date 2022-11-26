@@ -82,6 +82,7 @@
 (define-key my-keys (kbd "-") 'split-window-vertically)
 (define-key my-keys (kbd "|") 'split-window-horizontally)
 (define-key my-keys (kbd "X") 'delete-other-windows)
+(define-key my-keys (kbd "e") 'my/eval-region)
 (define-key my-keys (kbd "x") 'delete-window)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
@@ -91,7 +92,9 @@
 (which-key-add-key-based-replacements "M-l s" "Smerge")
 (define-key my-keys (kbd ":") 'winner-redo)
 (define-key my-keys (kbd "<tab>") 'next-buffer)
-(define-key my-keys (kbd "b") 'my-lsp-keys)
+(define-key my-keys (kbd "l") 'my-lsp-keys)
+(define-key my-keys (kbd "b") 'consult-global-mark)
+(define-key my-keys (kbd "B") 'consult-mark)
 (define-key my-keys (kbd "!") 'font-lock-mode)
 (define-key my-keys (kbd "/") 'indent-buffer)
 
