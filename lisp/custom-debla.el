@@ -20,8 +20,8 @@
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
-   '("/home/lbodnar/.nvm/versions/node/v16.14.2/bin/node" "/home/lbodnar/Projects/netcoredbg" "/home/lbodnar/node_modules/.bin" "/home/lbodnar/.ghcup/bin" "/home/lbodnar/.nvm/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
- '(font-lock-support-mode 'tree-sitter-lock-mode)
+   '("/usr/lib/dotnet/host/fxr/6.0.11" "/home/lajbo/Projects/omnisharp-roslyn" "/home/lajbo/Projects/netcoredbg" "/home/lajbo/node_modules/.bin" "/home/lajbo/.ghcup/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
+ '(font-lock-support-mode 'jit-lock-mode t)
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
@@ -34,6 +34,7 @@
  '(menu-bar-mode nil)
  '(next-error-recenter '(4))
  '(safe-local-variable-values '((comment-fill-column . 80)))
+ '(tab-first-completion nil)
  '(tool-bar-mode nil)
  '(tree-sitter-major-mode-language-alist
    '((agda-mode . agda)

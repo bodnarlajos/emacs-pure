@@ -4,6 +4,7 @@
 (straight-use-package 'dap-mode)
 (straight-use-package 'lsp-java)
 (straight-use-package 'consult-lsp)
+(straight-use-package 'lsp-haskell)
 
 (global-set-key (kbd "M-s l") 'lsp-find-references)
 (global-set-key (kbd "M-s i") 'lsp-find-implementation)

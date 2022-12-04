@@ -40,6 +40,13 @@
 (straight-use-package 'vertico)
 (straight-use-package 'cape)
 
+;; tree-sitter
+(straight-use-package 'emacs-tree-sitter)
+(straight-use-package 'tree-sitter-langs)
+(straight-use-package 'tree-sitter-indent)
+(with-eval-after-load 'tree-sitter
+  (add-hook 'tree-sitter-after-on-hook 'tree-sitter-hl-mode))
+
 ;; programming packages
 (straight-use-package 'csharp-mode)
 (straight-use-package 'powershell-mode)
@@ -102,7 +109,7 @@
 	      :items (lambda () (mapcar #'car my/menu-items)))
   "My menu items for `consult-buffer'.")
 
-(add-to-list 'consult-buffer-sources 'consult--source-my-menu)
+;; (add-to-list 'consult-buffer-sources 'consult--source-my-menu)
 
 (consult-customize
  consult-line :prompt "Search: "

@@ -45,7 +45,7 @@
   (let ((term-exe (my/get-terminal))
         (lazygit-exe (my/get-lazygit))
         (proj-root-dir (my/root-project-dir)))
-    (shell-command (concat term-exe " -e " lazygit-exe " --working-directory " proj-root-dir))))
+    (async-shell-command (concat term-exe " -e " lazygit-exe " -p " proj-root-dir) nil nil)))
 
 (defun my/open/folder (folder)
   "Open a folder with explorer or nautilus"
