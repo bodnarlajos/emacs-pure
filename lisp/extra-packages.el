@@ -28,6 +28,10 @@
 (straight-use-package 'crux)
 (straight-use-package 'easy-kill)
 (straight-use-package 'diff-hl)
+(straight-use-package 'all-the-icons-completion)
+(straight-use-package 'move-text)
+(straight-use-package 'remember-last-theme)
+(straight-use-package 'go-translate)
 
 ;; themes
 (straight-use-package 'doom-themes)
@@ -39,13 +43,7 @@
 (straight-use-package 'corfu)
 (straight-use-package 'vertico)
 (straight-use-package 'cape)
-
-;; tree-sitter
-(straight-use-package 'emacs-tree-sitter)
-(straight-use-package 'tree-sitter-langs)
-(straight-use-package 'tree-sitter-indent)
-(with-eval-after-load 'tree-sitter
-  (add-hook 'tree-sitter-after-on-hook 'tree-sitter-hl-mode))
+(straight-use-package 'kind-icon)
 
 ;; programming packages
 (straight-use-package 'csharp-mode)
@@ -56,14 +54,35 @@
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
 (straight-use-package 'yaml-mode)
-(straight-use-package 'go-translate)
 
 ;; package configurations
+(with-eval-after-load 'which-key
+  (diminish 'which-key-mode))
+(with-eval-after-load 'eldoc
+  (diminish 'eldoc-mode))
+(with-eval-after-load 'visual-line
+  (diminish 'visual-line-mode))
+
+(with-eval-after-load 'sideline
+  (setq sideline-flymake-display-errors-whole-line 'line) ; 'point to show errors only on point
+  (setq sideline-backends-right '(sideline-flymake sideline-lsp)))
+
+(setq kind-icon-default-face 'corfu-default)
+(with-eval-after-load 'corfu
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+(move-text-default-bindings)
+(all-the-icons-completion-mode +1)
+(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 
 ;; remove tramp after crux
 (with-eval-after-load 'crux
   (when (featurep 'tramp)
     (tramp-unload-tramp)))
+
+(require 'treesit)
+
+(require 'remember-last-theme)
+(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
 (require 'consult)
 (add-hook 'xref-backend-functions #'consult-ripgrep-symbol-at-point)
@@ -74,6 +93,7 @@
 (which-key-mode +1)
 
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
 (add-hook 'prog-mode-hook 'diff-hl-mode)
 
 (setq corfu-cycle nil
@@ -156,7 +176,7 @@
                                  ;; Disable `smerge-mode' when quitting hydra if
                                  ;; no merge conflicts remain.
                                  :post (smerge-auto-leave))
-    "
+            "
 ^Move^       ^Keep^               ^Diff^                 ^Other^
 ^^-----------^^-------------------^^---------------------^^-------
 _n_ext       _b_ase               _<_: upper/base        _C_ombine
@@ -165,22 +185,22 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 ^^           _a_ll                _R_efine
 ^^           _RET_: current       _E_diff
 "
-    ("n" smerge-next)
-    ("p" smerge-prev)
-    ("b" smerge-keep-base)
-    ("u" smerge-keep-upper)
-    ("l" smerge-keep-lower)
-    ("a" smerge-keep-all)
-    ("RET" smerge-keep-current)
-    ("\C-m" smerge-keep-current)
-    ("<" smerge-diff-base-upper)
-    ("=" smerge-diff-upper-lower)
-    (">" smerge-diff-base-lower)
-    ("R" smerge-refine)
-    ("E" smerge-ediff)
-    ("C" smerge-combine-with-next)
-    ("r" smerge-resolve)
-    ("k" smerge-kill-current)
-    ("q" nil "cancel" :color blue)))
+            ("n" smerge-next)
+            ("p" smerge-prev)
+            ("b" smerge-keep-base)
+            ("u" smerge-keep-upper)
+            ("l" smerge-keep-lower)
+            ("a" smerge-keep-all)
+            ("RET" smerge-keep-current)
+            ("\C-m" smerge-keep-current)
+            ("<" smerge-diff-base-upper)
+            ("=" smerge-diff-upper-lower)
+            (">" smerge-diff-base-lower)
+            ("R" smerge-refine)
+            ("E" smerge-ediff)
+            ("C" smerge-combine-with-next)
+            ("r" smerge-resolve)
+            ("k" smerge-kill-current)
+            ("q" nil "cancel" :color blue)))
 
 (provide 'extra-packages)

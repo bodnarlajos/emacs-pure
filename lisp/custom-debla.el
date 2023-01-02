@@ -10,13 +10,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(backup-directory-alist '((".+" . "~/.emacs.d/undo")))
  '(column-number-mode t)
  '(consult-buffer-sources
    '(consult--source-hidden-buffer consult--source-modified-buffer consult--source-buffer consult--source-project-buffer consult--source-project-recent-file consult--source-recent-file consult--source-bookmark consult--source-my-menu))
  '(consult-preview-key [right])
  '(css-indent-offset 2)
  '(cua-mode t)
+ '(custom-safe-themes
+   '("02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
@@ -26,15 +27,21 @@
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
  '(lsp-completion-provider :none)
+ '(lsp-csharp-omnisharp-roslyn-server-dir
+   "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
+ '(lsp-csharp-omnisharp-roslyn-store-path
+   "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-disabled-clients '(csharp-ls))
  '(lsp-eldoc-render-all t)
  '(lsp-headerline-breadcrumb-enable nil)
+ '(lsp-ui-doc-show-with-cursor nil)
  '(lsp-ui-imenu-enable nil)
  '(lsp-ui-peek-enable nil)
  '(menu-bar-mode nil)
  '(next-error-recenter '(4))
  '(safe-local-variable-values '((comment-fill-column . 80)))
- '(tab-first-completion nil)
+ '(tab-always-indent 'complete)
+ '(tab-first-completion t)
  '(tool-bar-mode nil)
  '(tree-sitter-major-mode-language-alist
    '((agda-mode . agda)
@@ -116,8 +123,6 @@
 (add-to-list 'my/menu-items '("Format document" . indent-buffer))
 (add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
 (global-hl-line-mode +1)
-
-(load-theme 'deeper-blue t nil)
 
 (message "custom file loaded")
 

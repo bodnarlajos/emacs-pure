@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(defvar my/is-commercial-version )
-(tool-bar-mode -1)
 (setq inhibit-startup-screen t
       visible-bell t)
 (customize-set-variable 'completion-cycle-threshold 3)
@@ -13,7 +11,7 @@
 (global-visual-line-mode 1)
 
 (add-to-list 'display-buffer-alist
-	     '("\\*\\(Completions\\|Help\\|eldoc.+\\)\\*"
+	     '("\\*\\(Completions\\|Help\\|eldoc.+\\|Flymake diagnostics for.+\\)\\*"
 	       (display-buffer-reuse-window display-buffer-pop-up-window)
 	       (window-height . 30)
 	       (side . bottom)))
@@ -33,7 +31,6 @@
 
 (customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
 (customize-set-variable 'switch-to-buffer-obey-display-actions t)
-(repeat-mode 1)
 (customize-set-variable 'ibuffer-movement-cycle nil)
 (customize-set-variable 'ibuffer-old-time 24)
 (global-set-key [remap list-buffers] #'ibuffer-list-buffers)
@@ -53,9 +50,10 @@
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)
   (advice-add 'yes-or-no-p :override #'y-or-n-p))
-(add-hook 'after-init-hook #'recentf-mode)
 (customize-set-variable 'recentf-save-file
 			(expand-file-name "recentf" user-emacs-directory))
+(recentf-mode +1)
+
 (customize-set-variable 'kill-do-not-save-duplicates t)
 (setq auto-window-vscroll nil)
 (customize-set-variable 'fast-but-imprecise-scrolling t)
@@ -65,23 +63,30 @@
 (setq-default bidi-paragraph-direction 'left-to-right)
 (setq-default bidi-inhibit-bpa t)
 
-(when (not (string-match "Commercial Emacs" (emacs-version)))
-  (message "Not Commercial Emacs")
-  (global-so-long-mode 1))
+;; backup/autosave dir
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
+(let ((my-auto-save-dir (locate-user-emacs-file "auto-save")))
+  (setq auto-save-file-name-transforms
+        `((".*" ,(expand-file-name "\\2" my-auto-save-dir) t)))
+  (unless (file-exists-p my-auto-save-dir)
+    (make-directory my-auto-save-dir)))
+(setq auto-save-default t
+      auto-save-timeout 10
+      auto-save-interval 200)
+
+(global-so-long-mode 1)
 
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 (savehist-mode t)
 (save-place-mode t)
-;; (add-hook 'save-place-after-find-file-hook (lambda ()
-;;                                              (timer-set-function 1 (call-interactively 'recenter-top-bottom))))
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'defuns)
 (require 'extra-packages)
 (require 'keys)
+(require 'eglot-lsp)
 
 (custom-set-variables
- ;; '(completion-styles '(substring basic partial-completion emacs22))
  '(next-error-recenter '(4)))
 
 (with-eval-after-load 'org
@@ -114,7 +119,7 @@
 (message "Custom file path: %s" custom-file)
 (load custom-file)
 
-;; (pixel-scroll-precision-mode +1)
+(pixel-scroll-precision-mode +1)
 
 (defvar my/path-separator ":")
 (when (eq system-type 'windows-nt)
