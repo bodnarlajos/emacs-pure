@@ -11,10 +11,24 @@
 (global-visual-line-mode 1)
 
 (add-to-list 'display-buffer-alist
-	     '("\\*\\(Completions\\|Help\\|eldoc.+\\|Flymake diagnostics for.+\\)\\*"
+	     '("\\*\\(Completions\\|Help\\)\\*"
 	       (display-buffer-reuse-window display-buffer-pop-up-window)
 	       (window-height . 30)
 	       (side . bottom)))
+
+(add-to-list 'display-buffer-alist
+	     '("\\*\\(eldoc\\)\\*"
+	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (window-width . 80)
+	       (side . right)
+               (slot . 1)))
+
+(add-to-list 'display-buffer-alist
+	     '("\\*\\(Flymake diag.+\\)\\*"
+	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (window-width . 80)
+	       (side . right)
+               (slot . 2)))
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Compile-Log\\|Async-native-compile-log\\|Warnings\\)\\*"
