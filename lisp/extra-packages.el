@@ -32,6 +32,9 @@
 (straight-use-package 'move-text)
 (straight-use-package 'remember-last-theme)
 (straight-use-package 'go-translate)
+(use-package all-the-icons-dired
+  :straight t
+  :hook (dired-mode))
 
 ;; themes
 (straight-use-package 'doom-themes)
