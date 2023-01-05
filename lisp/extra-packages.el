@@ -95,6 +95,7 @@
 (which-key-mode +1)
 
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.xaml\\'" . web-mode))
 
 (add-hook 'prog-mode-hook 'diff-hl-mode)
 
