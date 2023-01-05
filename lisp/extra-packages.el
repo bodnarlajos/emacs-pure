@@ -46,7 +46,6 @@
 (straight-use-package 'kind-icon)
 
 ;; programming packages
-(straight-use-package 'csharp-mode)
 (straight-use-package 'powershell-mode)
 (straight-use-package 'haskell-mode)
 (straight-use-package 'angular-mode)
@@ -202,5 +201,15 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
             ("r" smerge-resolve)
             ("k" smerge-kill-current)
             ("q" nil "cancel" :color blue)))
+
+;; treesit native
+(push '(css-mode . css-ts-mode) major-mode-remap-alist)
+(push '(python-mode . python-ts-mode) major-mode-remap-alist)
+(push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
+(push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
+(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+(push '(c-mode . c-ts-mode) major-mode-remap-alist)
+(push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
+(push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
 
 (provide 'extra-packages)
