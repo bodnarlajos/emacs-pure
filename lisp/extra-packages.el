@@ -35,7 +35,14 @@
 (use-package all-the-icons-dired
   :straight t
   :hook (dired-mode))
+(use-package smart-mode-line
+  :config
+  (smart-mode-line-enable))
 
+(use-package mini-modeline
+  :after smart-mode-line
+  :config
+  (mini-modeline-mode t))
 ;; themes
 (straight-use-package 'doom-themes)
 
