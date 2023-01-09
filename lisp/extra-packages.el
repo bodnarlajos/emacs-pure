@@ -203,13 +203,25 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
             ("q" nil "cancel" :color blue)))
 
 ;; treesit native
-;(push '(css-mode . css-ts-mode) major-mode-remap-alist)
-;(push '(python-mode . python-ts-mode) major-mode-remap-alist)
-;(push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
-;(push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
-;(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
-;(push '(c-mode . c-ts-mode) major-mode-remap-alist)
-;(push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
-;(push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
+(push '(css-mode . css-ts-mode) major-mode-remap-alist)
+(push '(python-mode . python-ts-mode) major-mode-remap-alist)
+(push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
+(push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
+(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+(push '(c-mode . c-ts-mode) major-mode-remap-alist)
+(push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
+(push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
+
+(defun eldoc-print ()
+  "Helper function for composing multiple doc strings.
+If EAGERLYP is non-nil show documentation as soon as possible,
+else wait for all doc strings."
+  (run-hook-wrapped 'eldoc-documentation-functions
+                    (lambda (f)
+                      (let* ((callback (eldoc--make-callback :patient))
+                             (str (funcall f callback)))
+                        (if (or (null str) (stringp str)) (funcall callback str))
+                        nil)))
+  t)
 
 (provide 'extra-packages)
