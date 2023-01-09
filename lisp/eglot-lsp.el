@@ -5,6 +5,14 @@
 (straight-use-package 'consult-lsp)
 (setq completion-category-overrides '((eglot (styles . (orderless flex)))))
 (with-eval-after-load 'eglot
+  (add-hook 'eglot-managed-mode-hook
+          (lambda ()
+            ;; Show flymake diagnostics first.
+            (setq eldoc-documentation-functions
+                  (cons #'flymake-eldoc-function
+                        (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+            ;; Show all eldoc feedback.
+            (setq eldoc-documentation-strategy #'eldoc-documentation-compose)))
   (add-to-list 'eglot-server-programs
                '(web-mode "node"
                           "/home/lbodnar/node_modules/@angular/language-server"
