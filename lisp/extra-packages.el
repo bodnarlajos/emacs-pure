@@ -65,10 +65,6 @@
 (with-eval-after-load 'visual-line
   (diminish 'visual-line-mode))
 
-(with-eval-after-load 'sideline
-  (setq sideline-flymake-display-errors-whole-line 'line) ; 'point to show errors only on point
-  (setq sideline-backends-right '(sideline-flymake sideline-lsp)))
-
 (setq kind-icon-default-face 'corfu-default)
 (with-eval-after-load 'corfu
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
