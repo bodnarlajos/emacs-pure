@@ -102,6 +102,7 @@
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
 (define-key my-lsp-keys (kbd "r") 'dap-debug)
+(define-key my-lsp-keys (kbd ";") 'eglot-code-actions)
 (define-key my-lsp-keys (kbd "l") 'lsp)
 (define-key my-lsp-keys (kbd "i") (lambda () (lsp-hover)))
 (define-key my-lsp-keys (kbd "a") 'dap-ui-breakpoints-add)
