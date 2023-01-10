@@ -21,6 +21,7 @@
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-s") 'save-buffer)
+(windmove-default-keybindings 'meta)
 
 (with-eval-after-load 'csharp-mode
   (define-key csharp-mode-map (kbd "<tab>") 'completion-at-point))
