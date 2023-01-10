@@ -143,7 +143,7 @@
 (setq-default header-line-format "")
 (custom-set-faces
  '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style released-button)))))
- '(tab-bar ((t (:inherit variable-pitch :height 1))))
+ '(tab-bar ((t (:inherit default))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (1 . 0) :style released-button))))))
 
 (require 'server)
