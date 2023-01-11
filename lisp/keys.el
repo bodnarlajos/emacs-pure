@@ -94,6 +94,7 @@
 (define-key my-keys (kbd ":") 'winner-redo)
 (define-key my-keys (kbd "<tab>") 'next-buffer)
 (define-key my-keys (kbd "l") 'my-lsp-keys)
+(define-key my-keys (kbd "j") 'consult-register)
 (define-key my-keys (kbd "b") 'consult-global-mark)
 (define-key my-keys (kbd "M-e") 'eglot)
 (define-key my-keys (kbd "B") 'consult-mark)
