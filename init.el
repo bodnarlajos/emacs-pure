@@ -141,10 +141,20 @@
 
 ;; tab-bar and mode-line
 (setq-default header-line-format "")
+(tab-bar-mode 1)
+(setq tab-bar-show 1)
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-new-tab-choice "*scratch*")
+(setq tab-bar-tab-hints t)
+(setq-default tab-bar-tab-name-function 'tab-bar-tab-name-truncated)
+(setq tab-bar-tab-name-truncated-max 30)
+(setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+
 (custom-set-faces
- '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style released-button)))))
- '(tab-bar ((t (:inherit default))))
- '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (1 . 0) :style released-button))))))
+ '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
+ '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 8) :style flat-button) :height 100))))
+ '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 8) :style flat-button)))))
+ '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive)))))
 
 (require 'server)
 (unless (server-running-p)
