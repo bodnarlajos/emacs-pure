@@ -152,8 +152,8 @@
 
 (custom-set-faces
  '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
- '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 8) :style flat-button) :height 100))))
- '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 8) :style flat-button)))))
+ '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button) :height 100))))
+ '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive)))))
 
 (require 'server)
