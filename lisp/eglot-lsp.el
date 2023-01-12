@@ -30,6 +30,19 @@
                            "/home/lbodnar/node_modules"
                            "--stdio"))
   (add-to-list 'eglot-server-programs
+               '(typescript-mode "node"
+                           "/home/lbodnar/node_modules/typescript-language-server"
+                           "--stdio"))
+  (add-to-list 'eglot-server-programs
                `(csharp-mode . ("/home/lbodnar/Projects/omnisharp-roslyn/OmniSharp" "-lsp"))))
+
+;; (use-package flymake-eslint
+;;   :init
+;;   (defun my/enable-eslint ()
+;;     "Enable eslint for modes"
+;;     (flymake-eslint-enable))
+;;   :hook
+;;   ((web-mode . #'my/enable-eslint)
+;;    (typescript-mode . #'my/enable-eslint)))
 
 (provide 'eglot-lsp)

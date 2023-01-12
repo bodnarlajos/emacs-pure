@@ -36,6 +36,17 @@
   :straight t
   :hook (dired-mode))
 
+(use-package undo-tree
+  :init (global-undo-tree-mode t)
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo/")))
+  (add-to-list 'display-buffer-alist
+	     '("\\*undo-tree\\*"
+	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (window-width . 60)
+	       (side . right)
+               (slot . 2))))
+
 ;; themes
 (straight-use-package 'doom-themes)
 

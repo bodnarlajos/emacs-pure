@@ -168,14 +168,6 @@
                '(:eval (propertize (substring vc-mode 5)
                                    'face 'font-lock-warning-face))
 
-               ;; the buffer name; the file name as a tool tip
-               '(:eval (propertize " %b "
-                                   'face
-                                   (let ((face (buffer-modified-p)))
-                                     (if face 'font-lock-warning-face
-                                       'font-lock-type-face))
-                                   'help-echo (buffer-file-name)))
-
                ;; line and column
                " (" ;; '%02' to set to 2 chars at least; prevents flickering
                (propertize "%02l" 'face 'font-lock-keyword-face) ","
@@ -189,11 +181,19 @@
                (propertize "%I" 'face 'font-lock-constant-face) ;; size
                "] "
 
+               ;; the buffer name; the file name as a tool tip
+               '(:eval (propertize "     -| %b |- "
+                                   'face
+                                   (let ((face (buffer-modified-p)))
+                                     (if face 'font-lock-warning-face
+                                       'font-lock-type-face))
+                                   'help-echo (buffer-file-name)))
+
                ;; spaces to align right
-               ;; '(:eval (propertize
-               ;;          " " 'display
-               ;;          `((space :align-to (- (+ right right-fringe right-margin)
-               ;;                                ,(+ 3 (string-width (if (listp mode-name) (car mode-name) mode-name))))))))
+               '(:eval (propertize
+                        " " 'display
+                        `((space :align-to (- (+ right right-fringe right-margin)
+                                              ,(+ 3 (string-width (string-replace "-mode" ""  (symbol-name major-mode)))))))))
 
                                         ;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
 

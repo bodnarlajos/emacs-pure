@@ -24,8 +24,6 @@
 (global-set-key (kbd "C-s") 'save-buffer)
 (windmove-default-keybindings 'meta)
 
-(define-key dired-mode-map (kbd "S-RET") 'dired-find-file-other-window)
-
 (with-eval-after-load 'csharp-mode
   (define-key csharp-mode-map (kbd "<tab>") 'completion-at-point))
 

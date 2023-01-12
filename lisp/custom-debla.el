@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code")))))
+ '(default ((t (:slant normal :weight regular :height 120 :width normal :foundry "SAJA" :family "Cascadia Code")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
