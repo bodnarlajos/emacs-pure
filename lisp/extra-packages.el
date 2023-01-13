@@ -40,6 +40,8 @@
   :init (global-undo-tree-mode t)
   :config
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo/")))
+  (custom-set-faces
+    '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
   (add-to-list 'display-buffer-alist
 	     '("\\*undo-tree\\*"
 	       (display-buffer-reuse-window display-buffer-in-side-window)
