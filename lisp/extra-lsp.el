@@ -1,9 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 (straight-use-package 'lsp-mode)
-(straight-use-package 'lsp-ui)
 (straight-use-package 'dap-mode)
-(straight-use-package 'lsp-java)
 (straight-use-package 'consult-lsp)
 (straight-use-package 'lsp-haskell)
 
@@ -42,10 +40,15 @@
 
 (add-hook 'lsp-mode-hook
 	  (lambda ()
+            (setq eldoc-documentation-functions
+                  (cons #'flymake-eldoc-function
+                        (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+            ;; Show all eldoc feedback.
+            (setq eldoc-documentation-strategy #'eldoc-documentation-compose)
             (custom-set-variables
              '(lsp-completion-provider :none)
+             '(lsp-diagnostics-provider :flymake)
              '(lsp-headerline-breadcrumb-enable nil))
-            (lsp-ui-mode +1)
 	    (setf (caadr ;; Pad before lsp modeline error info
 		   (assq 'global-mode-string mode-line-misc-info))
 		  " ")))

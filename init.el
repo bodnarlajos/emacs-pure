@@ -98,7 +98,8 @@
 (require 'defuns)
 (require 'extra-packages)
 (require 'keys)
-(require 'eglot-lsp)
+;; (require 'eglot-lsp)
+(require 'extra-lsp)
 
 (custom-set-variables
  '(next-error-recenter '(4)))
