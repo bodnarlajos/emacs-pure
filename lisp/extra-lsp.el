@@ -24,6 +24,7 @@
 (add-hook 'js2-mode-hook 'lsp-deferred)
 (add-hook 'typescript-mode-hook 'lsp-deferred)
 (add-hook 'web-mode-hook 'lsp-deferred)
+(add-hook 'haskell-mode-hook 'lsp-deferred)
 
 (defun my/dap/check-mode-and-load-dap ()
   "Check the major mode and load the necessary dap module"
