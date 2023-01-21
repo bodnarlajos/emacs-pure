@@ -39,6 +39,8 @@
 
 (use-package undo-tree
   :init (global-undo-tree-mode t)
+  :bind (("C-z" . undo-tree-undo)
+         ("C-y" . undo-tree-redo))
   :config
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo/")))
   (custom-set-faces
