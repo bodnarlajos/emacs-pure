@@ -9,6 +9,9 @@
 (show-paren-mode +1)    ; turn on paren match highlighting
 (winner-mode 1)
 (global-visual-line-mode 1)
+;; use ls-lisp instead of ls
+(setq ls-lisp-use-insert-directory-program nil)
+
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Completions\\|Help\\)\\*"

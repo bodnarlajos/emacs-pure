@@ -3,19 +3,22 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#282c34" :foreground "#bbc2cf" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code"))))
+ '(default ((t (:slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code"))))
+ '(all-the-icons-dired-dir-face ((t (:height 1.2))))
  '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
  '(mode-line ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
  '(mode-line-inactive ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
  '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button) :height 100))))
  '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
- '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive)))))
+ '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
+ '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(css-indent-offset 2)
  '(custom-safe-themes
    '("02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
@@ -31,7 +34,7 @@
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-csharp-omnisharp-roslyn-store-path
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
- '(lsp-diagnostics-provider :flymake)
+ '(lsp-diagnostics-provider :flymake t)
  '(lsp-headerline-breadcrumb-enable nil)
  '(next-error-recenter '(4))
  '(xref-show-xrefs-function 'consult-xref))

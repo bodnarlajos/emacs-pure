@@ -30,6 +30,7 @@
 (straight-use-package 'diff-hl)
 (straight-use-package 'all-the-icons-completion)
 (straight-use-package 'move-text)
+(straight-use-package 'nc)
 (straight-use-package 'remember-last-theme)
 (straight-use-package 'go-translate)
 (use-package all-the-icons-dired
