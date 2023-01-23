@@ -54,6 +54,7 @@
 
 ;; themes
 (straight-use-package 'doom-themes)
+(straight-use-package 'ef-themes)
 
 ;; completion
 (straight-use-package 'diminish)

@@ -5,13 +5,16 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code"))))
  '(all-the-icons-dired-dir-face ((t (:height 1.2))))
+ '(fixed-pitch ((t (:family "Cascadia Mono"))))
+ '(fixed-pitch-serif ((t (:weight semi-bold :family "Cascadia Mono"))))
  '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
  '(mode-line ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
  '(mode-line-inactive ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
  '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button) :height 100))))
  '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
- '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
+ '(undo-tree-visualizer-active-branch-face ((t (:foreground "red"))))
+ '(variable-pitch ((t (:family "Ubuntu Mono")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -20,7 +23,7 @@
  ;; If there is more than one, they won't work right.
  '(css-indent-offset 2)
  '(custom-safe-themes
-   '("02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
+   '("1479377d38b49d40dba561b2e4ab354b78cedb721bd62e0210ca18652760d219" "a138ec18a6b926ea9d66e61aac28f5ce99739cf38566876dc31e29ec8757f6e2" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)

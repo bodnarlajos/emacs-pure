@@ -144,7 +144,7 @@
   (setq my/path-separator ";"))
 
 ;; tab-bar and mode-line
-(setq-default header-line-format "")
+(setq-default header-line-format nil)
 (tab-bar-mode 1)
 (setq tab-bar-show 1)
 (setq tab-bar-close-button-show nil)
@@ -162,50 +162,50 @@
  '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
  '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive)))))
 
-(setq-default mode-line-format
-              (list
+;; (setq-default mode-line-format
+;;               (list
 
-               ;; day and time
-               '(:eval (propertize (format-time-string " %b %d %H:%M ")
-                                   'face 'font-lock-builtin-face))
+;;                ;; day and time
+;;                '(:eval (propertize (format-time-string " %b %d %H:%M ")
+;;                                    'face 'font-lock-builtin-face))
 
 
-               '(:eval (propertize (substring vc-mode 5)
-                                   'face 'font-lock-warning-face))
+;;                '(:eval (propertize (substring vc-mode 5)
+;;                                    'face 'font-lock-warning-face))
 
-               ;; line and column
-               " (" ;; '%02' to set to 2 chars at least; prevents flickering
-               (propertize "%02l" 'face 'font-lock-keyword-face) ","
-               (propertize "%02c" 'face 'font-lock-keyword-face)
-               ") "
+;;                ;; line and column
+;;                " (" ;; '%02' to set to 2 chars at least; prevents flickering
+;;                (propertize "%02l" 'face 'font-lock-keyword-face) ","
+;;                (propertize "%02c" 'face 'font-lock-keyword-face)
+;;                ") "
 
-               ;; relative position, size of file
-               " ["
-               (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-               "/"
-               (propertize "%I" 'face 'font-lock-constant-face) ;; size
-               "] "
+;;                ;; relative position, size of file
+;;                " ["
+;;                (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+;;                "/"
+;;                (propertize "%I" 'face 'font-lock-constant-face) ;; size
+;;                "] "
 
-               ;; the buffer name; the file name as a tool tip
-               '(:eval (propertize "     -| %b |- "
-                                   'face
-                                   (let ((face (buffer-modified-p)))
-                                     (if face 'font-lock-warning-face
-                                       'font-lock-type-face))
-                                   'help-echo (buffer-file-name)))
+;;                ;; the buffer name; the file name as a tool tip
+;;                '(:eval (propertize "     -| %b |- "
+;;                                    'face
+;;                                    (let ((face (buffer-modified-p)))
+;;                                      (if face 'font-lock-warning-face
+;;                                        'font-lock-type-face))
+;;                                    'help-echo (buffer-file-name)))
 
-               ;; spaces to align right
-               '(:eval (propertize
-                        " " 'display
-                        `((space :align-to (- (+ right right-fringe right-margin)
-                                              ,(+ 3 (string-width (string-replace "-mode" ""  (symbol-name major-mode)))))))))
+;;                ;; spaces to align right
+;;                '(:eval (propertize
+;;                         " " 'display
+;;                         `((space :align-to (- (+ right right-fringe right-margin)
+;;                                               ,(+ 3 (string-width (string-replace "-mode" ""  (symbol-name major-mode)))))))))
 
-                                        ;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
+;;                                         ;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
 
-               ;; the current major mode
-               (propertize (string-replace "-mode" ""  (symbol-name major-mode)) 'face 'font-lock-string-face)
-               ;;minor-mode-alist
-               ))
+;;                ;; the current major mode
+;;                (propertize (string-replace "-mode" ""  (symbol-name major-mode)) 'face 'font-lock-string-face)
+;;                ;;minor-mode-alist
+;;                ))
 
 (require 'server)
 (unless (server-running-p)
