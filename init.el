@@ -138,6 +138,7 @@
 (load custom-file)
 
 (pixel-scroll-precision-mode +1)
+(context-menu-mode +1)
 
 (defvar my/path-separator ":")
 (when (eq system-type 'windows-nt)
