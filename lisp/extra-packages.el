@@ -44,13 +44,13 @@
   :config
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo/")))
   (custom-set-faces
-    '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
+   '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
   (add-to-list 'display-buffer-alist
-	     '("\\*undo-tree\\*"
-	       (display-buffer-reuse-window display-buffer-in-side-window)
-	       (window-width . 60)
-	       (side . right)
-               (slot . 2))))
+	       '("\\*undo-tree\\*"
+	         (display-buffer-reuse-window display-buffer-in-side-window)
+	         (window-width . 60)
+	         (side . right)
+                 (slot . 2))))
 (use-package dir-locals)
 
 (use-package embark
@@ -105,13 +105,21 @@
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
 (straight-use-package 'yaml-mode)
-(straight-use-package 'csv-mode)
+(use-package csv-mode
+  :config
+  (custom-set-variables
+   '(csv-separators '("," ";" ":"))))
 
 ;; package configurations
 (with-eval-after-load 'which-key
   (diminish 'which-key-mode))
+
 (with-eval-after-load 'eldoc
-  (diminish 'eldoc-mode))
+  (diminish 'eldoc-mode)
+  (custom-set-variables
+   '(eldoc-documentation-strategy 'eldoc-documentation-compose)
+   '(eldoc-echo-area-prefer-doc-buffer t)))
+
 (with-eval-after-load 'visual-line
   (diminish 'visual-line-mode))
 
@@ -190,7 +198,8 @@
  consult-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n")))
 (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
 (custom-set-variables
- '(xref-show-xrefs-function 'consult-xref))
+ '(xref-show-xrefs-function 'consult-xref)
+ '(css-indent-offset 2))
 
 (require 'go-translate)
 (setq gts-translate-list '(("de" "hu") ("en" "hu")))
@@ -218,7 +227,7 @@
                                  ;; Disable `smerge-mode' when quitting hydra if
                                  ;; no merge conflicts remain.
                                  :post (smerge-auto-leave))
-            "
+    "
 ^Move^       ^Keep^               ^Diff^                 ^Other^
 ^^-----------^^-------------------^^---------------------^^-------
 _n_ext       _b_ase               _<_: upper/base        _C_ombine
@@ -227,23 +236,23 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 ^^           _a_ll                _R_efine
 ^^           _RET_: current       _E_diff
 "
-            ("n" smerge-next)
-            ("p" smerge-prev)
-            ("b" smerge-keep-base)
-            ("u" smerge-keep-upper)
-            ("l" smerge-keep-lower)
-            ("a" smerge-keep-all)
-            ("RET" smerge-keep-current)
-            ("\C-m" smerge-keep-current)
-            ("<" smerge-diff-base-upper)
-            ("=" smerge-diff-upper-lower)
-            (">" smerge-diff-base-lower)
-            ("R" smerge-refine)
-            ("E" smerge-ediff)
-            ("C" smerge-combine-with-next)
-            ("r" smerge-resolve)
-            ("k" smerge-kill-current)
-            ("q" nil "cancel" :color blue)))
+    ("n" smerge-next)
+    ("p" smerge-prev)
+    ("b" smerge-keep-base)
+    ("u" smerge-keep-upper)
+    ("l" smerge-keep-lower)
+    ("a" smerge-keep-all)
+    ("RET" smerge-keep-current)
+    ("\C-m" smerge-keep-current)
+    ("<" smerge-diff-base-upper)
+    ("=" smerge-diff-upper-lower)
+    (">" smerge-diff-base-lower)
+    ("R" smerge-refine)
+    ("E" smerge-ediff)
+    ("C" smerge-combine-with-next)
+    ("r" smerge-resolve)
+    ("k" smerge-kill-current)
+    ("q" nil "cancel" :color blue)))
 
 ;; treesit native
 (push '(css-mode . css-ts-mode) major-mode-remap-alist)
@@ -254,17 +263,5 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (push '(c-mode . c-ts-mode) major-mode-remap-alist)
 (push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
 (push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
-
-(defun eldoc-print ()
-  "Helper function for composing multiple doc strings.
-If EAGERLYP is non-nil show documentation as soon as possible,
-else wait for all doc strings."
-  (run-hook-wrapped 'eldoc-documentation-functions
-                    (lambda (f)
-                      (let* ((callback (eldoc--make-callback :patient))
-                             (str (funcall f callback)))
-                        (if (or (null str) (stringp str)) (funcall callback str))
-                        nil)))
-  t)
 
 (provide 'extra-packages)

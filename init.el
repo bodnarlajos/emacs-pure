@@ -140,13 +140,9 @@
 (pixel-scroll-precision-mode +1)
 (context-menu-mode +1)
 
-(defvar my/path-separator ":")
-(when (eq system-type 'windows-nt)
-  (setq my/path-separator ";"))
-
 ;; tab-bar and mode-line
 (setq-default header-line-format nil)
-(tab-bar-mode 1)
+(tab-bar-mode t)
 (setq tab-bar-show 1)
 (setq tab-bar-close-button-show nil)
 (setq tab-bar-new-tab-choice "*scratch*")
@@ -155,64 +151,15 @@
 (setq tab-bar-tab-name-truncated-max 30)
 (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
 
-(custom-set-faces
- '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
- '(mode-line ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
- '(mode-line-inactive ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
- '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button) :height 100))))
- '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
- '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive)))))
-
-;; (setq-default mode-line-format
-;;               (list
-
-;;                ;; day and time
-;;                '(:eval (propertize (format-time-string " %b %d %H:%M ")
-;;                                    'face 'font-lock-builtin-face))
-
-
-;;                '(:eval (propertize (substring vc-mode 5)
-;;                                    'face 'font-lock-warning-face))
-
-;;                ;; line and column
-;;                " (" ;; '%02' to set to 2 chars at least; prevents flickering
-;;                (propertize "%02l" 'face 'font-lock-keyword-face) ","
-;;                (propertize "%02c" 'face 'font-lock-keyword-face)
-;;                ") "
-
-;;                ;; relative position, size of file
-;;                " ["
-;;                (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-;;                "/"
-;;                (propertize "%I" 'face 'font-lock-constant-face) ;; size
-;;                "] "
-
-;;                ;; the buffer name; the file name as a tool tip
-;;                '(:eval (propertize "     -| %b |- "
-;;                                    'face
-;;                                    (let ((face (buffer-modified-p)))
-;;                                      (if face 'font-lock-warning-face
-;;                                        'font-lock-type-face))
-;;                                    'help-echo (buffer-file-name)))
-
-;;                ;; spaces to align right
-;;                '(:eval (propertize
-;;                         " " 'display
-;;                         `((space :align-to (- (+ right right-fringe right-margin)
-;;                                               ,(+ 3 (string-width (string-replace "-mode" ""  (symbol-name major-mode)))))))))
-
-;;                                         ;(propertize org-mode-line-string 'face '(:foreground "#5DD8FF"))
-
-;;                ;; the current major mode
-;;                (propertize (string-replace "-mode" ""  (symbol-name major-mode)) 'face 'font-lock-string-face)
-;;                ;;minor-mode-alist
-;;                ))
-
 (require 'server)
 (unless (server-running-p)
   (setq frame-title-format "Server [%b]")
   (server-start)
   (message "server-mode started"))
+
+(defvar my/path-separator ":")
+(when (eq system-type 'windows-nt)
+  (setq my/path-separator ";"))
 
 (add-hook 'after-init-hook
 	  (lambda ()

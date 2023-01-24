@@ -7,12 +7,6 @@
  '(all-the-icons-dired-dir-face ((t (:height 1.2))))
  '(fixed-pitch ((t (:family "Cascadia Mono"))))
  '(fixed-pitch-serif ((t (:weight semi-bold :family "Cascadia Mono"))))
- '(header-line ((t (:inherit default :box (:line-width (1 . 1) :style flat-button)))))
- '(mode-line ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
- '(mode-line-inactive ((t (:box (:line-width (2 . 6) :style flat-button) :height 1.1))))
- '(tab-bar ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button) :height 100))))
- '(tab-bar-tab ((t (:inherit mode-line :box (:line-width (2 . 6) :style flat-button)))))
- '(tab-bar-tab-inactive ((t (:inherit mode-line-inactive))))
  '(undo-tree-visualizer-active-branch-face ((t (:foreground "red"))))
  '(variable-pitch ((t (:family "Ubuntu Mono")))))
 
@@ -32,19 +26,14 @@
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
- '(lsp-completion-provider :none)
  '(lsp-csharp-omnisharp-roslyn-server-dir
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-csharp-omnisharp-roslyn-store-path
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
- '(lsp-diagnostics-provider :flymake t)
- '(lsp-headerline-breadcrumb-enable nil)
  '(next-error-recenter '(4))
  '(xref-show-xrefs-function 'consult-xref))
 
 (setq my/notes-path (expand-file-name "~/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/"))
-(add-to-list 'my/menu-items '("Format document" . indent-buffer))
-(add-to-list 'my/menu-items '("Terminal" . 'my/start-term))
 (global-hl-line-mode +1)
 
 (message "custom file loaded")
