@@ -53,6 +53,37 @@
                (slot . 2))))
 (use-package dir-locals)
 
+(use-package embark
+  :ensure t
+
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t ; only need to install it, embark loads it after consult if found
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package move-text
+ :bind (("<M-down>" . move-text-down)
+         ("<M-up>" . move-text-up)))
+
 ;; themes
 (straight-use-package 'doom-themes)
 (straight-use-package 'ef-themes)
@@ -137,26 +168,21 @@
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-;; (defvar consult--source-my-menu
-;;   `(:name     "Quick menu item"
-;; 	      :narrow   ?f
-;; 	      :category 'buffer
-;; 	      :face     'font-lock-keyword-face
-;; 	      :default  t
-;; 	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
-;; 	      :items (lambda () (mapcar #'car my/menu-items)))
-;;   "My menu items for `consult-buffer'.")
-;; (defcustom my/menu-items '(("Notes" . my/open-notes)
-;; 		           ("Git" . vc-dir)
-;;                            ("Back" . 'consult-mark)
-;;                            ("Eval region" . eval-region)
-;;                            ("Magit start" . my/start-magit)
-;;                            ("BackGlobal" . consult-global-mark)
-;;                            ("Powershell" . my/start-powershell)
-;;                            ("Lsp" . my/start-lsp)
-;;                            ("Translate" . gts-do-translate)
-;;                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
-;; (add-to-list 'consult-buffer-sources 'consult--source-my-menu)
+(defvar consult--source-my-menu
+  `(:name     "Quick menu item"
+	      :narrow   ?f
+	      :category 'buffer
+	      :face     'font-lock-keyword-face
+	      :default  t
+	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
+	      :items (lambda () (mapcar #'car my/menu-items)))
+  "My menu items for `consult-buffer'.")
+(defcustom my/menu-items '(("Git" . my/start-magit)
+                           ("Powershell" . my/start-powershell)
+                           ("Run" . execute-extended-command)
+                           ("Translate" . gts-do-translate)
+                           ("Notes" . my/open-notes)) "My-config menu items" :type '(alist :key-type string :value-type function))
+(add-to-list 'consult-buffer-sources 'consult--source-my-menu t)
 
 (consult-customize
  consult-line :prompt "Search: "
