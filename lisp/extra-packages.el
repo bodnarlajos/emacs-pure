@@ -51,6 +51,7 @@
 	       (window-width . 60)
 	       (side . right)
                (slot . 2))))
+(use-package dir-locals)
 
 ;; themes
 (straight-use-package 'doom-themes)
@@ -73,6 +74,7 @@
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'csv-mode)
 
 ;; package configurations
 (with-eval-after-load 'which-key
@@ -135,16 +137,25 @@
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(defvar consult--source-my-menu
-  `(:name     "Quick menu item"
-	      :narrow   ?f
-	      :category 'buffer
-	      :face     'font-lock-keyword-face
-	      :default  t
-	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
-	      :items (lambda () (mapcar #'car my/menu-items)))
-  "My menu items for `consult-buffer'.")
-
+;; (defvar consult--source-my-menu
+;;   `(:name     "Quick menu item"
+;; 	      :narrow   ?f
+;; 	      :category 'buffer
+;; 	      :face     'font-lock-keyword-face
+;; 	      :default  t
+;; 	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
+;; 	      :items (lambda () (mapcar #'car my/menu-items)))
+;;   "My menu items for `consult-buffer'.")
+;; (defcustom my/menu-items '(("Notes" . my/open-notes)
+;; 		           ("Git" . vc-dir)
+;;                            ("Back" . 'consult-mark)
+;;                            ("Eval region" . eval-region)
+;;                            ("Magit start" . my/start-magit)
+;;                            ("BackGlobal" . consult-global-mark)
+;;                            ("Powershell" . my/start-powershell)
+;;                            ("Lsp" . my/start-lsp)
+;;                            ("Translate" . gts-do-translate)
+;;                            ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
 ;; (add-to-list 'consult-buffer-sources 'consult--source-my-menu)
 
 (consult-customize
@@ -154,17 +165,6 @@
 
 (custom-set-variables
  '(xref-show-xrefs-function 'consult-xref))
-
-(defcustom my/menu-items '(("Notes" . my/open-notes)
-		           ("Git" . vc-dir)
-                           ("Back" . 'consult-mark)
-                           ("Eval region" . eval-region)
-                           ("Magit start" . my/start-magit)
-                           ("BackGlobal" . consult-global-mark)
-                           ("Powershell" . my/start-powershell)
-                           ("Lsp" . my/start-lsp)
-                           ("Translate" . gts-do-translate)
-                           ("Run" . execute-extended-command)) "My-config menu items" :type '(alist :key-type string :value-type function))
 
 (require 'go-translate)
 (setq gts-translate-list '(("de" "hu") ("en" "hu")))
