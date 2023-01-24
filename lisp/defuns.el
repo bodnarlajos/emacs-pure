@@ -91,7 +91,7 @@
       (lambda () (goto-char (1+ (minibuffer-prompt-end))))
     (consult-ripgrep (my/root-project-dir)
                      (if-let ((sap (symbol-at-point)))
-                         (format "%s -- -g *" sap)
+                         (format "%s -- -g *.*" sap)
                        (user-error "Buffer is not visiting a file")))))
 (defun consult-ripgrep-related-files ()
   "Seearch in files whose base name is the same as the current file's."
