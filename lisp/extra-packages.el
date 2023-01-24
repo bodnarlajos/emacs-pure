@@ -162,7 +162,7 @@
  consult-line :prompt "Search: "
  consult-global-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n"))
  consult-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n")))
-
+(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
 (custom-set-variables
  '(xref-show-xrefs-function 'consult-xref))
 
