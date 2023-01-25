@@ -22,7 +22,7 @@
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-s") 'save-buffer)
-(windmove-default-keybindings  '([ignore] meta shift))
+(windmove-default-keybindings  '(meta shift))
 
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "S-<return>") 'dired-find-file-other-window))
