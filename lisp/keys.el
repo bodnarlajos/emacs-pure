@@ -101,6 +101,7 @@
 (define-key my-keys (kbd "j") 'consult-register)
 (define-key my-keys (kbd "b") 'consult-global-mark)
 (define-key my-keys (kbd "B") 'consult-mark)
+(define-key my-keys (kbd "M-z") 'my/toggle-word-wrap)
 (define-key my-keys (kbd "/") 'indent-buffer)
 
 (define-prefix-command 'my-lsp-keys)
