@@ -193,4 +193,17 @@ Version 2017-11-01"
   (interactive)
   (load-theme 'deeper-blue))
 
+(defun my/toggle-word-wrap ()
+  "Toggle the word-wrap functionality"
+  (interactive)
+  (if (bound-and-true-p visual-line-mode)
+      (progn
+        (visual-line-mode -1)
+        (horizontal-scroll-bar-mode +1)
+        (scroll-bar-mode +1))
+    (progn
+      (visual-line-mode +1)
+      (horizontal-scroll-bar-mode -1)
+      (scroll-bar-mode -1))))
+
 (provide 'defuns)
