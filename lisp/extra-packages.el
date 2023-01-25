@@ -53,6 +53,10 @@
                  (slot . 2))))
 (use-package dir-locals)
 
+(use-package org-modern
+  :after (org)
+  :init (global-org-modern-mode +1))
+
 (use-package embark
   :ensure t
 
