@@ -84,10 +84,6 @@
  :bind (("<M-down>" . move-text-down)
          ("<M-up>" . move-text-up)))
 
-;; themes
-(straight-use-package 'doom-themes)
-(straight-use-package 'ef-themes)
-
 ;; completion
 (straight-use-package 'diminish)
 (straight-use-package 'orderless)

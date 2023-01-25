@@ -183,4 +183,14 @@ Version 2017-11-01"
   (push-global-mark)
   (mark-whole-buffer))
 
+(defun my/light-theme ()
+  "Light theme"
+  (interactive)
+  (disable-theme 'deeper-blue))
+
+(defun my/dark-theme ()
+  "Dark theme"
+  (interactive)
+  (load-theme 'deeper-blue))
+
 (provide 'defuns)
