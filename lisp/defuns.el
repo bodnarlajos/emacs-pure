@@ -5,6 +5,13 @@
 (defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
 (defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
 
+(defun my/print-file-name ()
+  "Print the current file-name to the minibuffer and put it to the kill-ring"
+  (interactive)
+  (let ((fn (buffer-file-name (current-buffer))))
+    (message "%s" fn)
+    (kill-new fn)))
+
 (defun my/get-terminal ()
   "Get the system terminal path"
   (if (eq system-type 'windows-nt) terminal-in-windows terminal-in-linux))
