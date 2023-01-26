@@ -5,6 +5,22 @@
 (defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
 (defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
 
+(defun position-to-kill-ring ()
+  "Copy to the kill ring a string in the format \"file-name:line-number\"
+for the current buffer's file name, and the line number at point."
+  (interactive)
+  (kill-new
+   (format "%s::%d" (buffer-file-name) (save-restriction
+                                         (widen) (line-number-at-pos)))))
+
+(defun position-to-kill-ring-for-org ()
+  "Copy to the kill ring a string in the format \"file-name:line-number\"
+for the current buffer's file name, and the line number at point."
+  (interactive)
+  (kill-new
+   (format "[[%s::%d]]" (buffer-file-name) (save-restriction
+                                             (widen) (line-number-at-pos)))))
+
 (defun my/print-file-name ()
   "Print the current file-name to the minibuffer and put it to the kill-ring"
   (interactive)
