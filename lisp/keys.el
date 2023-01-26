@@ -103,6 +103,7 @@
 (define-key my-keys (kbd "B") 'consult-mark)
 (define-key my-keys (kbd "M-z") 'my/toggle-word-wrap)
 (define-key my-keys (kbd "/") 'indent-buffer)
+(define-key my-keys (kbd "p f") 'my/print-file-name)
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
