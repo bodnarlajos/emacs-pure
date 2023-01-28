@@ -187,6 +187,8 @@
   "My menu items for `consult-buffer'.")
 (defcustom my/menu-items '(("Git" . my/start-magit)
                            ("Powershell" . my/start-powershell)
+                           ("Light theme" . my/light-theme)
+                           ("Dark theme" . my/dark-theme)
                            ("Run" . execute-extended-command)
                            ("Translate" . gts-do-translate)
                            ("Notes" . my/open-notes)) "My-config menu items" :type '(alist :key-type string :value-type function))
