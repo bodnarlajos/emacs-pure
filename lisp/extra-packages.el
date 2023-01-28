@@ -78,6 +78,13 @@
                  nil
                  (window-parameters (mode-line-format . none)))))
 
+(use-package dogears
+  :init (dogears-mode +1)
+  :bind (:map global-map
+              ("M-g d" . dogears-go)
+              ("M-g M-d" . dogears-list)
+              ("M-g M-D" . dogears-sidebar)))
+
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
   :ensure t ; only need to install it, embark loads it after consult if found

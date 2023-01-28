@@ -102,6 +102,8 @@
 (define-key my-keys (kbd "b") 'consult-global-mark)
 (define-key my-keys (kbd "B") 'consult-mark)
 (define-key my-keys (kbd "M-z") 'my/toggle-word-wrap)
+(define-key my-keys (kbd "M-b") 'dogears-back)
+(define-key my-keys (kbd "M-f") 'dogears-forward)
 (define-key my-keys (kbd "/") 'indent-buffer)
 (define-key my-keys (kbd "p f") 'my/print-file-name)
 
