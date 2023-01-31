@@ -33,6 +33,7 @@
 (straight-use-package 'nc)
 (straight-use-package 'remember-last-theme)
 (straight-use-package 'go-translate)
+(use-package vterm)
 (use-package all-the-icons-dired
   :straight t
   :hook (dired-mode))
