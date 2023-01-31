@@ -1,7 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
 (straight-use-package 'lsp-mode)
-(straight-use-package 'dap-mode)
+(use-package dap-mode
+  :config
+  (dap-register-debug-provider
+   "hda"
+   (lambda (conf)
+     (plist-put conf :dap-server-path (list "haskell-debug-adapter" "--hackage-version=0.0.35.0"))
+     conf)))
 (straight-use-package 'consult-lsp)
 ;; lsp-languages
 (straight-use-package 'lsp-haskell)
@@ -75,6 +81,10 @@
 ;; 	 (my/dap/entry-point . "app/Main.hs")
 ;; 	 (my/dap/name . "dap-haskell-sevenqueens"))))
 
+(defvar my/dap/working-directory "" "The haskell project working directory")
+(defvar my/dap/entry-point "" "The haskell function as entry point")
+(defvar my/dap/name "haskell-dap" "The name of the configuration")
+
 (defun my/dap/haskell-reg-auto ()
   "T."
   (interactive)
@@ -106,7 +116,7 @@
 				     :stopOnEntry t
 				     :mainArgs ""
 				     :ghciPrompt "H>>= "
-				     :ghciInitialPrompt "Prelude>"
+				     :ghciInitialPrompt "ghci>"
 				     :ghciCmd "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show"
 				     :ghciEnv (list :dummy "")
 				     :logFile (concat workdir "debug.log")
