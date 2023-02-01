@@ -153,6 +153,7 @@
 (setq-default tab-bar-tab-name-function 'tab-bar-tab-name-truncated)
 (setq tab-bar-tab-name-truncated-max 30)
 (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+(global-tab-line-mode +1)
 
 (require 'server)
 (unless (server-running-p)
