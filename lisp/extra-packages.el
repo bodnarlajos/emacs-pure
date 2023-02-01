@@ -102,6 +102,9 @@
  :bind (("<M-S-down>" . move-text-down)
          ("<M-S-up>" . move-text-up)))
 
+;; themes
+(use-package ef-themes)
+
 ;; completion
 (straight-use-package 'diminish)
 (straight-use-package 'orderless)
