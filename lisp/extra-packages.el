@@ -93,8 +93,8 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package move-text
- :bind (("<M-down>" . move-text-down)
-         ("<M-up>" . move-text-up)))
+ :bind (("<M-S-down>" . move-text-down)
+         ("<M-S-up>" . move-text-up)))
 
 ;; completion
 (straight-use-package 'diminish)
