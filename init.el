@@ -12,6 +12,7 @@
 (setq-default frame-title-format "%b (%f)")
 ;; use ls-lisp instead of ls
 (setq ls-lisp-use-insert-directory-program nil)
+(set-window-scroll-bars (minibuffer-window) nil nil)
 
 
 (add-to-list 'display-buffer-alist
