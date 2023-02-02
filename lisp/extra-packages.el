@@ -53,7 +53,13 @@
 	         (side . right)
                  (slot . 2))))
 (use-package dir-locals)
-
+(use-package anzu
+  :bind (("M-s r" . anzu-query-replace)
+         ("M-s R" . anzu-query-replace-regex)
+         ("M-s M-r" . anzu-query-replace-at-cursor)
+         ("M-s R" . anzu-query-replace-at-cursor-thing))
+  :init
+  (global-anzu-mode +1))
 (use-package org-modern
   :after (org)
   :init (global-org-modern-mode +1))
@@ -93,8 +99,11 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package move-text
- :bind (("<M-down>" . move-text-down)
-         ("<M-up>" . move-text-up)))
+ :bind (("<M-S-down>" . move-text-down)
+         ("<M-S-up>" . move-text-up)))
+
+;; themes
+(use-package ef-themes)
 
 ;; completion
 (straight-use-package 'diminish)

@@ -12,6 +12,7 @@
 (setq-default frame-title-format "%b (%f)")
 ;; use ls-lisp instead of ls
 (setq ls-lisp-use-insert-directory-program nil)
+(set-window-scroll-bars (minibuffer-window) nil nil)
 
 
 (add-to-list 'display-buffer-alist
@@ -152,6 +153,7 @@
 (setq-default tab-bar-tab-name-function 'tab-bar-tab-name-truncated)
 (setq tab-bar-tab-name-truncated-max 30)
 (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
+(global-tab-line-mode +1)
 
 (require 'server)
 (unless (server-running-p)
