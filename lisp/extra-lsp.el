@@ -39,21 +39,23 @@
             (lambda (arg) (call-interactively #'dap-hydra)))
   (add-hook 'dap-mode-hook #'my/dap/check-mode-and-load-dap))
 
+(defun my/lsp-mode-hook ()
+  "t."
+  (eldoc-box-hover-mode +1)
+  (setq eldoc-documentation-functions
+        (cons #'flymake-eldoc-function
+              (remove #'flymake-eldoc-function eldoc-documentation-functions)))
+  ;; Show all eldoc feedback.
+  (setq eldoc-documentation-strategy #'eldoc-documentation-compose)
+  (custom-set-variables
+   '(lsp-completion-provider :none)
+   '(lsp-diagnostics-provider :flymake)
+   '(lsp-headerline-breadcrumb-enable nil))
+  (setf (caadr ;; Pad before lsp modeline error info
+	 (assq 'global-mode-string mode-line-misc-info))
+	" "))
 
-(add-hook 'lsp-mode-hook
-	  (lambda ()
-            (setq eldoc-documentation-functions
-                  (cons #'flymake-eldoc-function
-                        (remove #'flymake-eldoc-function eldoc-documentation-functions)))
-            ;; Show all eldoc feedback.
-            (setq eldoc-documentation-strategy #'eldoc-documentation-compose)
-            (custom-set-variables
-             '(lsp-completion-provider :none)
-             '(lsp-diagnostics-provider :flymake)
-             '(lsp-headerline-breadcrumb-enable nil))
-	    (setf (caadr ;; Pad before lsp modeline error info
-		   (assq 'global-mode-string mode-line-misc-info))
-		  " ")))
+(add-hook 'lsp-mode-hook #'my/lsp-mode-hook)
 (add-hook 'lsp-completion-mode-hook #'my/setup-lsp-capf)
 (add-hook 'lsp-completion-mode-hook
 	  (lambda ()
