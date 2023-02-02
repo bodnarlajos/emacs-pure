@@ -34,6 +34,14 @@
 (straight-use-package 'remember-last-theme)
 (straight-use-package 'go-translate)
 (use-package vterm)
+
+(use-package isearch+
+  :init (progn
+          (isearchp-toggle-set-region)
+          (isearchp-toggle-region-deactivation)
+          (isearchp-toggle-showing-match-number))
+  :bind (("M-s /" . isearchp-forward-region)))
+
 (use-package all-the-icons-dired
   :straight t
   :hook (dired-mode))
