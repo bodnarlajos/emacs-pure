@@ -36,7 +36,8 @@
 (use-package vterm)
 
 (use-package isearch+
-  :init (progn
+  :defer 5
+  :config (progn
           (isearchp-toggle-set-region)
           (isearchp-toggle-region-deactivation)
           (isearchp-toggle-showing-match-number))
