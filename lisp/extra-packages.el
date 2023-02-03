@@ -111,6 +111,11 @@
  :bind (("<M-S-down>" . move-text-down)
          ("<M-S-up>" . move-text-up)))
 
+(use-package treesit-auto
+  :straight (treesit-auto :type git :host github :repo "renzmann/treesit-auto")
+  :config
+  (global-treesit-auto-mode))
+
 ;; themes
 (use-package ef-themes)
 
@@ -282,14 +287,14 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
     ("k" smerge-kill-current)
     ("q" nil "cancel" :color blue)))
 
-;; treesit native
-(push '(css-mode . css-ts-mode) major-mode-remap-alist)
-(push '(python-mode . python-ts-mode) major-mode-remap-alist)
-(push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
-(push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
-(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
-(push '(c-mode . c-ts-mode) major-mode-remap-alist)
-(push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
-(push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
+;; ;; treesit native
+;; (push '(css-mode . css-ts-mode) major-mode-remap-alist)
+;; (push '(python-mode . python-ts-mode) major-mode-remap-alist)
+;; (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
+;; (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
+;; (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+;; (push '(c-mode . c-ts-mode) major-mode-remap-alist)
+;; (push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
+;; (push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
 
 (provide 'extra-packages)
