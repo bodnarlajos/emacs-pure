@@ -72,7 +72,7 @@
 (customize-set-variable 'recentf-save-file
 			(expand-file-name "recentf" user-emacs-directory))
 (recentf-mode +1)
-(desktop-save-mode +1)
+;; (desktop-save-mode +1)
 
 (customize-set-variable 'kill-do-not-save-duplicates t)
 (setq auto-window-vscroll nil)
