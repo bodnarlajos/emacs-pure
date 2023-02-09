@@ -144,7 +144,7 @@
 
 ;; tab-bar and mode-line
 (setq-default header-line-format nil)
-(tab-bar-mode t)
+;; (tab-bar-mode t)
 (setq tab-bar-show 1)
 (setq tab-bar-close-button-show nil)
 (setq tab-bar-new-tab-choice "*scratch*")
@@ -152,7 +152,7 @@
 (setq-default tab-bar-tab-name-function 'tab-bar-tab-name-truncated)
 (setq tab-bar-tab-name-truncated-max 30)
 (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
-(global-tab-line-mode +1)
+;; (global-tab-line-mode +1)
 (custom-set-faces
  '(mode-line ((t (:box (:line-width (8 . 8) :style flat-button)))))
  '(mode-line-inactive ((t (:box (:line-width (8 . 8) :style flat-button)))))
