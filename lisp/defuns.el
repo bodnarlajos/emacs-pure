@@ -229,4 +229,17 @@ Version 2017-11-01"
       (horizontal-scroll-bar-mode -1)
       (scroll-bar-mode -1))))
 
+(defun my/new-empty-buffer ()
+  "Create a new empty buffer."
+  (interactive)
+  (require 'calendar)
+  (require 'org)
+  (let* ((datestr (format-time-string "%Y%m%d_%H%M%S.org"))
+         ($buf (generate-new-buffer (format "untitled_%s" datestr))))
+    (switch-to-buffer $buf)
+    (funcall 'org-mode)
+    (write-file (concat my/notes-path "/temp/" (buffer-name $buf)))
+    (auto-save-visited-mode +1)
+    ))
+
 (provide 'defuns)
