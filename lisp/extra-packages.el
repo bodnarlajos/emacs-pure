@@ -34,6 +34,7 @@
 (straight-use-package 'remember-last-theme)
 (straight-use-package 'go-translate)
 (use-package vterm)
+(use-package with-editor)
 
 (use-package isearch+
   :defer 5
