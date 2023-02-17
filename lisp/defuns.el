@@ -85,7 +85,7 @@ for the current buffer's file name, and the line number at point."
 (defun my/start-powershell ()
   "..."
   (interactive)
-  (async-shell-command "powershell.exe"))
+  (with-editor-async-shell-command "powershell.exe"))
 
 (defun my/open-notes ()
   "Open file from the notes directory"
