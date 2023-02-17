@@ -135,12 +135,7 @@ for the current buffer's file name, and the line number at point."
 (defun consult-ripgrep-search-in-notes ()
   "Search in notes"
   (interactive)
-  (consult-ripgrep-files-in-directory my/notes-dir))
-
-(defun consult-ripgrep-search-in-temp-dir ()
-  "Search in temp notes"
-  (interactive)
-  (consult-ripgrep-files-in-directory my/temp-dir))
+  (consult-ripgrep-files-in-directory my/notes-path))
 
 (defun restrict-to-current-file ()
   (interactive)
