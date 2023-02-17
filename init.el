@@ -127,10 +127,11 @@
   (set-face-attribute 'ediff-even-diff-A nil :inherit nil)
   (set-face-attribute 'ediff-even-diff-B nil :inherit nil)
   (set-face-attribute 'ediff-even-diff-C nil :inherit nil)
-  (setq ediff-split-window-function 'split-window-horizontally)
-  (setq ediff-merge-split-window-function 'split-window-vertically)
-  (setq ediff-diff-options "-w")
-  (setq ediff-window-setup-function #'ediff-setup-windows-plain)
+  (setq ediff-split-window-function 'split-window-horizontally
+        ediff-merge-split-window-function 'split-window-vertically
+        ediff-diff-options "-w"
+        ediff-ignore-similar-regions t
+        ediff-window-setup-function #'ediff-setup-windows-plain)
   (defun disable-y-or-n-p (orig-fun &rest args)
     (cl-letf (((symbol-function 'y-or-n-p) (lambda (prompt) t)))
       (apply orig-fun args)))
