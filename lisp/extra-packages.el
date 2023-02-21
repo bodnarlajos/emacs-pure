@@ -117,6 +117,8 @@
   :config
   (global-treesit-auto-mode))
 
+(use-package plz)
+
 ;; themes
 (use-package ef-themes)
 
