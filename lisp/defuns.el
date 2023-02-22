@@ -152,7 +152,9 @@ for the current buffer's file name, and the line number at point."
   (interactive)
   (straight-use-package 'hydra)
   (straight-use-package 'magit)
-  (call-interactively 'magit-status))
+  (require 'magit-extras)
+  (call-interactively 'magit-project-status))
+
 
 (defun my/kill-buffer ()
   "Kill the current buffer"
