@@ -35,6 +35,15 @@
 (straight-use-package 'go-translate)
 (use-package vterm)
 (use-package with-editor)
+(use-package mini-frame
+  :init (mini-frame-mode +1)
+  :config
+  (custom-set-variables
+   '(mini-frame-show-parameters
+     '((top . 0)
+       (width . 0.8)
+       (left . 0.5)
+       (height . 15)))))
 
 (use-package isearch+
   :defer 5
