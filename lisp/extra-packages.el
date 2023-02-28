@@ -2,6 +2,9 @@
 
 ;; package init
 (defvar bootstrap-version)
+;; keep this line here to shorten emacs-init-time
+(setq straight-check-for-modifications '(check-on-save find-when-checking))
+
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
@@ -17,6 +20,8 @@
 (setq straight-check-for-modifications nil
       straight-use-package-by-default t
       use-package-always-defer t
+      straight-vc-git-default-clone-depth '(1 single-branch)
+      use-package-verbose nil
       completion-ignore-case t
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
