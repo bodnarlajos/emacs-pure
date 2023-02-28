@@ -1,7 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(cua-mode +1)
-
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
 (global-set-key (kbd "C-z") 'undo-only)
@@ -17,7 +15,6 @@
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-<return>") 'crux-smart-open-line)
 (global-set-key (kbd "C-S-<return>") 'crux-smart-open-line-above)
-(define-key cua-global-keymap (kbd "C-S-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-;") 'comment-line)
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
@@ -90,7 +87,7 @@
 (define-key my-keys (kbd "x") 'delete-window)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
-(define-key my-keys (kbd "r") 'cua-toggle-rectangle-mark)
+(define-key my-keys (kbd "r") 'rectangle-mark-mode)
 (define-key my-keys (kbd ";") 'winner-undo)
 (define-key my-keys (kbd "s") 'hydra-smerge/body)
 (which-key-add-key-based-replacements "M-l s" "Smerge")
