@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-s") 'save-buffer)
+(global-set-key (kbd "M-q") 'delete-other-windows)
 (windmove-default-keybindings  '(meta))
 
 (with-eval-after-load 'dired
