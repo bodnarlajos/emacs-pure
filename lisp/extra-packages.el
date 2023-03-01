@@ -126,7 +126,8 @@
 (use-package hydra)
 (use-package magit
   :defer 5
-  :after (hydra))
+  :after (hydra)
+  :init (require 'magit-extras))
 
 ;; themes
 (use-package ef-themes)
@@ -220,10 +221,6 @@
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(consult-customize
- consult-line :prompt "Search: "
- consult-global-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n"))
- consult-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n")))
 (custom-set-variables
  '(xref-show-xrefs-function 'consult-xref)
  '(css-indent-offset 2))
