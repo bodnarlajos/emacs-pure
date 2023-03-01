@@ -126,7 +126,7 @@
 (use-package hydra)
 (use-package magit
   :defer 5
-  :after (hydra)
+  :after (hydra))
 
 ;; themes
 (use-package ef-themes)
