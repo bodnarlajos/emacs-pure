@@ -220,27 +220,10 @@
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-hook 'emacs-lisp-mode-hook #'my/setup-elisp)
 
-(defvar consult--source-my-menu
-  `(:name     "Quick menu item"
-	      :narrow   ?f
-	      :category 'buffer
-	      :face     'font-lock-keyword-face
-	      :default  t
-	      :action (lambda (result) (call-interactively (cdr (assoc result my/menu-items))))
-	      :items (lambda () (mapcar #'car my/menu-items)))
-  "My menu items for `consult-buffer'.")
-(defcustom my/menu-items '(("Git" . my/start-magit)
-                           ("Powershell" . my/start-powershell)
-                           ("New temp note" . my/new-empty-buffer)
-                           ("Translate" . gts-do-translate)
-                           ("Notes" . my/open-notes)) "My-config menu items" :type '(alist :key-type string :value-type function))
-(add-to-list 'consult-buffer-sources 'consult--source-my-menu t)
-
 (consult-customize
  consult-line :prompt "Search: "
  consult-global-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n"))
  consult-mark :preview-key (list (kbd "<down>") (kbd "<up>") (kbd "C-p") (kbd "C-n")))
-(setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>") (kbd "M-i")))
 (custom-set-variables
  '(xref-show-xrefs-function 'consult-xref)
  '(css-indent-offset 2))
