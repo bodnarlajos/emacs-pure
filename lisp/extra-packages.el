@@ -143,6 +143,7 @@
 (straight-use-package 'typescript-mode)
 (straight-use-package 'js2-mode)
 (straight-use-package 'web-mode)
+(use-package markdown-mode)
 (straight-use-package 'yaml-mode)
 (use-package csv-mode
   :config
