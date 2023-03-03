@@ -9,9 +9,9 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
 (eval-and-compile
   (setq use-package-always-ensure t
-        use-package-always-demand t
         use-package-expand-minimally t
         use-package-verbose nil
         completion-ignore-case t
@@ -20,14 +20,15 @@
 
 ;; utils
 (use-package rg)
-(use-package consult)
+(use-package consult
+  :ensure t)
 (use-package which-key)
 (use-package crux)
 (use-package easy-kill)
 (use-package diff-hl)
 (use-package all-the-icons-completion)
 (use-package move-text)
-(use-package nc)
+;(use-package nc)                        
 (use-package remember-last-theme)
 (use-package go-translate)
 (use-package vterm)
@@ -59,7 +60,7 @@
 	         (window-width . 60)
 	         (side . right)
                  (slot . 2))))
-(use-package dir-locals)
+
 (use-package anzu
   :bind (("M-s r" . anzu-query-replace)
          ("M-s R" . anzu-query-replace-regex)
@@ -134,7 +135,6 @@
 (use-package kind-icon)
 
 ;; programming packages
-(use-package powershell-mode)
 (use-package haskell-mode)
 (use-package angular-mode)
 (use-package typescript-mode)
