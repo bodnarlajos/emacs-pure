@@ -150,8 +150,8 @@ for the current buffer's file name, and the line number at point."
 (defun my/start-magit ()
   "Deploy and start magit"
   (interactive)
-  (straight-use-package 'hydra)
-  (straight-use-package 'magit)
+  (use-package hydra)
+  (use-package magit)
   (require 'magit-extras)
   (call-interactively 'magit-project-status))
 

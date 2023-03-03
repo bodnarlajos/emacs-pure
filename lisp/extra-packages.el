@@ -1,52 +1,44 @@
 ;; -*- lexical-binding: t -*-
 
 ;; package init
-(defvar bootstrap-version)
-;; keep this line here to shorten emacs-init-time
-(setq straight-check-for-modifications '(check-on-save find-when-checking))
+(require 'package)
+(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/bodnarlajos/straight.el/master/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(setq straight-check-for-modifications nil
-      straight-use-package-by-default t
-      use-package-always-defer t
-      straight-vc-git-default-clone-depth '(1 single-branch)
-      use-package-verbose nil
-      completion-ignore-case t
-      read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-and-compile
+  (setq use-package-always-ensure t
+        use-package-always-demand t
+        use-package-expand-minimally t
+        use-package-verbose nil
+        completion-ignore-case t
+        read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t))
 
 ;; utils
-(straight-use-package 'rg)
-(straight-use-package 'consult)
-(straight-use-package 'which-key)
-(straight-use-package 'crux)
-(straight-use-package 'easy-kill)
-(straight-use-package 'diff-hl)
-(straight-use-package 'all-the-icons-completion)
-(straight-use-package 'move-text)
-(straight-use-package 'nc)
-(straight-use-package 'remember-last-theme)
-(straight-use-package 'go-translate)
+(use-package rg)
+(use-package consult)
+(use-package which-key)
+(use-package crux)
+(use-package easy-kill)
+(use-package diff-hl)
+(use-package all-the-icons-completion)
+(use-package move-text)
+(use-package nc)
+(use-package remember-last-theme)
+(use-package go-translate)
 (use-package vterm)
 (use-package with-editor)
 
 (use-package isearch+
   :defer 5
   :config (progn
-          (isearchp-toggle-set-region)
-          (isearchp-toggle-region-deactivation)
-          (isearchp-toggle-showing-match-number))
+            (isearchp-toggle-set-region)
+            (isearchp-toggle-region-deactivation)
+            (isearchp-toggle-showing-match-number))
   :bind (("M-s /" . isearchp-forward-region)))
 
 (use-package all-the-icons-dired
@@ -114,7 +106,7 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package move-text
- :bind (("<M-S-down>" . move-text-down)
+  :bind (("<M-S-down>" . move-text-down)
          ("<M-S-up>" . move-text-up)))
 
 (use-package treesit-auto
@@ -133,23 +125,23 @@
 (use-package ef-themes)
 
 ;; completion
-(straight-use-package 'diminish)
-(straight-use-package 'orderless)
-(straight-use-package 'marginalia)
-(straight-use-package 'corfu)
-(straight-use-package 'vertico)
-(straight-use-package 'cape)
-(straight-use-package 'kind-icon)
+(use-package diminish)
+(use-package orderless)
+(use-package marginalia)
+(use-package corfu)
+(use-package vertico)
+(use-package cape)
+(use-package kind-icon)
 
 ;; programming packages
-(straight-use-package 'powershell-mode)
-(straight-use-package 'haskell-mode)
-(straight-use-package 'angular-mode)
-(straight-use-package 'typescript-mode)
-(straight-use-package 'js2-mode)
-(straight-use-package 'web-mode)
+(use-package powershell-mode)
+(use-package haskell-mode)
+(use-package angular-mode)
+(use-package typescript-mode)
+(use-package js2-mode)
+(use-package web-mode)
 (use-package markdown-mode)
-(straight-use-package 'yaml-mode)
+(use-package yaml-mode)
 (use-package csv-mode
   :config
   (custom-set-variables

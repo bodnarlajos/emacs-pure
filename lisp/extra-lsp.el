@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(straight-use-package 'lsp-mode)
+(use-package lsp-mode)
 (use-package dap-mode
   :config
   (dap-register-debug-provider
@@ -8,9 +8,9 @@
    (lambda (conf)
      (plist-put conf :dap-server-path (list "haskell-debug-adapter" "--hackage-version=0.0.35.0"))
      conf)))
-(straight-use-package 'consult-lsp)
+(use-package consult-lsp)
 ;; lsp-languages
-(straight-use-package 'lsp-haskell)
+(use-package lsp-haskell)
 (use-package eldoc-box
   :init (eldoc-box-hover-mode +1))
 
