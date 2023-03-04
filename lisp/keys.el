@@ -23,6 +23,7 @@
 (windmove-default-keybindings  '(meta))
 
 (with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "?") 'dired-get-size)
   (define-key dired-mode-map (kbd "S-<return>") 'dired-find-file-other-window))
 
 (with-eval-after-load 'csharp-mode
