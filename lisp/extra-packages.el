@@ -118,6 +118,9 @@
 (use-package plz)
 (use-package hydra)
 (use-package magit
+  :config
+  (custom-set-variables
+   '(magit-diff-refine-hunk 'all))
   :defer 5
   :after (hydra)
   :init (require 'magit-extras))
