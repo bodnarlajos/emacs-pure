@@ -239,4 +239,32 @@ Version 2017-11-01"
     (auto-save-visited-mode +1)
     ))
 
+(defun file-size (filename)
+  "Return size of file FILENAME in bytes.
+    The size is converted to float for consistency.
+    This doesn't recurse directories."
+  (float
+   (file-attribute-size			; might be int or float
+    (file-attributes filename))))
+(defun file-size-total (filename-list)
+  "Return the sum of sizes of FILENAME-LIST in bytes."
+  (apply '+
+	 (mapcar 'file-size
+		 filename-list)))
+(defun dired-size-of-marked-files ()
+  "Print the total size of marked files in bytes."
+  (interactive)
+  (message "%.0f"
+	   (file-size-total (dired-get-marked-files))))
+
+(defun dired-get-size ()
+  (interactive)
+  (let ((files (dired-get-marked-files)))
+    (with-temp-buffer
+      (apply 'call-process "du" nil t nil "-sch" files)
+      (message "Size of all marked files: %s"
+               (progn 
+                 (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+                 (match-string 1))))))
+
 (provide 'defuns)
