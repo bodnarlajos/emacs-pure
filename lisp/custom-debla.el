@@ -24,7 +24,7 @@
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
  '(custom-safe-themes
-   '("1479377d38b49d40dba561b2e4ab354b78cedb721bd62e0210ca18652760d219" "a138ec18a6b926ea9d66e61aac28f5ce99739cf38566876dc31e29ec8757f6e2" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
+   '("aee6debe7b326de2968d8b023fdc9ee7e6c9996a80532186674f2e1376ad1782" "1479377d38b49d40dba561b2e4ab354b78cedb721bd62e0210ca18652760d219" "a138ec18a6b926ea9d66e61aac28f5ce99739cf38566876dc31e29ec8757f6e2" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
