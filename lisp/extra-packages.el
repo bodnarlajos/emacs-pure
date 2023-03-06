@@ -31,7 +31,8 @@
 ;(use-package nc)                        
 (use-package remember-last-theme)
 (use-package go-translate)
-(use-package vterm)
+(when (not (string-equal system-type "windows-nt"))
+  (use-package vterm))
 (use-package with-editor)
 
 (use-package isearch+
