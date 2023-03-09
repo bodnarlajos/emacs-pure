@@ -21,8 +21,6 @@
 (tooltip-mode    -1) ;; Tool tip in the echo
 (flymake-mode -1)
 
-(setq package-enable-at-startup nil)
-
 (setq frame-inhibit-implied-resize t)
 
 (provide 'early-init)

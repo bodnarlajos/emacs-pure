@@ -44,7 +44,6 @@
   :bind (("M-s /" . isearchp-forward-region)))
 
 (use-package all-the-icons-dired
-  :straight t
   :hook (dired-mode))
 
 (use-package undo-tree
@@ -112,7 +111,6 @@
          ("<M-S-up>" . move-text-up)))
 
 (use-package treesit-auto
-  :straight (treesit-auto :type git :host github :repo "renzmann/treesit-auto")
   :config
   (global-treesit-auto-mode))
 
