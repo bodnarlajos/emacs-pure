@@ -35,14 +35,6 @@
   (use-package vterm))
 (use-package with-editor)
 
-(use-package isearch+
-  :defer 5
-  :config (progn
-            (isearchp-toggle-set-region)
-            (isearchp-toggle-region-deactivation)
-            (isearchp-toggle-showing-match-number))
-  :bind (("M-s /" . isearchp-forward-region)))
-
 (use-package all-the-icons-dired
   :hook (dired-mode))
 
