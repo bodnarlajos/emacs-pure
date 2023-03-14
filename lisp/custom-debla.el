@@ -5,8 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code"))))
  '(all-the-icons-dired-dir-face ((t (:height 1.2))))
- '(fixed-pitch ((t (:family "Cascadia Mono"))))
- '(fixed-pitch-serif ((t (:weight semi-bold :family "Cascadia Mono"))))
+ '(fixed-pitch ((t (:family "JetBrains Mono"))))
+ '(fixed-pitch-serif ((t (:inherit default :weight semi-bold :family "JetBrains Mono"))))
  '(mode-line ((t (:box (:line-width (4 . 4) :style flat-button)))))
  '(mode-line-inactive ((t (:box (:line-width (4 . 4) :style flat-button)))))
  '(tab-bar ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0)))))
