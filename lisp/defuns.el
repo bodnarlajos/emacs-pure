@@ -28,6 +28,13 @@ for the current buffer's file name, and the line number at point."
     (message "%s" fn)
     (kill-new fn)))
 
+(defun my/print-buffer-name ()
+  "Print the current file-name to the minibuffer and put it to the kill-ring"
+  (interactive)
+  (let ((fn (buffer-name (current-buffer))))
+    (message "%s" fn)
+    (kill-new fn)))
+
 (defun my/get-terminal ()
   "Get the system terminal path"
   (if (eq system-type 'windows-nt) terminal-in-windows terminal-in-linux))

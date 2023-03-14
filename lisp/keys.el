@@ -105,6 +105,7 @@
 (define-key my-keys (kbd "M-f") 'dogears-forward)
 (define-key my-keys (kbd "/") 'indent-buffer)
 (define-key my-keys (kbd "p f") 'my/print-file-name)
+(define-key my-keys (kbd "p b") 'my/print-buffer-name)
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
