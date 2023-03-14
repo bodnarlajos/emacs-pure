@@ -273,4 +273,20 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 ;; (push '(c++-mode . c++-ts-mode) major-mode-remap-alist)
 ;; (push '(csharp-mode . csharp-ts-mode) major-mode-remap-alist)
 
+
+(use-package visual-fill-column
+  :after (org-present)
+  :config
+  (defun my/close-org-present ()
+    "Finish a presentation with org."
+    (interactive)
+    (org-present-mode -1)
+    (org-present-quit)
+    (visual-fill-column-mode -1))
+  (add-hook 'org-present-mode-hook 'visual-fill-column-mode)
+  (setq visual-fill-column-width 110
+        visual-fill-column-center-text t))
+
+(use-package org-present)
+
 (provide 'extra-packages)
