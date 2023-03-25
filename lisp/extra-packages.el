@@ -21,7 +21,9 @@
 ;; utils
 (use-package rg)
 (use-package consult
-  :ensure t)
+  :ensure t
+  :config
+  (setq consult-preview-key "S-<right>"))
 (use-package which-key)
 (use-package crux)
 (use-package easy-kill)
