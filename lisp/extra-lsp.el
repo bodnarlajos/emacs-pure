@@ -11,8 +11,6 @@
 (use-package consult-lsp)
 ;; lsp-languages
 (use-package lsp-haskell)
-(use-package eldoc-box
-  :init (eldoc-box-hover-mode +1))
 
 (global-set-key (kbd "M-s l") 'lsp-find-references)
 (global-set-key (kbd "M-s m") 'lsp-find-implementation)
