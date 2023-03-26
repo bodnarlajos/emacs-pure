@@ -11,7 +11,6 @@
 (use-package consult-lsp)
 ;; lsp-languages
 (use-package lsp-haskell)
-(use-package eldoc-box)
 
 (global-set-key (kbd "M-s l") 'lsp-find-references)
 (global-set-key (kbd "M-s m") 'lsp-find-implementation)
@@ -40,7 +39,6 @@
 
 (defun my/lsp-mode-hook ()
   "t."
-  (eldoc-box-hover-mode +1)
   (setq eldoc-documentation-functions
         (cons #'flymake-eldoc-function
               (remove #'flymake-eldoc-function eldoc-documentation-functions)))

@@ -86,7 +86,7 @@ for the current buffer's file name, and the line number at point."
 (defun my/open/terminal (folder)
   "Open a folder with explorer or nautilus"
   (interactive "DDirectory: ")
-  (let ((prog (if (eq system-type 'windows-nt) "c:/users/lbodnar/scoop/shims/alacritty.exe" "qterminal")))
+  (let ((prog (if (eq system-type 'windows-nt) "c:/users/lbodnar/scoop/shims/alacritty.exe" "gnome-terminal")))
     (shell-command (concat prog " " (expand-file-name folder)) nil nil)))
 
 (defun my/start-powershell ()

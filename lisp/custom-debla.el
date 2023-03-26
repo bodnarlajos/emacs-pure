@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 130 :width normal :foundry "SAJA" :family "Cascadia Code"))))
+ '(default ((t (:slant normal :weight regular :height 130 :width normal :family "Fira Code"))))
  '(all-the-icons-dired-dir-face ((t (:height 1.2))))
  '(fixed-pitch ((t (:family "JetBrains Mono"))))
  '(fixed-pitch-serif ((t (:inherit default :weight semi-bold :family "JetBrains Mono"))))
@@ -14,7 +14,7 @@
  '(tab-line ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0) :box (:line-width (4 . 4) :style flat-button)))))
  '(tab-line-tab ((t (:inherit tab-line :style flat-button) :underline (:color foreground-color :style line :position 0))))
  '(undo-tree-visualizer-active-branch-face ((t (:foreground "red"))))
- '(variable-pitch ((t (:family "Ubuntu Mono")))))
+ '(variable-pitch ((t (:family "JetBrains Mono")))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -38,7 +38,7 @@
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-csharp-omnisharp-roslyn-store-path
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
- '(lsp-diagnostics-provider :flymake t)
+ '(lsp-diagnostics-provider :flymake)
  '(lsp-headerline-breadcrumb-enable nil)
  '(magit-diff-refine-hunk 'all)
  '(next-error-recenter '(4))
@@ -46,7 +46,7 @@
  '(org-startup-indented t)
  '(org-support-shift-select t)
  '(package-selected-packages
-   '(hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
+   '(multi-eshell eat hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
  '(safe-local-variable-values
    '((my/dap/name . "dap-haskell-test1")
      (my/dap/entry-point . "app/Main.hs")
