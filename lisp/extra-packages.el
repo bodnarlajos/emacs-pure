@@ -291,8 +291,4 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package org-present)
 
-(use-package eat
-  :init
-  (add-hook 'eshell-load-hook #'eat-eshell-mode))
-
 (provide 'extra-packages)
