@@ -162,11 +162,6 @@
 (all-the-icons-completion-mode +1)
 (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 
-;; remove tramp after crux
-(with-eval-after-load 'crux
-  (when (featurep 'tramp)
-    (tramp-unload-tramp)))
-
 (require 'treesit)
 
 (require 'remember-last-theme)
