@@ -5,6 +5,11 @@
 (defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
 (defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
 
+(defun my/start-ide ()
+  "Start ide funcitonality"
+  (interactive)
+  (require 'extra-lsp))
+
 (defun position-to-kill-ring ()
   "Copy to the kill ring a string in the format \"file-name:line-number\"
 for the current buffer's file name, and the line number at point."
