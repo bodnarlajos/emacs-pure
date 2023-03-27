@@ -111,7 +111,6 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'defuns)
 (require 'extra-packages)
-(require 'extra-lsp)
 (require 'keys)
 
 (custom-set-variables
