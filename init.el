@@ -162,8 +162,8 @@
 (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
 ;; (global-tab-line-mode +1)
 (custom-set-faces
- '(mode-line ((t (:box (:line-width (4 . 4) :style flat-button)))))
- '(mode-line-inactive ((t (:box (:line-width (4 . 4) :style flat-button)))))
+ '(mode-line ((t (:box (:line-width (2 . 2) :style flat-button)))))
+ '(mode-line-inactive ((t (:box (:line-width (2 . 2) :style flat-button)))))
  '(tab-bar ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0)))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (4 . 4) :style flat-button) :underline (:color foreground-color :style line :position 0)))))
  '(tab-line ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0) :box (:line-width (4 . 4) :style flat-button)))))
