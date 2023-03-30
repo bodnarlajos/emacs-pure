@@ -94,7 +94,6 @@
 (define-key my-keys (kbd "r") 'rectangle-mark-mode)
 (define-key my-keys (kbd ";") 'winner-undo)
 (define-key my-keys (kbd "s") 'hydra-smerge/body)
-(which-key-add-key-based-replacements "M-l s" "Smerge")
 (define-key my-keys (kbd ":") 'winner-redo)
 (define-key my-keys (kbd "<tab>") 'next-buffer)
 (define-key my-keys (kbd "l") 'my-lsp-keys)
@@ -111,13 +110,13 @@
 (define-key my-keys (kbd "p n") 'my/open-notes)
 (define-key my-keys (kbd "p g") 'my/start-magit)
 
-(which-key-add-key-based-replacements 'my-keys
-  "p" "Programs"
-  "p f" "Print filename"
-  "p b" "Print buffername"
-  "p i" "Ide mode"
-  "p n" "Open note"
-  "p g" "Open git client")
+(which-key-add-key-based-replacements "M-l s" "Smerge"
+                                      "M-l p" "Programs"
+                                      "M-l p f" "Print filename"
+                                      "M-l p b" "Print buffername"
+                                      "M-l p i" "Ide mode"
+                                      "M-l p n" "Open note"
+                                      "M-l p g" "Open git client")
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
