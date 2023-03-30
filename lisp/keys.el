@@ -107,6 +107,17 @@
 (define-key my-keys (kbd "/") 'indent-buffer)
 (define-key my-keys (kbd "p f") 'my/print-file-name)
 (define-key my-keys (kbd "p b") 'my/print-buffer-name)
+(define-key my-keys (kbd "p i") 'my/start-ide)
+(define-key my-keys (kbd "p n") 'my/open-notes)
+(define-key my-keys (kbd "p g") 'my/start-magit)
+
+(which-key-add-key-based-replacements 'my-keys
+  "p" "Programs"
+  "p f" "Print filename"
+  "p b" "Print buffername"
+  "p i" "Ide mode"
+  "p n" "Open note"
+  "p g" "Open git client")
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
