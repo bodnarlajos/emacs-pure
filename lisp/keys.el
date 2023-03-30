@@ -116,7 +116,8 @@
                                       "M-l p b" "Print buffername"
                                       "M-l p i" "Ide mode"
                                       "M-l p n" "Open note"
-                                      "M-l p g" "Open git client")
+                                      "M-l p g" "Open git client"
+                                      "M-l l" "LSP functions")
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)
