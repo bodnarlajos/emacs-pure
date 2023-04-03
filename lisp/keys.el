@@ -23,6 +23,10 @@
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "M-q") 'delete-other-windows)
 (windmove-default-keybindings  '(meta))
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
+(with-eval-after-load 'easy-kill
+  (global-set-key [remap kill-ring-save] 'easy-kill))
 
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "?") 'dired-get-size)
@@ -40,6 +44,9 @@
 (with-eval-after-load 'term
   (define-key term-mode-map (kbd "M-<return>") 'consult-buffer)
   (define-key term-raw-map (kbd "M-<return>") 'consult-buffer))
+
+(with-eval-after-load 'eshell
+  (define-key eshell-mode-map (kbd "M-<return>") 'consult-buffer))
 
 (with-eval-after-load 'shell
   (define-key shell-mode-map (kbd "M-<return>") 'consult-buffer))
@@ -64,8 +71,16 @@
   (global-set-key (kbd "M-s l") 'consult-line)
   (global-set-key (kbd "M-s M-s") 'consult-ripgrep-related-files))
 
-(global-set-key [remap kill-ring-save] 'easy-kill)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
+(with-eval-after-load 'lsp
+  (global-set-key (kbd "M-s l") 'lsp-find-references)
+  (global-set-key (kbd "M-s m") 'lsp-find-implementation)
+  (global-set-key (kbd "M-s t") 'lsp-find-type-definition)
+  (global-set-key (kbd "M-s t") 'lsp-find-type-definition)
+  (global-set-key (kbd "M-s c") 'lsp-execute-code-action)
+  (global-set-key (kbd "C-.") 'lsp-execute-code-action))
+
+(with-eval-after-load 'dap
+  (global-set-key (kbd "M-s b") 'dap-breakpoint-toggle))
 
 (with-eval-after-load 'eww
   (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
@@ -111,13 +126,13 @@
 (define-key my-keys (kbd "p g") 'my/start-magit)
 
 (which-key-add-key-based-replacements "M-l s" "Smerge"
-                                      "M-l p" "Programs"
-                                      "M-l p f" "Print filename"
-                                      "M-l p b" "Print buffername"
-                                      "M-l p i" "Ide mode"
-                                      "M-l p n" "Open note"
-                                      "M-l p g" "Open git client"
-                                      "M-l l" "LSP functions")
+  "M-l p" "Programs"
+  "M-l p f" "Print filename"
+  "M-l p b" "Print buffername"
+  "M-l p i" "Ide mode"
+  "M-l p n" "Open note"
+  "M-l p g" "Open git client"
+  "M-l l" "LSP functions")
 
 (define-prefix-command 'my-lsp-keys)
 (define-key my-lsp-keys (kbd "c") 'compile)

@@ -12,13 +12,6 @@
 ;; lsp-languages
 (use-package lsp-haskell)
 
-(global-set-key (kbd "M-s l") 'lsp-find-references)
-(global-set-key (kbd "M-s m") 'lsp-find-implementation)
-(global-set-key (kbd "M-s t") 'lsp-find-type-definition)
-(global-set-key (kbd "M-s b") 'dap-breakpoint-toggle)
-(global-set-key (kbd "M-s t") 'lsp-find-type-definition)
-(global-set-key (kbd "M-s c") 'lsp-execute-code-action)
-
 (add-hook 'csharp-mode-hook 'lsp-deferred)
 (add-hook 'js2-mode-hook 'lsp-deferred)
 (add-hook 'typescript-mode-hook 'lsp-deferred)

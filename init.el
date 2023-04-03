@@ -32,14 +32,14 @@
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(eldoc\\)\\*"
 	       (display-buffer-reuse-window display-buffer-in-side-window)
-	       (window-width . 80)
+	       (window-width . 50)
 	       (side . right)
                (slot . 1)))
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Flymake diag.+\\)\\*"
 	       (display-buffer-reuse-window display-buffer-in-side-window)
-	       (window-width . 80)
+	       (window-width . 50)
 	       (side . right)
                (slot . 2)))
 

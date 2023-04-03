@@ -8,7 +8,12 @@
 (defun my/start-ide ()
   "Start ide funcitonality"
   (interactive)
-  (require 'extra-lsp))
+  (require 'extra-lsp)
+  (when (file-exists-p (buffer-file-name))
+    (message "Start current buffer: %s" (buffer-file-name))
+    (revert-buffer nil t)
+    (eldoc-doc-buffer t)
+    (treemacs)))
 
 (defun position-to-kill-ring ()
   "Copy to the kill ring a string in the format \"file-name:line-number\"
