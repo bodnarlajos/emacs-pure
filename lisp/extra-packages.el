@@ -195,6 +195,7 @@
       vertico-count 13
       vertico-cycle t
       completion-styles '(orderless)
+      orderless-matching-styles '(orderless-flex orderless-literal orderless-regexp)
       cape-dabbrev-min-length 2
       vertico-resize t)
 
