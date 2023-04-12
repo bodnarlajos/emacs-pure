@@ -24,12 +24,12 @@
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
  '(custom-safe-themes
-   '("aee6debe7b326de2968d8b023fdc9ee7e6c9996a80532186674f2e1376ad1782" "1479377d38b49d40dba561b2e4ab354b78cedb721bd62e0210ca18652760d219" "a138ec18a6b926ea9d66e61aac28f5ce99739cf38566876dc31e29ec8757f6e2" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
+   '("b64a60e69617b4348d0402fad2f0d08a694301132e7ab243dab4d6a65c3bf948" "c2efe6f5e2bd0bddfb2d6e26040545768939d2029f77e6b6a18d1ee0e0cb1033" "f48be80177f0d9a2b19d8dc19f3903d9be3c4d885d110e82b591d1184586fad0" "aee6debe7b326de2968d8b023fdc9ee7e6c9996a80532186674f2e1376ad1782" "1479377d38b49d40dba561b2e4ab354b78cedb721bd62e0210ca18652760d219" "a138ec18a6b926ea9d66e61aac28f5ce99739cf38566876dc31e29ec8757f6e2" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
  '(dap-netcore-install-dir "/home/lbodnar/Projects/")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(exec-path
-   '("/usr/lib/dotnet/host/fxr/6.0.11" "/home/lajbo/Projects/omnisharp-roslyn" "/home/lajbo/Projects/netcoredbg" "/home/lajbo/node_modules/.bin" "/home/lajbo/.ghcup/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
+   '("/home/lajbo/.daml/bin" "/usr/lib/dotnet/host/fxr/6.0.11" "/home/lajbo/Projects/omnisharp-roslyn" "/home/lajbo/Projects/netcoredbg" "/home/lajbo/node_modules/.bin" "/home/lajbo/.ghcup/bin" "/usr/local/sbin" "/usr/local/bin" "/usr/sbin" "/usr/bin" "/sbin" "/bin" "/usr/lib/emacs/29.0.50/x86_64-linux-gnu"))
  '(initial-frame-alist '((fullscreen . maximized)))
  '(lsp-clients-angular-language-server-command
    '("node" "/home/lbodnar/node_modules/@angular/language-server" "--ngProbeLocations" "/home/lbodnar/node_modules" "--tsProbeLocations" "/home/lbodnar/node_modules" "--stdio"))
@@ -38,7 +38,7 @@
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-csharp-omnisharp-roslyn-store-path
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
- '(lsp-diagnostics-provider :flymake)
+ '(lsp-diagnostics-provider :flymake t)
  '(lsp-headerline-breadcrumb-enable nil)
  '(magit-diff-refine-hunk 'all)
  '(next-error-recenter '(4))
@@ -46,7 +46,7 @@
  '(org-startup-indented t)
  '(org-support-shift-select t)
  '(package-selected-packages
-   '(multi-eshell eat hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
+   '(daml-mode multi-eshell eat hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
  '(safe-local-variable-values
    '((my/dap/name . "dap-haskell-test1")
      (my/dap/entry-point . "app/Main.hs")

@@ -96,6 +96,8 @@
 (use-package dogears
   :init (dogears-mode +1)
   :bind (:map global-map
+              ("M-b" . dogears-back)
+              ("M-f" . dogears-forward)
               ("M-g d" . dogears-go)
               ("M-g M-d" . dogears-list)
               ("M-g M-D" . dogears-sidebar)))

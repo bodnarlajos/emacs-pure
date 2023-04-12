@@ -15,7 +15,6 @@
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "M-0") 'delete-other-windows)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
-(global-set-key (kbd "C-<return>") 'crux-smart-open-line)
 (global-set-key (kbd "C-S-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-;") 'comment-line)
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
@@ -24,6 +23,9 @@
 (global-set-key (kbd "M-q") 'delete-other-windows)
 (windmove-default-keybindings  '(meta))
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+(global-set-key (kbd "C-S-n") 'my/new-empty-buffer)
+(global-set-key (kbd "C-b") 'consult-buffer)
+(define-key minibuffer-local-map (kbd "C-b") 'next-line)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))
