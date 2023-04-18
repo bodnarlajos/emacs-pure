@@ -41,31 +41,31 @@
   (define-key org-mode-map [mouse-1] 'org-cycle)
 
   (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
-  (define-key org-mode-map (kbd "M-RET") 'consult-buffer))
+  (define-key org-mode-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'term
-  (define-key term-mode-map (kbd "M-<return>") 'consult-buffer)
-  (define-key term-raw-map (kbd "M-<return>") 'consult-buffer))
+  (define-key term-mode-map (kbd "C-b") 'consult-buffer)
+  (define-key term-raw-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'eshell
-  (define-key eshell-mode-map (kbd "M-<return>") 'consult-buffer))
+  (define-key eshell-mode-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'shell
-  (define-key shell-mode-map (kbd "M-<return>") 'consult-buffer))
+  (define-key shell-mode-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'markdown-mode
-  (define-key markdown-mode-map (kbd "M-<return>") 'consult-buffer))
+  (define-key markdown-mode-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'diff-mode
-  (define-key diff-mode-map (kbd "M-<return>") 'consult-buffer)
+  (define-key diff-mode-map (kbd "C-b") 'consult-buffer)
   (define-key diff-mode-map (kbd "M-o") 'my/open-file))
 
 (with-eval-after-load 'vertico
-  (define-key vertico-map (kbd "M-RET") #'vertico-next))
+  (define-key vertico-map (kbd "C-b") #'vertico-next))
 
 ;; consult
 (with-eval-after-load 'consult
-  (global-set-key (kbd "M-RET") 'consult-buffer)
+  (global-set-key (kbd "C-b") 'consult-buffer)
   (global-set-key (kbd "M-s s") 'consult-ripgrep-symbol-at-point)
   (global-set-key (kbd "M-s g") 'consult-ripgrep)
   (global-set-key (kbd "M-s M-n") 'consult-ripgrep-search-in-notes)
@@ -86,8 +86,8 @@
 
 (with-eval-after-load 'eww
   (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
-  (define-key eww-mode-map (kbd "M-<return>") 'consult-buffer)
-  (define-key eww-mode-map (kbd "M-RET") 'consult-buffer))
+  (define-key eww-mode-map (kbd "C-b") 'consult-buffer)
+  (define-key eww-mode-map (kbd "C-b") 'consult-buffer))
 
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory))
