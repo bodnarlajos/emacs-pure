@@ -26,6 +26,7 @@
 (global-set-key (kbd "C-S-n") 'my/new-empty-buffer)
 (global-set-key (kbd "C-b") 'consult-buffer)
 (define-key minibuffer-local-map (kbd "C-b") 'next-line)
+(global-set-key (kbd "M-)") 'my/kill-buffer)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))
@@ -39,6 +40,7 @@
 
 (with-eval-after-load 'org
   (define-key org-mode-map [mouse-1] 'org-cycle)
+  (define-key org-mode-map (kbd "C-r") 'org-babel-execute-src-block)
 
   (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
   (define-key org-mode-map (kbd "C-b") 'consult-buffer))
