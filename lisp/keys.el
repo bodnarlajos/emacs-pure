@@ -110,6 +110,7 @@
 (define-key my-keys (kbd "x") 'delete-window)
 (define-key my-keys (kbd "i") 'ibuffer)
 (define-key my-keys (kbd "K") 'my/kill-buffer)
+(define-key my-keys (kbd "K") 'my/kill-buffer)
 (define-key my-keys (kbd "r") 'rectangle-mark-mode)
 (define-key my-keys (kbd ";") 'winner-undo)
 (define-key my-keys (kbd "s") 'hydra-smerge/body)
