@@ -31,24 +31,26 @@
   :ensure t
   :config
   (setq consult-preview-key "S-<right>"))
-(use-package which-key)
+(use-package which-key
+  :init
+  (diminish 'which-key-mode)
+  :config
+  (which-key-mode +1))
 (use-package crux)
 (use-package easy-kill)
 (use-package diff-hl)
 (use-package all-the-icons-completion)
-(use-package move-text)
-;(use-package nc)                        
+                                        ;(use-package nc)                        
 (use-package remember-last-theme)
-(use-package go-translate)
-(when (not (string-equal system-type "windows-nt"))
-  (use-package vterm))
 (use-package with-editor)
 
 (use-package all-the-icons-dired
   :hook (dired-mode))
 
 (use-package undo-tree
-  :init (global-undo-tree-mode t)
+  :init
+  (global-undo-tree-mode t)
+  (diminish 'undo-tree-mode)
   :bind (("C-z" . undo-tree-undo)
          ("C-y" . undo-tree-redo))
   :config
@@ -68,7 +70,9 @@
          ("M-s M-r" . anzu-query-replace-at-cursor)
          ("M-s R" . anzu-query-replace-at-cursor-thing))
   :init
-  (global-anzu-mode +1))
+  (global-anzu-mode +1)
+  (diminish 'anzu-mode))
+
 (use-package org-modern
   :after (org)
   :init (global-org-modern-mode +1))
@@ -88,11 +92,6 @@
                  nil
                  (window-parameters (mode-line-format . none)))))
 
-(use-package embark-consult
-  :ensure t ; only need to install it, embark loads it after consult if found
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
-
 (use-package dogears
   :init (dogears-mode +1)
   :bind (:map global-map
@@ -111,10 +110,6 @@
 (use-package move-text
   :bind (("<M-S-down>" . move-text-down)
          ("<M-S-up>" . move-text-up)))
-
-(use-package treesit-auto
-  :config
-  (global-treesit-auto-mode))
 
 (use-package plz)
 (use-package hydra)
@@ -152,9 +147,6 @@
    '(csv-separators '("," ";" ":"))))
 
 ;; package configurations
-(with-eval-after-load 'which-key
-  (diminish 'which-key-mode))
-
 (with-eval-after-load 'eldoc
   (diminish 'eldoc-mode)
   (custom-set-variables
@@ -171,8 +163,6 @@
 (all-the-icons-completion-mode +1)
 (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 
-(require 'treesit)
-
 (require 'remember-last-theme)
 (remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
@@ -182,7 +172,6 @@
 (vertico-mode +1)
 (marginalia-mode +1)
 (global-corfu-mode +1)
-(which-key-mode +1)
 
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml\\'" . web-mode))
@@ -273,15 +262,16 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 (use-package visual-fill-column
   :after (org-present)
   :config
-  (defun my/close-org-present ()
+  (defun my/org-present-quit ()
     "Finish a presentation with org."
     (interactive)
     (org-present-mode -1)
     (org-present-quit)
     (visual-fill-column-mode -1))
-  (add-hook 'org-present-mode-hook 'visual-fill-column-mode)
-  (setq visual-fill-column-width 110
-        visual-fill-column-center-text t))
+  (add-hook 'org-present-mode-hook (lambda ()
+                                     (visual-fill-column-mode)
+                                     (setq visual-fill-column-width 110
+                                           visual-fill-column-center-text t))))
 
 (use-package org-present)
 
