@@ -120,11 +120,9 @@
 ;; daml
 (when (file-directory-p "~/.emacs.d/lisp/daml-mode/lisp")
   (add-to-list 'load-path "~/.emacs.d/lisp/daml-mode/lisp")
-  (use-package daml-mode
-    :init
-    (require 'daml-lsp)
-    (require 'daml-mode)
-    (add-hook 'daml-mode-hook #'lsp)
-    (message "daml initialized...")))
+  (require 'daml-lsp)
+  (require 'daml-mode)
+  (add-hook 'daml-mode-hook #'lsp)
+  (message "daml initialized..."))
 
 (provide 'extra-lsp)
