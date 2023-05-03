@@ -12,8 +12,7 @@
   (when (file-exists-p (buffer-file-name))
     (message "Start current buffer: %s" (buffer-file-name))
     (revert-buffer nil t)
-    (eldoc-doc-buffer t)
-    (treemacs)))
+    (eldoc-doc-buffer t)))
 
 (defun position-to-kill-ring ()
   "Copy to the kill ring a string in the format \"file-name:line-number\"
