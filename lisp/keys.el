@@ -25,6 +25,7 @@
 (windmove-default-keybindings  '(meta))
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-S-n") 'my/new-empty-buffer)
+(global-set-key (kbd "C-S-o") 'my/new-empty-org-buffer)
 (global-set-key (kbd "C-b") 'consult-buffer)
 (define-key minibuffer-local-map (kbd "C-b") 'next-line)
 (global-set-key (kbd "M-)") 'my/kill-buffer)

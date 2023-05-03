@@ -247,6 +247,18 @@ Version 2017-11-01"
   (interactive)
   (require 'calendar)
   (require 'org)
+  (let* ((datestr (format-time-string "%Y%m%d_%H%M%S.txt"))
+         ($buf (generate-new-buffer (format "untitled_%s" datestr))))
+    (switch-to-buffer $buf)
+    (write-file (concat my/notes-path "/temp/" (buffer-name $buf)))
+    (auto-save-visited-mode +1)
+    ))
+
+(defun my/new-empty-org-buffer ()
+  "Create a new empty buffer."
+  (interactive)
+  (require 'calendar)
+  (require 'org)
   (let* ((datestr (format-time-string "%Y%m%d_%H%M%S.org"))
          ($buf (generate-new-buffer (format "untitled_%s" datestr))))
     (switch-to-buffer $buf)
