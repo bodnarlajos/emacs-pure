@@ -275,4 +275,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package org-present)
 
+(when (string-equal system-type "windows-nt")
+  (require 'powershell))
+
 (provide 'extra-packages)
