@@ -41,7 +41,6 @@
 (use-package diff-hl)
 (use-package all-the-icons-completion)
                                         ;(use-package nc)                        
-(use-package remember-last-theme)
 (use-package with-editor)
 
 (use-package all-the-icons-dired
@@ -121,9 +120,6 @@
   :after (hydra)
   :init (require 'magit-extras))
 
-;; themes
-(use-package ef-themes)
-
 ;; completion
 (use-package diminish)
 (use-package orderless)
@@ -162,9 +158,6 @@
 (move-text-default-bindings)
 (all-the-icons-completion-mode +1)
 (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
-
-(require 'remember-last-theme)
-(remember-last-theme-with-file-enable "~/.emacs.d/last-theme")
 
 (require 'consult)
 (add-hook 'xref-backend-functions #'consult-ripgrep-symbol-at-point)
