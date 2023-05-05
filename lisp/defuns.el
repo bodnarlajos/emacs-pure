@@ -295,4 +295,11 @@ Version 2017-11-01"
                  (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
                  (match-string 1))))))
 
+(defun /switch-theme ()
+  "Change dark/light theme"
+  (interactive)
+  (if custom-enabled-themes
+      (disable-theme (car custom-enabled-themes))
+    (load-theme 'deeper-blue)))
+
 (provide 'defuns)
