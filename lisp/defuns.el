@@ -302,4 +302,9 @@ Version 2017-11-01"
       (disable-theme (car custom-enabled-themes))
     (load-theme 'deeper-blue)))
 
+(defun /change-font-bigger ()
+  "Change the font to bigger size"
+  (interactive)
+  (set-face-font 'default "Fira Code 12"))
+
 (provide 'defuns)
