@@ -36,7 +36,7 @@
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
  '(lsp-csharp-omnisharp-roslyn-store-path
    "/home/lajbo/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp")
- '(lsp-diagnostics-provider :flymake t)
+ '(lsp-diagnostics-provider :flymake)
  '(lsp-headerline-breadcrumb-enable nil)
  '(magit-diff-refine-hunk 'all)
  '(next-error-recenter '(4))
@@ -44,11 +44,22 @@
  '(org-startup-indented t)
  '(org-support-shift-select t)
  '(package-selected-packages
-   '(daml-mode multi-eshell eat hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
+   '(mini-frame daml-mode multi-eshell eat hercules magit eldoc-box lsp-haskell consult-lsp dap-mode lsp-mode isearch+ rg anzu markdown-mode typescript-mode corfu yaml-mode angular-mode diminish move-text orderless plz vterm go-translate ef-themes csv-mode cape kind-icon web-mode undo-tree js2-mode easy-kill dogears org-modern with-editor diff-hl all-the-icons-completion haskell-mode embark-consult vertico marginalia crux remember-last-theme which-key))
  '(safe-local-variable-values
    '((my/dap/name . "dap-haskell-test1")
      (my/dap/entry-point . "app/Main.hs")
      (my/dap/working-directory . "/home/lajbo/Projects/haskell-projects/test1/")))
+ '(treemacs-RET-actions-config
+   '((treemacs-lsp-treemacs-generic-root-open . treemacs-collapse-extension-node)
+     (root-node-open . treemacs-toggle-node)
+     (root-node-closed . treemacs-toggle-node)
+     (dir-node-open . treemacs-toggle-node)
+     (dir-node-closed . treemacs-toggle-node)
+     (file-node-open . treemacs-visit-node-in-most-recently-used-window)
+     (file-node-closed . treemacs-visit-node-default)
+     (tag-node-open . treemacs-toggle-node-prefer-tag-visit)
+     (tag-node-closed . treemacs-toggle-node-prefer-tag-visit)
+     (tag-node . treemacs-visit-node-default)))
  '(xref-show-xrefs-function 'consult-xref))
 
 (setq my/notes-path (expand-file-name "~/Insync/bodnarlajoska@gmail.com/Google Drive/Documents/notes/"))

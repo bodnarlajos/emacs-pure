@@ -10,7 +10,7 @@
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'keyboard-quit)
-(global-set-key (kbd "M-o") 'my/open-file)
+(global-set-key (kbd "M-o") '/open-file)
 (global-set-key (kbd "C-M-a") 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'mark-whole-buffer)
 (global-set-key (kbd "M-0") 'delete-other-windows)
@@ -26,9 +26,10 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-S-n") 'my/new-empty-buffer)
 (global-set-key (kbd "C-S-o") 'my/new-empty-org-buffer)
-(global-set-key (kbd "C-b") 'consult-buffer)
+(global-set-key (kbd "C-b") '/switch-buffer)
 (define-key minibuffer-local-map (kbd "C-b") 'next-line)
-(global-set-key (kbd "M-)") 'my/kill-buffer)
+(global-set-key (kbd "M-S-k") 'my/kill-buffer)
+(global-set-key (kbd "M--") 'delete-window)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))
@@ -45,23 +46,23 @@
   (define-key org-mode-map (kbd "C-r") 'org-babel-execute-src-block)
 
   (define-key org-mode-map (kbd "S-<return>") 'my/org-new-line)
-  (define-key org-mode-map (kbd "C-b") 'consult-buffer))
+  (define-key org-mode-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'term
-  (define-key term-mode-map (kbd "C-b") 'consult-buffer)
-  (define-key term-raw-map (kbd "C-b") 'consult-buffer))
+  (define-key term-mode-map (kbd "C-b") '/switch-buffer)
+  (define-key term-raw-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'eshell
-  (define-key eshell-mode-map (kbd "C-b") 'consult-buffer))
+  (define-key eshell-mode-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'shell
-  (define-key shell-mode-map (kbd "C-b") 'consult-buffer))
+  (define-key shell-mode-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'markdown-mode
-  (define-key markdown-mode-map (kbd "C-b") 'consult-buffer))
+  (define-key markdown-mode-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'diff-mode
-  (define-key diff-mode-map (kbd "C-b") 'consult-buffer)
+  (define-key diff-mode-map (kbd "C-b") '/switch-buffer)
   (define-key diff-mode-map (kbd "M-o") 'my/open-file))
 
 (with-eval-after-load 'vertico
@@ -69,7 +70,8 @@
 
 ;; consult
 (with-eval-after-load 'consult
-  (global-set-key (kbd "C-b") 'consult-buffer)
+  (global-set-key (kbd "C-b") '/switch-buffer)
+  (global-set-key (kbd "C-x b") 'consult-buffer)
   (global-set-key (kbd "M-s s") 'consult-ripgrep-symbol-at-point)
   (global-set-key (kbd "M-s g") 'consult-ripgrep)
   (global-set-key (kbd "M-s M-n") 'consult-ripgrep-search-in-notes)
@@ -90,8 +92,8 @@
 
 (with-eval-after-load 'eww
   (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
-  (define-key eww-mode-map (kbd "C-b") 'consult-buffer)
-  (define-key eww-mode-map (kbd "C-b") 'consult-buffer))
+  (define-key eww-mode-map (kbd "C-b") '/switch-buffer)
+  (define-key eww-mode-map (kbd "C-b") '/switch-buffer))
 
 (with-eval-after-load 'dired
   (define-key dired-mode-map (kbd "<backspace>") 'dired-up-directory))

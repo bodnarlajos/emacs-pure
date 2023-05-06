@@ -58,7 +58,14 @@ for the current buffer's file name, and the line number at point."
   (eval-region (region-beginning) (region-end))
   (deactivate-mark))
 
-(defun my/open-file ()
+(defun /switch-buffer ()
+  "Switch buffer if it is a project"
+  (interactive)
+  (if (vc-root-dir)
+      (call-interactively 'consult-project-buffer)
+    (call-interactively 'consult-buffer)))
+
+(defun /open-file ()
   "Open project files if it is a project, otherwise find-file"
   (interactive)
   (if (vc-root-dir)
