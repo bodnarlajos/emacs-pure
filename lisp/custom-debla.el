@@ -56,7 +56,7 @@
      (dir-node-open . treemacs-toggle-node)
      (dir-node-closed . treemacs-toggle-node)
      (file-node-open . treemacs-visit-node-in-most-recently-used-window)
-     (file-node-closed . treemacs-visit-node-default)
+     (file-node-closed . treemacs-visit-node-in-most-recently-used-window)
      (tag-node-open . treemacs-toggle-node-prefer-tag-visit)
      (tag-node-closed . treemacs-toggle-node-prefer-tag-visit)
      (tag-node . treemacs-visit-node-default)))
