@@ -18,6 +18,20 @@
 (add-hook 'web-mode-hook 'lsp-deferred)
 (add-hook 'haskell-mode-hook 'lsp-deferred)
 
+(with-eval-after-load 'treemacs
+  (custom-set-variables
+   '(treemacs-RET-actions-config
+     '((treemacs-lsp-treemacs-generic-root-open . treemacs-collapse-extension-node)
+       (root-node-open . treemacs-toggle-node)
+       (root-node-closed . treemacs-toggle-node)
+       (dir-node-open . treemacs-toggle-node)
+       (dir-node-closed . treemacs-toggle-node)
+       (file-node-open . treemacs-visit-node-in-most-recently-used-window)
+       (file-node-closed . treemacs-visit-node-in-most-recently-used-window)
+       (tag-node-open . treemacs-toggle-node-prefer-tag-visit)
+       (tag-node-closed . treemacs-toggle-node-prefer-tag-visit)
+       (tag-node . treemacs-visit-node-default)))))
+
 (defun my/dap/check-mode-and-load-dap ()
   "Check the major mode and load the necessary dap module"
   (message "Check dap module")
