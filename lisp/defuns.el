@@ -4,6 +4,17 @@
 (defvar terminal-in-linux "/home/lbodnar/.cargo/bin/alacritty")
 (defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
 (defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
+(defvar /menu-items '(("Jump to minibuffer: M-e" . nil)
+                      ("Set encoding" . set-buffer-file-coding-system)
+                      ("Open with encoding" . revert-buffer-with-coding-system)
+                      ("Git history for file/buffer" . magit-log-buffer-file)) "my menu items")
+
+(defun /show-menu ()
+  "Show menu items"
+  (interactive)
+  (let ((selected (completing-read "Menu: " /menu-items)))
+    (message "%s" selected)
+    (call-interactively (assoc selected))))
 
 (defun my/start-ide ()
   "Start ide funcitonality"
