@@ -30,6 +30,7 @@
 (define-key minibuffer-local-map (kbd "C-b") 'next-line)
 (global-set-key (kbd "M-S-k") 'my/kill-buffer)
 (global-set-key (kbd "M--") 'delete-window)
+(global-set-key (kbd "<BLAH-m>") '/show-menu)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))
