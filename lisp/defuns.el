@@ -12,9 +12,11 @@
 (defun /show-menu ()
   "Show menu items"
   (interactive)
-  (let ((selected (completing-read "Menu: " /menu-items)))
+  (let* ((selected (completing-read "Menu: " /menu-items))
+         (command (cdr (assoc selected /menu-items))))
     (message "%s" selected)
-    (call-interactively (assoc selected))))
+    (when command
+    (call-interactively command))))
 
 (defun my/start-ide ()
   "Start ide funcitonality"
