@@ -267,6 +267,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
                                            visual-fill-column-center-text t))))
 
 (use-package org-present)
+(use-package org
+	     :custom
+	      (org-cycle-emulate-tab nil))
 
 (when (string-equal system-type "windows-nt")
   (use-package powershell)
