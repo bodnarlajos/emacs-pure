@@ -18,6 +18,7 @@
 (global-set-key (kbd "M-S-<return>") 'crux-smart-open-line-above)
 (global-set-key (kbd "M-<return>") 'crux-smart-open-line)
 (global-set-key (kbd "M-;") 'comment-line)
+(global-set-key (kbd "C-S-f") 'isearch-forward)
 (global-set-key (kbd "C-f") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-f") 'isearch-repeat-forward)
 (global-set-key (kbd "C-s") 'save-buffer)
