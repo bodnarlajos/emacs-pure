@@ -122,7 +122,7 @@
 (define-key my-keys (kbd "p f") 'my/print-file-name)
 (define-key my-keys (kbd "p b") 'my/print-buffer-name)
 (define-key my-keys (kbd "p i") 'my/start-ide)
-(define-key my-keys (kbd "p n") 'my/open-notes)
+(define-key my-keys (kbd "p n") '/open-notes)
 (define-key my-keys (kbd "p g") 'my/start-magit)
 
 (which-key-add-key-based-replacements "M-l s" "Smerge"
