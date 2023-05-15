@@ -238,16 +238,6 @@ Version 2017-11-01"
   (push-global-mark)
   (mark-whole-buffer))
 
-(defun my/light-theme ()
-  "Light theme"
-  (interactive)
-  (disable-theme 'deeper-blue))
-
-(defun my/dark-theme ()
-  "Dark theme"
-  (interactive)
-  (load-theme 'deeper-blue))
-
 (defun my/toggle-word-wrap ()
   "Toggle the word-wrap functionality"
   (interactive)
@@ -314,14 +304,17 @@ Version 2017-11-01"
                  (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
                  (match-string 1))))))
 
+(defvar /ligth-theme 'doom-one-light "The ligth theme")
+(defvar /dark-theme 'doom-one "The dark theme")
+
 (defun /switch-theme ()
   "Change dark/light theme"
   (interactive)
-  (if custom-enabled-themes
-      (disable-theme (car custom-enabled-themes))
-    (load-theme 'deeper-blue)))
-(defvar /big-font-size 120 "the font size if the resolution is high")
-(defvar /normal-font-size 98 "the font size if the resolution is high")
+  (let ((current (car custom-enabled-themes)))
+    (disable-theme current)
+    (if (equal current /dark-theme)
+        (load-theme /ligth-theme)
+      (load-theme /dark-theme))))
 
 (defvar /big-font-size 120 "the font size if the resolution is high")
 (defvar /normal-font-size 98 "the font size if the resolution is high")
