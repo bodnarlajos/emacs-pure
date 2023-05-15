@@ -320,10 +320,18 @@ Version 2017-11-01"
   (if custom-enabled-themes
       (disable-theme (car custom-enabled-themes))
     (load-theme 'deeper-blue)))
+(defvar /big-font-size 120 "the font size if the resolution is high")
+(defvar /normal-font-size 98 "the font size if the resolution is high")
+
+(defvar /big-font-size 120 "the font size if the resolution is high")
+(defvar /normal-font-size 98 "the font size if the resolution is high")
 
 (defun /change-font-bigger ()
   "Change the font to bigger size"
   (interactive)
-  (set-face-font 'default "Fira Code 12"))
+  (let ((currFontSize (face-attribute 'default :height)))
+    (if (equal currFontSize /normal-font-size)
+        (set-face-attribute 'default nil :height /big-font-size)
+      (set-face-attribute 'default nil :height /normal-font-size))))
 
 (provide 'defuns)
