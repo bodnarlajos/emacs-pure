@@ -122,10 +122,10 @@ for the current buffer's file name, and the line number at point."
   (interactive)
   (with-editor-async-shell-command "powershell.exe"))
 
-(defun my/open-notes ()
+(defun /open-notes ()
   "Open file from the notes directory"
   (interactive)			
-  (if (find-file (concat my/notes-path (completing-read "Find a note: " (delete "." (delete ".." (directory-files my/notes-path))))))
+  (if (find-file (completing-read "Find a note: " (delete "." (delete ".." (directory-files-recursively my/notes-path "\\.org\\|\\.md\\|\\.txt")))))
       (message "Opening note...")
     (message "Aborting")))
 
