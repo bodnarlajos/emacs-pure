@@ -281,8 +281,6 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :init
   (setq doom-one-light-padded-modeline t
         doom-one-light-brighter-comments t
-        doom-one-light-brighter-modeline t)
-  :config
-  (load-theme 'doom-one-light))
+        doom-one-light-brighter-modeline t))
 
 (provide 'extra-packages)
