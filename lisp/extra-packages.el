@@ -199,13 +199,14 @@
  '(xref-show-xrefs-function 'consult-xref)
  '(css-indent-offset 2))
 
-(require 'go-translate)
-(setq gts-translate-list '(("de" "hu") ("en" "hu")))
-(setq gts-default-translator
-      (gts-translator
-       :picker (gts-prompt-picker)
-       :engines (list (gts-bing-engine) (gts-google-engine))
-       :render (gts-buffer-render)))
+(use-package go-translate
+  :init
+  (setq gts-translate-list '(("de" "hu") ("en" "hu")))
+  (setq gts-default-translator
+        (gts-translator
+         :picker (gts-prompt-picker)
+         :engines (list (gts-bing-engine) (gts-google-engine))
+         :render (gts-buffer-render))))
 
 (add-hook 'csharp-mode-hook (lambda ()
                               (setq compile-command "dotnet build")))
