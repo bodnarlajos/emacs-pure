@@ -126,14 +126,6 @@
 (use-package marginalia)
 (use-package corfu)
 (use-package vertico)
-(use-package vertico-posframe
-  :after vertico
-  :init
-  (vertico-posframe-mode +1)
-  :config
-  (setq vertico-posframe-parameters
-      '((left-fringe . 16)
-        (right-fringe . 16))))
 (use-package cape)
 (use-package kind-icon)
 
