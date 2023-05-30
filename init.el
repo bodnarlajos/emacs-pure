@@ -113,8 +113,10 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'defuns)
-(require 'extra-packages)
-(require 'keys)
+(require 'package-init)
+(require 'without-gui)
+;; (require 'extra-packages)
+;; (require 'keys)
 
 (custom-set-variables
  '(next-error-recenter '(4)))
