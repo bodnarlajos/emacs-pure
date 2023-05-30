@@ -43,4 +43,10 @@
   :after (hydra)
   :init (require 'magit-extras))
 
+(leaf orderless)
+(leaf marginalia)
+(leaf corfu)
+(leaf vertico)
+(leaf cape)
+
 (provide 'without-gui)

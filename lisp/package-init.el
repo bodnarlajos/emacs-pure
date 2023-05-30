@@ -4,12 +4,12 @@
    'package-archives '(("org" . "https://orgmode.org/elpa/")
                        ("melpa" . "https://melpa.org/packages/")
                        ("gnu" . "https://elpa.gnu.org/packages/")))
-  (package-initialize)
+  (package-initialize)                  
   (message "package initialized")
   
   (unless (package-installed-p 'leaf)
     (message "leaf install")
-    (package-refresh-contents)
+;;    (package-refresh-contents)          
     (package-install 'leaf))
 
   (leaf leaf-keywords
