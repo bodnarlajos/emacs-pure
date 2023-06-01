@@ -32,6 +32,7 @@
 (global-set-key (kbd "M-S-k") 'my/kill-buffer)
 (global-set-key (kbd "M--") 'delete-window)
 (global-set-key (kbd "<BLAH-m>") '/show-menu)
+(global-set-key (kbd "<BLAH-i>") project-prefix-map)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))
