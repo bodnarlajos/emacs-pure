@@ -29,3 +29,6 @@ tramp
 .cache*
 var
 eln-cache
+emacs
+org-persist
+server
