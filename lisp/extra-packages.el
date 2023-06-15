@@ -120,6 +120,10 @@
   :after (hydra)
   :init (require 'magit-extras))
 
+(use-package magit-delta
+  :ensure t
+  :hook (magit-mode . magit-delta-mode))
+
 ;; completion
 (use-package diminish)
 (use-package orderless)
