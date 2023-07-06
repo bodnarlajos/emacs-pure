@@ -56,12 +56,6 @@
   (define-key term-mode-map (kbd "C-b") '/switch-buffer)
   (define-key term-raw-map (kbd "C-b") '/switch-buffer))
 
-(with-eval-after-load 'eshell
-  (define-key eshell-mode-map (kbd "C-b") '/switch-buffer))
-
-(with-eval-after-load 'shell
-  (define-key shell-mode-map (kbd "C-b") '/switch-buffer))
-
 (with-eval-after-load 'markdown-mode
   (define-key markdown-mode-map (kbd "C-b") '/switch-buffer))
 

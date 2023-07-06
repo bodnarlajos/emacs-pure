@@ -7,6 +7,7 @@
 (defvar /menu-items '(("Jump to minibuffer: M-e" . nil)
                       ("Set encoding" . set-buffer-file-coding-system)
                       ("Open with encoding" . revert-buffer-with-coding-system)
+                      ("Magit" . magit-status-quick)
                       ("Calculator" . calculator)
                       ("Git history for file/buffer" . magit-log-buffer-file)) "my menu items")
 

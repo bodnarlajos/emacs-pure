@@ -40,7 +40,6 @@
 (use-package easy-kill)
 (use-package diff-hl)
 (use-package all-the-icons-completion)
-                                        ;(use-package nc)                        
 (use-package with-editor)
 
 (use-package all-the-icons-dired
