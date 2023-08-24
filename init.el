@@ -113,6 +113,8 @@
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 (require 'defuns)
+;; (require 'package-init)
+(require 'package-straight-init)
 (require 'extra-packages)
 (require 'keys)
 
