@@ -86,7 +86,7 @@
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
  '(custom-safe-themes
-   '("afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
+   '("261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
  '(desktop-base-file-name "~/.emacs.d/.cache/.emacs.desktop")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
