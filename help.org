@@ -1,0 +1,4 @@
+* Commands
+** xml format
+Select all or what you want to format and "M-|"
+type command: xmllint --format - RETURN
