@@ -5,6 +5,7 @@
 (defvar lazygit-in-windows "c:/users/lbodnar/scoop/shims/lazygit.exe")
 (defvar lazygit-in-linux "/home/lbodnar/.local/bin/lazygit")
 (defvar /menu-items '(("Jump to minibuffer: M-e" . nil)
+                      ("Format xml: <select all> and M-| xmllint --format - RET" . nil)
                       ("Set encoding" . set-buffer-file-coding-system)
                       ("Open with encoding" . revert-buffer-with-coding-system)
                       ("Magit" . magit-status-quick)
