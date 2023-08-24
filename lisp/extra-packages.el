@@ -8,6 +8,7 @@
   :config
   (setq consult-preview-key "S-<right>"))
 (use-package which-key
+  :after (diminish)
   :init
   (diminish 'which-key-mode)
   :config
@@ -22,6 +23,7 @@
   :hook (dired-mode))
 
 (use-package undo-tree
+  :after (diminish)
   :init
   (global-undo-tree-mode t)
   (diminish 'undo-tree-mode)
@@ -39,6 +41,7 @@
                  (slot . 2))))
 
 (use-package anzu
+  :after (diminish)
   :bind (("M-s r" . anzu-query-replace)
          ("M-s R" . anzu-query-replace-regex)
          ("M-s M-r" . anzu-query-replace-at-cursor)
@@ -91,6 +94,9 @@
   :config
   (custom-set-variables
    '(magit-diff-refine-hunk 'all))
+  (setq project-switch-commands '((project-find-file "Find file")
+                                   (project-find-dir "Find directory")
+                                   (magit-project-status "Magit")))
   :defer 5
   :after (hydra)
   :init (require 'magit-extras))
@@ -179,7 +185,7 @@
  '(css-indent-offset 2))
 
 (use-package go-translate
-  :init
+  :config
   (setq gts-translate-list '(("de" "hu") ("en" "hu")))
   (setq gts-default-translator
         (gts-translator
@@ -248,8 +254,8 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
 
 (use-package org-present)
 (use-package org
-	     :custom
-	      (org-cycle-emulate-tab nil))
+  :custom
+  (org-cycle-emulate-tab nil))
 
 (when (string-equal system-type "windows-nt")
   (use-package powershell)
