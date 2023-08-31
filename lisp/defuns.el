@@ -8,9 +8,23 @@
                       ("Open help file" . /open-help-file)
                       ("Set encoding" . set-buffer-file-coding-system)
                       ("Open with encoding" . revert-buffer-with-coding-system)
-                      ("Magit" . magit-status-quick)
+                      ("Magit" . /start-magit)
+                      ("Start Ide mode" . /start-ide)
                       ("Calculator" . calculator)
+                      ("Format xml" . /format-xml)
+                      ("Translate" . /translate)
                       ("Git history for file/buffer" . magit-log-buffer-file)) "my menu items")
+
+(defun /translate()
+  "Translate text"
+  (interactive)
+  (require 'expensive-packages)
+  (gts-do-translate))
+
+(defun /format-xml ()
+  "Format xml file with xmllint"
+  (interactive)
+  (let (())))
 
 (defun /open-help-file ()
   "Open the help file in the config folder"
@@ -26,7 +40,7 @@
     (when command
     (call-interactively command))))
 
-(defun my/start-ide ()
+(defun /start-ide ()
   "Start ide funcitonality"
   (interactive)
   (require 'extra-lsp)
@@ -190,14 +204,11 @@ for the current buffer's file name, and the line number at point."
         (insert " -- -g " (file-name-base file) "*.*"))
     (user-error "Buffer is not visiting a file")))
 
-(defun my/start-magit ()
+(defun /start-magit ()
   "Deploy and start magit"
   (interactive)
-  (use-package hydra)
-  (use-package magit)
-  (require 'magit-extras)
+  (require 'expensive-packages)
   (call-interactively 'magit-project-status))
-
 
 (defun my/kill-buffer ()
   "Kill the current buffer"
