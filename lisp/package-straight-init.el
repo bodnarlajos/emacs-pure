@@ -28,4 +28,12 @@
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t)
 
+;; startup profiler
+;; (use-package esup)
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 (provide 'package-straight-init)
