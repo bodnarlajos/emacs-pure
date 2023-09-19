@@ -16,11 +16,17 @@
 (use-package crux)
 (use-package easy-kill)
 (use-package diff-hl)
-(use-package all-the-icons-completion)
 (use-package with-editor)
 
-(use-package all-the-icons-dired
-  :hook (dired-mode))
+(use-package nerd-icons)
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+(use-package nerd-icons-completion
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package undo-tree
   :after (diminish)
@@ -127,8 +133,6 @@
 (with-eval-after-load 'corfu
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 (move-text-default-bindings)
-(all-the-icons-completion-mode +1)
-(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
 
 (require 'consult)
 (add-hook 'xref-backend-functions #'consult-ripgrep-symbol-at-point)
@@ -245,5 +249,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   (setq doom-one-light-padded-modeline t
         doom-one-light-brighter-comments t
         doom-one-light-brighter-modeline t))
+
+(use-package treemacs)
 
 (provide 'extra-packages)
