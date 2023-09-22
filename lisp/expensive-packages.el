@@ -3,25 +3,25 @@
 (use-package magit
   :config
   (require 'magit-extras)
-  (require 'magit-delta)
+  (custom-set-faces
+   '(magit-tag ((t (:underline t)))))
   (custom-set-variables
    '(magit-diff-refine-hunk 'all))
-  (setq project-switch-commands '((project-find-file "Find file")
-                                  (project-find-dir "Find directory")
-                                  (magit-project-status "Magit")))
+  (use-package magit-delta
+    :ensure t
+    :hook (magit-mode . magit-delta-mode))
   (message "Loaded Magit!")
   :defer 5
   :after (hydra)
+  :commands (magit-project-status magit-status)
   :bind
   (("C-x g" . magit-status)
    ("C-x C-g" . magit-status))
   :init
+  (setq project-switch-commands '((project-find-file "Find file")
+                                  (project-find-dir "Find directory")
+                                  (magit-project-status "Magit")))
   (message "Loading Magit!"))
-
-;; (use-package magit-delta
-;;   :defer 5
-;;   :ensure t
-;;   :hook (magit-mode . magit-delta-mode))
 
 (use-package go-translate
   :defer 5
