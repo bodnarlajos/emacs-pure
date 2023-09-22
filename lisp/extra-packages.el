@@ -14,19 +14,20 @@
   :config
   (which-key-mode +1))
 (use-package crux)
-(use-package easy-kill)
 (use-package diff-hl)
 (use-package with-editor)
 
-(use-package nerd-icons)
-(use-package nerd-icons-dired
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
-(use-package nerd-icons-completion
-  :after marginalia
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+(when (not (string-equal system-type "windows-nt"))
+  (use-package nerd-icons)
+  (use-package nerd-icons-dired
+    :hook
+    (dired-mode . nerd-icons-dired-mode))
+  (use-package nerd-icons-completion
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode)
+    (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+  )
 
 (use-package undo-tree
   :after (diminish)
@@ -45,16 +46,6 @@
 	         (window-width . 60)
 	         (side . right)
                  (slot . 2))))
-
-(use-package anzu
-  :after (diminish)
-  :bind (("M-s r" . anzu-query-replace)
-         ("M-s R" . anzu-query-replace-regex)
-         ("M-s M-r" . anzu-query-replace-at-cursor)
-         ("M-s R" . anzu-query-replace-at-cursor-thing))
-  :init
-  (global-anzu-mode +1)
-  (diminish 'anzu-mode))
 
 (use-package org-modern
   :after (org)
@@ -94,7 +85,6 @@
   :bind (("<M-S-down>" . move-text-down)
          ("<M-S-up>" . move-text-up)))
 
-(use-package plz)
 (use-package hydra)
 
 ;; completion

@@ -1,13 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
-(when (not (string-equal system-type "windows-nt"))
-  ;; because windows use utf-16
-  (setq current-language-environment "UTF-8")
-  (prefer-coding-system 'utf-8)
-  (set-default-coding-systems 'utf-8)
-  (set-language-environment 'utf-8)
-  (set-selection-coding-system 'utf-8)
-)
+;; (when (not (string-equal system-type "windows-nt"))
+;;   ;; because windows use utf-16
+;;   (setq current-language-environment "UTF-8")
+;;   (prefer-coding-system 'utf-8)
+;;   (set-default-coding-systems 'utf-8)
+;;   (set-language-environment 'utf-8)
+;;   (set-selection-coding-system 'utf-8)
+;;   )
+
+(set-default-coding-systems 'utf-8)
 
 (setq inhibit-startup-screen t
       visible-bell t)

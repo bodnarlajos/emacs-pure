@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(case-fold-search t)
+ '(column-number-mode t)
  '(connection-local-criteria-alist
    '(((:application tramp :protocol "flatpak")
       tramp-container-connection-local-default-flatpak-profile)
@@ -86,11 +87,14 @@
       (null-device . "/dev/null"))))
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
+ '(cua-mode t)
  '(custom-safe-themes
-   '("261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
+   '("94843bc0a0b482f77063b94b93efdabf646a52f7a947f5a0ed2bdcaf109f11ca" "261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
  '(desktop-base-file-name "~/.emacs.d/.cache/.emacs.desktop")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
+ '(exec-path
+   '("c:/emacs/bin" "c:/Program Files (x86)/Intel/iCLS Client/" "C:/Program Files/Intel/iCLS Client/" "C:/WINDOWS/system32" "C:/WINDOWS" "C:/WINDOWS/System32/Wbem" "C:/WINDOWS/System32/WindowsPowerShell/v1.0/" "C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL" "C:/Program Files/Intel/Intel(R) Management Engine Components/DAL" "C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT" "C:/Program Files/Intel/Intel(R) Management Engine Components/IPT" "c:/Program Files (x86)/HP/HP Performance Advisor" "C:/WINDOWS/System32/OpenSSH/" "C:/Program Files/dotnet/" "C:/Program Files/Microsoft SQL Server/130/Tools/Binn/" "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/" "C:/PROGRA~1/IBM/SQLLIB/BIN" "C:/PROGRA~1/IBM/SQLLIB/FUNCTION" "C:/PROGRA~1/IBM/SQLLIB/SAMPLES/REPL" "C:/Program Files/PuTTY/" "C:/Program Files/TortoiseSVN/bin" "C:/Program Files/Git/cmd" "C:/Users/lb/.emacs.d/emacs/bin" "C:/Users/lb/AppData/Local/Microsoft/WindowsApps" "C:/Users/lb/.dotnet/tools" "C:/Users/lb/AppData/Local/gitkraken/bin" "C:/flyway-7.11.2" "C:/Users/lb/.dotnet/tools" "C:/Users/lb/AppData/Local/Programs/VSCodium/bin" "C:/Gradle/gradle-8.0.2/bin" "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin" "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin" "." "c:/emacs/libexec/emacs/29.1/x86_64-w64-mingw32"))
  '(magit-diff-refine-hunk 'all)
  '(next-error-recenter '(4))
  '(org-adapt-indentation 'headline-data)
@@ -100,15 +104,17 @@
  '(package-selected-packages
    '(magit-delta mini-frame doom-modeline goto-chg doom-themes vs-light-theme vs-dark-theme nord-theme powershell forge kind-icon all-the-icons-completion all-the-icons-dired angular-mode anzu cape corfu crux csv-mode diff-hl diminish dogears easy-kill ef-themes embark-consult go-translate haskell-mode hydra js2-mode magit marginalia markdown-mode move-text orderless org-modern org-present plz remember-last-theme rg treesit-auto typescript-mode undo-tree vertico visual-fill-column web-mode which-key yaml-mode))
  '(tab-first-completion nil)
+ '(tool-bar-mode nil)
  '(xref-show-xrefs-function 'consult-xref))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 98 :width normal :foundry "outline" :family "Fira Code"))))
+ '(default ((t (:slant normal :weight regular :height 98 :width normal :foundry "outline" :family "FiraCode Nerd Font"))))
  '(fixed-pitch ((t (:family "JetBrains Mono"))))
  '(fixed-pitch-serif ((t (:inherit default :weight semi-bold :family "JetBrains Mono"))))
+ '(magit-tag ((t (:underline t))))
  '(tab-bar ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0)))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (4 . 4) :style flat-button) :underline (:color foreground-color :style line :position 0)))))
  '(tab-line ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0) :box (:line-width (4 . 4) :style flat-button)))))
@@ -119,8 +125,8 @@
 (setq my/notes-path (expand-file-name "h:/notes/"))
 (global-hl-line-mode +1)
 (cd "c:/Projects/apollon")
-(set-frame-height (selected-frame) 40)
-(set-frame-width (selected-frame) 180)
-(load-theme 'doom-one-light)
+(set-frame-height (selected-frame) 45)
+(set-frame-width (selected-frame) 160)
+(load-theme 'doom-acario-light)
 
 (message "custom file loaded")

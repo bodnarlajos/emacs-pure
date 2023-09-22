@@ -32,3 +32,6 @@ eln-cache
 emacs
 org-persist
 server
+FiraCode
+*.ttf
+temp/
