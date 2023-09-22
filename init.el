@@ -117,6 +117,7 @@
 (require 'package-straight-init)
 (require 'extra-packages)
 (require 'keys)
+(require 'expensive-packages)
 
 (custom-set-variables
  '(next-error-recenter '(4)))

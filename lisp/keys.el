@@ -89,7 +89,7 @@
   (global-set-key (kbd "M-s b") 'dap-breakpoint-toggle))
 
 (with-eval-after-load 'eww
-  (define-key eww-mode-map (kbd "M-t") '/translate)
+  (define-key eww-mode-map (kbd "M-t") 'gts-do-translate)
   (define-key eww-mode-map (kbd "C-b") '/switch-buffer)
   (define-key eww-mode-map (kbd "C-b") '/switch-buffer))
 
@@ -119,7 +119,7 @@
 (define-key my-keys (kbd "p b") 'my/print-buffer-name)
 (define-key my-keys (kbd "p i") '/start-ide)
 (define-key my-keys (kbd "p n") '/open-notes)
-(define-key my-keys (kbd "p g") '/start-magit)
+(define-key my-keys (kbd "p g") 'magit-status)
 
 (which-key-add-key-based-replacements "M-l s" "Smerge"
   "M-l p" "Programs"
