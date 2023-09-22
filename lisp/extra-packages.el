@@ -240,6 +240,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
         doom-one-light-brighter-comments t
         doom-one-light-brighter-modeline t))
 
+(use-package doom-modeline
+  :init (doom-modeline-mode))
+
 (use-package treemacs)
 
 (provide 'extra-packages)
