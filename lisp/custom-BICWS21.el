@@ -89,7 +89,7 @@
  '(csv-separators '("," ";" ":"))
  '(cua-mode t)
  '(custom-safe-themes
-   '("94843bc0a0b482f77063b94b93efdabf646a52f7a947f5a0ed2bdcaf109f11ca" "261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
+   '("2d48bd895a307a623367f5eb240bfdb453dc1ad5dbc4fbf915b0a709dfb772a8" "94843bc0a0b482f77063b94b93efdabf646a52f7a947f5a0ed2bdcaf109f11ca" "261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
  '(desktop-base-file-name "~/.emacs.d/.cache/.emacs.desktop")
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
@@ -111,7 +111,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight regular :height 98 :width normal :foundry "outline" :family "FiraCode Nerd Font"))))
+ '(default ((t (:slant normal :weight regular :height 98 :width normal :foundry "outline" :family "Cascadia Code"))))
  '(fixed-pitch ((t (:family "JetBrains Mono"))))
  '(fixed-pitch-serif ((t (:inherit default :weight semi-bold :family "JetBrains Mono"))))
  '(magit-tag ((t (:underline t))))
