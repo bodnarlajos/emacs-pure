@@ -28,13 +28,13 @@
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Completions\\|Help\\)\\*"
-	       (display-buffer-reuse-window display-buffer-pop-up-window)
+	       (/display-buffer-reuse-window-remap-face display-buffer-pop-up-window)
 	       (window-height . 30)
 	       (side . bottom)))
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(eldoc\\)\\*"
-	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (/display-buffer-reuse-window-remap-face display-buffer-in-side-window)
 	       (window-width . 50)
                (window-parameters . ((no-other-window . t)(no-delete-other-windows . t)))
                (dedicated . t)
@@ -43,7 +43,7 @@
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Flymake diag.+\\)\\*"
-	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (/display-buffer-reuse-window-remap-face display-buffer-in-side-window)
 	       (window-width . 50)
 	       (side . right)
                (slot . 2)))

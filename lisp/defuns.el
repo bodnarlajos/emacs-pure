@@ -335,6 +335,12 @@ Version 2017-11-01"
         (load-theme /ligth-theme)
       (load-theme /dark-theme))))
 
+(defun /display-buffer-reuse-window-remap-face (buffer alist)
+  "Display a buffer and remap the face if the buffer belong to a group"
+  (when (string-suffix-p "*eldoc" (buffer-name buffer))
+    (face-remap-add-relative 'default :height 98))
+  (display-buffer-reuse-window buffer alist))
+
 (defvar /big-font-size 120 "the font size if the resolution is high")
 (defvar /normal-font-size 98 "the font size if the resolution is high")
 
