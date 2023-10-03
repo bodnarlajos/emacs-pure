@@ -2,7 +2,7 @@
 
 (use-package magit
   :config
-  (add-to-list 'project-switch-commands (magit-project-status "Magit"))
+  ;; (add-to-list 'project-switch-commands (magit-project-status "Magit"))
   (require 'magit-extras)
   (custom-set-faces
    '(magit-tag ((t (:underline t)))))

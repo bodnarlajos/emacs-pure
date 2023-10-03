@@ -26,7 +26,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight regular :height 128 :width normal))))
+ '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight regular :height 128 :width normal))))
  '(magit-tag ((t (:underline t))))
  '(tab-bar ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0)))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (4 . 4) :style flat-button) :underline (:color foreground-color :style line :position 0)))))
