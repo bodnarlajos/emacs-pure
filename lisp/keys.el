@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t -*-
 (cua-mode +1)
+(with-eval-after-load 'cua
+  (message "cua-mode keymap")
+  (define-key 'cua-global-keymap (kbd "C-<return>") 'crux-smart-open-line)
+  (define-key 'cua-global-keymap (kbd "M-<return>") 'cua-set-rectangle-mark))
 
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)

@@ -2,6 +2,7 @@
 
 (use-package magit
   :config
+  (add-to-list 'project-switch-commands (magit-project-status "Magit"))
   (require 'magit-extras)
   (custom-set-faces
    '(magit-tag ((t (:underline t)))))
@@ -13,14 +14,11 @@
   (message "Loaded Magit!")
   :defer 5
   :after (hydra)
-  :commands (magit-project-status magit-status)
+  :commands (magit-project-status magit-status project-switch-project)
   :bind
   (("C-x g" . magit-status)
    ("C-x C-g" . magit-status))
   :init
-  (setq project-switch-commands '((project-find-file "Find file")
-                                  (project-find-dir "Find directory")
-                                  (magit-project-status "Magit")))
   (message "Loading Magit!"))
 
 (use-package go-translate

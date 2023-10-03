@@ -29,22 +29,32 @@
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Completions\\|Help\\)\\*"
 	       (display-buffer-reuse-window display-buffer-pop-up-window)
-	       (window-height . 30)
-	       (side . bottom)))
+	       (window-width . 60)
+	       (side . right)
+               (slot . 3)))
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(eldoc\\)\\*"
 	       (display-buffer-reuse-window display-buffer-in-side-window)
-	       (window-width . 50)
+	       (window-width . 60)
                (window-parameters . ((no-other-window . t)(no-delete-other-windows . t)))
                (dedicated . t)
-	       (side . left)
+	       (side . right)
                (slot . 5)))
+
+(add-to-list 'display-buffer-alist
+	     '("\\*\\(compilation\\|Async\\)\\*"
+	       (display-buffer-reuse-window display-buffer-in-side-window)
+	       (window-width . 60)
+               (window-parameters . ((no-other-window . t)(no-delete-other-windows . t)))
+               (dedicated . t)
+	       (side . right)
+               (slot . 7)))
 
 (add-to-list 'display-buffer-alist
 	     '("\\*\\(Flymake diag.+\\)\\*"
 	       (display-buffer-reuse-window display-buffer-in-side-window)
-	       (window-width . 50)
+	       (window-width . 60)
 	       (side . right)
                (slot . 2)))
 
@@ -185,8 +195,19 @@
 (when (eq system-type 'windows-nt)
   (setq my/path-separator ";"))
 
+(use-package eldoc
+  :preface
+  (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
+
 (add-hook 'after-init-hook
 	  (lambda ()
 	    (setenv "PATH" (concat (string-join exec-path my/path-separator) my/path-separator (getenv "PATH")))
             (message "exec-path -> $PATH")))
 
+(use-package emacs
+  :init
+  (setq project-switch-commands '((project-find-file "Find file")
+                                  (project-find-dir "Find directory"))))
+
+(with-eval-after-load 'eglot
+  (define-key eglot-mode-map (kbd "C-.") 'eglot-code-actions))

@@ -16,6 +16,7 @@
  '(org-adapt-indentation 'headline-data)
  '(org-startup-indented t)
  '(org-support-shift-select t)
+ '(tab-always-indent 'complete)
  '(tool-bar-mode nil)
  '(tramp-remote-path
    '("/home/ubuntu/.ghcup/bin" tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin"))
@@ -25,7 +26,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "FiraCode Nerd Font" :foundry "CTDB" :slant normal :weight regular :height 120 :width normal))))
+ '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight regular :height 128 :width normal))))
+ '(magit-tag ((t (:underline t))))
  '(tab-bar ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0)))))
  '(tab-bar-tab ((t (:inherit tab-bar :box (:line-width (4 . 4) :style flat-button) :underline (:color foreground-color :style line :position 0)))))
  '(tab-line ((t (:inherit variable-pitch :underline (:color foreground-color :style line :position 0) :box (:line-width (4 . 4) :style flat-button)))))
