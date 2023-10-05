@@ -239,8 +239,20 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
         doom-one-light-brighter-modeline t))
 
 (use-package doom-modeline
-  :init (doom-modeline-mode))
+  :init (doom-modeline-mode t))
 
-(use-package treemacs)
+
+(use-package eglot
+  :ensure nil
+  :config
+  (define-key eglot-mode-map (kbd "C-.") 'eglot-code-actions)
+  (add-hook 'eglot-managed-mode-hook 'eldoc-box-hover-mode))
+
+(use-package eldoc-box
+  :defer t
+  :after eglot
+  :config
+  (custom-set-variables
+   '(eldoc-box-max-pixel-width 600)))
 
 (provide 'extra-packages)

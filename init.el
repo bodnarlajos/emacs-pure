@@ -196,6 +196,8 @@
   (setq my/path-separator ";"))
 
 (use-package eldoc
+  :init
+  :ensure nil
   :preface
   (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
 
@@ -209,5 +211,3 @@
   (setq project-switch-commands '((project-find-file "Find file")
                                   (project-find-dir "Find directory"))))
 
-(with-eval-after-load 'eglot
-  (define-key eglot-mode-map (kbd "C-.") 'eglot-code-actions))
