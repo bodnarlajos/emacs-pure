@@ -129,4 +129,24 @@
 (set-frame-width (selected-frame) 160)
 (load-theme 'doom-acario-light)
 
+(defun work/copy-flyway ()
+  "Copy flywaymigration config file."
+  (interactive)
+  (let ((currDir (if (equal buffer-file-name nil)
+                     (dired-current-directory)
+                   (file-name-directory buffer-file-name))))
+    (setq configFile (completing-read "Find flywaymigration config file: " (delete "." (delete ".." (directory-files-recursively "O:\\DatabaseManagement\\Apollon\\Clients" "\\.bat")))))
+    (when (not (string-empty-p configFile))
+      (copy-file configFile currDir))))
+
+(defun work/copy-flyway-webportal ()
+  "Copy flywaymigration config file."
+  (interactive)
+  (let ((currDir (if (equal buffer-file-name nil)
+                     (dired-current-directory)
+                   (file-name-directory buffer-file-name))))
+    (setq configFile (completing-read "Find flywaymigration config file: " (delete "." (delete ".." (directory-files-recursively "O:\\DatabaseManagement\\Apollon\\Webportal" "\\.bat")))))
+    (when (not (string-empty-p configFile))
+      (copy-file configFile currDir))))
+
 (message "custom file loaded")
