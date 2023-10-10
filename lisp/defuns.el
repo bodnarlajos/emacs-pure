@@ -254,7 +254,8 @@ Version 2017-11-01"
 
 (defun my/select-all ()
   "Select all"
-  (push-global-mark)
+  (interactive)
+  (call-interactively 'dogears-remember)
   (mark-whole-buffer))
 
 (defun my/toggle-word-wrap ()
