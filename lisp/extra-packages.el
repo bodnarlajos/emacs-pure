@@ -71,7 +71,19 @@
               ("M-f" . dogears-forward)
               ("M-g d" . dogears-go)
               ("M-g M-d" . dogears-list)
-              ("M-g M-D" . dogears-sidebar)))
+              ("M-g M-D" . dogears-sidebar))
+  :config
+  (setq dogears-limit 300)
+  (setq dogears-line-width 30)
+
+  ;; Ignored modes
+  (add-to-list 'dogears-ignore-modes 'git-commit-mode)
+
+  ;; Trigger functions
+  (add-to-list 'dogears-functions 'kill-ring-save)
+
+  ;; Trigger hooks
+  (add-hook 'dogears-hooks 'after-change-functions))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
