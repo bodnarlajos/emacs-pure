@@ -102,7 +102,7 @@ for the current buffer's file name, and the line number at point."
 (defun /open-file ()
   "Open project files if it is a project, otherwise find-file"
   (interactive)
-  (if (or (vc-root-dir) magit-buffer-topdir)
+  (if (or (vc-root-dir) magit--default-directory)
       (call-interactively 'project-find-file)
     (call-interactively 'find-file)))
 
