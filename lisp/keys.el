@@ -38,6 +38,7 @@
 (global-set-key (kbd "<BLAH-m>") '/show-menu)
 (global-set-key (kbd "<BLAH-i>") project-prefix-map)
 (global-set-key (kbd "<BLAH-lsb>") 'my/kill-buffer)
+(global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))

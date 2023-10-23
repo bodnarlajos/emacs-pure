@@ -15,6 +15,7 @@
       visible-bell t)
 (customize-set-variable 'completion-cycle-threshold 3)
 (customize-set-variable 'tab-always-indent 'complete)
+(customize-set-variable 'tab-first-completion t)
 (customize-set-variable 'completions-detailed t)
 (electric-pair-mode 1) ; auto-insert matching bracket
 (show-paren-mode +1)    ; turn on paren match highlighting
@@ -211,3 +212,4 @@
   (setq project-switch-commands '((project-find-file "Find file")
                                   (project-find-dir "Find directory"))))
 
+(put 'upcase-region 'disabled nil)

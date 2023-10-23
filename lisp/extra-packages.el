@@ -83,7 +83,7 @@
   (add-to-list 'dogears-functions 'kill-ring-save)
 
   ;; Trigger hooks
-  (add-hook 'dogears-hooks 'after-change-functions))
+  (add-hook 'after-change-functions 'dogears-remember))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult

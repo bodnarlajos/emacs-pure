@@ -350,4 +350,9 @@ Version 2017-11-01"
 (add-hook 'minibuffer-setup-hook (lambda ()
                                    (buffer-face-set 'default)))
 
+(defun back-to-indentation-or-beginning ()
+  (interactive)
+   (if (= (point) (progn (back-to-indentation) (point)))
+       (beginning-of-line)))
+
 (provide 'defuns)
