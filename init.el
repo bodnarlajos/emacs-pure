@@ -17,6 +17,7 @@
 (customize-set-variable 'tab-always-indent 'complete)
 (customize-set-variable 'tab-first-completion t)
 (customize-set-variable 'completions-detailed t)
+(customize-set-variable 'compilation-scroll-output t)
 (electric-pair-mode 1) ; auto-insert matching bracket
 (show-paren-mode +1)    ; turn on paren match highlighting
 (winner-mode 1)

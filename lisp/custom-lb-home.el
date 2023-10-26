@@ -9,6 +9,7 @@
  '(cua-mode t)
  '(custom-safe-themes
    '("afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" default))
+ '(eldoc-box-max-pixel-width 600)
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(magit-diff-refine-hunk 'all)
@@ -17,6 +18,7 @@
  '(org-startup-indented t)
  '(org-support-shift-select t)
  '(tab-always-indent 'complete)
+ '(tab-first-completion nil)
  '(tool-bar-mode nil)
  '(tramp-remote-path
    '("/home/ubuntu/.ghcup/bin" tramp-default-remote-path "/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin" "/local/bin" "/local/freeware/bin" "/local/gnu/bin" "/usr/freeware/bin" "/usr/pkg/bin" "/usr/contrib/bin" "/opt/bin" "/opt/sbin" "/opt/local/bin"))
