@@ -13,11 +13,27 @@
 
 (setq inhibit-startup-screen t
       visible-bell t)
-(customize-set-variable 'completion-cycle-threshold 3)
-(customize-set-variable 'tab-always-indent 'complete)
-(customize-set-variable 'tab-first-completion t)
-(customize-set-variable 'completions-detailed t)
-(customize-set-variable 'compilation-scroll-output t)
+
+(custom-set-variables
+ '(completion-cycle-threshold 3)
+ '(tab-always-indent 'complete)
+ '(tab-first-completion t)
+ '(completions-detailed t)
+ '(compilation-scroll-output t)
+ '(switch-to-buffer-in-dedicated-window 'pop)
+ '(switch-to-buffer-obey-display-actions t)
+ '(ibuffer-movement-cycle nil)
+ '(ibuffer-old-time 24)
+ '(global-auto-revert-non-file-buffers t)
+ '(next-error-recenter '(4))
+ '(fast-but-imprecise-scrolling t)
+ '(scroll-conservatively 101)
+ '(scroll-margin 0)
+ '(scroll-preserve-screen-position t)
+ '(recentf-save-file
+   (expand-file-name "recentf" user-emacs-directory))
+ '(kill-do-not-save-duplicates t))
+
 (electric-pair-mode 1) ; auto-insert matching bracket
 (show-paren-mode +1)    ; turn on paren match highlighting
 (winner-mode 1)
@@ -73,12 +89,7 @@
 	     '("\\(magit: .+\\|magit-log.+\\|magit-revision.+\\)"
 	       (display-buffer-full-frame)))
 
-(customize-set-variable 'switch-to-buffer-in-dedicated-window 'pop)
-(customize-set-variable 'switch-to-buffer-obey-display-actions t)
-(customize-set-variable 'ibuffer-movement-cycle nil)
-(customize-set-variable 'ibuffer-old-time 24)
 (global-set-key [remap list-buffers] #'ibuffer-list-buffers)
-(customize-set-variable 'global-auto-revert-non-file-buffers t)
 (global-auto-revert-mode 1)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
@@ -94,17 +105,10 @@
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)
   (advice-add 'yes-or-no-p :override #'y-or-n-p))
-(customize-set-variable 'recentf-save-file
-			(expand-file-name "recentf" user-emacs-directory))
 (recentf-mode +1)
 ;; (desktop-save-mode +1)
 
-(customize-set-variable 'kill-do-not-save-duplicates t)
 (setq auto-window-vscroll nil)
-(customize-set-variable 'fast-but-imprecise-scrolling t)
-(customize-set-variable 'scroll-conservatively 101)
-(customize-set-variable 'scroll-margin 0)
-(customize-set-variable 'scroll-preserve-screen-position t)
 (setq-default bidi-paragraph-direction 'left-to-right)
 (setq-default bidi-inhibit-bpa t)
 
@@ -132,9 +136,6 @@
 (require 'extra-packages)
 (require 'keys)
 (require 'expensive-packages)
-
-(custom-set-variables
- '(next-error-recenter '(4)))
 
 (with-eval-after-load 'org
   (custom-set-variables

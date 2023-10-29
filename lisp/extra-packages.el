@@ -65,6 +65,7 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package dogears
+  :straight (dogears :type git :host github :repo "alphapapa/dogears.el")
   :init (dogears-mode +1)
   :bind (:map global-map
               ("M-b" . dogears-back)
