@@ -39,6 +39,11 @@
 (global-set-key (kbd "<BLAH-i>") project-prefix-map)
 (global-set-key (kbd "<BLAH-lsb>") 'my/kill-buffer)
 (global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
+(global-set-key (kbd "C-<next>") 'forward-sexp)
+(global-set-key (kbd "C-<prior>") 'backward-sexp)
+(global-set-key (kbd "M-<next>") 'mark-sexp)
+(global-set-key (kbd "C-M-<next>") 'up-list)
+(global-set-key (kbd "C-M-<prior>") 'backward-up-list)
 
 (with-eval-after-load 'easy-kill
   (global-set-key [remap kill-ring-save] 'easy-kill))

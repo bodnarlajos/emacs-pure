@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bmkp-automatic-bookmark-mode-delay 5)
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(case-fold-search t)
  '(column-number-mode t)
  '(connection-local-criteria-alist
@@ -148,5 +150,14 @@
     (setq configFile (completing-read "Find flywaymigration config file: " (delete "." (delete ".." (directory-files-recursively "O:\\DatabaseManagement\\Apollon\\Webportal" "\\.bat")))))
     (when (not (string-empty-p configFile))
       (copy-file configFile currDir))))
+
+(defun work/apollon-repo-init-for-deployment ()
+  "Copy flywaymigration config file."
+  (interactive)
+  (let ((currDir (if (equal buffer-file-name nil)
+                     (dired-current-directory)
+                   (file-name-directory buffer-file-name))))
+      (copy-file "C:\\Deployment\\init.bat" currDir)))
+
 
 (message "custom file loaded")

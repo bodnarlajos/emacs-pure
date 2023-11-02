@@ -76,15 +76,21 @@
   :config
   (setq dogears-limit 300)
   (setq dogears-line-width 30)
-
+  
   ;; Ignored modes
-  (add-to-list 'dogears-ignore-modes 'git-commit-mode)
+  (setq dogears-ignore-modes '(git-commit-mode magit-mode magit-status-mode magit-log-mode magit-wip-mode magit-blob-mode magit-diff-mode magit-refs-mode magit-blame-mode magit-delta-mode magit-stash-mode magit-cherry-mode magit-reflog-mode magit-status-mode dogears-list-mode exwm-mode helm-major-mode))
 
   ;; Trigger functions
   (add-to-list 'dogears-functions 'kill-ring-save)
-
+  
   ;; Trigger hooks
-  (add-hook 'after-change-functions 'dogears-remember))
+  ;; (add-hook 'after-change-functions 'dogears-remember)
+    (add-hook 'dogears-hooks 'after-change-functions))
+)
+
+(use-package bookmark+
+  :init
+  (bmkp-automatic-bookmark-mode t))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
@@ -267,5 +273,7 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :config
   (custom-set-variables
    '(eldoc-box-max-pixel-width 600)))
+
+(use-package plz)
 
 (provide 'extra-packages)

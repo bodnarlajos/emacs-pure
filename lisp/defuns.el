@@ -12,6 +12,7 @@
                       ("Start Ide mode" . /start-ide)
                       ("Calculator" . calculator)
                       ("Format xml" . /format-xml)
+                      ("Copy region to json-result" . /copy-region-to-new-json-formatted-buffer)
                       ("Translate" . /translate)
                       ("Git history for file/buffer" . magit-log-buffer-file)) "my menu items")
 
@@ -38,7 +39,7 @@
          (command (cdr (assoc selected /menu-items))))
     (message "%s" selected)
     (when command
-    (call-interactively command))))
+      (call-interactively command))))
 
 (defun /start-ide ()
   "Start ide funcitonality"
@@ -255,7 +256,8 @@ Version 2017-11-01"
 (defun my/select-all ()
   "Select all"
   (interactive)
-  (call-interactively 'dogears-remember)
+  (when (featurep 'bookmark+)
+    (bmkp-set-automatic-bookmark))
   (mark-whole-buffer))
 
 (defun my/toggle-word-wrap ()
@@ -352,7 +354,19 @@ Version 2017-11-01"
 
 (defun back-to-indentation-or-beginning ()
   (interactive)
-   (if (= (point) (progn (back-to-indentation) (point)))
-       (beginning-of-line)))
+  (if (= (point) (progn (back-to-indentation) (point)))
+      (beginning-of-line)))
+
+(defun /copy-region-to-new-json-formatted-buffer ()
+  "Copy the selected region to json-result buffer and format"
+  (interactive)
+  (kill-ring-save (region-beginning) (region-end))
+  (get-buffer-create "json-result")
+  (switch-to-buffer "json-result")  
+  (yank)
+  (goto-char 0)
+  
+  (js-json-mode t)
+  (json-pretty-print-buffer))
 
 (provide 'defuns)
