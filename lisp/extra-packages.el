@@ -85,12 +85,7 @@
   
   ;; Trigger hooks
   ;; (add-hook 'after-change-functions 'dogears-remember)
-    (add-hook 'dogears-hooks 'after-change-functions))
-)
-
-(use-package bookmark+
-  :init
-  (bmkp-automatic-bookmark-mode t))
+  (add-hook 'dogears-hooks 'after-change-functions))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
