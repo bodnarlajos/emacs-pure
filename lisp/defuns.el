@@ -363,10 +363,10 @@ Version 2017-11-01"
   (kill-ring-save (region-beginning) (region-end))
   (get-buffer-create "json-result")
   (switch-to-buffer "json-result")  
+  (erase-buffer)
   (yank)
+  (js-json-mode)
   (goto-char 0)
-  
-  (js-json-mode t)
   (json-pretty-print-buffer))
 
 (provide 'defuns)
