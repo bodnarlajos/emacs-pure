@@ -64,29 +64,6 @@
                  nil
                  (window-parameters (mode-line-format . none)))))
 
-(use-package dogears
-  :straight (dogears :type git :host github :repo "alphapapa/dogears.el")
-  :init (dogears-mode +1)
-  :bind (:map global-map
-              ("M-b" . dogears-back)
-              ("M-f" . dogears-forward)
-              ("M-g d" . dogears-go)
-              ("M-g M-d" . dogears-list)
-              ("M-g M-D" . dogears-sidebar))
-  :config
-  (setq dogears-limit 300)
-  (setq dogears-line-width 30)
-  
-  ;; Ignored modes
-  (setq dogears-ignore-modes '(git-commit-mode magit-mode magit-status-mode magit-log-mode magit-wip-mode magit-blob-mode magit-diff-mode magit-refs-mode magit-blame-mode magit-delta-mode magit-stash-mode magit-cherry-mode magit-reflog-mode magit-status-mode dogears-list-mode exwm-mode helm-major-mode))
-
-  ;; Trigger functions
-  (add-to-list 'dogears-functions 'kill-ring-save)
-  
-  ;; Trigger hooks
-  ;; (add-hook 'after-change-functions 'dogears-remember)
-  (add-hook 'dogears-hooks 'after-change-functions))
-
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
   :ensure t ; only need to install it, embark loads it after consult if found
