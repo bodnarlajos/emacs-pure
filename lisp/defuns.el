@@ -208,7 +208,7 @@ for the current buffer's file name, and the line number at point."
 (defun /start-magit ()
   "Deploy and start magit"
   (interactive)
-  (require 'expensive-packages)
+  (require 'magit-status)
   (call-interactively 'magit-project-status))
 
 (defun my/kill-buffer ()

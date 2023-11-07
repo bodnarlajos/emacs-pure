@@ -212,6 +212,10 @@
 (use-package emacs
   :init
   (setq project-switch-commands '((project-find-file "Find file")
-                                  (project-find-dir "Find directory"))))
+                                  (project-find-dir "Find directory")
+                                  (/start-magit "Git" "g")
+                                  (project-eshell "Eshell")))
+  (size-indication-mode t))
+
 
 (put 'upcase-region 'disabled nil)
