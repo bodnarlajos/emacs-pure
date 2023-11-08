@@ -1,9 +1,8 @@
 ;; -*- lexical-binding: t -*-
-(cua-mode +1)
-(with-eval-after-load 'cua
-  (message "cua-mode keymap")
-  (define-key 'cua-global-keymap (kbd "C-<return>") 'crux-smart-open-line)
-  (define-key 'cua-global-keymap (kbd "M-<return>") 'cua-set-rectangle-mark))
+(cua-mode t)
+(message "cua-mode keymap")
+(define-key cua-global-keymap (kbd "C-<return>") 'crux-smart-open-line)
+(define-key cua-global-keymap (kbd "M-<return>") 'cua-set-rectangle-mark)
 
 ;; keys
 (global-set-key (kbd "C-/") 'cape-dabbrev)
@@ -31,7 +30,8 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-S-n") 'my/new-empty-buffer)
 (global-set-key (kbd "C-S-o") 'my/new-empty-org-buffer)
-(global-set-key (kbd "C-b") '/switch-buffer)
+(global-set-key (kbd "C-b") 'consult-buffer)
+(global-set-key (kbd "M-b") 'consult-project-buffer)
 (define-key minibuffer-local-map (kbd "C-b") 'next-line)
 (global-set-key (kbd "M-S-k") 'my/kill-buffer)
 (global-set-key (kbd "M--") 'delete-window)

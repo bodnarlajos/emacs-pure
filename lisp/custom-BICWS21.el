@@ -145,7 +145,7 @@
 (cd "c:/Projects/apollon")
 (set-frame-height (selected-frame) 45)
 (set-frame-width (selected-frame) 160)
-(load-theme 'kaolin-light t)
+(load-theme 'leuven t)
 
 (defun work/copy-flyway ()
   "Copy flywaymigration config file."
