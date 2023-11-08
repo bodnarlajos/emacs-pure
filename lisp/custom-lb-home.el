@@ -52,4 +52,4 @@
  '(tab-line-tab ((t (:inherit tab-line :style flat-button) :underline (:color foreground-color :style line :position 0))))
  '(undo-tree-visualizer-active-branch-face ((t (:foreground "red")))))
 
-(load-theme 'default)
+(load-theme 'leuven t)
