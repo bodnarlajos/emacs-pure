@@ -12,7 +12,30 @@
 (set-default-coding-systems 'utf-8)
 
 (setq inhibit-startup-screen t
-      visible-bell t)
+      visible-bell t
+      create-lockfiles nil
+      sentence-end-double-space nil
+      emacs-lisp-docstring-fill-column 'fill-column
+      calendar-week-start-day 1
+      select-enable-clipboard t
+      select-enable-primary t
+      save-interprogram-paste-before-kill t
+      apropos-do-all t
+      mouse-yank-at-point t
+      require-final-newline t
+      save-place-file (concat user-emacs-directory "places")
+      garbage-collection-messages nil)
+
+;; cursor move faster
+(setq auto-window-vscroll nil)
+(setq fast-but-imprecise-scrolling 't)
+;; NOTE: setting this to `0' like it was recommended in the article above seems
+;; to cause fontification to happen in real time, which can be pretty slow in
+;; large buffers. Giving it a delay seems to be better.
+(setq jit-lock-defer-time 0.25)
+
+(setq read-process-output-max (* 1024 1024)) ; 1mb.
+(setq display-time-world-list '(("Europe/Vienna" "Wien")))
 
 (custom-set-variables
  '(completion-cycle-threshold 3)
@@ -96,6 +119,7 @@
 (delete-selection-mode)
 (setq-default indent-tabs-mode nil
 	      standard-indent 2
+              tab-width 2
 	      delete-old-versions t
               display-line-numbers-width 4
 	      create-lockfiles nil
@@ -114,6 +138,7 @@
 
 ;; backup/autosave dir
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
+(setq tramp-backup-directory-alist '(("." . ,(concat user-emacs-directory "remote-file-backups"))))
 (let ((my-auto-save-dir (locate-user-emacs-file "auto-save")))
   (setq auto-save-file-name-transforms
         `((".*" ,(expand-file-name "\\2" my-auto-save-dir) t)))
@@ -126,7 +151,14 @@
 (global-so-long-mode 1)
 
 (add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+
+(require 'savehist)
+(setq savehist-additional-variables '(regexp-search-ring)
+      savehist-autosave-interval 60
+      savehist-file (expand-file-name "savehist" user-emacs-directory))
 (savehist-mode t)
+
+(require 'saveplace)
 (save-place-mode t)
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
