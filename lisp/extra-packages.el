@@ -86,7 +86,10 @@
 (use-package kind-icon)
 
 ;; programming packages
-(use-package haskell-mode)
+(use-package haskell-mode
+  :config
+  (add-hook 'haskell-mode-hook (lambda ()
+                                 (setq compile-command "make build"))))
 (use-package angular-mode)
 (use-package typescript-mode)
 (use-package js2-mode)

@@ -138,7 +138,7 @@
 
 ;; backup/autosave dir
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups/")))
-(setq tramp-backup-directory-alist '(("." . ,(concat user-emacs-directory "remote-file-backups"))))
+(setq tramp-backup-directory-alist `(("." . ,(concat user-emacs-directory "remote-file-backups"))))
 (let ((my-auto-save-dir (locate-user-emacs-file "auto-save")))
   (setq auto-save-file-name-transforms
         `((".*" ,(expand-file-name "\\2" my-auto-save-dir) t)))
@@ -166,7 +166,8 @@
 ;; (require 'package-init)
 (require 'package-straight-init)
 (require 'extra-packages)
-(require 'keys)
+;; (require 'keys)
+(require 'keys-wakib)
 (require 'expensive-packages)
 
 (with-eval-after-load 'org
@@ -242,12 +243,16 @@
             (message "exec-path -> $PATH")))
 
 (use-package emacs
-  :init
+  :config
   (setq project-switch-commands '((project-find-file "Find file")
                                   (project-find-dir "Find directory")
                                   (/start-magit "Git" "g")
                                   (project-eshell "Eshell")))
-  (size-indication-mode t))
+  (size-indication-mode t)
+  (setq isearch-lazy-count t
+        lazy-count-prefix-format "(%s/%s) => "
+        lazy-count-suffix-format ""
+        search-whitespace-regexp ".*?"))
 
 
 (put 'upcase-region 'disabled nil)
