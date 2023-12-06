@@ -86,7 +86,6 @@
       (null-device . "/dev/null"))))
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
- '(cua-mode t)
  '(eldoc-documentation-strategy 'eldoc-documentation-compose)
  '(eldoc-echo-area-prefer-doc-buffer t)
  '(lsp-completion-provider :none)

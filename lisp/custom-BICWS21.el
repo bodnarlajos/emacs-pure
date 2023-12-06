@@ -92,7 +92,6 @@
       (null-device . "/dev/null"))))
  '(css-indent-offset 2)
  '(csv-separators '("," ";" ":"))
- '(cua-mode t)
  '(custom-safe-themes
    '("379d3172f4618d4d5b7800aeb1c800e2cb07096872b75c2ea805715c3557ed2b" "2d48bd895a307a623367f5eb240bfdb453dc1ad5dbc4fbf915b0a709dfb772a8" "94843bc0a0b482f77063b94b93efdabf646a52f7a947f5a0ed2bdcaf109f11ca" "261c8375d5a7d3a7832879d64d7ded31d71bffcad5ee7141bbbba1e83fd49015" "afa47084cb0beb684281f480aa84dab7c9170b084423c7f87ba755b15f6776ef" default))
  '(desktop-base-file-name "~/.emacs.d/.cache/.emacs.desktop")
@@ -145,7 +144,7 @@
 (cd "c:/Projects/apollon")
 (set-frame-height (selected-frame) 45)
 (set-frame-width (selected-frame) 160)
-(load-theme 'leuven t)
+(load-theme 'modus-operandi t)
 
 (defun work/copy-flyway ()
   "Copy flywaymigration config file."
