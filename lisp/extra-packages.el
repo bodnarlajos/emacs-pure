@@ -229,7 +229,9 @@ _p_rev       _u_pper              _=_: upper/lower       _r_esolve
   :ensure nil
   :config
   (define-key eglot-mode-map (kbd "C-.") 'eglot-code-actions)
-  (add-hook 'eglot-managed-mode-hook 'eldoc-box-hover-mode))
+  (add-hook 'eglot-managed-mode-hook 'eldoc-box-hover-mode)
+  ;; disable logging
+  (setq eglot-events-buffer-size 0))
 
 (use-package eldoc-box
   :defer t

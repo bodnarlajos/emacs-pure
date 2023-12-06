@@ -12,7 +12,9 @@
   (define-key isearch-mode-map (kbd "M-;") 'isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "M-:") 'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "C-v") 'isearch-yank-kill)
-  (define-key isearch-mode-map (kbd "M-d") 'isearch-delete-char))
+  (define-key isearch-mode-map (kbd "M-d") 'isearch-delete-char)
+  (global-set-key (kbd "M-o") 'project-find-file)
+  (global-set-key (kbd "C-S-v") 'consult-yank-from-kill-ring))
 
 (windmove-default-keybindings  '(meta))
 
