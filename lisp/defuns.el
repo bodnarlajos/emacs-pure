@@ -349,6 +349,11 @@ Version 2017-11-01"
         (set-face-attribute 'default nil :height /big-font-size)
       (set-face-attribute 'default nil :height /normal-font-size))))
 
+(defun /change-font-bigger-external-monitor ()
+  "Change the font to bigger size"
+  (interactive)
+  (set-face-attribute 'default nil :height 110))
+
 (add-hook 'minibuffer-setup-hook (lambda ()
                                    (buffer-face-set 'default)))
 
